@@ -3,7 +3,7 @@
     
         "post0": {
             "title": "Plots Test",
-            "content": "We get an interactive plot of the function ax^2 by following Dr. Scott H. Hawley’s post. . Super. Now how can I get a nice latex equation for the ylabel? .",
+            "content": "We get an interactive plot of the function ax^2 by following Dr. Scott H. Hawley’s post. .",
             "url": "https://nasheqlbrm.github.io/blog/2021/07/24/Plots_Test.html",
             "relUrl": "/2021/07/24/Plots_Test.html",
             "date": " • Jul 24, 2021"
