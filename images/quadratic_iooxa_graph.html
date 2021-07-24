@@ -3,7 +3,7 @@
 <r-var name="a" value="1"></r-var>
 <p style="text-align:center;">
   <r-svg-chart width="400", height="400" xlim="[-3, 3]" ylim="[-3,3]" xlabel="x" ylabel="ax^2" x-axis-location="origin" y-axis-location="origin">
-    <r-svg-eqn eqn="a * x * x" stroke="blue" stroke-width="3"> </r-svg-eqn>
+    <r-svg-eqn eqn="a * x * x" stroke="blue" stroke-width="3" :listen="a"> </r-svg-eqn>
   </r-svg-chart>
-  <strong>a:</strong> <r-range bind="a" min="0" max="10" step="1"></r-range><br>
+  <strong>a:</strong> <r-dynamic bind="a" min="0" max="10" step="1"></r-dynamic><br>
 </p>
