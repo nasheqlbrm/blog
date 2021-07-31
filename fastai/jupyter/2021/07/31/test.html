@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      2 min read
+      3 min read
     
 </span></p>
 
@@ -663,9 +663,6 @@ Downloading results into /data/kaushik/bears/teddy
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<details class="description">
-      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
-        <p></p>
 <div class="input">
 
 <div class="inner_cell">
@@ -678,8 +675,10 @@ Downloading results into /data/kaushik/bears/teddy
     </div>
 </div>
 </div>
-
-    </details>
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Output" data-close="Show Output"></summary>
+        <p>
+</p>
 <div class="output_wrapper">
 <div class="output">
 
@@ -696,6 +695,7 @@ Downloading results into /data/kaushik/bears/teddy
 </div>
 </div>
 
+    </details>
 </div>
     
 
@@ -908,14 +908,6 @@ Downloading results into /data/kaushik/bears/teddy
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We have a seal (fourth image) that has sneaked in as a grizzly.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Clean-the-data">
 <a class="anchor" href="#Clean-the-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Clean the data<a class="anchor-link" href="#Clean-the-data"> </a>
 </h2>
@@ -939,6 +931,14 @@ Downloading results into /data/kaushik/bears/teddy
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The following will give us a UI that allows to mark images that are mislabeled (for relabeling) or completely wrong (for deletion).</p>
+
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -984,18 +984,26 @@ Downloading results into /data/kaushik/bears/teddy
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For each label,</p>
+<p>So for each label we do the following:</p>
 <ul>
 <li>
-<p>First choose the images to delete or relabel.</p>
+<p>First we choose the images to delete or relabel.</p>
 </li>
 <li>
-<p>Second run the following:</p>
+<p>Second we run the following:</p>
 
 <pre><code>for idx in cleaner.delete() : cleaner.fns[idx].unlink()
 for idx, cat in cleaner.change(): shutil.move(str(cleaner.fns[idx]), path/cat)</code></pre>
 </li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Items that need to be deleted or whose label needs to be changed</p>
 
 </div>
 </div>
