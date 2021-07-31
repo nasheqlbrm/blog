@@ -137,7 +137,7 @@ window.onload = wrap_img;
     <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#Introduction">Introduction </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#Assemble-images">Assemble images </a></li>
+<li class="toc-entry toc-h2"><a href="#Preliminaries">Preliminaries </a></li>
 </ul>
 </li>
 </ul><!--
@@ -163,10 +163,20 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Assemble-images">
-<a class="anchor" href="#Assemble-images" aria-hidden="true"><span class="octicon octicon-link"></span></a>Assemble images<a class="anchor-link" href="#Assemble-images"> </a>
+<h2 id="Preliminaries">
+<a class="anchor" href="#Preliminaries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preliminaries<a class="anchor-link" href="#Preliminaries"> </a>
 </h2>
-<p>Install the jmd_imagescraper <a href="https://github.com/joedockrill/jmd_imagescraper/tree/master/">library</a> if you don't have it already.</p>
+<ul>
+<li>
+<p>Install the jmd_imagescraper <a href="https://github.com/joedockrill/jmd_imagescraper/tree/master/">library</a> using <code>!pip3 install jmd_imagescraper</code></p>
+</li>
+<li>
+<p>I have set FASTAI_HOME in my .bashrc so that any datasets downloaded via Fastai are stored under a different location than the default (/home/kaushik/.fastai). This is because my default location is space constrained. Feel free to omit this if step.</p>
+
+<pre><code>export FASTAI_HOME=/data/kaushik/.fastai
+export PATH=$FASTAI_HOME:$PATH</code></pre>
+</li>
+</ul>
 
 </div>
 </div>

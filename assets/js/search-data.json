@@ -3,7 +3,7 @@
     
         "post0": {
             "title": "Bear Classification",
-            "content": "Introduction . Yada yada yada ... . Assemble images . Install the jmd_imagescraper library if you don&#39;t have it already. .",
+            "content": "Introduction . Yada yada yada ... . Preliminaries . Install the jmd_imagescraper library using !pip3 install jmd_imagescraper . | I have set FASTAI_HOME in my .bashrc so that any datasets downloaded via Fastai are stored under a different location than the default (/home/kaushik/.fastai). This is because my default location is space constrained. Feel free to omit this if step. . export FASTAI_HOME=/data/kaushik/.fastai export PATH=$FASTAI_HOME:$PATH . | .",
             "url": "https://nasheqlbrm.github.io/blog/fastai/jupyter/2021/07/31/test.html",
             "relUrl": "/fastai/jupyter/2021/07/31/test.html",
             "date": " • Jul 31, 2021"
