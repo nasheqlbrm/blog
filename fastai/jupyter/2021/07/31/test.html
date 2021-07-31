@@ -202,7 +202,7 @@ export PATH=$FASTAI_HOME:$PATH</code></pre>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Utility function below to download images using the Duck Duck Go search engine.</p>
+<p>See utility function to download images using the Duck Duck Go search engine below (modified from <a href="#https://drscotthawley.github.io/blog/scottergories/2021/06/17/Contrasting-Contrastive-Loss.html">here</a>).</p>
 
 </div>
 </div>
@@ -235,8 +235,8 @@ export PATH=$FASTAI_HOME:$PATH</code></pre>
     <span class="k">if</span> <span class="n">failed</span> <span class="o">!=</span> <span class="p">[]:</span>
         <span class="n">_</span> <span class="o">=</span> <span class="p">[</span><span class="n">filenames</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">failed</span><span class="p">]</span>
     
-    <span class="c1"># Extra: To avoid Transparency warnings, convert PNG images to RGBA</span>
-    <span class="c1">#from https://forums.fast.ai/t/errors-when-training-the-bear-image-classification-model/83422/9</span>
+    <span class="c1"># To avoid Transparency warnings, convert PNG images to RGBA</span>
+    <span class="c1"># https://forums.fast.ai/t/errors-when-training-the-bear-image-classification-model/83422/9</span>
     <span class="n">converted</span> <span class="o">=</span> <span class="n">L</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
         <span class="k">if</span> <span class="s1">'.png'</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
@@ -246,9 +246,10 @@ export PATH=$FASTAI_HOME:$PATH</code></pre>
             
     <span class="n">converted</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">unlink</span><span class="p">);</span> <span class="c1"># delete originals</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"After checking for issues, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">get_image_files</span><span class="p">(</span><span class="n">path</span><span class="p">))</span><span class="si">}</span><span class="s2"> (total) images remain."</span><span class="p">)</span>
+    <span class="n">total_images</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_image_files</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"After checking for issues, </span><span class="si">{</span><span class="n">total_images</span><span class="si">}</span><span class="s2"> (total) images remain."</span><span class="p">)</span>
     
-    <span class="k">return</span> <span class="n">path</span>     <span class="c1"># and return a pathlib object pointing to image dir</span>
+    <span class="k">return</span> <span class="n">path</span>
 </pre></div>
 
     </div>
@@ -275,7 +276,6 @@ export PATH=$FASTAI_HOME:$PATH</code></pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="s1">'grizzly'</span><span class="p">,</span><span class="s1">'black'</span><span class="p">,</span><span class="s1">'teddy'</span>
-
 <span class="n">path</span> <span class="o">=</span> <span class="n">scrape_images</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">'/data/kaushik/bears'</span><span class="p">),</span> <span class="n">labels</span><span class="p">,</span> <span class="s1">'bear'</span><span class="p">)</span>
 </pre></div>
 
