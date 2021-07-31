@@ -202,7 +202,7 @@ export PATH=$FASTAI_HOME:$PATH</code></pre>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Set the path where we want to download the bear images.</p>
+<p>Utility function below to download images using the Duck Duck Go search engine.</p>
 
 </div>
 </div>
@@ -210,7 +210,7 @@ export PATH=$FASTAI_HOME:$PATH</code></pre>
     
     
 <div class="cell border-box-sizing code_cell rendered">
-<details class="description" open="">
+<details class="description">
       <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
         <p></p>
 <div class="input">
@@ -271,7 +271,10 @@ export PATH=$FASTAI_HOME:$PATH</code></pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="s1">'grizzly'</span><span class="p">,</span><span class="s1">'black'</span><span class="p">,</span><span class="s1">'teddy'</span>
+
+<span class="c1">#set the path where we want to download the bear images.</span>
 <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'/data/kaushik/bears'</span><span class="p">)</span>
+
 <span class="n">scrape_images</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="s1">'bear'</span><span class="p">)</span>
 </pre></div>
 
@@ -310,7 +313,7 @@ Downloading results into /data/kaushik/bears/grizzly
             }
         </style>
       <progress value="20" class="" max="20" style="width:300px; height:20px; vertical-align: middle;"></progress>
-      100.00% [20/20 00:01&lt;00:00 Images downloaded]
+      100.00% [20/20 00:00&lt;00:00 Images downloaded]
     </div>
     
 </div>
@@ -390,7 +393,7 @@ Downloading results into /data/kaushik/bears/teddy
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>After checking images for issues, 180 (total) images remain.
+<pre>After checking images for issues, 60 (total) images remain.
 </pre>
 </div>
 </div>
