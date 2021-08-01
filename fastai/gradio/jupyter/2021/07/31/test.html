@@ -1624,8 +1624,8 @@ weighted avg       0.96      0.95      0.95        58
 <h1 id="Demo">
 <a class="anchor" href="#Demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo<a class="anchor-link" href="#Demo"> </a>
 </h1>
-<p>Chapter 2 of the book shows how to create a notebook app with Voila. However I recently ran into <a href="https://www.gradio.app">gradio</a> on the twitterverse and it provides a neat way to quickly demo your model. The demo below will only run <em>as long as my notebook is up</em>. However, as of July 2021, gradio has a USD 7 per month <a href="https://www.gradio.app/introducing-hosted">hosted</a> option which provides a permanent link.</p>
-<p>While gradio does not have an example using Fastai, it was easy enough to whip one up.</p>
+<p>Chapter 2 of the book shows how to create a notebook app with Voila. However I recently ran into <a href="https://www.gradio.app">gradio</a> on the twitterverse and it provides a neat way to quickly demo your model. The demo below will only run <em>as long as my notebook is up</em> but there is a paid <a href="https://www.gradio.app/introducing-hosted">hosted</a> option that gets you a permanent link.</p>
+<p>At the time of writing this gradio did not have an example using Fastai but it was easy enough to whip one up.</p>
 
 </div>
 </div>
@@ -1638,23 +1638,8 @@ weighted avg       0.96      0.95      0.95        58
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">gradio_predict</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">gradio_predict</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
     <span class="n">pred</span><span class="p">,</span> <span class="n">pred_idx</span><span class="p">,</span> <span class="n">probs</span> <span class="o">=</span>  <span class="n">learn_inf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">pred</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">probs</span><span class="p">[</span><span class="n">pred_idx</span><span class="p">]</span><span class="si">:</span><span class="s1">.04f</span><span class="si">}</span><span class="s1">'</span>
 </pre></div>
@@ -1669,11 +1654,16 @@ weighted avg       0.96      0.95      0.95        58
     
     
 <div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iface</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">gradio_predict</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">gr</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span><span class="mi">224</span><span class="p">)),</span> <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="s2">"text"</span><span class="p">,</span><span class="s2">"number"</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iface</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">gradio_predict</span><span class="p">,</span>
+                     <span class="n">inputs</span><span class="o">=</span><span class="n">gr</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span><span class="mi">224</span><span class="p">)),</span>
+                     <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="s2">"text"</span><span class="p">,</span><span class="s2">"number"</span><span class="p">])</span>
 <span class="n">iface</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">share</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
@@ -1681,15 +1671,16 @@ weighted avg       0.96      0.95      0.95        58
 </div>
 </div>
 
+    </details>
 <div class="output_wrapper">
 <div class="output">
 
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Running locally at: http://127.0.0.1:7861/
+<pre>Running locally at: http://127.0.0.1:7860/
 This share link will expire in 24 hours. If you need a permanent link, visit: https://gradio.app/introducing-hosted (NEW!)
-Running on External URL: https://21053.gradio.app
+Running on External URL: https://29018.gradio.app
 Interface loading below...
 </pre>
 </div>
@@ -1700,7 +1691,7 @@ Interface loading below...
 
 <div class="output_html rendered_html output_subarea ">
 
-        <iframe width="900" height="500" src="https://21053.gradio.app" frameborder="0" allowfullscreen=""></iframe>
+        <iframe width="900" height="500" src="https://29018.gradio.app" frameborder="0" allowfullscreen=""></iframe>
         
 </div>
 
@@ -1712,8 +1703,8 @@ Interface loading below...
 
 <div class="output_text output_subarea output_execute_result">
 <pre>(&lt;Flask 'gradio.networking'&gt;,
- 'http://127.0.0.1:7861/',
- 'https://21053.gradio.app')</pre>
+ 'http://127.0.0.1:7860/',
+ 'https://29018.gradio.app')</pre>
 </div>
 
 </div>
