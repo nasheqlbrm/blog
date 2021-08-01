@@ -150,8 +150,11 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#Inspect-effect-of-Data-Augmentations">Inspect effect of Data Augmentations </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#Train-Model">Train Model </a></li>
-<li class="toc-entry toc-h1"><a href="#Clean-the-data">Clean the data </a></li>
+<li class="toc-entry toc-h1"><a href="#Train-Model">Train Model </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Clean-the-data">Clean the data </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h1"><a href="#Retrain-Model">Retrain Model </a></li>
 <li class="toc-entry toc-h1"><a href="#Save-the-model">Save the model </a></li>
 <li class="toc-entry toc-h1"><a href="#Load-serialized-model">Load serialized model </a></li>
@@ -769,9 +772,9 @@ Downloading results into /data/kaushik/bears/teddy
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Clean-the-data">
+<h2 id="Clean-the-data">
 <a class="anchor" href="#Clean-the-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Clean the data<a class="anchor-link" href="#Clean-the-data"> </a>
-</h1>
+</h2>
 </div>
 </div>
 </div>
@@ -1477,7 +1480,7 @@ weighted avg       0.96      0.95      0.95        58
 <h1 id="Model-Demo">
 <a class="anchor" href="#Model-Demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Model Demo<a class="anchor-link" href="#Model-Demo"> </a>
 </h1>
-<p>Chapter 2 of the book shows how to create a notebook app with Voila. However I recently ran into <a href="https://www.gradio.app">gradio</a> which provides a neat way to quickly demo your model. The demo below will only run <em>as long as my notebook is up</em> but there is a paid <a href="https://www.gradio.app/introducing-hosted">hosted</a> option that gets you a permanent link.</p>
+<p>Chapter 2 of the book shows how to create a notebook app with Voila. However I recently ran into <a href="https://www.gradio.app">gradio</a> which provides a neat way to quickly demo your model. The demo below will only run <strong>as long as my notebook is up</strong> but there is a paid <a href="https://www.gradio.app/introducing-hosted">hosted</a> option that gets you a permanent link.</p>
 <p>At the time of writing this gradio did not have an example using Fastai but it was easy enough to whip one up.</p>
 
 </div>
@@ -1582,7 +1585,7 @@ Interface loading below...
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If my notebook is not running the following screenshot shows the finished product. Upload an image, click submit and that's it. Pretty neat!</p>
+<p>Click the <em>Show Output</em> button to view the UI element thrown up by Gradio. If my notebook is not running the interface will not be shown. In that case the following <strong>screenshot</strong> shows the finished product. Upload an image, click submit and that's it. Pretty neat!</p>
 
 </div>
 </div>
