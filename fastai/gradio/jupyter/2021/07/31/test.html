@@ -1640,8 +1640,10 @@ weighted avg       0.96      0.95      0.95        58
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
 
 <span class="k">def</span> <span class="nf">gradio_predict</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
-    <span class="n">pred</span><span class="p">,</span> <span class="n">pred_idx</span><span class="p">,</span> <span class="n">probs</span> <span class="o">=</span>  <span class="n">learn_inf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">pred</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">probs</span><span class="p">[</span><span class="n">pred_idx</span><span class="p">]</span><span class="si">:</span><span class="s1">.04f</span><span class="si">}</span><span class="s1">'</span>
+    <span class="n">pred</span><span class="p">,</span> <span class="n">pred_idx</span><span class="p">,</span> <span class="n">probs</span> <span class="o">=</span>  <span class="n">learn_inf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="p">{</span><span class="n">learn_inf</span><span class="o">.</span><span class="n">dls</span><span class="o">.</span><span class="n">vocab</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="nb">float</span><span class="p">(</span><span class="n">probs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">probs</span><span class="p">))}</span>
+
+<span class="n">label</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">num_top_classes</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1654,13 +1656,16 @@ weighted avg       0.96      0.95      0.95        58
     
     
 <div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">iface</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">gradio_predict</span><span class="p">,</span>
                      <span class="n">inputs</span><span class="o">=</span><span class="n">gr</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span><span class="mi">224</span><span class="p">)),</span>
-                     <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="s2">"text"</span><span class="p">,</span><span class="s2">"number"</span><span class="p">])</span>
+                     <span class="n">outputs</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
 <span class="n">iface</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">share</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
@@ -1668,15 +1673,16 @@ weighted avg       0.96      0.95      0.95        58
 </div>
 </div>
 
+    </details>
 <div class="output_wrapper">
 <div class="output">
 
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Running locally at: http://127.0.0.1:7862/
+<pre>Running locally at: http://127.0.0.1:7860/
 This share link will expire in 24 hours. If you need a permanent link, visit: https://gradio.app/introducing-hosted (NEW!)
-Running on External URL: https://47450.gradio.app
+Running on External URL: https://37325.gradio.app
 Interface loading below...
 </pre>
 </div>
@@ -1687,7 +1693,7 @@ Interface loading below...
 
 <div class="output_html rendered_html output_subarea ">
 
-        <iframe width="900" height="500" src="https://47450.gradio.app" frameborder="0" allowfullscreen=""></iframe>
+        <iframe width="900" height="500" src="https://37325.gradio.app" frameborder="0" allowfullscreen=""></iframe>
         
 </div>
 
@@ -1699,8 +1705,17 @@ Interface loading below...
 
 <div class="output_text output_subarea output_execute_result">
 <pre>(&lt;Flask 'gradio.networking'&gt;,
- 'http://127.0.0.1:7862/',
- 'https://47450.gradio.app')</pre>
+ 'http://127.0.0.1:7860/',
+ 'https://37325.gradio.app')</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
 </div>
 
 </div>
@@ -1714,7 +1729,7 @@ Interface loading below...
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If my notebook is not running when you chance upon this page the following screenshot shows the finished product. Essentially you upload an image and click submit and that's it. Pretty neat!</p>
+<p>If my notebook is not running the following screenshot shows the finished product. Upload an image, click submit and that's it. Pretty neat!</p>
 
 </div>
 </div>
@@ -1722,7 +1737,7 @@ Interface loading below...
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="/blog/images/copied_from_nb/my_icons/gradio_screenshot.png" alt=""></p>
+<p><img src="/blog/images/copied_from_nb/../images/gradio_screenshot2.png" alt=""></p>
 
 </div>
 </div>
