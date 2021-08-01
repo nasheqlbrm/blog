@@ -4,19 +4,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Bear Classification | Kaushik Sinha</title>
+<title>Bear Classification with Gradio Demo | Kaushik Sinha</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Bear Classification" />
+<meta property="og:title" content="Bear Classification with Gradio Demo" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Using Fastai to classify bears." />
-<meta property="og:description" content="Using Fastai to classify bears." />
-<link rel="canonical" href="https://nasheqlbrm.github.io/blog/fastai/jupyter/2021/07/31/test.html" />
-<meta property="og:url" content="https://nasheqlbrm.github.io/blog/fastai/jupyter/2021/07/31/test.html" />
+<meta name="description" content="Using Fastai to classify bears and demo with gradio." />
+<meta property="og:description" content="Using Fastai to classify bears and demo with gradio." />
+<link rel="canonical" href="https://nasheqlbrm.github.io/blog/fastai/gradio/jupyter/2021/07/31/test.html" />
+<meta property="og:url" content="https://nasheqlbrm.github.io/blog/fastai/gradio/jupyter/2021/07/31/test.html" />
 <meta property="og:site_name" content="Kaushik Sinha" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-07-31T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Using Fastai to classify bears.","url":"https://nasheqlbrm.github.io/blog/fastai/jupyter/2021/07/31/test.html","@type":"BlogPosting","headline":"Bear Classification","dateModified":"2021-07-31T00:00:00-05:00","datePublished":"2021-07-31T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://nasheqlbrm.github.io/blog/fastai/jupyter/2021/07/31/test.html"},"@context":"https://schema.org"}</script>
+{"description":"Using Fastai to classify bears and demo with gradio.","url":"https://nasheqlbrm.github.io/blog/fastai/gradio/jupyter/2021/07/31/test.html","@type":"BlogPosting","headline":"Bear Classification with Gradio Demo","dateModified":"2021-07-31T00:00:00-05:00","datePublished":"2021-07-31T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://nasheqlbrm.github.io/blog/fastai/gradio/jupyter/2021/07/31/test.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://nasheqlbrm.github.io/blog/feed.xml" title="Kaushik Sinha" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -87,7 +87,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Bear Classification</h1><p class="page-description">Using Fastai to classify bears.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-07-31T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Bear Classification with Gradio Demo</h1><p class="page-description">Using Fastai to classify bears and demo with gradio.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-07-31T00:00:00-05:00" itemprop="datePublished">
         Jul 31, 2021
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -101,6 +101,9 @@ window.onload = wrap_img;
       <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
       
         <a class="category-tags-link" href="/blog/categories/#fastai">fastai</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#gradio">gradio</a>
         &nbsp;
       
         <a class="category-tags-link" href="/blog/categories/#jupyter">jupyter</a>
@@ -156,6 +159,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#Save-the-model">Save the model </a></li>
 <li class="toc-entry toc-h1"><a href="#Load-serialized-model">Load serialized model </a></li>
 <li class="toc-entry toc-h1"><a href="#Inference">Inference </a></li>
+<li class="toc-entry toc-h1"><a href="#Demo">Demo </a></li>
 <li class="toc-entry toc-h1"><a href="#References">References </a></li>
 </ul><!--
 #################################################
@@ -172,7 +176,7 @@ window.onload = wrap_img;
 <h1 id="Introduction">
 <a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
 </h1>
-<p>Follow along with Chapter 2 of <a class="citation" href="#fastbook2020"> [1]</a>.</p>
+<p>I am following along with Chapter 2 of <a class="citation" href="#fastbook2020"> [1]</a>.</p>
 
 </div>
 </div>
@@ -1617,6 +1621,121 @@ weighted avg       0.96      0.95      0.95        58
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Demo">
+<a class="anchor" href="#Demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo<a class="anchor-link" href="#Demo"> </a>
+</h1>
+<p>Chapter 2 of the book shows how to create a notebook app with Voila. However I recently ran into <a href="https://www.gradio.app">gradio</a> on the twitterverse and it provides a neat way to quickly share your model with co-workers. The demo below will only run <em>as long as my notebook is running</em>. Note that gradio has a $7 per month <a href="https://www.gradio.app/introducing-hosted">hosted</a> option which provides a permanent link.</p>
+<p>While gradio does not have an example using Fastai, it was easy enough to whip one up.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">gradio_predict</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+    <span class="n">pred</span><span class="p">,</span> <span class="n">pred_idx</span><span class="p">,</span> <span class="n">probs</span> <span class="o">=</span>  <span class="n">learn_inf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pred</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">probs</span><span class="p">[</span><span class="n">pred_idx</span><span class="p">]</span><span class="si">:</span><span class="s1">.04f</span><span class="si">}</span><span class="s1">'</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">iface</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">fn</span><span class="o">=</span><span class="n">gradio_predict</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">gr</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span><span class="mi">224</span><span class="p">)),</span> <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="s2">"text"</span><span class="p">,</span><span class="s2">"number"</span><span class="p">])</span>
+<span class="n">iface</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">share</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Running locally at: http://127.0.0.1:7860/
+This share link will expire in 24 hours. If you need a permanent link, visit: https://gradio.app/introducing-hosted (NEW!)
+Running on External URL: https://56316.gradio.app
+Interface loading below...
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+        <iframe width="900" height="500" src="https://56316.gradio.app" frameborder="0" allowfullscreen=""></iframe>
+        
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(&lt;Flask 'gradio.networking'&gt;,
+ 'http://127.0.0.1:7860/',
+ 'https://56316.gradio.app')</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="References">
 <a class="anchor" href="#References" aria-hidden="true"><span class="octicon octicon-link"></span></a>References<a class="anchor-link" href="#References"> </a>
 </h1>
@@ -1638,7 +1757,7 @@ weighted avg       0.96      0.95      0.95        58
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/blog/fastai/jupyter/2021/07/31/test.html" hidden></a>
+</script><a class="u-url" href="/blog/fastai/gradio/jupyter/2021/07/31/test.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
