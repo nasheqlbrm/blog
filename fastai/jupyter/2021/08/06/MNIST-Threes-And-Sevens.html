@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>MNIST: Distinguishing Threes from Sevens | Kaushik Sinha</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="MNIST: Distinguishing Threes from Sevens" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Using Fastai to classify threes and sevens from the MNIST dataset." />
+<meta property="og:description" content="Using Fastai to classify threes and sevens from the MNIST dataset." />
+<link rel="canonical" href="https://nasheqlbrm.github.io/blog/fastai/jupyter/2021/08/06/MNIST-Threes-And-Sevens.html" />
+<meta property="og:url" content="https://nasheqlbrm.github.io/blog/fastai/jupyter/2021/08/06/MNIST-Threes-And-Sevens.html" />
+<meta property="og:site_name" content="Kaushik Sinha" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-06T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"Using Fastai to classify threes and sevens from the MNIST dataset.","url":"https://nasheqlbrm.github.io/blog/fastai/jupyter/2021/08/06/MNIST-Threes-And-Sevens.html","@type":"BlogPosting","headline":"MNIST: Distinguishing Threes from Sevens","dateModified":"2021-08-06T00:00:00-05:00","datePublished":"2021-08-06T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://nasheqlbrm.github.io/blog/fastai/jupyter/2021/08/06/MNIST-Threes-And-Sevens.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://nasheqlbrm.github.io/blog/feed.xml" title="Kaushik Sinha" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Kaushik Sinha</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">MNIST: Distinguishing Threes from Sevens</h1><p class="page-description">Using Fastai to classify threes and sevens from the MNIST dataset.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-08-06T00:00:00-05:00" itemprop="datePublished">
+        Aug 6, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#fastai">fastai</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/nasheqlbrm/blog/tree/master/_notebooks/2021-08-06-MNIST-Threes-And-Sevens.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/nasheqlbrm/blog/master?filepath=_notebooks%2F2021-08-06-MNIST-Threes-And-Sevens.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/nasheqlbrm/blog/blob/master/_notebooks/2021-08-06-MNIST-Threes-And-Sevens.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Introduction">Introduction </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-08-06-MNIST-Threes-And-Sevens.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">
+<a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
+</h1>
+<p>I am following along with Chapter 4 of <a class="citation" href="#fastbook2020"> [1]</a>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">fastai.vision.all</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">untar_data</span><span class="p">(</span><span class="n">URLs</span><span class="o">.</span><span class="n">MNIST_SAMPLE</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So what got downloaded?</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">path</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#3) [Path('/data/kaushik/.fastai/data/mnist_sample/valid'),Path('/data/kaushik/.fastai/data/mnist_sample/train'),Path('/data/kaushik/.fastai/data/mnist_sample/labels.csv')]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That huge path is a pain to look at. Let's shorten it by setting the BASE_PATH.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Path</span><span class="o">.</span><span class="n">BASE_PATH</span> <span class="o">=</span> <span class="n">path</span>
+<span class="n">path</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#3) [Path('valid'),Path('train'),Path('labels.csv')]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What do we have under train?</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">'train'</span><span class="p">)</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#2) [Path('train/3'),Path('train/7')]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What do we have under the 7?</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">'train'</span><span class="o">/</span><span class="s1">'7'</span><span class="p">)</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span><span class="o">.</span><span class="n">sorted</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#6265) [Path('train/7/10002.png'),Path('train/7/1001.png'),Path('train/7/10014.png'),Path('train/7/10019.png'),Path('train/7/10039.png'),Path('train/7/10046.png'),Path('train/7/10050.png'),Path('train/7/10063.png'),Path('train/7/10077.png'),Path('train/7/10086.png')...]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We have 6,265 images of sevens. Look at one using the PIL library.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">((</span><span class="n">path</span><span class="o">/</span><span class="s1">'train'</span><span class="o">/</span><span class="s1">'7'</span><span class="p">)</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span><span class="o">.</span><span class="n">sorted</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea output_execute_result">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAAAAABXZoBIAAAAvUlEQVR4nN2OIQ7CQBBFf5eGhCChlioSbNPgOERtPYdoPQLBHVA4bgEYNA01KGwlajKZIppCt3R6AH4yyc68nf8H+C95YSbMXFfJ62ruAvB2MUQANAsADIBZDOB0/jrVbxfAfZtgWTiTapJGyPPu+PGG+ZUqt4VEdNUOPxJRVDdOC7IAw+49PxPm4NO6FkzmIo3W/Gwfnj3wUii2jrE+27AU9Gf2wnSh2BozgD9SoNiZtlYPpv1Uo4tboLKW3hX/QfdIRnH2AAAAAElFTkSuQmCC%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seven_tensors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tensor</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pic_pat</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">/</span><span class="mf">255.</span> <span class="k">for</span> <span class="n">pic_path</span> <span class="ow">in</span> <span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">'train'</span><span class="o">/</span><span class="s1">'7'</span><span class="p">)</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span><span class="o">.</span><span class="n">sorted</span><span class="p">()]</span>
+<span class="n">three_tensors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tensor</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pic_path</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">/</span><span class="mf">255.</span> <span class="k">for</span> <span class="n">pic_path</span> <span class="ow">in</span> <span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">'train'</span><span class="o">/</span><span class="s1">'3'</span><span class="p">)</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span><span class="o">.</span><span class="n">sorted</span><span class="p">()]</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">seven_tensors</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">three_tensors</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(6265, 6131)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use Fastai convenience function _show<em>image</em> to display the tensor</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">show_image</span><span class="p">(</span><span class="n">seven_tensors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;AxesSubplot:&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">stacked_sevens</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">seven_tensors</span><span class="p">)</span>
+<span class="n">stacked_threes</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">three_tensors</span><span class="p">)</span>
+<span class="n">stacked_sevens</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">stacked_threes</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(torch.Size([6265, 28, 28]), torch.Size([6131, 28, 28]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Assemble the training data. Each input will be a vector of 784 values.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">stacked_threes</span><span class="p">,</span> <span class="n">stacked_sevens</span><span class="p">])</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">)</span>
+<span class="n">train_y</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">three_tensors</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">seven_tensors</span><span class="p">))</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">train_x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">train_y</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>torch.Size([12396, 784])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Assemble the validation data</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">valid_7_tensors</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">tensor</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pic_path</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">/</span><span class="mf">255.</span> <span class="k">for</span> <span class="n">pic_path</span> <span class="ow">in</span> <span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">'valid'</span><span class="o">/</span><span class="s1">'7'</span><span class="p">)</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span><span class="o">.</span><span class="n">sorted</span><span class="p">()])</span>
+<span class="n">valid_3_tensors</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">tensor</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pic_path</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">/</span><span class="mf">255.</span> <span class="k">for</span> <span class="n">pic_path</span> <span class="ow">in</span> <span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">'valid'</span><span class="o">/</span><span class="s1">'3'</span><span class="p">)</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span><span class="o">.</span><span class="n">sorted</span><span class="p">()])</span>
+<span class="n">valid_7_tensors</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">valid_3_tensors</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(torch.Size([1028, 28, 28]), torch.Size([1010, 28, 28]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">valid_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">valid_3_tensors</span><span class="p">,</span> <span class="n">valid_7_tensors</span><span class="p">])</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">)</span>
+<span class="n">valid_y</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">valid_3_tensors</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">valid_7_tensors</span><span class="p">))</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">valid_x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">valid_y</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(torch.Size([2038, 784]), torch.Size([2038, 1]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="nasheqlbrm/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/fastai/jupyter/2021/08/06/MNIST-Threes-And-Sevens.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A blog about things that I find interesting.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/nasheqlbrm" title="nasheqlbrm"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/_ksinha_" title="_ksinha_"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
