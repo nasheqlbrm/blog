@@ -141,6 +141,9 @@ window.onload = wrap_img;
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#Assemble-train-and-validation-set">Assemble train and validation set </a></li>
+<li class="toc-entry toc-h1"><a href="#Initialize-Parameters">Initialize Parameters </a></li>
+<li class="toc-entry toc-h1"><a href="#Get-Predictions">Get Predictions </a></li>
+<li class="toc-entry toc-h1"><a href="#Compute-Loss">Compute Loss </a></li>
 <li class="toc-entry toc-h1"><a href="#References">References </a></li>
 </ul><!--
 #################################################
@@ -418,7 +421,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seven_tensors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tensor</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pic_pat</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">/</span><span class="mf">255.</span> <span class="k">for</span> <span class="n">pic_path</span> <span class="ow">in</span> <span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">'train'</span><span class="o">/</span><span class="s1">'7'</span><span class="p">)</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span><span class="o">.</span><span class="n">sorted</span><span class="p">()]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seven_tensors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tensor</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pic_path</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">/</span><span class="mf">255.</span> <span class="k">for</span> <span class="n">pic_path</span> <span class="ow">in</span> <span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">'train'</span><span class="o">/</span><span class="s1">'7'</span><span class="p">)</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span><span class="o">.</span><span class="n">sorted</span><span class="p">()]</span>
 <span class="n">three_tensors</span> <span class="o">=</span> <span class="p">[</span><span class="n">tensor</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pic_path</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">/</span><span class="mf">255.</span> <span class="k">for</span> <span class="n">pic_path</span> <span class="ow">in</span> <span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">'train'</span><span class="o">/</span><span class="s1">'3'</span><span class="p">)</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span><span class="o">.</span><span class="n">sorted</span><span class="p">()]</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">seven_tensors</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">three_tensors</span><span class="p">)</span>
 </pre></div>
@@ -567,7 +570,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>torch.Size([12396, 784])</pre>
+<pre>(torch.Size([12396, 784]), torch.Size([12396, 1]))</pre>
 </div>
 
 </div>
@@ -646,6 +649,266 @@ window.onload = wrap_img;
 
 <div class="output_text output_subarea output_execute_result">
 <pre>(torch.Size([2038, 784]), torch.Size([2038, 1]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Initialize-Parameters">
+<a class="anchor" href="#Initialize-Parameters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Initialize Parameters<a class="anchor-link" href="#Initialize-Parameters"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">init_params</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span><span class="o">*</span><span class="n">std</span><span class="p">)</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="n">init_params</span><span class="p">((</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">bias</span> <span class="o">=</span> <span class="n">init_params</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">bias</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(torch.Size([784, 1]), torch.Size([1]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Get-Predictions">
+<a class="anchor" href="#Get-Predictions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get Predictions<a class="anchor-link" href="#Get-Predictions"> </a>
+</h1>
+<p>Calculate the prediction for a single image</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">train_x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">weights</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">bias</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([-6.5965], grad_fn=&lt;AddBackward0&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">weights</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">weights</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="p">(</span><span class="n">train_x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(torch.Size([784]),
+ torch.Size([784, 1]),
+ torch.Size([1, 784]),
+ torch.Size([784, 784]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">linear1</span><span class="p">(</span><span class="n">xb</span><span class="p">):</span> <span class="k">return</span> <span class="n">xb</span> <span class="o">@</span> <span class="n">weights</span> <span class="o">+</span> <span class="n">bias</span>
+<span class="n">preds</span> <span class="o">=</span> <span class="n">linear1</span><span class="p">(</span><span class="n">train_x</span><span class="p">)</span>
+<span class="n">preds</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[-6.5965],
+        [-9.1583],
+        [-4.1476],
+        ...,
+        [10.2126],
+        [-1.6619],
+        [-7.0996]], grad_fn=&lt;AddBackward0&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Compute-Loss">
+<a class="anchor" href="#Compute-Loss" aria-hidden="true"><span class="octicon octicon-link"></span></a>Compute Loss<a class="anchor-link" href="#Compute-Loss"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">mnist_loss</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">targets</span><span class="p">):</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">targets</span><span class="o">==</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">preds</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mnist_loss</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(0.5428, grad_fn=&lt;MeanBackward0&gt;)</pre>
 </div>
 
 </div>
