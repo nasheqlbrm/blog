@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      4 min read
+      7 min read
     
 </span></p>
 
@@ -159,6 +159,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#Replace-training-loop-with-Fastai-Learner.fit">Replace training loop with Fastai Learner.fit </a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h1"><a href="#Add-a-rectified-linear-unit">Add a rectified linear unit </a></li>
 <li class="toc-entry toc-h1"><a href="#References">References </a></li>
 </ul><!--
 #################################################
@@ -776,7 +777,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([-9.5580], grad_fn=&lt;AddBackward0&gt;)</pre>
+<pre>tensor([-11.9221], grad_fn=&lt;AddBackward0&gt;)</pre>
 </div>
 
 </div>
@@ -847,13 +848,13 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[ -9.5580],
-        [ -2.1989],
-        [ -8.5720],
+<pre>tensor([[-11.9221],
+        [-15.0890],
+        [ -7.4757],
         ...,
-        [  3.2447],
-        [-10.9006],
-        [ -2.3521]], grad_fn=&lt;AddBackward0&gt;)</pre>
+        [ -8.2333],
+        [-26.8899],
+        [ -3.7154]], grad_fn=&lt;AddBackward0&gt;)</pre>
 </div>
 
 </div>
@@ -931,7 +932,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor(0.5731, grad_fn=&lt;MeanBackward0&gt;)</pre>
+<pre>tensor(0.4400, grad_fn=&lt;MeanBackward0&gt;)</pre>
 </div>
 
 </div>
@@ -1016,13 +1017,13 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>((tensor([25, 18,  4,  0, 16]), ('z', 's', 'e', 'a', 'q')),
- [(tensor([ 7, 12,  5, 14, 21]), ('h', 'm', 'f', 'o', 'v')),
-  (tensor([10, 20, 11, 18,  2]), ('k', 'u', 'l', 's', 'c')),
-  (tensor([ 6, 17,  1, 23, 13]), ('g', 'r', 'b', 'x', 'n')),
-  (tensor([ 4,  0,  3, 19,  9]), ('e', 'a', 'd', 't', 'j')),
-  (tensor([ 8, 15, 25, 16, 22]), ('i', 'p', 'z', 'q', 'w')),
-  (tensor([24]), ('y',))])</pre>
+<pre>((tensor([13, 17, 11, 22, 12]), ('n', 'r', 'l', 'w', 'm')),
+ [(tensor([23,  8, 17,  0,  3]), ('x', 'i', 'r', 'a', 'd')),
+  (tensor([22,  1, 15, 11,  4]), ('w', 'b', 'p', 'l', 'e')),
+  (tensor([24, 20, 16, 12, 10]), ('y', 'u', 'q', 'm', 'k')),
+  (tensor([ 7, 13, 14,  5,  9]), ('h', 'n', 'o', 'f', 'j')),
+  (tensor([ 2, 21, 25,  6, 18]), ('c', 'v', 'z', 'g', 's')),
+  (tensor([19]), ('t',))])</pre>
 </div>
 
 </div>
@@ -1119,10 +1120,10 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[-9.5580],
-        [-2.1989],
-        [-8.5720],
-        [-6.5222]], grad_fn=&lt;AddBackward0&gt;)</pre>
+<pre>tensor([[-11.9221],
+        [-15.0890],
+        [ -7.4757],
+        [  2.6071]], grad_fn=&lt;AddBackward0&gt;)</pre>
 </div>
 
 </div>
@@ -1156,7 +1157,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor(0.9746, grad_fn=&lt;MeanBackward0&gt;)</pre>
+<pre>tensor(0.7670, grad_fn=&lt;MeanBackward0&gt;)</pre>
 </div>
 
 </div>
@@ -1190,7 +1191,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(torch.Size([784, 1]), tensor(-0.0033), tensor([-0.0229]))</pre>
+<pre>(torch.Size([784, 1]), tensor(-0.0028), tensor([-0.0161]))</pre>
 </div>
 
 </div>
@@ -1278,7 +1279,7 @@ window.onload = wrap_img;
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">batch_accuracy</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">yb</span><span class="p">):</span>
-    <span class="n">preds</span> <span class="o">=</span> <span class="n">preds</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">()</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">preds</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">()</span> <span class="c1">#note</span>
     <span class="n">correct</span> <span class="o">=</span> <span class="p">(</span><span class="n">preds</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span> <span class="o">==</span> <span class="n">yb</span>
     <span class="k">return</span> <span class="n">correct</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
@@ -1312,7 +1313,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor(0.)</pre>
+<pre>tensor(0.2500)</pre>
 </div>
 
 </div>
@@ -1364,7 +1365,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>0.3973</pre>
+<pre>0.5512</pre>
 </div>
 
 </div>
@@ -1412,7 +1413,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>0.6513</pre>
+<pre>0.8062</pre>
 </div>
 
 </div>
@@ -1459,7 +1460,7 @@ window.onload = wrap_img;
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.4878 0.4902 0.4917 0.4951 0.5431 0.7172 0.8422 0.9086 0.9321 0.9448 0.9506 0.9541 0.9585 0.9609 0.9633 0.9653 0.9677 0.9677 0.9682 0.9682 </pre>
+<pre>0.6942 0.8666 0.9247 0.9443 0.9496 0.956 0.9604 0.9623 0.9648 0.9648 0.9667 0.9687 0.9692 0.9707 0.9716 0.9716 0.9721 0.9726 0.9731 0.9731 </pre>
 </div>
 </div>
 
@@ -1547,7 +1548,7 @@ window.onload = wrap_img;
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.641 0.6718 0.8516 0.9126 0.9326 0.9404 0.9487 0.9556 0.9604 0.9624 0.9634 0.9634 0.9648 0.9663 0.9663 0.9678 0.9688 0.9687 0.9697 0.9702 </pre>
+<pre>0.7207 0.8887 0.9316 0.9423 0.9511 0.955 0.9594 0.9623 0.9643 0.9648 0.9653 0.9662 0.9672 0.9677 0.9682 0.9692 0.9701 0.9711 0.9711 0.9716 </pre>
 </div>
 </div>
 
@@ -1642,7 +1643,7 @@ window.onload = wrap_img;
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.4932 0.8164 0.8447 0.9141 0.9346 0.9482 0.9555 0.9624 0.9653 0.9673 0.9692 0.9717 0.9741 0.9746 0.9761 0.9765 0.9775 0.978 0.9785 0.9785 </pre>
+<pre>0.4932 0.8208 0.8394 0.9131 0.9346 0.9473 0.9555 0.9624 0.9653 0.9668 0.9692 0.9707 0.9736 0.9751 0.9761 0.977 0.978 0.978 0.9785 0.9785 </pre>
 </div>
 </div>
 
@@ -1694,7 +1695,7 @@ window.onload = wrap_img;
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.4932 0.9018 0.8091 0.9087 0.9312 0.9463 0.9546 0.9624 0.9653 0.9678 0.9697 0.9717 0.9741 0.9751 0.9761 0.9765 0.9775 0.978 0.9785 0.979 </pre>
+<pre>0.4932 0.7422 0.8569 0.9165 0.9351 0.9492 0.958 0.9638 0.9658 0.9682 0.9712 0.9726 0.9746 0.9751 0.9761 0.977 0.9775 0.978 0.978 0.9785 </pre>
 </div>
 </div>
 
@@ -1713,6 +1714,14 @@ window.onload = wrap_img;
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Observe how we are able to pass in the mnist_loss and batch_accuracy functions.</p>
+
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -1721,8 +1730,9 @@ window.onload = wrap_img;
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dls</span> <span class="o">=</span> <span class="n">DataLoaders</span><span class="p">(</span><span class="n">dl</span><span class="p">,</span> <span class="n">valid_dl</span><span class="p">)</span>
-<span class="n">learn</span> <span class="o">=</span> <span class="n">Learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">mnist_loss</span><span class="p">,</span> <span class="n">opt_func</span><span class="o">=</span><span class="n">SGD</span><span class="p">,</span>
-                <span class="n">metrics</span> <span class="o">=</span> <span class="n">batch_accuracy</span><span class="p">)</span>
+<span class="n">learn</span> <span class="o">=</span> <span class="n">Learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">loss_func</span><span class="o">=</span><span class="n">mnist_loss</span>
+                <span class="p">,</span> <span class="n">opt_func</span><span class="o">=</span><span class="n">SGD</span>
+                <span class="p">,</span> <span class="n">metrics</span> <span class="o">=</span> <span class="n">batch_accuracy</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1739,10 +1749,665 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="n">lr</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="n">lr</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>batch_accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.636992</td>
+      <td>0.502468</td>
+      <td>0.495584</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.348879</td>
+      <td>0.281710</td>
+      <td>0.730128</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.134591</td>
+      <td>0.154878</td>
+      <td>0.859666</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.063040</td>
+      <td>0.097588</td>
+      <td>0.919038</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.036392</td>
+      <td>0.073245</td>
+      <td>0.936212</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.025745</td>
+      <td>0.059577</td>
+      <td>0.950932</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>0.021219</td>
+      <td>0.050918</td>
+      <td>0.957311</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0.019103</td>
+      <td>0.045073</td>
+      <td>0.963199</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>0.017960</td>
+      <td>0.040914</td>
+      <td>0.965653</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>0.017229</td>
+      <td>0.037820</td>
+      <td>0.968597</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>0.016688</td>
+      <td>0.035428</td>
+      <td>0.969578</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>0.016249</td>
+      <td>0.033514</td>
+      <td>0.972522</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>0.015876</td>
+      <td>0.031939</td>
+      <td>0.974485</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>0.015555</td>
+      <td>0.030618</td>
+      <td>0.974975</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>0.015277</td>
+      <td>0.029494</td>
+      <td>0.975466</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>0.015034</td>
+      <td>0.028528</td>
+      <td>0.976938</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>0.014821</td>
+      <td>0.027690</td>
+      <td>0.977429</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>0.014632</td>
+      <td>0.026958</td>
+      <td>0.977920</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>0.014462</td>
+      <td>0.026313</td>
+      <td>0.977920</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>0.014307</td>
+      <td>0.025741</td>
+      <td>0.978901</td>
+      <td>00:00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Add-a-rectified-linear-unit">
+<a class="anchor" href="#Add-a-rectified-linear-unit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add a rectified linear unit<a class="anchor-link" href="#Add-a-rectified-linear-unit"> </a>
+</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Plot the accuracy over the training</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">simple_net</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">,</span><span class="mi">30</span><span class="p">),</span> 
+                           <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span> 
+                           <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">learn</span> <span class="o">=</span> <span class="n">Learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">simple_net</span><span class="p">,</span> <span class="n">loss_func</span><span class="o">=</span><span class="n">mnist_loss</span>
+                  <span class="p">,</span> <span class="n">opt_func</span><span class="o">=</span><span class="n">SGD</span>
+                  <span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">batch_accuracy</span><span class="p">)</span>
+
+
+<span class="n">learn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">n_epoch</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Output" data-close="Show Output"></summary>
+        <p>
+</p>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>batch_accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.367506</td>
+      <td>0.385191</td>
+      <td>0.524534</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.166598</td>
+      <td>0.249851</td>
+      <td>0.783611</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.089627</td>
+      <td>0.122130</td>
+      <td>0.912169</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.056985</td>
+      <td>0.080797</td>
+      <td>0.939156</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.042108</td>
+      <td>0.062461</td>
+      <td>0.953876</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.034692</td>
+      <td>0.052266</td>
+      <td>0.964181</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>0.030548</td>
+      <td>0.045876</td>
+      <td>0.965162</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0.027924</td>
+      <td>0.041554</td>
+      <td>0.966634</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>0.026069</td>
+      <td>0.038435</td>
+      <td>0.968106</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>0.024649</td>
+      <td>0.036068</td>
+      <td>0.969578</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>0.023503</td>
+      <td>0.034196</td>
+      <td>0.972031</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>0.022549</td>
+      <td>0.032670</td>
+      <td>0.973503</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>0.021737</td>
+      <td>0.031388</td>
+      <td>0.973503</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>0.021037</td>
+      <td>0.030290</td>
+      <td>0.974975</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>0.020423</td>
+      <td>0.029335</td>
+      <td>0.975466</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>0.019880</td>
+      <td>0.028492</td>
+      <td>0.976448</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>0.019395</td>
+      <td>0.027740</td>
+      <td>0.977429</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>0.018958</td>
+      <td>0.027065</td>
+      <td>0.977920</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>0.018560</td>
+      <td>0.026456</td>
+      <td>0.977920</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>0.018196</td>
+      <td>0.025903</td>
+      <td>0.979882</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>0.017861</td>
+      <td>0.025400</td>
+      <td>0.979882</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>0.017551</td>
+      <td>0.024940</td>
+      <td>0.980373</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>0.017264</td>
+      <td>0.024518</td>
+      <td>0.980373</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>0.016996</td>
+      <td>0.024128</td>
+      <td>0.980373</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>0.016745</td>
+      <td>0.023768</td>
+      <td>0.980864</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td>0.016509</td>
+      <td>0.023435</td>
+      <td>0.980864</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>0.016287</td>
+      <td>0.023126</td>
+      <td>0.980864</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>0.016078</td>
+      <td>0.022840</td>
+      <td>0.981845</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>0.015880</td>
+      <td>0.022573</td>
+      <td>0.981845</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>0.015692</td>
+      <td>0.022324</td>
+      <td>0.981845</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td>0.015514</td>
+      <td>0.022092</td>
+      <td>0.981845</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>0.015344</td>
+      <td>0.021875</td>
+      <td>0.982826</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td>0.015182</td>
+      <td>0.021672</td>
+      <td>0.982826</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>33</td>
+      <td>0.015028</td>
+      <td>0.021481</td>
+      <td>0.982826</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>34</td>
+      <td>0.014880</td>
+      <td>0.021302</td>
+      <td>0.982826</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>35</td>
+      <td>0.014738</td>
+      <td>0.021134</td>
+      <td>0.982826</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>36</td>
+      <td>0.014602</td>
+      <td>0.020975</td>
+      <td>0.982826</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>37</td>
+      <td>0.014472</td>
+      <td>0.020825</td>
+      <td>0.982826</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>38</td>
+      <td>0.014346</td>
+      <td>0.020684</td>
+      <td>0.982826</td>
+      <td>00:00</td>
+    </tr>
+    <tr>
+      <td>39</td>
+      <td>0.014224</td>
+      <td>0.020550</td>
+      <td>0.982826</td>
+      <td>00:00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>learn.recorder records the output from the training process. The three items recorded here are train_loss, valid_loss and batch_accuracy</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(#3) [0.36750638484954834,0.3851909041404724,0.5245338678359985],
+ (#3) [0.16659829020500183,0.24985098838806152,0.7836113572120667]]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Plot how the accuracy evolved during the training.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">L</span><span class="p">(</span><span class="n">learn</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">itemgot</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&lt;matplotlib.lines.Line2D at 0x7fac47ed9950&gt;]</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The final accuracy is as below:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.982826292514801</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
