@@ -636,9 +636,9 @@ window.onload = wrap_img;
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let $z^{[1]},\ldots, z^{[K]}$ denote the activations corresponding to the $K$ classes. The softmax activation for each class is given by:
-\begin{eqnarray}
+\begin{equation}
 o^{[j]} = \frac{e^{z^{[j]}}}{\sum_{l=1}^{K} e^{z^{[l]}}},
-\end{eqnarray}</p>
+\end{equation}</p>
 <p>The cross-entropy loss across the $K$ classes is given by</p>
 \begin{equation}
 E=-\sum_{l=1}^{K}y^{[l]}ln(o^{[l]})
@@ -680,8 +680,7 @@ E=-\sum_{l=1}^{K}y^{[l]}ln(o^{[l]})
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's compute the gradient of the cross-entropy loss with respect to the activation of the $i$-the class:
-$
+<p>Let's compute the gradient of the cross-entropy loss with respect to the activation of the $i$-the class:</p>
 \begin{aligned}
 \frac{\partial E}{\partial z^{[i]}}&amp;=- \sum_{l=1}^{K} y^{[l]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[l]})\\
 &amp;=- \sum_{j \neq i} y^{[j]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[j]}) - y^{[i]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[i]})\\
@@ -691,10 +690,7 @@ $
 &amp;= - \sum_{j \neq i} y^{[j]} (-o^{[i]}) + y^{[i]} o^{[i]} - y^{[i]} \\
 &amp;= o^{[i]} \sum_{j} y^{[j]}  - y^{[i]} \\
 &amp;= o^{[i]} - y^{[i]}
-\label{eq:partialSoftmax}
 \end{aligned}
-$</p>
-
 </div>
 </div>
 </div>
