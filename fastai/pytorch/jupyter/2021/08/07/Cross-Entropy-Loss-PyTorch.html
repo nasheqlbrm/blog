@@ -680,7 +680,8 @@ E=-\sum_{l=1}^{K}y^{[l]}ln(o^{[l]})
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's compute the gradient of the cross-entropy loss with respect to the activation of the $i$-the class:</p>
+<p>Let's compute the gradient of the cross-entropy loss with respect to the activation of the $i$-the class:
+$
 \begin{aligned}
 \frac{\partial E}{\partial z^{[i]}}&amp;=- \sum_{l=1}^{K} y^{[l]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[l]})\\
 &amp;=- \sum_{j \neq i} y^{[j]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[j]}) - y^{[i]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[i]})\\
@@ -692,6 +693,8 @@ E=-\sum_{l=1}^{K}y^{[l]}ln(o^{[l]})
 &amp;= o^{[i]} - y^{[i]}
 \label{eq:partialSoftmax}
 \end{aligned}
+$</p>
+
 </div>
 </div>
 </div>
