@@ -652,17 +652,13 @@ $$E=-\sum_{l=1}^{K}y^{[l]}ln(o^{[l]})$$
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Partial-derivative-of-$o^{[j]}$-with-respect-to-$z^{[i]}$">
 <a class="anchor" href="#Partial-derivative-of-%24o%5E%7B%5Bj%5D%7D%24-with-respect-to-%24z%5E%7B%5Bi%5D%7D%24" aria-hidden="true"><span class="octicon octicon-link"></span></a>Partial derivative of $o^{[j]}$ with respect to $z^{[i]}$<a class="anchor-link" href="#Partial-derivative-of-%24o%5E%7B%5Bj%5D%7D%24-with-respect-to-%24z%5E%7B%5Bi%5D%7D%24"> </a>
-</h2>
-<p>
-$$\frac{\partial}{\partial z^{[i]}} o^{[j]} = \frac{\partial}{\partial z^{[i]}} \frac{e^{z^{[j]}}}{\sum_l e^{z^{[l]}}}$$
-
-
-$$= e^{z^{[j]}} \frac{\partial}{\partial z^{[i]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-1}$$
-
-
-$$= -e^{z^{[j]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-2} e^{z^{[i]}} = -o^{[j]} \cdot o^{[i]}$$
-</p>
-
+</h2>$$
+\frac{\partial}{\partial z^{[i]}} o^{[j]} 
+= \frac{\partial}{\partial z^{[i]}} \frac{e^{z^{[j]}}}{\sum_l e^{z^{[l]}}} 
+= e^{z^{[j]}} \frac{\partial}{\partial z^{[i]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-1} 
+= -e^{z^{[j]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-2} e^{z^{[i]}} 
+= -o^{[j]} \cdot o^{[i]}
+$$
 </div>
 </div>
 </div>
@@ -671,14 +667,14 @@ $$= -e^{z^{[j]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-2} e^{z^{[i]}} = -o^{[j]} \cd
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Partial-derivative-of-$o^{[i]}$-with-respect-to-$z^{[i]}$">
 <a class="anchor" href="#Partial-derivative-of-%24o%5E%7B%5Bi%5D%7D%24-with-respect-to-%24z%5E%7B%5Bi%5D%7D%24" aria-hidden="true"><span class="octicon octicon-link"></span></a>Partial derivative of $o^{[i]}$ with respect to $z^{[i]}$<a class="anchor-link" href="#Partial-derivative-of-%24o%5E%7B%5Bi%5D%7D%24-with-respect-to-%24z%5E%7B%5Bi%5D%7D%24"> </a>
-</h2>\begin{align}
-  \frac{\partial}{\partial z^{[i]}} o^{[i]} &amp;= \frac{\partial}{\partial z^{[i]}} \frac{e^{z^{[i]}}}{\sum_l e^{z^{[l]}}}\\
-  &amp;= \frac{e^{z^{[i]}}}{\sum_{l} e^{z^{[l]}}} + e^{z^{[i]}} \frac{\partial}{\partial z^{[i]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-1}\\
-  &amp;= o^{[i]}-e^{z^{[i]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-2} e^{z^{[i]}}\\
-  &amp;= o^{[i]} - o^{[i]} \cdot o^{[i]} \\
-  &amp;= o^{[i]} \cdot (1 - o^{[i]})
-  \label{eq:partialOi}
-\end{align}
+</h2>$$
+\frac{\partial}{\partial z^{[i]}} o^{[i]} 
+= \frac{\partial}{\partial z^{[i]}} \frac{e^{z^{[i]}}}{\sum_l e^{z^{[l]}}}
+= \frac{e^{z^{[i]}}}{\sum_{l} e^{z^{[l]}}} + e^{z^{[i]}} \frac{\partial}{\partial z^{[i]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-1}
+= o^{[i]}-e^{z^{[i]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-2} e^{z^{[i]}}\\
+= o^{[i]} - o^{[i]} \cdot o^{[i]} \\
+= o^{[i]} \cdot (1 - o^{[i]})
+$$
 </div>
 </div>
 </div>
