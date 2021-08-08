@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      2 min read
+      4 min read
     
 </span></p>
 
@@ -139,7 +139,12 @@ window.onload = wrap_img;
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#Maximizing-the-likelihood-of-the-labels-of-the-data">Maximizing the likelihood of the labels of the data </a></li>
-<li class="toc-entry toc-h1"><a href="#Gradient-of-Cross-Entropy">Gradient of Cross Entropy </a></li>
+<li class="toc-entry toc-h1"><a href="#Gradient-of-Cross-Entropy">Gradient of Cross Entropy </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Partial-derivative-of-$o^{[j]}$-with-respect-to-$z^{[i]}$">Partial derivative of $o^{[j]}$ with respect to $z^{[i]}$ </a></li>
+<li class="toc-entry toc-h2"><a href="#Partial-derivative-of-$o^{[i]}$-with-respect-to-$z^{[i]}$">Partial derivative of $o^{[i]}$ with respect to $z^{[i]}$ </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h1"><a href="#References">References </a></li>
 </ul><!--
 #################################################
@@ -156,12 +161,12 @@ window.onload = wrap_img;
 <h1 id="Maximizing-the-likelihood-of-the-labels-of-the-data">
 <a class="anchor" href="#Maximizing-the-likelihood-of-the-labels-of-the-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Maximizing the likelihood of the labels of the data<a class="anchor-link" href="#Maximizing-the-likelihood-of-the-labels-of-the-data"> </a>
 </h1>
-<p>Suppose we have $N$ training examples and we have a multiclass problem with $K$ classes. Let $C(i) \in \{1,\ldots, K\}$ be the correct class for the $i$-th training example and $p^{[C(i)]}_{i}$ gives the probability assigned by our classifier to the correct class for the $i$-th training example. We wish that our classifier maximize: $$\prod_{i=1}^{N} p^{[C(i)]}_{i}$$</p>
-<p>This is equivalent to maximizing $$ln(\prod_{i=1}^{N}p^{[C(i)]}_{i}) = \sum_{i=1}^{N}ln(p^{[C(i)]}_{i})$$</p>
-<p>Which is the same as minimizing the sum of the negative log likelihoods $$-\sum_{i=1}^{N}ln(p^{[C(i)]}_{i})$$</p>
+<p>Suppose we have $N$ training examples and we have a multiclass problem with $K$ classes. Let $C(i) \in \{1,\ldots, K\}$ be the correct class for the $i$-th training example and $o^{[C(i)]}_{i}$ gives the probability assigned by our classifier to the correct class for the $i$-th training example. We wish that our classifier maximize: $$\prod_{i=1}^{N} o^{[C(i)]}_{i}$$</p>
+<p>This is equivalent to maximizing $$ln(\prod_{i=1}^{N}o^{[C(i)]}_{i}) = \sum_{i=1}^{N}ln(o^{[C(i)]}_{i})$$</p>
+<p>Which is the same as minimizing the sum of the negative log likelihoods $$-\sum_{i=1}^{N}ln(o^{[C(i)]}_{i})$$</p>
 <p>The above can now serve as a loss function.</p>
-<p>Recall Cross Entropy = $-\sum_{k=1}^{K}q^{[k]}ln(p^{[k]})$ where $q$ is the reference distribution over $K$ classes while our predictions over the $K$ classes have the distribution $p$. Observe this becomes just a single term when, in the reference distribution $q$, only one of the classes has a probability of $1$.</p>
-<p>Thus, $-\sum_{i=1}^{N}ln(p^{[C(i)]}_{i})$ can be interpreted as the sum of cross entropy losses across all examples.</p>
+<p>Recall Cross Entropy = $-\sum_{k=1}^{K}y^{[k]}ln(o^{[k]})$ where $y$ is the reference distribution over $K$ classes while our predictions over the $K$ classes is given by $o$. Observe this becomes just a single term when, in the reference distribution $y$, only one of the classes has a probability of $1$.</p>
+<p>Thus, $-\sum_{i=1}^{N}ln(o^{[C(i)]}_{i})$ can be interpreted as the sum of cross entropy losses across all examples.</p>
 
 </div>
 </div>
@@ -622,7 +627,78 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We follow the note in <a class="citation" href="#markusthill_ce_note">[1]</a></p>
+<p>We follow <a class="citation" href="#markusthill_ce_note">[1]</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let $z^{[1]},\ldots, z^{[K]}$ denote the activations corresponding to the $K$ classes. The softmax activation for each class is given by:
+\begin{eqnarray}
+o^{[j]} = \frac{e^{z^{[j]}}}{\sum_{l=1}^{K} e^{z^{[l]}}},
+\end{eqnarray}</p>
+<p>The cross-entropy loss across the $K$ classes is given by</p>
+\begin{equation}
+E=-\sum_{l=1}^{K}y^{[l]}ln(o^{[l]})
+\end{equation}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Partial-derivative-of-$o^{[j]}$-with-respect-to-$z^{[i]}$">
+<a class="anchor" href="#Partial-derivative-of-%24o%5E%7B%5Bj%5D%7D%24-with-respect-to-%24z%5E%7B%5Bi%5D%7D%24" aria-hidden="true"><span class="octicon octicon-link"></span></a>Partial derivative of $o^{[j]}$ with respect to $z^{[i]}$<a class="anchor-link" href="#Partial-derivative-of-%24o%5E%7B%5Bj%5D%7D%24-with-respect-to-%24z%5E%7B%5Bi%5D%7D%24"> </a>
+</h2>\begin{aligned}
+  \frac{\partial}{\partial z^{[i]}} o^{[j]} &amp;= \frac{\partial}{\partial z^{[i]}} \frac{e^{z^{[j]}}}{\sum_l e^{z^{[l]}}}\\
+  &amp;= e^{z^{[j]}} \frac{\partial}{\partial z^{[i]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-1}\\
+  &amp;= -e^{z^{[j]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-2} e^{z^{[i]}}\\
+  &amp;= -o^{[j]} \cdot o^{[i]}
+  \label{eq:partialOj}
+\end{aligned}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Partial-derivative-of-$o^{[i]}$-with-respect-to-$z^{[i]}$">
+<a class="anchor" href="#Partial-derivative-of-%24o%5E%7B%5Bi%5D%7D%24-with-respect-to-%24z%5E%7B%5Bi%5D%7D%24" aria-hidden="true"><span class="octicon octicon-link"></span></a>Partial derivative of $o^{[i]}$ with respect to $z^{[i]}$<a class="anchor-link" href="#Partial-derivative-of-%24o%5E%7B%5Bi%5D%7D%24-with-respect-to-%24z%5E%7B%5Bi%5D%7D%24"> </a>
+</h2>\begin{aligned}
+  \frac{\partial}{\partial z^{[i]}} o^{[i]} &amp;= \frac{\partial}{\partial z^{[i]}} \frac{e^{z^{[i]}}}{\sum_l e^{z^{[l]}}}\\
+  &amp;= \frac{e^{z^{[i]}}}{\sum_{l} e^{z^{[l]}}} + e^{z^{[i]}} \frac{\partial}{\partial z^{[i]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-1}\\
+  &amp;= o^{[i]}-e^{z^{[i]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-2} e^{z^{[i]}}\\
+  &amp;= o^{[i]} - o^{[i]} \cdot o^{[i]} \\
+  &amp;= o^{[i]} \cdot (1 - o^{[i]})
+  \label{eq:partialOi}
+\end{aligned}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's compute the gradient of the cross-entropy loss with respect to the activation of the $i$-the class:</p>
+\begin{aligned}
+\frac{\partial E}{\partial z^{[i]}}&amp;=- \sum_{l=1}^{K} y^{[l]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[l]})\\
+&amp;=- \sum_{j \neq i} y^{[j]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[j]}) - y^{[i]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[i]})\\
+&amp;=- \sum_{j \neq i} y^{[j]}\cdot \frac{1}{o^{[j]}} \cdot \frac{\partial}{\partial z^{[i]}}o^{[j]} - y^{[i]}\cdot \frac{1}{o^{[i]}} \cdot \frac{\partial}{\partial z^{[i]}}o^{[i]}\\
+&amp;= - \sum_{j \neq i} y^{[j]}\cdot \frac{1}{o^{[j]}} \cdot (-o^{[j]} \cdot o^{[i]}) - y^{[i]}\cdot \frac{1}{o^{[i]}} \cdot o^{[i]} \cdot (1 - o^{[i]})\\
+&amp;= - \sum_{j \neq i} y^{[j]} (-o^{[i]}) - y^{[i]} (1 - o^{[i]}) \\
+&amp;= - \sum_{j \neq i} y^{[j]} (-o^{[i]}) + y^{[i]} o^{[i]} - y^{[i]} \\
+&amp;= o^{[i]} \sum_{j} y^{[j]}  - y^{[i]} \\
+&amp;= o^{[i]} - y^{[i]}
+\label{eq:partialSoftmax}
+\end{aligned}
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Per <em>Sylvain says</em> in page 203 of Chapter 5 of <a class="citation" href="#fastbook2020">[2]</a>, " <em>The gradient is proportional to the difference between the prediction and the target.</em>... <em>Because the gradient is linear we won't see sudden jumps or exponential increases in gradients, which should lead to smoother training of models.</em>"</p>
 
 </div>
 </div>
@@ -636,6 +712,7 @@ window.onload = wrap_img;
 <p></p>
 <p class="bibliography"></p>
 <p><span id="markusthill_ce_note">[1] M. Thill, "<a href="https://markusthill.github.io/stats/ml/gradient-softmax-function-with-cross-entropy/">Gradient of the Softmax Function with Cross-Entropy Loss</a>," (2017).</span></p>
+<p><span id="fastbook2020">[2] J. Howard &amp; S. Gugger, <i>Deep Learning for Coders with Fastai and PyTorch: AI Applications Without a PhD</i>, 1st ed (O’Reilly, 2020).</span></p>
 
 </div>
 </div>
