@@ -197,12 +197,12 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[ 2.5256, -0.4387],
-        [-0.1350,  0.0298],
-        [-0.3085, -1.3541],
-        [-0.5117,  1.4399],
-        [ 0.1849, -3.1652],
-        [ 0.5503, -0.4122]])</pre>
+<pre>tensor([[ 2.0697, -2.1599],
+        [ 0.4067,  0.6020],
+        [-0.1373, -0.2908],
+        [-2.3268,  2.9646],
+        [-3.6268, -2.0845],
+        [ 1.8271,  1.1254]])</pre>
 </div>
 
 </div>
@@ -286,12 +286,12 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[0.9509, 0.0491],
-        [0.4589, 0.5411],
-        [0.7399, 0.2601],
-        [0.1244, 0.8756],
-        [0.9661, 0.0339],
-        [0.7236, 0.2764]])</pre>
+<pre>tensor([[0.9857, 0.0143],
+        [0.4513, 0.5487],
+        [0.5383, 0.4617],
+        [0.0050, 0.9950],
+        [0.1762, 0.8238],
+        [0.6686, 0.3314]])</pre>
 </div>
 
 </div>
@@ -367,7 +367,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([0.9509, 0.5411, 0.7399, 0.8756, 0.0339, 0.7236])</pre>
+<pre>tensor([0.9857, 0.5487, 0.5383, 0.9950, 0.8238, 0.6686])</pre>
 </div>
 
 </div>
@@ -408,12 +408,12 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[-0.0503, -3.0146],
-        [-0.7790, -0.6141],
-        [-0.3012, -1.3468],
-        [-2.0845, -0.1328],
-        [-0.0345, -3.3846],
-        [-0.3235, -1.2860]])</pre>
+<pre>tensor([[-1.4453e-02, -4.2441e+00],
+        [-7.9555e-01, -6.0026e-01],
+        [-6.1936e-01, -7.7282e-01],
+        [-5.2965e+00, -5.0218e-03],
+        [-1.7361e+00, -1.9383e-01],
+        [-4.0263e-01, -1.1043e+00]])</pre>
 </div>
 
 </div>
@@ -454,12 +454,12 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[-0.0503, -3.0146],
-        [-0.7790, -0.6141],
-        [-0.3012, -1.3468],
-        [-2.0845, -0.1328],
-        [-0.0345, -3.3846],
-        [-0.3235, -1.2860]])</pre>
+<pre>tensor([[-1.4453e-02, -4.2441e+00],
+        [-7.9555e-01, -6.0026e-01],
+        [-6.1936e-01, -7.7282e-01],
+        [-5.2965e+00, -5.0218e-03],
+        [-1.7361e+00, -1.9383e-01],
+        [-4.0263e-01, -1.1043e+00]])</pre>
 </div>
 
 </div>
@@ -473,12 +473,12 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Suppose we have $N$ training examples and $p_{i}$ gives the probability of the correct class for the $i$-th training example. We want to maximize: $$\prod_{i=1}^{N} p_i$$</p>
-<p>This is equivalent to maximizing $$ln(\prod_{i=1}^{N}p_i) = \sum_{i=1}^{N}ln(p_{i})$$</p>
-<p>Which is the same as minimizing the sum of the negative log likelihoods $$-\sum_{i=1}^{N}ln(p_{i})$$</p>
+<p>Suppose we have $N$ training examples and we have a multiclass problem with $K$ classes. Let $C(i) \in \{1,\ldots, K\}$ be the correct label for the $i$-th training example and $p^{[C(i)]}_{i}$ gives the probability of the correct class for the $i$-th training example. We want to maximize: $$\prod_{i=1}^{N} p^{[C(i)]}_{i}$$</p>
+<p>This is equivalent to maximizing $$ln(\prod_{i=1}^{N}p^{[C(i)]}_{i}) = \sum_{i=1}^{N}ln(p^{[C(i)]}_{i})$$</p>
+<p>Which is the same as minimizing the sum of the negative log likelihoods $$-\sum_{i=1}^{N}ln(p^{[C(i)]}_{i})$$</p>
 <p>The above can now serve as a loss function.</p>
-<p>Recall Cross Entropy = $-\sum_{k=1}^{K}q_{k}ln(p_{k})$ where $q$ is the reference distribution over $K$ classes while our predictions over the $K$ classes have the distribution $p$. Observe this becomes just a single term when, in the reference distribution $q$, only one of the classes has a probability of $1$.</p>
-<p>Thus, $-\sum_{i=1}^{N}ln(p_{i})$ can be interpreted as the sum of cross entropy losses across all examples.</p>
+<p>Recall Cross Entropy = $-\sum_{k=1}^{K}q^{[k]}ln(p^{[k]})$ where $q$ is the reference distribution over $K$ classes while our predictions over the $K$ classes have the distribution $p$. Observe this becomes just a single term when, in the reference distribution $q$, only one of the classes has a probability of $1$.</p>
+<p>Thus, $-\sum_{i=1}^{N}ln(p^{[C(i)]}_{i})$ can be interpreted as the sum of cross entropy losses across all examples.</p>
 <p>Next we can compute the above quantity as follows:</p>
 
 </div>
@@ -506,7 +506,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(tensor([0.0503, 0.6141, 0.3012, 0.1328, 3.3846, 0.3235]), tensor(0.8011))</pre>
+<pre>(tensor([0.0145, 0.6003, 0.6194, 0.0050, 0.1938, 0.4026]), tensor(0.3059))</pre>
 </div>
 
 </div>
@@ -547,7 +547,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(tensor([0.0503, 0.6141, 0.3012, 0.1328, 3.3846, 0.3235]), tensor(0.8011))</pre>
+<pre>(tensor([0.0145, 0.6003, 0.6194, 0.0050, 0.1938, 0.4026]), tensor(0.3059))</pre>
 </div>
 
 </div>
@@ -588,7 +588,7 @@ window.onload = wrap_img;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(tensor([0.0503, 0.6141, 0.3012, 0.1328, 3.3846, 0.3235]), tensor(0.8011))</pre>
+<pre>(tensor([0.0145, 0.6003, 0.6194, 0.0050, 0.1938, 0.4026]), tensor(0.3059))</pre>
 </div>
 
 </div>
