@@ -681,16 +681,16 @@ $$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's compute the gradient of the cross-entropy loss with respect to the activation of the $i$-the class:</p>
-$$
-\frac{\partial E}{\partial z^{[i]}}&amp;=- \sum_{l=1}^{K} y^{[l]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[l]})\\
-&amp;=- \sum_{j \neq i} y^{[j]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[j]}) - y^{[i]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[i]})\\
-&amp;=- \sum_{j \neq i} y^{[j]}\cdot \frac{1}{o^{[j]}} \cdot \frac{\partial}{\partial z^{[i]}}o^{[j]} - y^{[i]}\cdot \frac{1}{o^{[i]}} \cdot \frac{\partial}{\partial z^{[i]}}o^{[i]}\\
-&amp;= - \sum_{j \neq i} y^{[j]}\cdot \frac{1}{o^{[j]}} \cdot (-o^{[j]} \cdot o^{[i]}) - y^{[i]}\cdot \frac{1}{o^{[i]}} \cdot o^{[i]} \cdot (1 - o^{[i]})\\
+\begin{align}
+\frac{\partial E}{\partial z^{[i]}} &amp;=- \sum_{l=1}^{K} y^{[l]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[l]})
+=- \sum_{j \neq i} y^{[j]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[j]}) - y^{[i]}\cdot  \frac{\partial}{\partial z^{[i]}}ln(o^{[i]})\\
+&amp;=- \sum_{j \neq i} y^{[j]}\cdot \frac{1}{o^{[j]}} \cdot \frac{\partial}{\partial z^{[i]}}o^{[j]} - y^{[i]}\cdot \frac{1}{o^{[i]}} \cdot \frac{\partial}{\partial z^{[i]}}o^{[i]} \\
+&amp;= - \sum_{j \neq i} y^{[j]}\cdot \frac{1}{o^{[j]}} \cdot (-o^{[j]} \cdot o^{[i]}) - y^{[i]}\cdot \frac{1}{o^{[i]}} \cdot o^{[i]} \cdot (1 - o^{[i]}) \\
 &amp;= - \sum_{j \neq i} y^{[j]} (-o^{[i]}) - y^{[i]} (1 - o^{[i]}) \\
 &amp;= - \sum_{j \neq i} y^{[j]} (-o^{[i]}) + y^{[i]} o^{[i]} - y^{[i]} \\
 &amp;= o^{[i]} \sum_{j} y^{[j]}  - y^{[i]} \\
 &amp;= o^{[i]} - y^{[i]}
-$$
+\end{align}
 </div>
 </div>
 </div>
