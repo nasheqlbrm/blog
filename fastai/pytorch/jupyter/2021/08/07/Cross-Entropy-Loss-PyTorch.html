@@ -635,14 +635,15 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let $z^{[1]},\ldots, z^{[K]}$ denote the activations corresponding to the $K$ classes. The softmax activation for each class is given by:
-\begin{equation}
-o^{[j]} = \frac{e^{z^{[j]}}}{\sum_{l=1}^{K} e^{z^{[l]}}},
-\end{equation}</p>
-<p>The cross-entropy loss across the $K$ classes is given by</p>
-\begin{equation}
-E=-\sum_{l=1}^{K}y^{[l]}ln(o^{[l]})
-\end{equation}
+<p>Let $z^{[1]},\ldots, z^{[K]}$ denote the activations corresponding to the $K$ classes. The softmax activation for each class is given by:</p>
+<p>
+$$o^{[j]} = \frac{e^{z^{[j]}}}{\sum_{l=1}^{K} e^{z^{[l]}}}$$
+</p>
+<p>The cross-entropy loss across the $K$ classes is given by:</p>
+<p>
+$$E=-\sum_{l=1}^{K}y^{[l]}ln(o^{[l]})$$
+</p>
+
 </div>
 </div>
 </div>
