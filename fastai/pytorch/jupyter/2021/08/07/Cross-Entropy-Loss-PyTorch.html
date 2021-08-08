@@ -653,13 +653,13 @@ $$E=-\sum_{l=1}^{K}y^{[l]}ln(o^{[l]})$$
 <h2 id="Partial-derivative-of-$o^{[j]}$-with-respect-to-$z^{[i]}$">
 <a class="anchor" href="#Partial-derivative-of-%24o%5E%7B%5Bj%5D%7D%24-with-respect-to-%24z%5E%7B%5Bi%5D%7D%24" aria-hidden="true"><span class="octicon octicon-link"></span></a>Partial derivative of $o^{[j]}$ with respect to $z^{[i]}$<a class="anchor-link" href="#Partial-derivative-of-%24o%5E%7B%5Bj%5D%7D%24-with-respect-to-%24z%5E%7B%5Bi%5D%7D%24"> </a>
 </h2>$$
-\begin{aligned}
+\begin{align}
   \frac{\partial}{\partial z^{[i]}} o^{[j]} &amp;= \frac{\partial}{\partial z^{[i]}} \frac{e^{z^{[j]}}}{\sum_l e^{z^{[l]}}}\\
   &amp;= e^{z^{[j]}} \frac{\partial}{\partial z^{[i]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-1}\\
   &amp;= -e^{z^{[j]}} \Bigg(\sum_l e^{z^{[l]}} \Bigg)^{-2} e^{z^{[i]}}\\
   &amp;= -o^{[j]} \cdot o^{[i]}
   \label{eq:partialOj}
-\end{aligned}
+\end{align}
 $$
 </div>
 </div>
