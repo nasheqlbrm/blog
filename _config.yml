@@ -97,7 +97,12 @@ plugins:
   - jemoji
 
 scholar:
-  style: physical-review-d
+  style: custom
+  source: _bibliography
+  bibliography_list_tag: p
+  bibliography_item_tag: p
+  bibtex_filters:
+    - latex
 
 # See https://jekyllrb.com/docs/pagination/
 # For pagination to work, you cannot have index.md at the root of your repo, instead you must rename this file to index.html
