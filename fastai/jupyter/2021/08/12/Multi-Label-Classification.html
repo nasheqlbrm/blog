@@ -144,6 +144,7 @@ window.onload = wrap_img;
 <ul>
 <li class="toc-entry toc-h2"><a href="#Set-up-Data-Block">Set up Data Block </a></li>
 <li class="toc-entry toc-h2"><a href="#Train-Model">Train Model </a></li>
+<li class="toc-entry toc-h2"><a href="#Sadness-revisited">Sadness revisited </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#References">References </a></li>
@@ -1039,6 +1040,9 @@ Downloading results into /data/kaushik/bears/teddy
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sadness-revisited">
+<a class="anchor" href="#Sadness-revisited" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sadness revisited<a class="anchor-link" href="#Sadness-revisited"> </a>
+</h2>
 <p>Let's test with our Maine Coon image.</p>
 
 </div>
@@ -1126,7 +1130,8 @@ Downloading results into /data/kaushik/bears/teddy
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And sadness again. Our multi-label classifier still chooses to predict some of the labels. What happened? Looking at the predicted probabilities we see that none has a score of greater than 0.95 so we don't expect to see a prediction for any label. This means that the threshold we passed in for accuracy_multi is not used during inference.</p>
+<p>What happened? Our multi-label classifier still chooses to predict some of the labels.</p>
+<p>Looking at the predicted probabilities we see that none has a score of greater than 0.95 so this means that the threshold we passed in for accuracy_multi is not being used during inference.</p>
 <p>If we look at the source of learn.predict we see that it calls out to learn.get_preds(..., with_decoded=True). Per the documentation of <a href="https://docs.fast.ai/learner.html#Learner.get_preds">get_predict</a> with_decoded=True <em>will also return the decoded predictions using the decodes function of the loss function (if it exists).</em></p>
 <p>Looking at the definition of BCEWithLogitsLossFlat we see the presence of the decodes method.</p>
 
