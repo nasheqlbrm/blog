@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Collaborative Filtering With-Cross-Entropy-Loss | Kaushik Sinha</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Collaborative Filtering With-Cross-Entropy-Loss" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Using Fastai to for Collaborative Filtering on the Movie Lens dataset using cross-entropy loss." />
+<meta property="og:description" content="Using Fastai to for Collaborative Filtering on the Movie Lens dataset using cross-entropy loss." />
+<link rel="canonical" href="https://nasheqlbrm.github.io/blog/fastai/jupyter/2021/08/14/Collaborative-Filtering-On-Movie-Lens-With-Cross-Entropy-Loss.html" />
+<meta property="og:url" content="https://nasheqlbrm.github.io/blog/fastai/jupyter/2021/08/14/Collaborative-Filtering-On-Movie-Lens-With-Cross-Entropy-Loss.html" />
+<meta property="og:site_name" content="Kaushik Sinha" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-08-14T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"Using Fastai to for Collaborative Filtering on the Movie Lens dataset using cross-entropy loss.","url":"https://nasheqlbrm.github.io/blog/fastai/jupyter/2021/08/14/Collaborative-Filtering-On-Movie-Lens-With-Cross-Entropy-Loss.html","@type":"BlogPosting","headline":"Collaborative Filtering With-Cross-Entropy-Loss","dateModified":"2021-08-14T00:00:00-05:00","datePublished":"2021-08-14T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://nasheqlbrm.github.io/blog/fastai/jupyter/2021/08/14/Collaborative-Filtering-On-Movie-Lens-With-Cross-Entropy-Loss.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://nasheqlbrm.github.io/blog/feed.xml" title="Kaushik Sinha" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Kaushik Sinha</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Collaborative Filtering With-Cross-Entropy-Loss</h1><p class="page-description">Using Fastai to for Collaborative Filtering on the Movie Lens dataset using cross-entropy loss.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-08-14T00:00:00-05:00" itemprop="datePublished">
+        Aug 14, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#fastai">fastai</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/nasheqlbrm/blog/tree/master/_notebooks/2021-08-14-Collaborative-Filtering-On-Movie-Lens-With-Cross-Entropy-Loss.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/nasheqlbrm/blog/master?filepath=_notebooks%2F2021-08-14-Collaborative-Filtering-On-Movie-Lens-With-Cross-Entropy-Loss.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/nasheqlbrm/blog/blob/master/_notebooks/2021-08-14-Collaborative-Filtering-On-Movie-Lens-With-Cross-Entropy-Loss.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Introduction">Introduction </a></li>
+<li class="toc-entry toc-h1"><a href="#DataLoaders">DataLoaders </a></li>
+<li class="toc-entry toc-h1"><a href="#Probabilistic-Matrix-Factorization-baseline">Probabilistic Matrix Factorization baseline </a></li>
+<li class="toc-entry toc-h1"><a href="#Deep-Learning-baseline">Deep Learning baseline </a></li>
+<li class="toc-entry toc-h1"><a href="#Cross-Entropy-Loss">Cross Entropy Loss </a></li>
+<li class="toc-entry toc-h1"><a href="#References">References </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-08-14-Collaborative-Filtering-On-Movie-Lens-With-Cross-Entropy-Loss.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">
+<a class="anchor" href="#Introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction<a class="anchor-link" href="#Introduction"> </a>
+</h1>
+<p>We work through a problem posed in Chapter 8 of <a class="citation" href="#fastbook2020">[1]</a>.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">fastai.collab</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">fastai.tabular.all</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">untar_data</span><span class="p">(</span><span class="n">URLs</span><span class="o">.</span><span class="n">ML_100k</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Path</span><span class="o">.</span><span class="n">BASE_PATH</span> <span class="o">=</span> <span class="n">path</span>
+<span class="n">path</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(#23) [Path('allbut.pl'),Path('mku.sh'),Path('README'),Path('u.data'),Path('u.genre'),Path('u.info'),Path('u.item'),Path('u.occupation'),Path('u.user'),Path('u1.base')...]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ratings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">'u.data'</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">'</span><span class="se">\t</span><span class="s1">'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">'user'</span><span class="p">,</span><span class="s1">'movie'</span><span class="p">,</span><span class="s1">'rating'</span><span class="p">,</span><span class="s1">'timestamp'</span><span class="p">])</span>
+<span class="n">ratings</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>user</th>
+      <th>movie</th>
+      <th>rating</th>
+      <th>timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>196</td>
+      <td>242</td>
+      <td>3</td>
+      <td>881250949</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>186</td>
+      <td>302</td>
+      <td>3</td>
+      <td>891717742</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22</td>
+      <td>377</td>
+      <td>1</td>
+      <td>878887116</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>244</td>
+      <td>51</td>
+      <td>2</td>
+      <td>880606923</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>166</td>
+      <td>346</td>
+      <td>1</td>
+      <td>886397596</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We see that the rating can be one of the following values:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ratings</span><span class="o">.</span><span class="n">rating</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([3, 1, 2, 4, 5])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">movies</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">'u.item'</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">'|'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">'latin-1'</span><span class="p">,</span>
+                     <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">names</span><span class="o">=</span><span class="p">(</span><span class="s1">'movie'</span><span class="p">,</span><span class="s1">'title'</span><span class="p">),</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">movies</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>movie</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Toy Story (1995)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>GoldenEye (1995)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Four Rooms (1995)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Get Shorty (1995)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Copycat (1995)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ratings</span> <span class="o">=</span> <span class="n">ratings</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">movies</span><span class="p">)</span>
+<span class="n">ratings</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>user</th>
+      <th>movie</th>
+      <th>rating</th>
+      <th>timestamp</th>
+      <th>title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>196</td>
+      <td>242</td>
+      <td>3</td>
+      <td>881250949</td>
+      <td>Kolya (1996)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>63</td>
+      <td>242</td>
+      <td>3</td>
+      <td>875747190</td>
+      <td>Kolya (1996)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>226</td>
+      <td>242</td>
+      <td>5</td>
+      <td>883888671</td>
+      <td>Kolya (1996)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>154</td>
+      <td>242</td>
+      <td>3</td>
+      <td>879138235</td>
+      <td>Kolya (1996)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>306</td>
+      <td>242</td>
+      <td>5</td>
+      <td>876503793</td>
+      <td>Kolya (1996)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="DataLoaders">
+<a class="anchor" href="#DataLoaders" aria-hidden="true"><span class="octicon octicon-link"></span></a>DataLoaders<a class="anchor-link" href="#DataLoaders"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dls</span> <span class="o">=</span> <span class="n">CollabDataLoaders</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">ratings</span><span class="p">,</span> <span class="n">item_name</span><span class="o">=</span><span class="s1">'title'</span><span class="p">,</span> <span class="n">bs</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
+<span class="n">dls</span><span class="o">.</span><span class="n">show_batch</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>user</th>
+      <th>title</th>
+      <th>rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>795</td>
+      <td>Highlander (1986)</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>315</td>
+      <td>Boogie Nights (1997)</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>805</td>
+      <td>Henry V (1989)</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>303</td>
+      <td>Austin Powers: International Man of Mystery (1997)</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>192</td>
+      <td>Star Wars (1977)</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>632</td>
+      <td>Aliens (1986)</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>406</td>
+      <td>Six Degrees of Separation (1993)</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>556</td>
+      <td>To Kill a Mockingbird (1962)</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>882</td>
+      <td>Mars Attacks! (1996)</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>365</td>
+      <td>Primal Fear (1996)</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Probabilistic-Matrix-Factorization-baseline">
+<a class="anchor" href="#Probabilistic-Matrix-Factorization-baseline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Probabilistic Matrix Factorization baseline<a class="anchor-link" href="#Probabilistic-Matrix-Factorization-baseline"> </a>
+</h1>
+<p>Underneath the covers we have a dot product model (where the dot product is between an embedding of the user and the item). We use L2 regularization (wd=0.5) and use y_range to make sure the sigmoid_range can get to a rating of $5$. Recall that in the sigmoid function only an activation of $\infty$ will get us a $1$. This will use the MSE as the loss function.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">collab_learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">n_factors</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">5.5</span><span class="p">))</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">5e-3</span><span class="p">,</span> <span class="n">wd</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.927197</td>
+      <td>0.965499</td>
+      <td>00:07</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.862236</td>
+      <td>0.884941</td>
+      <td>00:07</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.735082</td>
+      <td>0.845000</td>
+      <td>00:07</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.610900</td>
+      <td>0.831931</td>
+      <td>00:07</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.476653</td>
+      <td>0.831607</td>
+      <td>00:07</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So $0.831$ is what we want to beat!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Deep-Learning-baseline">
+<a class="anchor" href="#Deep-Learning-baseline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deep Learning baseline<a class="anchor-link" href="#Deep-Learning-baseline"> </a>
+</h1>
+<p>Instead of a Dot Product model we use a model where the user and the movie embeddings are concatenated together and then passed through a neural net. We continue to use MSE as our loss.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn2</span> <span class="o">=</span> <span class="n">collab_learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">n_factors</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">use_nn</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">layers</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">],</span> <span class="n">y_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">5.5</span><span class="p">))</span>
+<span class="n">learn2</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">5e-3</span><span class="p">,</span> <span class="n">wd</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1.005202</td>
+      <td>0.983641</td>
+      <td>00:08</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.918563</td>
+      <td>0.921814</td>
+      <td>00:08</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.869899</td>
+      <td>0.877524</td>
+      <td>00:08</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.789815</td>
+      <td>0.858055</td>
+      <td>00:08</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.756436</td>
+      <td>0.859034</td>
+      <td>00:08</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The model is as follows:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn2</span><span class="o">.</span><span class="n">model</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>EmbeddingNN(
+  (embeds): ModuleList(
+    (0): Embedding(944, 74)
+    (1): Embedding(1665, 102)
+  )
+  (emb_drop): Dropout(p=0.0, inplace=False)
+  (bn_cont): BatchNorm1d(0, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (layers): Sequential(
+    (0): LinBnDrop(
+      (0): Linear(in_features=176, out_features=100, bias=False)
+      (1): ReLU(inplace=True)
+      (2): BatchNorm1d(100, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (1): LinBnDrop(
+      (0): Linear(in_features=100, out_features=1, bias=True)
+    )
+    (2): SigmoidRange(low=0, high=5.5)
+  )
+)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Cross-Entropy-Loss">
+<a class="anchor" href="#Cross-Entropy-Loss" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cross Entropy Loss<a class="anchor-link" href="#Cross-Entropy-Loss"> </a>
+</h1>
+<p>Turn each rating into a class label by subtracting one. Recall we saw that ratings are integers from $1$ to $5$.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ratings</span><span class="p">[</span><span class="s1">'class'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ratings</span><span class="p">[</span><span class="s1">'rating'</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">ratings</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>user</th>
+      <th>movie</th>
+      <th>rating</th>
+      <th>timestamp</th>
+      <th>title</th>
+      <th>class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>196</td>
+      <td>242</td>
+      <td>3</td>
+      <td>881250949</td>
+      <td>Kolya (1996)</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>63</td>
+      <td>242</td>
+      <td>3</td>
+      <td>875747190</td>
+      <td>Kolya (1996)</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>226</td>
+      <td>242</td>
+      <td>5</td>
+      <td>883888671</td>
+      <td>Kolya (1996)</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>154</td>
+      <td>242</td>
+      <td>3</td>
+      <td>879138235</td>
+      <td>Kolya (1996)</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>306</td>
+      <td>242</td>
+      <td>5</td>
+      <td>876503793</td>
+      <td>Kolya (1996)</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ratings</span><span class="p">[</span><span class="s1">'class'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([2, 4, 3, 1, 0])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dls3</span> <span class="o">=</span> <span class="n">CollabDataLoaders</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">ratings</span><span class="p">,</span> <span class="n">item_name</span><span class="o">=</span><span class="s1">'title'</span><span class="p">,</span> <span class="n">rating_name</span><span class="o">=</span><span class="s1">'class'</span><span class="p">,</span> <span class="n">bs</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
+<span class="n">dls3</span><span class="o">.</span><span class="n">show_batch</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>user</th>
+      <th>title</th>
+      <th>class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>593</td>
+      <td>Clockwork Orange, A (1971)</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>887</td>
+      <td>Haunted World of Edward D. Wood Jr., The (1995)</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>89</td>
+      <td>Welcome to the Dollhouse (1995)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>438</td>
+      <td>River Wild, The (1994)</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>327</td>
+      <td>Reservoir Dogs (1992)</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>320</td>
+      <td>Virtuosity (1995)</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>101</td>
+      <td>Phenomenon (1996)</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>184</td>
+      <td>Raising Arizona (1987)</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>546</td>
+      <td>Psycho (1960)</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>20</td>
+      <td>Miracle on 34th Street (1994)</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Create a class that is able to output as many activations as there are classes.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">CollabNN</span><span class="p">(</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_sz</span><span class="p">,</span> <span class="n">item_sz</span><span class="p">,</span> <span class="n">n_act</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_factors</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="o">*</span><span class="n">user_sz</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">item_factors</span> <span class="o">=</span> <span class="n">Embedding</span><span class="p">(</span><span class="o">*</span><span class="n">item_sz</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">user_sz</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">item_sz</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_act</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">n_act</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">))</span>
+        
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">embs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_factors</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]),</span><span class="bp">self</span><span class="o">.</span><span class="n">item_factors</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">embs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">embs</span> <span class="o">=</span> <span class="n">get_emb_sz</span><span class="p">(</span><span class="n">dls3</span><span class="p">)</span>
+<span class="n">embs</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(944, 74), (1665, 102)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">CollabNN</span><span class="p">(</span><span class="o">*</span><span class="n">embs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Examine a batch of inputs and outputs</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">dls3</span><span class="o">.</span><span class="n">one_batch</span><span class="p">()</span>
+<span class="n">x</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="n">y</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(tensor([[ 942,  230],
+         [ 102, 1050],
+         [ 392,  905]]),
+ tensor([[4],
+         [1],
+         [1]], dtype=torch.int8))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Get activations by passing through the model</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[-0.0130, -0.0674, -0.0230, -0.0280, -0.0931],
+        [-0.0097, -0.0647, -0.0267, -0.0313, -0.0911],
+        [-0.0108, -0.0649, -0.0259, -0.0275, -0.0948]],
+       grad_fn=&lt;AddmmBackward&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Apply softmax to the activations</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">3</span><span class="p">]),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[0.2064, 0.1955, 0.2043, 0.2033, 0.1905],
+        [0.2070, 0.1960, 0.2035, 0.2026, 0.1909],
+        [0.2068, 0.1959, 0.2037, 0.2034, 0.1902]], grad_fn=&lt;SoftmaxBackward&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Take the argmax to get the prediction of the class</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">3</span><span class="p">]),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([0, 0, 0])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Unsqueeze to match the shape of the y's</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">3</span><span class="p">]),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[0],
+        [0],
+        [0]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Convert to float and compute the mse_loss</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">F</span><span class="o">.</span><span class="n">mse_loss</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">3</span><span class="p">]),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">(),</span> <span class="n">y</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(6.)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Create our custom mse function that can get a loss from these activations for the different classes. We do this so we can compare the validation loss metric against the previous baselines. Clearly cross entropy loss cannot be compared directly to the mean squared error.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">ks_mse</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">targ</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">sm_acts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">sm_acts</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">mse_loss</span><span class="p">(</span><span class="n">preds</span><span class="o">.</span><span class="n">float</span><span class="p">(),</span> <span class="n">targ</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Compare with our custom function</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ks_mse</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">3</span><span class="p">]),</span> <span class="n">y</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(6.)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn3</span> <span class="o">=</span> <span class="n">Learner</span><span class="p">(</span><span class="n">dls3</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">loss_func</span><span class="o">=</span><span class="n">CrossEntropyLossFlat</span><span class="p">(),</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">ks_mse</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lrs</span> <span class="o">=</span> <span class="n">learn3</span><span class="o">.</span><span class="n">lr_find</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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%0A">
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lrs</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>SuggestedLRs(lr_min=0.0033113110810518267, lr_steep=0.015848932787775993)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn3</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">4e-3</span><span class="p">,</span> <span class="n">wd</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>ks_mse</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1.103988</td>
+      <td>1.303491</td>
+      <td>0.436350</td>
+      <td>1.162650</td>
+      <td>00:08</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1.122083</td>
+      <td>1.293717</td>
+      <td>0.440350</td>
+      <td>1.138250</td>
+      <td>00:08</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1.071902</td>
+      <td>1.308509</td>
+      <td>0.434700</td>
+      <td>1.214100</td>
+      <td>00:08</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.990249</td>
+      <td>1.351775</td>
+      <td>0.431450</td>
+      <td>1.208450</td>
+      <td>00:08</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.925784</td>
+      <td>1.375744</td>
+      <td>0.431400</td>
+      <td>1.225100</td>
+      <td>00:08</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Unfortunately we come up short and cannot beat our baseline.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="References">
+<a class="anchor" href="#References" aria-hidden="true"><span class="octicon octicon-link"></span></a>References<a class="anchor-link" href="#References"> </a>
+</h1>
+<p></p>
+<p class="bibliography"></p>
+<p><span id="fastbook2020">[1] J. Howard &amp; S. Gugger, <i>Deep Learning for Coders with Fastai and PyTorch: AI Applications Without a PhD</i>, 1st ed (O’Reilly, 2020).</span></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="nasheqlbrm/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/fastai/jupyter/2021/08/14/Collaborative-Filtering-On-Movie-Lens-With-Cross-Entropy-Loss.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A blog about things that I find interesting.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/nasheqlbrm" title="nasheqlbrm"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/_ksinha_" title="_ksinha_"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
