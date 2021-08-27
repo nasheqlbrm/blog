@@ -145,6 +145,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#Take-a-gradient-descent-step">Take a gradient descent step </a></li>
 </ul>
 </li>
+<li class="toc-entry toc-h1"><a href="#All-together--now">All together  now </a></li>
 <li class="toc-entry toc-h1"><a href="#References">References </a></li>
 </ul><!--
 #################################################
@@ -687,7 +688,10 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Not much changed so let's do a couple of iterations. But first make a simple function that can apply all the steps.</p>
+<h1 id="All-together--now">
+<a class="anchor" href="#All-together--now" aria-hidden="true"><span class="octicon octicon-link"></span></a>All together  now<a class="anchor-link" href="#All-together--now"> </a>
+</h1>
+<p>Not much changed when we took a single so we will want to do this for multiple iterations. Before we do that we first make a simple function that applies all of the ingredients of the recipe. We will call this function <code>step</code>.</p>
 
 </div>
 </div>
@@ -722,7 +726,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And then another function that will iterate and call the <code>step</code> function</p>
+<p>And then another function call the <code>step</code> function as many times as we desire.</p>
 
 </div>
 </div>
@@ -850,8 +854,8 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The captions on each plot provide an estimate of $d$ and $e$. Recall that we generated the input data using $d=0.75$ and $e=9.5$.</p>
-<p>At the end of a million iterations we have $\hat{d} = 0.689$ and $\hat{e}=9.32$.</p>
+<p>The captions on each plot provide an estimate of $d$ and $e$. At the end of a million iterations we have $\hat{d} = 0.689$ and $\hat{e}=9.32$.</p>
+<p>Recall that we generated the input data using $d=0.75$ and $e=9.5$.</p>
 
 </div>
 </div>
