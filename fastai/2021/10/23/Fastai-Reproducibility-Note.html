@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      2 min read
+      3 min read
     
 </span></p>
 
@@ -134,7 +134,11 @@ window.onload = wrap_img;
     <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#Solution">Solution </a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#Can-we-omit-the-call-to-_set_seed_-?">Can we omit the call to _set_seed_ ? </a></li>
+<li class="toc-entry toc-h2"><a href="#Can-we-omit-the-call-to-set_seed-in-a-subsequent-run?">Can we omit the call to set_seed in a subsequent run? </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#Can-we-omit-the-reproducible=True-in-the-call-to-set_seed?">Can we omit the reproducible=True in the call to set_seed? </a>
+<ul>
 <li class="toc-entry toc-h2"><a href="#Can-we-avoid-recreating-the-dataloaders-from-scratch?">Can we avoid recreating the dataloaders from scratch? </a></li>
 </ul>
 </li>
@@ -524,6 +528,14 @@ window.onload = wrap_img;
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Observe that I did not pass in the seed to the ImageDataLoaders.from_name_func call.</p>
+
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -614,8 +626,8 @@ window.onload = wrap_img;
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Bingo! Both runs end up with the same train_loss, valid_loss and the error rate.</p>
-<h2 id="Can-we-omit-the-call-to-_set_seed_-?">
-<a class="anchor" href="#Can-we-omit-the-call-to-_set_seed_-?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can we omit the call to _set_seed_ ?<a class="anchor-link" href="#Can-we-omit-the-call-to-_set_seed_-?"> </a>
+<h2 id="Can-we-omit-the-call-to-set_seed-in-a-subsequent-run?">
+<a class="anchor" href="#Can-we-omit-the-call-to-set_seed-in-a-subsequent-run?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can we omit the call to set_seed in a subsequent run?<a class="anchor-link" href="#Can-we-omit-the-call-to-set_seed-in-a-subsequent-run?"> </a>
 </h2>
 </div>
 </div>
@@ -707,7 +719,196 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Nope.</p>
+<p>Nice try but no.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Can-we-omit-the-reproducible=True-in-the-call-to-set_seed?">
+<a class="anchor" href="#Can-we-omit-the-reproducible=True-in-the-call-to-set_seed?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can we omit the reproducible=True in the call to set_seed?<a class="anchor-link" href="#Can-we-omit-the-reproducible=True-in-the-call-to-set_seed?"> </a>
+</h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">set_seed</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+
+<span class="n">dls</span> <span class="o">=</span> <span class="n">ImageDataLoaders</span><span class="o">.</span><span class="n">from_name_func</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span> <span class="n">get_image_files</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">valid_pct</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">label_func</span><span class="o">=</span><span class="n">is_cat</span><span class="p">,</span> <span class="n">item_tfms</span><span class="o">=</span><span class="n">Resize</span><span class="p">(</span><span class="mi">224</span><span class="p">))</span>
+
+<span class="n">learn</span> <span class="o">=</span> <span class="n">cnn_learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">resnet34</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">error_rate</span><span class="p">)</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fine_tune</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.151476</td>
+      <td>0.018651</td>
+      <td>0.006766</td>
+      <td>01:43</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.042918</td>
+      <td>0.015299</td>
+      <td>0.006766</td>
+      <td>02:21</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">set_seed</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+
+<span class="n">dls</span> <span class="o">=</span> <span class="n">ImageDataLoaders</span><span class="o">.</span><span class="n">from_name_func</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">,</span> <span class="n">get_image_files</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">valid_pct</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">label_func</span><span class="o">=</span><span class="n">is_cat</span><span class="p">,</span> <span class="n">item_tfms</span><span class="o">=</span><span class="n">Resize</span><span class="p">(</span><span class="mi">224</span><span class="p">))</span>
+
+<span class="n">learn</span> <span class="o">=</span> <span class="n">cnn_learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">resnet34</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">error_rate</span><span class="p">)</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fine_tune</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.151476</td>
+      <td>0.018651</td>
+      <td>0.006766</td>
+      <td>01:43</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>error_rate</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.042918</td>
+      <td>0.015299</td>
+      <td>0.006766</td>
+      <td>02:21</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Seems like we can 🤷 but I would keep it since the code of the set_seed function suggests it is being used for cudnn.</p>
 <h2 id="Can-we-avoid-recreating-the-dataloaders-from-scratch?">
 <a class="anchor" href="#Can-we-avoid-recreating-the-dataloaders-from-scratch?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can we avoid recreating the dataloaders from scratch?<a class="anchor-link" href="#Can-we-avoid-recreating-the-dataloaders-from-scratch?"> </a>
 </h2>
