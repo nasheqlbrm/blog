@@ -132,6 +132,7 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#The-Problem">The Problem </a></li>
 <li class="toc-entry toc-h1"><a href="#Solution">Solution </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Can-we-omit-the-call-to-set_seed-in-a-subsequent-run?">Can we omit the call to set_seed in a subsequent run? </a></li>
@@ -149,6 +150,15 @@ window.onload = wrap_img;
 
 <div class="container" id="notebook-container">
         
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="The-Problem">
+<a class="anchor" href="#The-Problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Problem<a class="anchor-link" href="#The-Problem"> </a>
+</h1>
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -330,7 +340,7 @@ window.onload = wrap_img;
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We end up with an error rate of $0.010149$.</p>
-<p>So if we recreate the dataloaders, the learner and fine tune again for a single epoch then since we used the same seed we will get the same final result. Right?</p>
+<p>Let's do another round where we recreate the dataloaders, the learner and fine tune again for a single epoch. Since we have used the same seed we will get the same final result, right?</p>
 
 </div>
 </div>
@@ -423,7 +433,7 @@ window.onload = wrap_img;
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Wrong!</p>
-<p>The train_loss, valid_loss and the error rate at the end are different.</p>
+<p>The train_loss, valid_loss and the error rate at the end of the two rounds are different.</p>
 
 </div>
 </div>
