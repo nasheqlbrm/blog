@@ -1062,45 +1062,12 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>One thing that to note here is that we have one loss per label for each training example. So the average loss requires us to divide by $2*3 = 6$.</p>
-<p><em>Note that we could think that the loss for each label would be summed up into a single loss per training example and we would then divide that by $2$ but that line of reasoning is incorrect!</em></p>
+<p>I find it useful to think of each individual training example as being replicated as many times as there are possible labels. Then 2 training examples each with 3 possible labels is better thought of as 6 training examples. Hence the average loss, in this setting, requires us to divide by $2*3 = 6$.</p>
+<p><em>Note that we could reasonably think that the loss for each label would be summed up into a single loss per training example and we would then divide that by $2$ but do me a favor and don't walk down that path!</em></p>
 
 </div>
 </div>
 </div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bce_loss</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="mf">2.</span> <span class="o">==</span> <span class="n">bce_loss</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>tensor(False)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    
-
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
