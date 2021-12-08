@@ -145,6 +145,12 @@ window.onload = wrap_img;
         
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Problem-Statement">Problem Statement<a class="anchor-link" href="#Problem-Statement"> </a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Problem 1.7</p>
 <div>
 <figure>
@@ -183,12 +189,12 @@ window.onload = wrap_img;
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Assume without loss of generality that $c_{j} \neq 0 \forall j \in \{1,\ldots,n\}$ i.e., the coefficients of all decision variables, $x_{j}$, in Problem 1.7 are non-zero.</p>
-<p>We see that Problem 1.5 defines $n$ sub-problems, one for each decision variable $x_k$ in Problem 1.7. Now, suppose there is no subscript $k$ for which the sub-problems are unbounded. This means we can identify constants $M_{1},\ldots,M_{n}$ which are the maximum objective function values for each sub-problem in Problem 1.5.</p>
+<h1 id="Proof">Proof<a class="anchor-link" href="#Proof"> </a></h1><p>Assume without loss of generality that the objective function coefficients $c_{j}$ of all decision variables, $x_{j}$, in Problem 1.7 are non-zero.</p>
+<p>We see that Problem 1.5 defines $n$ sub-problems, one for each decision variable $x_k$ in Problem 1.7. Now, suppose there is no subscript $k$ for which the sub-problems are unbounded. This means we can identify constants $M_{1},\ldots,M_{n}$ which are the maximum objective function values for each sub-problem in Problem 1.5. So, for example, $M_1$ is the largest value $x_{1}$ can take while still staying feasible.</p>
 <p>Next, let $I_{c_{j} \gt 0}$ be an indicator function that tells us with a one or a zero whether the coefficient of decision variable $x_{j}$ in the objective function of Problem 1.7 is strictly positive.</p>
 <p>Now $M=\sum_{j=1}^{n}c_{j}I_{c_{j} \gt 0}M_{j}$ is the greatest upper bound on the objective function of Problem 1.7. It is possible that if some objective function coefficient is negative that a more accurate upper bound can be obtained by solving a $min x_{k}$ version of Problem 1.5 so that we find the smallest $x_k$ for which the problem remains feasible. Since the objective function coefficient is negative having a positive value of the decision variable will only serve to reduce the objective function.</p>
 <p>What this means is that $M$ is the greatest upper bound on the objective function of Problem 1.7.</p>
-<p>However, the existence of a finite upper bound contradicts the unboundedness of Problem 1.7 since we know that for an unbounded problem for any $M$ we can always find a feasible solution such that $\sum_{j=1}^{n}c_{j}x_{j} \gt M$.</p>
+<p>However, the existence of a finite upper bound contradicts the unboundedness of Problem 1.7 since for an unbounded problem we can always find a feasible solution such that $\sum_{j=1}^{n}c_{j}x_{j} \gt M$ for any value of $M$.</p>
 
 </div>
 </div>
