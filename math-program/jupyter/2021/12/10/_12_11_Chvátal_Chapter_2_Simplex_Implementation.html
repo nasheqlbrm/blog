@@ -167,9 +167,9 @@ window.onload = wrap_img;
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Requirement already satisfied: rich in /usr/local/lib/python3.7/dist-packages (10.15.2)
 Requirement already satisfied: commonmark&lt;0.10.0,&gt;=0.9.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.9.1)
-Requirement already satisfied: typing-extensions&lt;5.0,&gt;=3.7.4 in /usr/local/lib/python3.7/dist-packages (from rich) (3.10.0.2)
 Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.6.0 in /usr/local/lib/python3.7/dist-packages (from rich) (2.6.1)
 Requirement already satisfied: colorama&lt;0.5.0,&gt;=0.4.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.4.4)
+Requirement already satisfied: typing-extensions&lt;5.0,&gt;=3.7.4 in /usr/local/lib/python3.7/dist-packages (from rich) (3.10.0.2)
 </pre>
 </div>
 </div>
@@ -233,7 +233,7 @@ Requirement already satisfied: colorama&lt;0.5.0,&gt;=0.4.0 in /usr/local/lib/py
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The data corresponding to this problem is obtained from the following method.</p>
+<p>The data corresponding to this problem and other problem instances can be obtained from the methods in the collapsed code cell below.</p>
 
 </div>
 </div>
@@ -261,50 +261,8 @@ Requirement already satisfied: colorama&lt;0.5.0,&gt;=0.4.0 in /usr/local/lib/py
   <span class="c1">#b.shape</span>
 
   <span class="k">return</span> <span class="n">c</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-</p>
-    </details>
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">c</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">get_problem_1</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Other problem instances can be obtained from the methods in the collapsed code cell below.</p>
-
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<details class="description">
-      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
-        <p><div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">get_problem_2</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">get_problem_2</span><span class="p">():</span>
   <span class="c1"># objective function coefficients</span>
   <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">],[</span><span class="mi">5</span><span class="p">],[</span><span class="mi">3</span><span class="p">]])</span>
   
@@ -385,10 +343,26 @@ Requirement already satisfied: colorama&lt;0.5.0,&gt;=0.4.0 in /usr/local/lib/py
 </div>
     
 
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">c</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">get_problem_1</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's define some constants.</p>
-
+<h2 id="Constants.">Constants.<a class="anchor-link" href="#Constants."> </a></h2>
 </div>
 </div>
 </div>
@@ -717,30 +691,35 @@ Requirement already satisfied: colorama&lt;0.5.0,&gt;=0.4.0 in /usr/local/lib/py
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; Entering variable </span><span class="si">{</span><span class="n">entering_var_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="n">leaving_row</span> <span class="o">=</span> <span class="n">get_leaving_row</span><span class="p">(</span><span class="n">cd_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">],</span> <span class="n">entering_column</span><span class="p">)</span>
-    <span class="c1"># get the identifier for the variable that corresponds to</span>
-    <span class="c1"># the leaving row</span>
-    <span class="n">leaving_var_id</span> <span class="o">=</span> <span class="n">row_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">][</span><span class="n">leaving_row</span><span class="p">]</span>
-    <span class="n">leaving_var_name</span> <span class="o">=</span> <span class="n">variable_id_to_name</span><span class="p">[</span><span class="n">leaving_var_id</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; Leaving variable </span><span class="si">{</span><span class="n">leaving_var_name</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="n">basic</span><span class="p">,</span> <span class="n">nonbasic</span><span class="p">,</span> <span class="n">cd</span> <span class="o">=</span> <span class="n">get_next_dictionary</span><span class="p">(</span><span class="n">cd_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">],</span>
-                                              <span class="n">leaving_row</span><span class="p">,</span>
-                                              <span class="n">entering_column</span><span class="p">,</span>
-                                              <span class="n">row_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">],</span>
-                                              <span class="n">col_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">])</span>
-    
-    <span class="c1"># Update</span>
-    <span class="n">iteration</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">leaving_row</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">next_iteration</span> <span class="o">=</span> <span class="kc">False</span>
+      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Problem is unbounded&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="c1"># get the identifier for the variable that corresponds to</span>
+      <span class="c1"># the leaving row</span>
+      <span class="n">leaving_var_id</span> <span class="o">=</span> <span class="n">row_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">][</span><span class="n">leaving_row</span><span class="p">]</span>
+      <span class="n">leaving_var_name</span> <span class="o">=</span> <span class="n">variable_id_to_name</span><span class="p">[</span><span class="n">leaving_var_id</span><span class="p">]</span>
+      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; Leaving variable </span><span class="si">{</span><span class="n">leaving_var_name</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="n">row_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">]</span> <span class="o">=</span> <span class="n">basic</span>
-    <span class="n">col_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">]</span> <span class="o">=</span> <span class="n">nonbasic</span>
-    <span class="n">cd_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">]</span> <span class="o">=</span> <span class="n">cd</span>
+      <span class="n">basic</span><span class="p">,</span> <span class="n">nonbasic</span><span class="p">,</span> <span class="n">cd</span> <span class="o">=</span> <span class="n">get_next_dictionary</span><span class="p">(</span><span class="n">cd_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">],</span>
+                                                <span class="n">leaving_row</span><span class="p">,</span>
+                                                <span class="n">entering_column</span><span class="p">,</span>
+                                                <span class="n">row_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">],</span>
+                                                <span class="n">col_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">])</span>
+      
+      <span class="c1"># Update</span>
+      <span class="n">iteration</span> <span class="o">+=</span> <span class="mi">1</span>
 
-    <span class="c1"># Pretty print the updated dictionary</span>
-    <span class="n">cd_df</span> <span class="o">=</span> <span class="n">get_chvatal_df</span><span class="p">(</span><span class="n">cd</span><span class="p">,</span>
-                          <span class="n">basic</span><span class="p">,</span>
-                          <span class="n">nonbasic</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Iteration </span><span class="si">{</span><span class="n">iteration</span><span class="si">}</span><span class="se">\n</span><span class="s1"> Chvátal dictionary </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">cd_df</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+      <span class="n">row_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">]</span> <span class="o">=</span> <span class="n">basic</span>
+      <span class="n">col_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">]</span> <span class="o">=</span> <span class="n">nonbasic</span>
+      <span class="n">cd_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">]</span> <span class="o">=</span> <span class="n">cd</span>
+
+      <span class="c1"># Pretty print the updated dictionary</span>
+      <span class="n">cd_df</span> <span class="o">=</span> <span class="n">get_chvatal_df</span><span class="p">(</span><span class="n">cd</span><span class="p">,</span>
+                            <span class="n">basic</span><span class="p">,</span>
+                            <span class="n">nonbasic</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Iteration </span><span class="si">{</span><span class="n">iteration</span><span class="si">}</span><span class="se">\n</span><span class="s1"> Chvátal dictionary </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">cd_df</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -855,7 +834,7 @@ z    <span style="color: #008080; text-decoration-color: #008080; font-weight: b
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Next-steps">Next steps<a class="anchor-link" href="#Next-steps"> </a></h1><p>This implementation has deficiences, for example, it does not detect unbounded problem instances. We will continue to expand on this basic implementation in future posts.</p>
+<h1 id="Next-steps">Next steps<a class="anchor-link" href="#Next-steps"> </a></h1><p>We will continue to expand on this basic implementation in future posts.</p>
 
 </div>
 </div>
