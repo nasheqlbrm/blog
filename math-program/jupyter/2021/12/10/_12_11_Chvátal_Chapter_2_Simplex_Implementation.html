@@ -166,10 +166,10 @@ window.onload = wrap_img;
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Requirement already satisfied: rich in /usr/local/lib/python3.7/dist-packages (10.15.2)
+Requirement already satisfied: commonmark&lt;0.10.0,&gt;=0.9.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.9.1)
+Requirement already satisfied: typing-extensions&lt;5.0,&gt;=3.7.4 in /usr/local/lib/python3.7/dist-packages (from rich) (3.10.0.2)
 Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.6.0 in /usr/local/lib/python3.7/dist-packages (from rich) (2.6.1)
 Requirement already satisfied: colorama&lt;0.5.0,&gt;=0.4.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.4.4)
-Requirement already satisfied: typing-extensions&lt;5.0,&gt;=3.7.4 in /usr/local/lib/python3.7/dist-packages (from rich) (3.10.0.2)
-Requirement already satisfied: commonmark&lt;0.10.0,&gt;=0.9.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.9.1)
 </pre>
 </div>
 </div>
@@ -203,7 +203,22 @@ Requirement already satisfied: commonmark&lt;0.10.0,&gt;=0.9.0 in /usr/local/lib
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We will use the simplex method to solve</p>
+<p>A basic implementation of the Simplex algorithm as described in Chapter 2 of <a class="citation" href="#chvatal1983linear">[1]</a> for problems of the form</p>
+<div>
+<figure>
+  
+    <img class="docimage" src="https://github.com/nasheqlbrm/blog/blob/master/images/chvatal_1dot7.png?raw=1" alt="" style="max-width: 300px" />
+    
+    
+</figure>
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We will then use the implementation to solve</p>
 <div>
 <figure>
   
@@ -275,7 +290,7 @@ Requirement already satisfied: commonmark&lt;0.10.0,&gt;=0.9.0 in /usr/local/lib
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Additional problem instances can be seen in the collapsed code cell below.</p>
+<p>Other problem instances can be obtained from the methods in the collapsed code cell below.</p>
 
 </div>
 </div>
@@ -847,7 +862,7 @@ z    <span style="color: #008080; text-decoration-color: #008080; font-weight: b
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="References">References<a class="anchor-link" href="#References"> </a></h1><p><p class="bibliography"></p></p>
+<h1 id="References">References<a class="anchor-link" href="#References"> </a></h1><p><p class="bibliography"><p><span id="chvatal1983linear">[1] V. Chvátal, <i>Linear programming</i> (Macmillan, 1983).</span></p></p></p>
 
 </div>
 </div>
