@@ -692,34 +692,30 @@ Requirement already satisfied: typing-extensions&lt;5.0,&gt;=3.7.4 in /usr/local
 
     <span class="n">leaving_row</span> <span class="o">=</span> <span class="n">get_leaving_row</span><span class="p">(</span><span class="n">cd_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">],</span> <span class="n">entering_column</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">leaving_row</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-      <span class="n">next_iteration</span> <span class="o">=</span> <span class="kc">False</span>
-      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Problem is unbounded&#39;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="c1"># get the identifier for the variable that corresponds to</span>
-      <span class="c1"># the leaving row</span>
-      <span class="n">leaving_var_id</span> <span class="o">=</span> <span class="n">row_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">][</span><span class="n">leaving_row</span><span class="p">]</span>
-      <span class="n">leaving_var_name</span> <span class="o">=</span> <span class="n">variable_id_to_name</span><span class="p">[</span><span class="n">leaving_var_id</span><span class="p">]</span>
-      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; Leaving variable </span><span class="si">{</span><span class="n">leaving_var_name</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># get the identifier for the variable that corresponds to</span>
+    <span class="c1"># the leaving row</span>
+    <span class="n">leaving_var_id</span> <span class="o">=</span> <span class="n">row_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">][</span><span class="n">leaving_row</span><span class="p">]</span>
+    <span class="n">leaving_var_name</span> <span class="o">=</span> <span class="n">variable_id_to_name</span><span class="p">[</span><span class="n">leaving_var_id</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; Leaving variable </span><span class="si">{</span><span class="n">leaving_var_name</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
-      <span class="n">basic</span><span class="p">,</span> <span class="n">nonbasic</span><span class="p">,</span> <span class="n">cd</span> <span class="o">=</span> <span class="n">get_next_dictionary</span><span class="p">(</span><span class="n">cd_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">],</span>
-                                                <span class="n">leaving_row</span><span class="p">,</span>
-                                                <span class="n">entering_column</span><span class="p">,</span>
-                                                <span class="n">row_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">],</span>
-                                                <span class="n">col_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">])</span>
-      
-      <span class="c1"># Update</span>
-      <span class="n">iteration</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">basic</span><span class="p">,</span> <span class="n">nonbasic</span><span class="p">,</span> <span class="n">cd</span> <span class="o">=</span> <span class="n">get_next_dictionary</span><span class="p">(</span><span class="n">cd_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">],</span>
+                                              <span class="n">leaving_row</span><span class="p">,</span>
+                                              <span class="n">entering_column</span><span class="p">,</span>
+                                              <span class="n">row_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">],</span>
+                                              <span class="n">col_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">])</span>
+    
+    <span class="c1"># Update</span>
+    <span class="n">iteration</span> <span class="o">+=</span> <span class="mi">1</span>
 
-      <span class="n">row_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">]</span> <span class="o">=</span> <span class="n">basic</span>
-      <span class="n">col_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">]</span> <span class="o">=</span> <span class="n">nonbasic</span>
-      <span class="n">cd_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">]</span> <span class="o">=</span> <span class="n">cd</span>
+    <span class="n">row_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">]</span> <span class="o">=</span> <span class="n">basic</span>
+    <span class="n">col_lookup_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">]</span> <span class="o">=</span> <span class="n">nonbasic</span>
+    <span class="n">cd_it</span><span class="p">[</span><span class="n">iteration</span><span class="p">]</span> <span class="o">=</span> <span class="n">cd</span>
 
-      <span class="c1"># Pretty print the updated dictionary</span>
-      <span class="n">cd_df</span> <span class="o">=</span> <span class="n">get_chvatal_df</span><span class="p">(</span><span class="n">cd</span><span class="p">,</span>
-                            <span class="n">basic</span><span class="p">,</span>
-                            <span class="n">nonbasic</span><span class="p">)</span>
-      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Iteration </span><span class="si">{</span><span class="n">iteration</span><span class="si">}</span><span class="se">\n</span><span class="s1"> Chvátal dictionary </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">cd_df</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># Pretty print the updated dictionary</span>
+    <span class="n">cd_df</span> <span class="o">=</span> <span class="n">get_chvatal_df</span><span class="p">(</span><span class="n">cd</span><span class="p">,</span>
+                          <span class="n">basic</span><span class="p">,</span>
+                          <span class="n">nonbasic</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Iteration </span><span class="si">{</span><span class="n">iteration</span><span class="si">}</span><span class="se">\n</span><span class="s1"> Chvátal dictionary </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">cd_df</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
