@@ -166,10 +166,10 @@ window.onload = wrap_img;
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Requirement already satisfied: rich in /usr/local/lib/python3.7/dist-packages (10.16.0)
-Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.6.0 in /usr/local/lib/python3.7/dist-packages (from rich) (2.6.1)
-Requirement already satisfied: colorama&lt;0.5.0,&gt;=0.4.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.4.4)
 Requirement already satisfied: commonmark&lt;0.10.0,&gt;=0.9.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.9.1)
+Requirement already satisfied: colorama&lt;0.5.0,&gt;=0.4.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.4.4)
 Requirement already satisfied: typing-extensions&lt;5.0,&gt;=3.7.4 in /usr/local/lib/python3.7/dist-packages (from rich) (3.10.0.2)
+Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.6.0 in /usr/local/lib/python3.7/dist-packages (from rich) (2.6.1)
 </pre>
 </div>
 </div>
@@ -518,14 +518,13 @@ Requirement already satisfied: typing-extensions&lt;5.0,&gt;=3.7.4 in /usr/local
   
   <span class="c1"># the pivot_array expresses the newly arrived </span>
   <span class="c1"># basic variable in terms of the non-basic variables</span>
-  <span class="n">pivot_array</span> <span class="o">=</span> <span class="n">chvatal_dict</span><span class="p">[</span><span class="n">leaving_row</span><span class="p">,:]</span><span class="o">/</span><span class="n">pivot</span>
+  <span class="n">next_pivot_row</span> <span class="o">=</span> <span class="n">chvatal_dict</span><span class="p">[</span><span class="n">leaving_row</span><span class="p">,:]</span><span class="o">/</span><span class="n">pivot</span>
   
   <span class="c1"># the coefficent of the newly arrived non-basic variable</span>
   <span class="c1"># it is moving from the LHS to the RHS hence the -1</span>
-  <span class="n">pivot_array</span><span class="p">[</span><span class="n">entering_column</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span><span class="o">/</span><span class="n">pivot</span>
-  <span class="c1">#print(pivot_array)</span>
-
-  <span class="k">return</span> <span class="n">pivot</span><span class="p">,</span> <span class="n">pivot_array</span>   
+  <span class="n">next_pivot_row</span><span class="p">[</span><span class="n">entering_column</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span><span class="o">/</span><span class="n">pivot</span>
+  
+  <span class="k">return</span> <span class="n">pivot</span><span class="p">,</span> <span class="n">next_pivot_row</span>   
 
 <span class="k">def</span> <span class="nf">get_next_dictionary</span><span class="p">(</span><span class="n">chvatal_dict</span><span class="p">,</span> <span class="n">leaving_row</span><span class="p">,</span> <span class="n">entering_column</span><span class="p">,</span>
                            <span class="n">row_lookup</span><span class="p">,</span> <span class="n">column_lookup</span><span class="p">):</span>
