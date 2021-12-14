@@ -166,8 +166,8 @@ window.onload = wrap_img;
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Requirement already satisfied: rich in /usr/local/lib/python3.7/dist-packages (10.16.0)
-Requirement already satisfied: commonmark&lt;0.10.0,&gt;=0.9.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.9.1)
 Requirement already satisfied: colorama&lt;0.5.0,&gt;=0.4.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.4.4)
+Requirement already satisfied: commonmark&lt;0.10.0,&gt;=0.9.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.9.1)
 Requirement already satisfied: typing-extensions&lt;5.0,&gt;=3.7.4 in /usr/local/lib/python3.7/dist-packages (from rich) (3.10.0.2)
 Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.6.0 in /usr/local/lib/python3.7/dist-packages (from rich) (2.6.1)
 </pre>
@@ -552,21 +552,21 @@ Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.6.0 in /usr/local/lib/py
       <span class="c1"># print(updated_row_array)</span>
       <span class="n">cd_candidate_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">updated_row_array</span> <span class="p">)</span>
 
-  <span class="n">cd_next_iteration</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span> <span class="n">cd_candidate_rows</span> <span class="p">)</span>
+  <span class="n">cd_next_it</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span> <span class="n">cd_candidate_rows</span> <span class="p">)</span>
 
   <span class="c1"># assemble the updated list of basic variables</span>
-  <span class="n">basic_next_iteration</span> <span class="o">=</span> <span class="n">row_lookup</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+  <span class="n">basic_next_it</span> <span class="o">=</span> <span class="n">row_lookup</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
   <span class="c1"># update the leaving row with the entering new basic variable</span>
-  <span class="n">basic_next_iteration</span><span class="p">[</span><span class="n">leaving_row</span><span class="p">]</span> <span class="o">=</span> <span class="n">column_lookup</span><span class="p">[</span><span class="n">entering_column</span><span class="p">]</span>
+  <span class="n">basic_next_it</span><span class="p">[</span><span class="n">leaving_row</span><span class="p">]</span> <span class="o">=</span> <span class="n">column_lookup</span><span class="p">[</span><span class="n">entering_column</span><span class="p">]</span>
 
   <span class="c1"># assemble the updated list of nonbasic variables</span>
-  <span class="n">nonbasic_next_iteration</span> <span class="o">=</span> <span class="n">column_lookup</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+  <span class="n">nonbasic_next_it</span> <span class="o">=</span> <span class="n">column_lookup</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
   <span class="c1"># update the entering column with the new nonbasic variable</span>
-  <span class="n">nonbasic_next_iteration</span><span class="p">[</span><span class="n">entering_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">row_lookup</span><span class="p">[</span><span class="n">leaving_row</span><span class="p">]</span>
+  <span class="n">nonbasic_next_it</span><span class="p">[</span><span class="n">entering_column</span><span class="p">]</span> <span class="o">=</span> <span class="n">row_lookup</span><span class="p">[</span><span class="n">leaving_row</span><span class="p">]</span>
 
-  <span class="c1">#print(cd_next_iteration)</span>
+  <span class="c1">#print(cd_next_it)</span>
 
-  <span class="k">return</span> <span class="n">basic_next_iteration</span><span class="p">,</span> <span class="n">nonbasic_next_iteration</span><span class="p">,</span> <span class="n">cd_next_iteration</span>
+  <span class="k">return</span> <span class="n">basic_next_it</span><span class="p">,</span> <span class="n">nonbasic_next_it</span><span class="p">,</span> <span class="n">cd_next_it</span>
 </pre></div>
 
     </div>
