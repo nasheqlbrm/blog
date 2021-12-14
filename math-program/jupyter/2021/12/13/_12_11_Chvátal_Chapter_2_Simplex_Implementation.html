@@ -10,13 +10,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A blog about things that I find interesting." />
 <meta property="og:description" content="A blog about things that I find interesting." />
-<link rel="canonical" href="https://nasheqlbrm.github.io/blog/math-program/jupyter/2021/12/12/_12_11_Chv%C3%A1tal_Chapter_2_Simplex_Implementation.html" />
-<meta property="og:url" content="https://nasheqlbrm.github.io/blog/math-program/jupyter/2021/12/12/_12_11_Chv%C3%A1tal_Chapter_2_Simplex_Implementation.html" />
+<link rel="canonical" href="https://nasheqlbrm.github.io/blog/math-program/jupyter/2021/12/13/_12_11_Chv%C3%A1tal_Chapter_2_Simplex_Implementation.html" />
+<meta property="og:url" content="https://nasheqlbrm.github.io/blog/math-program/jupyter/2021/12/13/_12_11_Chv%C3%A1tal_Chapter_2_Simplex_Implementation.html" />
 <meta property="og:site_name" content="Kaushik Sinha" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-12-12T00:00:00-06:00" />
+<meta property="article:published_time" content="2021-12-13T00:00:00-06:00" />
 <script type="application/ld+json">
-{"description":"A blog about things that I find interesting.","url":"https://nasheqlbrm.github.io/blog/math-program/jupyter/2021/12/12/_12_11_Chv%C3%A1tal_Chapter_2_Simplex_Implementation.html","@type":"BlogPosting","headline":"Chvátal Chapter 2 Simplex Implementation","dateModified":"2021-12-12T00:00:00-06:00","datePublished":"2021-12-12T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://nasheqlbrm.github.io/blog/math-program/jupyter/2021/12/12/_12_11_Chv%C3%A1tal_Chapter_2_Simplex_Implementation.html"},"@context":"https://schema.org"}</script>
+{"description":"A blog about things that I find interesting.","url":"https://nasheqlbrm.github.io/blog/math-program/jupyter/2021/12/13/_12_11_Chv%C3%A1tal_Chapter_2_Simplex_Implementation.html","@type":"BlogPosting","headline":"Chvátal Chapter 2 Simplex Implementation","dateModified":"2021-12-13T00:00:00-06:00","datePublished":"2021-12-13T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://nasheqlbrm.github.io/blog/math-program/jupyter/2021/12/13/_12_11_Chv%C3%A1tal_Chapter_2_Simplex_Implementation.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://nasheqlbrm.github.io/blog/feed.xml" title="Kaushik Sinha" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -87,8 +87,8 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Chvátal Chapter 2 Simplex Implementation</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-12T00:00:00-06:00" itemprop="datePublished">
-        Dec 12, 2021
+    <h1 class="post-title p-name" itemprop="name headline">Chvátal Chapter 2 Simplex Implementation</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-13T00:00:00-06:00" itemprop="datePublished">
+        Dec 13, 2021
       </time>
        • <span class="read-time" title="Estimated read time">
     
@@ -166,10 +166,10 @@ window.onload = wrap_img;
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Requirement already satisfied: rich in /usr/local/lib/python3.7/dist-packages (10.16.0)
-Requirement already satisfied: typing-extensions&lt;5.0,&gt;=3.7.4 in /usr/local/lib/python3.7/dist-packages (from rich) (3.10.0.2)
+Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.6.0 in /usr/local/lib/python3.7/dist-packages (from rich) (2.6.1)
 Requirement already satisfied: colorama&lt;0.5.0,&gt;=0.4.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.4.4)
 Requirement already satisfied: commonmark&lt;0.10.0,&gt;=0.9.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.9.1)
-Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.6.0 in /usr/local/lib/python3.7/dist-packages (from rich) (2.6.1)
+Requirement already satisfied: typing-extensions&lt;5.0,&gt;=3.7.4 in /usr/local/lib/python3.7/dist-packages (from rich) (3.10.0.2)
 </pre>
 </div>
 </div>
@@ -511,21 +511,27 @@ Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.6.0 in /usr/local/lib/py
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">get_next_dictionary</span><span class="p">(</span><span class="n">chvatal_dict</span><span class="p">,</span> <span class="n">leaving_row</span><span class="p">,</span> <span class="n">entering_column</span><span class="p">,</span>
-                           <span class="n">row_lookup</span><span class="p">,</span> <span class="n">column_lookup</span><span class="p">):</span>
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">get_pivot_row</span><span class="p">(</span><span class="n">chvatal_dict</span><span class="p">,</span> <span class="n">leaving_row</span><span class="p">,</span> <span class="n">entering_column</span><span class="p">):</span>
   <span class="c1"># Need to find the coefficient of the non-basic variable</span>
   <span class="c1"># that is going to be entering the basis.</span>
-  <span class="n">divisor</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">chvatal_dict</span><span class="p">[</span><span class="n">leaving_row</span><span class="p">,</span> <span class="n">entering_column</span><span class="p">]</span>
-  <span class="c1">#print(divisor)</span>
-
+  <span class="n">pivot</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">chvatal_dict</span><span class="p">[</span><span class="n">leaving_row</span><span class="p">,</span> <span class="n">entering_column</span><span class="p">]</span>
+  
   <span class="c1"># the pivot_array expresses the newly arrived </span>
   <span class="c1"># basic variable in terms of the non-basic variables</span>
-  <span class="n">pivot_array</span> <span class="o">=</span> <span class="n">chvatal_dict</span><span class="p">[</span><span class="n">leaving_row</span><span class="p">,:]</span><span class="o">/</span><span class="n">divisor</span>
+  <span class="n">pivot_array</span> <span class="o">=</span> <span class="n">chvatal_dict</span><span class="p">[</span><span class="n">leaving_row</span><span class="p">,:]</span><span class="o">/</span><span class="n">pivot</span>
   
   <span class="c1"># the coefficent of the newly arrived non-basic variable</span>
   <span class="c1"># it is moving from the LHS to the RHS hence the -1</span>
-  <span class="n">pivot_array</span><span class="p">[</span><span class="n">entering_column</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span><span class="o">/</span><span class="n">divisor</span>
+  <span class="n">pivot_array</span><span class="p">[</span><span class="n">entering_column</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.</span><span class="o">/</span><span class="n">pivot</span>
   <span class="c1">#print(pivot_array)</span>
+
+  <span class="k">return</span> <span class="n">pivot</span><span class="p">,</span> <span class="n">pivot_array</span>   
+
+<span class="k">def</span> <span class="nf">get_next_dictionary</span><span class="p">(</span><span class="n">chvatal_dict</span><span class="p">,</span> <span class="n">leaving_row</span><span class="p">,</span> <span class="n">entering_column</span><span class="p">,</span>
+                           <span class="n">row_lookup</span><span class="p">,</span> <span class="n">column_lookup</span><span class="p">):</span>
+  <span class="n">_</span><span class="p">,</span> <span class="n">pivot_array</span> <span class="o">=</span> <span class="n">get_pivot_row</span><span class="p">(</span><span class="n">chvatal_dict</span><span class="p">,</span>
+                                 <span class="n">leaving_row</span><span class="p">,</span>
+                                 <span class="n">entering_column</span><span class="p">)</span>
 
   <span class="c1"># we need to update the remaining rows in the dictionary</span>
   <span class="c1"># so they are now expressed in terms of the new arrived</span>
@@ -855,7 +861,7 @@ z    <span style="color: #008080; text-decoration-color: #008080; font-weight: b
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/blog/math-program/jupyter/2021/12/12/_12_11_Chv%C3%A1tal_Chapter_2_Simplex_Implementation.html" hidden></a>
+</script><a class="u-url" href="/blog/math-program/jupyter/2021/12/13/_12_11_Chv%C3%A1tal_Chapter_2_Simplex_Implementation.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
