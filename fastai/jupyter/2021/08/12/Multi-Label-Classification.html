@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      10 min read
+      9 min read
     
 </span></p>
 
@@ -368,7 +368,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>When a label is present, in the target, we take the sigmoid activation corresponding to that label. Otherwise, when the label is absent, we take one minus the that sigmoid activation. For the latter case we are effectively taking the <em>sum</em> of sigmoid activations predicted for the <em>remaining</em> labels. By doing this we are asking for the confidence that the classifier places on the label being absent.</p>
+<p>When a label is present, in the target, we take the sigmoid activation corresponding to that label. Otherwise, when the label is absent, we take one minus the that sigmoid activation. By doing this we are asking for the confidence that the classifier places on the particular label being absent.</p>
 <p>Thus the binary cross entropy function summarizes the "correctness" of the classifer across the presence and absence of each possible label in a training example. Contrast this with the use of <a href="https://nasheqlbrm.github.io/blog/fastai/pytorch/jupyter/2021/08/07/Cross-Entropy-Loss-PyTorch.html">cross entropy loss</a> in multi-class classification where we only care about the probability being predicted for the single correct class of the training example.</p>
 
 </div>
@@ -1828,7 +1828,7 @@ Downloading results into /data/kaushik/bears/teddy
       </div>
     </div>
 
-    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/nasheqlbrm" title="nasheqlbrm"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/_ksinha_" title="_ksinha_"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/nasheqlbrm" target="_blank" title="nasheqlbrm"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/_ksinha_" target="_blank" title="_ksinha_"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
 </div>
 
   </div>
