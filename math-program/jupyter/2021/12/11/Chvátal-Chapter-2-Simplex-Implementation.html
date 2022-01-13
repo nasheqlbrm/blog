@@ -165,18 +165,11 @@ window.onload = wrap_img;
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Collecting rich
-  Downloading rich-10.16.1-py3-none-any.whl (214 kB)
-     |████████████████████████████████| 214 kB 5.2 MB/s 
-Collecting colorama&lt;0.5.0,&gt;=0.4.0
-  Downloading colorama-0.4.4-py2.py3-none-any.whl (16 kB)
+<pre>Requirement already satisfied: rich in /usr/local/lib/python3.7/dist-packages (11.0.0)
+Requirement already satisfied: commonmark&lt;0.10.0,&gt;=0.9.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.9.1)
 Requirement already satisfied: typing-extensions&lt;5.0,&gt;=3.7.4 in /usr/local/lib/python3.7/dist-packages (from rich) (3.10.0.2)
-Collecting commonmark&lt;0.10.0,&gt;=0.9.0
-  Downloading commonmark-0.9.1-py2.py3-none-any.whl (51 kB)
-     |████████████████████████████████| 51 kB 5.6 MB/s 
+Requirement already satisfied: colorama&lt;0.5.0,&gt;=0.4.0 in /usr/local/lib/python3.7/dist-packages (from rich) (0.4.4)
 Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.6.0 in /usr/local/lib/python3.7/dist-packages (from rich) (2.6.1)
-Installing collected packages: commonmark, colorama, rich
-Successfully installed colorama-0.4.4 commonmark-0.9.1 rich-10.16.1
 </pre>
 </div>
 </div>
@@ -354,6 +347,22 @@ Successfully installed colorama-0.4.4 commonmark-0.9.1 rich-10.16.1
   <span class="c1"># right hand sides</span>
   <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="o">-</span><span class="mi">2</span><span class="p">]])</span>
   
+  <span class="k">return</span> <span class="n">c</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span>  
+
+<span class="k">def</span> <span class="nf">get_problem_1_6</span><span class="p">():</span>
+  <span class="c1"># objective function coefficients</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">6</span><span class="p">],[</span><span class="mi">3</span><span class="p">],[</span><span class="mi">8</span><span class="p">],[</span><span class="mi">3</span><span class="p">],[</span><span class="mi">9</span><span class="p">],[</span><span class="mi">5</span><span class="p">]])</span>
+  <span class="c1">#c.shape</span>
+
+  <span class="c1"># constraint coefficients</span>
+  <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+  <span class="c1">#A.shape</span>
+
+  <span class="c1"># right hand sides</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">480</span><span class="p">],[</span><span class="mi">400</span><span class="p">],[</span><span class="mi">230</span><span class="p">],[</span><span class="mi">420</span><span class="p">],[</span><span class="mi">250</span><span class="p">]])</span>
+  <span class="c1">#b.shape</span>
+
   <span class="k">return</span> <span class="n">c</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">b</span>
 </pre></div>
 
@@ -695,8 +704,10 @@ Successfully installed colorama-0.4.4 commonmark-0.9.1 rich-10.16.1
 <span class="c1"># We ignore column 0 since we use it to store the right hand sides.</span>
 <span class="n">col_lookup_it</span><span class="p">[</span><span class="n">it</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">nonbasic</span><span class="p">)</span> <span class="p">)</span>
 
+<span class="n">z_star</span> <span class="o">=</span> <span class="mi">0</span>
+
 <span class="n">cd_it</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">cd_it</span><span class="p">[</span><span class="n">it</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">b</span><span class="p">,</span> <span class="o">-</span><span class="n">A</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">,</span> <span class="n">c</span> <span class="p">])</span><span class="o">.</span><span class="n">T</span> <span class="p">]</span> <span class="p">)</span>
+<span class="n">cd_it</span><span class="p">[</span><span class="n">it</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">b</span><span class="p">,</span> <span class="o">-</span><span class="n">A</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span> <span class="p">[</span> <span class="p">[</span><span class="n">z_star</span><span class="p">]</span> <span class="p">,</span> <span class="n">c</span> <span class="p">])</span><span class="o">.</span><span class="n">T</span> <span class="p">]</span> <span class="p">)</span>
 
 <span class="n">cd_df</span> <span class="o">=</span> <span class="n">get_chvatal_df</span><span class="p">(</span><span class="n">cd_it</span><span class="p">[</span><span class="n">it</span><span class="p">],</span>
                        <span class="n">row_lookup_it</span><span class="p">[</span><span class="n">it</span><span class="p">],</span>
