@@ -232,11 +232,12 @@ window.onload = wrap_img;
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">grid_approx</span><span class="p">(</span><span class="n">num_grid_points</span><span class="p">,</span> <span class="n">successes</span><span class="p">,</span> <span class="n">tosses</span><span class="p">):</span>
-    <span class="n">p_success</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_grid_points</span><span class="p">))</span>
+    <span class="n">ngp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_grid_points</span><span class="p">)</span>
+    <span class="n">p_success</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ngp</span><span class="p">)</span>
     
     <span class="n">likelihood</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">successes</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">tosses</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p_success</span><span class="p">)</span>
     <span class="c1"># uniform prior</span>
-    <span class="n">prior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="n">num_grid_points</span><span class="p">)</span>
+    <span class="n">prior</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="n">ngp</span><span class="p">)</span>
 
     <span class="n">unstd_posterior</span> <span class="o">=</span> <span class="n">likelihood</span> <span class="o">*</span> <span class="n">prior</span>
     <span class="n">posterior</span> <span class="o">=</span> <span class="n">unstd_posterior</span> <span class="o">/</span> <span class="n">unstd_posterior</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
