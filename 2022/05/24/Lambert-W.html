@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      1 min read
+      2 min read
     
 </span></p>
 
@@ -271,8 +271,8 @@ window.onload = wrap_img;
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Finally, solve $x + e^{x} = 2$.</p>
-<p>Exponentiating both sides we get $e^{x}e^{e^{x}} = e^{2}$. Applying the Lambert W function on both sides produces $W( e^{x}e^{e^{x}} ) = W(e^{2})$ or $e^{x} = W(e^{2})$.</p>
+<p>Next, solve $x + e^{x} = 2$.</p>
+<p>Exponentiating both sides we get $e^{x}e^{e^{x}} = e^{2}$. Applying the Lambert W function on both sides produces $W( e^{x}e^{e^{x}} ) = W(e^{2})$ or $e^{x} = W(e^{2})$</p>
 <p>Thus, $x = \ln(W(e^{2}))$</p>
 
 </div>
@@ -312,6 +312,22 @@ window.onload = wrap_img;
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally let's find the minimizer of $x \ln(\frac{x}{u}) + \frac{1}{2\lambda}(x-v)^{2}$. Also suppose $\lambda &gt;0$.</p>
+<p>This is a sum of convex functions so it is convex and a minimizer exists.</p>
+<p>Taking the derivative and setting equal to zero we get: $$1 + \ln x - \ln u + \frac{x}{\lambda} - \frac{v}{\lambda} = 0$$</p>
+<p>Hence, $\ln x + \frac{x}{\lambda} = \ln u  + \frac{v}{\lambda} - 1$.</p>
+<p>Exponentiating both sides we get:</p>
+<p>$e^{\ln x + \frac{x}{\lambda}} = e^{\ln u  + \frac{v}{\lambda} - 1}$ or $xe^{\frac{x}{\lambda}} = ue^{\frac{v}{\lambda} - 1}$.</p>
+<p>Dividing both sides by $\lambda$ we have $\frac{x}{\lambda}e^{\frac{x}{\lambda}} = \frac{u}{\lambda}e^{\frac{v}{\lambda} - 1}$.</p>
+<p>Applying the Lambert W function on both sides gives: $$ W(\frac{x}{\lambda}e^{\frac{x}{\lambda}}) = W(\frac{u}{\lambda}e^{\frac{v}{\lambda} - 1})$$ or</p>
+<p>$\frac{x}{\lambda} = W(\frac{u}{\lambda}e^{\frac{v}{\lambda} - 1})$.</p>
+<p>Thus, $$x = \lambda W(\frac{u}{\lambda}e^{\frac{v}{\lambda} - 1})$$</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>References</p>
