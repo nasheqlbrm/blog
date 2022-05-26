@@ -158,7 +158,12 @@ window.onload = wrap_img;
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Next, let's solve the equation $x^{x} = 2$.</p>
+<h2 id="Solve-$x^{x}-=-2$">Solve $x^{x} = 2$<a class="anchor-link" href="#Solve-$x^{x}-=-2$"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Take the log of both sides to get $x\ln(x) = \ln(2)$ or that $e^{\ln(x)}\ln(x) = \ln(2)$. Rearranging we get $\ln(x)e^{\ln(x)} = \ln(2)$.</p>
 <p>Applying the Lambert W function on both sides produces $W(\ln(x)e^{\ln(x)}) = W(\ln(2))$ or that $\ln(x) = W(\ln(2))$.</p>
 <p>Finally, we get that $x = e^{W(\ln(2))}$.</p>
@@ -227,7 +232,12 @@ window.onload = wrap_img;
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Next, solve $x^{2}e^{x} = 2$.</p>
+<h2 id="Solve-$x^{2}e^{x}-=-2$">Solve $x^{2}e^{x} = 2$<a class="anchor-link" href="#Solve-$x^{2}e^{x}-=-2$"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Take the square root in both sides to get $xe^{x/2} = \sqrt 2$. Divide both sides by $2$ to get $0.5xe^{0.5x} = \frac{1}{\sqrt 2}$.</p>
 <p>Applying the Lambert W function on both sides produces $W(0.5xe^{0.5x}) = W(\frac{1}{\sqrt 2})$ or $0.5x = W(\frac{1}{\sqrt 2})$.</p>
 <p>Finally, we get $x = 2W(\frac{1}{\sqrt 2})$.</p>
@@ -271,7 +281,12 @@ window.onload = wrap_img;
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Next, solve $x + e^{x} = 2$.</p>
+<h2 id="Solve-$x-+-e^{x}-=-2$">Solve $x + e^{x} = 2$<a class="anchor-link" href="#Solve-$x-+-e^{x}-=-2$"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Exponentiating both sides we get $e^{x}e^{e^{x}} = e^{2}$. Applying the Lambert W function on both sides produces $W( e^{x}e^{e^{x}} ) = W(e^{2})$ or $e^{x} = W(e^{2})$</p>
 <p>Thus, $x = \ln(W(e^{2}))$</p>
 
@@ -314,7 +329,12 @@ window.onload = wrap_img;
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Finally let's find the minimizer of $x \ln(\frac{x}{u}) + \frac{1}{2\lambda}(x-v)^{2}$. Also suppose $\lambda &gt;0$.</p>
+<h2 id="Find-the-minimizer-of-$x-\ln(\frac{x}{u})-+-\frac{1}{2\lambda}(x-v)^{2}$-(suppose-$\lambda-&gt;0$).">Find the minimizer of $x \ln(\frac{x}{u}) + \frac{1}{2\lambda}(x-v)^{2}$ (suppose $\lambda &gt;0$).<a class="anchor-link" href="#Find-the-minimizer-of-$x-\ln(\frac{x}{u})-+-\frac{1}{2\lambda}(x-v)^{2}$-(suppose-$\lambda-&gt;0$)."> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>This is a sum of convex functions so it is convex and a minimizer exists.</p>
 <p>Taking the derivative and setting equal to zero we get: $$1 + \ln x - \ln u + \frac{x}{\lambda} - \frac{v}{\lambda} = 0$$</p>
 <p>Hence, $\ln x + \frac{x}{\lambda} = \ln u  + \frac{v}{\lambda} - 1$.</p>
