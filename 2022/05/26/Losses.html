@@ -463,8 +463,8 @@ $$W(\frac{\hat{f}_{i}}{\lambda}e^{\frac{\hat{f}_{i}}{\lambda}}) = W(\frac{1}{\la
 $$r(w) = \begin{cases} \sum_{i=1}^{n} w_{i}\ln w_{i}, \quad (1/(\kappa n))\mathbf{1} \leq w \leq (\kappa/n )\mathbf{1} \\ \infty \quad \text{Otherwise}\end{cases}$$
 </p>
 <p>Here $\kappa &gt; 1$ is a hyper-parameter (also called <em>limit</em> in the code). Observe that there is a constraint on $w$ that says they must lie within $[1/(\kappa n), \kappa/n]$ otherwise the loss is infinite (i.e., we have an infeasible solution). If we interpret $w_i$ as a weight then the constraint says that no item can be down-weighted by less than $1/\kappa$ or up-weighted by more than $\kappa$.</p>
-<p>We obtain a candidate solution $\hat{w} = \lambda W(\frac{1}{\lambda}e^{\frac{w^{des}_{i}}{\lambda} - 1 })$ from the Entropy Loss section (where $w^{des}$ is some weight vector, provided as input data, which we want $\hat{w}$ to be close to).</p>
-<p>The final solution is obtained by 'clipping' $\hat{w}$, $\mathbf{prox}_{\lambda r}(w_{\text{des}})_{i} = \begin{cases} 1/(\kappa n), \text{if } \hat{w}_{i} \leq 1/(\kappa n)\\ \kappa/n, \text{if } \hat{w}_{i} \geq \kappa/n\\ \hat{w}_{i}, \text{ otherwise}\end{cases}$</p>
+<p>The final solution is $\mathbf{prox}_{\lambda r}(w_{\text{des}})_{i} = \begin{cases} 1/(\kappa n), \text{if } \hat{w}_{i} \leq 1/(\kappa n)\\ \kappa/n, \text{if } \hat{w}_{i} \geq \kappa/n\\ \hat{w}_{i}, \text{ otherwise}\end{cases}$
+where $\hat{w} = \lambda W(\frac{1}{\lambda}e^{\frac{w^{des}_{i}}{\lambda} - 1 })$ from the Entropy Loss section ($w^{des}$ is some desired weight vector, provided as input, which we want $\hat{w}$ to be close to).</p>
 
 </div>
 </div>
