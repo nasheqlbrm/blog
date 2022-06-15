@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Exercises with Convex Sets | Kaushik Sinha</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Exercises with Convex Sets" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A blog about things that I find interesting." />
+<meta property="og:description" content="A blog about things that I find interesting." />
+<link rel="canonical" href="https://nasheqlbrm.github.io/blog/notes/2022/05/27/exercises-with-convex-sets.html" />
+<meta property="og:url" content="https://nasheqlbrm.github.io/blog/notes/2022/05/27/exercises-with-convex-sets.html" />
+<meta property="og:site_name" content="Kaushik Sinha" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-05-27T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"https://nasheqlbrm.github.io/blog/notes/2022/05/27/exercises-with-convex-sets.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://nasheqlbrm.github.io/blog/notes/2022/05/27/exercises-with-convex-sets.html"},"headline":"Exercises with Convex Sets","dateModified":"2022-05-27T00:00:00-05:00","datePublished":"2022-05-27T00:00:00-05:00","description":"A blog about things that I find interesting.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://nasheqlbrm.github.io/blog/feed.xml" title="Kaushik Sinha" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Kaushik Sinha</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Exercises with Convex Sets</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-05-27T00:00:00-05:00" itemprop="datePublished">
+        May 27, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      11 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#notes">notes</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/nasheqlbrm/blog/tree/master/_notebooks/2022-05-27-exercises-with-convex-sets.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/nasheqlbrm/blog/master?filepath=_notebooks%2F2022-05-27-exercises-with-convex-sets.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/nasheqlbrm/blog/blob/master/_notebooks/2022-05-27-exercises-with-convex-sets.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-05-27-exercises-with-convex-sets.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Is-the-set-$S-=-\{Ax-+-b-|-Fx-=-g\}$-affine?">Is the set $S = \{Ax + b | Fx = g\}$ affine?<a class="anchor-link" href="#Is-the-set-$S-=-\{Ax-+-b-|-Fx-=-g\}$-affine?"> </a></h2><p>Consider two points $x_1$ and $x_2$ in $S$. Is $y = \theta x_1 + (1-\theta)x_2$ in the set (for $\theta \in \mathbf{R})$?</p>
+$$Fy = F( \theta x_1 + (1-\theta)x_2)$$<p>
+$$\quad = \theta Fx_1 + (1-\theta)Fx_2$$ and since $x_1, x_2 \in S$ we have
+
+$$Fy = \theta g + (1-\theta)g = g$$
+</p>
+<p>This means $y \in S$ and that $S$ is affine.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Check-whether-$S-=-\{-\alpha-\in-\mathbf{R}^{3}-|-\alpha_1-+\alpha_2-e^{-t}-+-\alpha_3-e^{-2t}-\leq-1.1-\text{-for-}-t-\geq-1\}$-is-affine,-convex-and/or-a-polyhedron.">Check whether $S = \{ \alpha \in \mathbf{R}^{3} | \alpha_1 +\alpha_2 e^{-t} + \alpha_3 e^{-2t} \leq 1.1 \text{ for } t \geq 1\}$ is affine, convex and/or a polyhedron.<a class="anchor-link" href="#Check-whether-$S-=-\{-\alpha-\in-\mathbf{R}^{3}-|-\alpha_1-+\alpha_2-e^{-t}-+-\alpha_3-e^{-2t}-\leq-1.1-\text{-for-}-t-\geq-1\}$-is-affine,-convex-and/or-a-polyhedron."> </a></h2><p>$S$ cannot be a polyhedron since a polyhedron is defined by finitely many linear inequalities (the condition $t \geq 1$ is definitely not on finitely many $t$).</p>
+<p>Suppose $\alpha, \beta \in S$ then is $\gamma =  \theta \alpha + (1-\theta) \beta$ in $S$?</p>
+<p>
+$$\gamma_1 +\gamma_2 e^{-t} + \gamma_3 e^{-2t} = \theta \alpha_1 + (1-\theta) \beta_1 + (\theta \alpha_2 + (1-\theta) \beta_2) e^{-t} + (\theta \alpha_3 + (1-\theta) \beta_3) e^{-2t}$$
+
+
+$$= \theta (\alpha_1 +\alpha_2 e^{-t} + \alpha_3 e^{-2t}) + (1-\theta)(\beta_1 +\beta_2 e^{-t} + \beta_3 e^{-2t}) \leq 1.1$$
+</p>
+<ul>
+<li><p>the last inequality holds if $\theta \in [0,1]$ as $ \theta (\alpha_1 +\alpha_2 e^{-t} + \alpha_3 e^{-2t}) \leq \theta * 1.1$ and $(1-\theta)(\beta_1 +\beta_2 e^{-t} + \beta_3 e^{-2t}) \leq (1-\theta) * 1.1$.</p>
+</li>
+<li><p>The last inequality won't hold for $\theta \in \mathbf{R}$ as $ \theta (\alpha_1 +\alpha_2 e^{-t} + \alpha_3 e^{-2t}) \geq \theta * 1.1$ if $\theta &lt; 0$ (a similar observation holds for $(1-\theta)$) so $S$ is not affine.</p>
+</li>
+</ul>
+<p>Thus, $\gamma \in S$ if $\theta \in [0,1]$ so $S$ is convex.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="If-two-sets-can-be-separated-by-a-hyperplane,-then-they-are-convex.-True-or-False?">If two sets can be separated by a hyperplane, then they are convex. True or False?<a class="anchor-link" href="#If-two-sets-can-be-separated-by-a-hyperplane,-then-they-are-convex.-True-or-False?"> </a></h2><p>False. (Can do a proof by picture)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="A-point-$x_0$-on-the-boundary-of-a-convex-set-uniquely-defines-a-supporting-hyperplane-for-the-set-at-that-point.-True-or-False.">A point $x_0$ on the boundary of a convex set uniquely defines a supporting hyperplane for the set at that point. True or False.<a class="anchor-link" href="#A-point-$x_0$-on-the-boundary-of-a-convex-set-uniquely-defines-a-supporting-hyperplane-for-the-set-at-that-point.-True-or-False."> </a></h2><p>False. If $x_0$ is, for example, the corner of a square in $\mathbf{R}^2$, then there are infinitely many supporting hyperplanes at that point.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Consider-the-cone-$K-=-\{(x_1,x_2)-|-0-\leq-x_1-\leq-x_2\}-\subseteq-\mathbf{R}^2$.">Consider the cone $K = \{(x_1,x_2) | 0 \leq x_1 \leq x_2\} \subseteq \mathbf{R}^2$.<a class="anchor-link" href="#Consider-the-cone-$K-=-\{(x_1,x_2)-|-0-\leq-x_1-\leq-x_2\}-\subseteq-\mathbf{R}^2$."> </a></h2><ul>
+<li><p>Is  $(1,3) \preceq_{K} (3,4)$ True or False? False. $(1,3) \preceq_{K} (3,4) \Longleftrightarrow (3,4) - (1,3) \in K$. So the question is if $(2,1) \in K$? Clearly not since the $x_1 &gt; x_2$.</p>
+</li>
+<li><p>Is $(-1,2) \succeq_{K^{\ast}} 0$ True or False? True. Now $(-1,2) \succeq_{K^{\ast}} 0 \Longleftrightarrow (-1,2)^{T}x \geq 0, \forall x \succeq_{K} 0$. But $(-1,2)^{T}x = -x_1 + x_2 &gt;=0 $ for any $x \succeq_{K} 0$ (since $x_1 \leq x_2$) thus this claim is True.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-is-the-distance-between-the-two-parallel-hyperplanes-$H_1-=-\{x-\in-\mathbf{R}^{n}-|-a^Tx=b_1\}$-and-$H_2-=\{x-\in-\mathbf{R}^{n}-|-a^Tx=b_2\}$?">What is the distance between the two parallel hyperplanes $H_1 = \{x \in \mathbf{R}^{n} | a^Tx=b_1\}$ and $H_2 =\{x \in \mathbf{R}^{n} | a^Tx=b_2\}$?<a class="anchor-link" href="#What-is-the-distance-between-the-two-parallel-hyperplanes-$H_1-=-\{x-\in-\mathbf{R}^{n}-|-a^Tx=b_1\}$-and-$H_2-=\{x-\in-\mathbf{R}^{n}-|-a^Tx=b_2\}$?"> </a></h2><p>Let's turn to 2d for inspiration.</p>
+<div>
+<figure>
+  
+    <img class="docimage" src="https://github.com/nasheqlbrm/blog/blob/master/images/parallel_hyperplanes_2d.jpg?raw=1" alt="" style="max-width: 400px" />
+    
+    
+</figure>
+
+</div><p>The line with end points $(b_2/a_1,0)$ and $(0,b_2/a_2)$ is on the hyperplane $\{x \in \mathbf{R}^{2} | a^Tx=b_2\}$ while that with end points $(b_1/a_1,0)$ and $(0,b_1/a_2)$ is on the hyperplane $\{x \in \mathbf{R}^{2} | a^Tx=b_2\}$.</p>
+<p><em>We have been asked to find $d$.</em></p>
+<p>The vector $x = (x_1,x_2)$ and $\hat{x} = (\hat{x}_1,\hat{x}_2)$ are collinear with the vector $a = (a_1,a_2)$. Thus, the cosine of the angle between the vectors $x$ with $a$ and $\hat{x}$ with $a$ should equal $1$ (since $\cos 0 =1$).</p>
+<p>$\frac{a_1x_1 + a_2x_2}{||a||_2||x||_2} = 1$ and $\frac{a_1\hat{x}_1 + a_2\hat{x}_2}{||a||_2||\hat{x}||_2} = 1$ or that $\frac{b_2}{||a||_2||x||_2} = 1$ and $\frac{b_1}{||a||_2||\hat{x}||_2} = 1$ (since $x$ and $\hat{x}$ lie on $H_1$ and $H_2$ respectively).</p>
+<p>Thus, we get that $||x||_2 = \frac{b_2}{||a||_2}$ and $||\hat{x}||_2 = \frac{b_1}{||a||_2}$ (these measure the lengths of the vector $x$ and $\hat{x}$ respectively).</p>
+<p>Hence, $d = ||\hat{x}||_2 - ||x||_2 = \frac{b_1 - b_2}{||a||_2}$</p>
+<p>Another way to think about this is that for $\theta \in [0,1]$ a point of the form $(\frac{b_2}{a_1}\theta, \frac{b_2}{a_2}(1-\theta))$ lies on $H_1$. So,in particular, for $\theta = \frac{a_1^2}{||a||^2_2}$ we have that $(x_1,x_2) = (\frac{b_2}{a_1}\frac{a_1^2}{||a||^2_2}, \frac{b_2}{a_2}\frac{a_2^2}{||a||^2_2})$ lies on $H_1$. Thus, $x = (\frac{b_2}{||a||^2_2}a_1, \frac{b_2}{||a||^2_2}a_2)$</p>
+<p>Similarly, $\hat{x} = (\frac{b_1}{||a||^2_2}a_1, \frac{b_1}{||a||^2_2}a_2)$</p>
+<p>So d = $||x-\hat{x}||_2 = \sqrt{ \frac{(b_2-b_1)^2}{||a||^4_2}a^2_1 + \frac{(b_2-b_1)^2}{||a||^4_2}a^2_2} = \sqrt{\frac{(b_2-b_1)^2}{||a||^2_2}} = \frac{|b_2-b_1|}{||a||_2}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Let-$a$-and-$b$-be-distinct-points-in-$\mathbf{R}^{n}$-and-consider-the-set-of-points-that-are-closer-(in-Euclidean-norm)-to-$a$-than-$b$-i.e.,-$\mathcal{C}-=-\{x-|-||x-a||_2-\leq-||x-b||_2-\}$.-Show-that-$\mathcal{C}$-is-a-halfspace-(namely-that-it-can-be-described-by-a-set-of-the-form-$\{x-|-c^Tx-\leq-d\}$-for-$c-\neq-0$).">Let $a$ and $b$ be distinct points in $\mathbf{R}^{n}$ and consider the set of points that are closer (in Euclidean norm) to $a$ than $b$ i.e., $\mathcal{C} = \{x | ||x-a||_2 \leq ||x-b||_2 \}$. Show that $\mathcal{C}$ is a halfspace (namely that it can be described by a set of the form $\{x | c^Tx \leq d\}$ for $c \neq 0$).<a class="anchor-link" href="#Let-$a$-and-$b$-be-distinct-points-in-$\mathbf{R}^{n}$-and-consider-the-set-of-points-that-are-closer-(in-Euclidean-norm)-to-$a$-than-$b$-i.e.,-$\mathcal{C}-=-\{x-|-||x-a||_2-\leq-||x-b||_2-\}$.-Show-that-$\mathcal{C}$-is-a-halfspace-(namely-that-it-can-be-described-by-a-set-of-the-form-$\{x-|-c^Tx-\leq-d\}$-for-$c-\neq-0$)."> </a></h2><p>Norms are strictly non-negative so,
+$||x-a||_2 \leq ||x-b||_2 \Longleftrightarrow ||x-a||^{2}_2 \leq ||x-b||^{2}_2 $</p>
+<p>Thus, $(x-a)^T(x-a) \leq (x-b)^T(x-b)$ or $x^Tx -2a^Tx + a^Ta \leq x^Tx -2b^Tx + b^Tb$.</p>
+<p>So $2(b^T - a^T)x \leq b^Tb - a^Ta$ or $2(b-a)^Tx \leq b^Tb - a^Ta$ which satisfies the definition of a half space of the form $\{x | c^Tx \leq d\}$ with $c = (b-a)^T$ and $d=\frac{b^Tb - a^Ta}{2}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Which-of-the-following-sets-is-convex?">Which of the following sets is convex?<a class="anchor-link" href="#Which-of-the-following-sets-is-convex?"> </a></h2><ul>
+<li><em>A slab, i.e., a set of the form $\{x \in \mathbf{R}^{n} | \alpha \leq a^Tx\leq \beta \}$</em>. Yes, convex since this is an intersection of two half spaces (it is also a polyhedron). Recall a half space is convex and an intersection of convex sets is convex.</li>
+<li>_A rectangle, i.e., a set of the form $\{x \in \mathbf{R}^{n} | \alpha_i \leq x_i\leq \beta_i \}$_. A rectangle is sometimes called a hyperrectangle when $n &gt; 2$. Yes, convex since it is an intersection of finitely many half spaces (it's also a polyhedron).</li>
+<li>_A wedge, i.e., a set of the form $\{x \in \mathbf{R}^{n} | a_1^Tx\leq b_1, a_2^Tx\leq b_2 \}$_. Yes, convex since an intersection of two half spaces.</li>
+<li>_The set of points closer to a given point than a given set i.e., $\{x | ||x - x_0||_2 \leq ||x-y||_2 \text{ for all } y\in S\}$ where $S \subseteq \mathbf{R}^{n}$<em>. We can see that $S = \cap</em>{y\in S} S(y)$ where $S(y) = {x | ||x - x_0)||_2 \leq ||x-y||_2}$ (for some specific choice of $y \in S$). Each $S(y)$ is convex and hence $S$ is convex since it is the intersection of convex sets.</li>
+<li>_The set of points closer to one set than another, i.e., $\mathcal{C} = \{x | dist(x,S) \leq dist(x,T)\}$, where $S,T \subseteq \mathbf{R}^{n}$, and $dist(x,S) = \text{inf}\{||x-z||_2 | z \in S\}$_. Suppose $x,y \in \mathcal{C}$ then for $\theta \in [0,1]$ is $c=\theta x + (1-\theta) y$ in $\mathcal{C}$? </li>
+</ul>
+<p>Since $x,y \in \mathcal{C}$ we have $\text{inf}\{||x-z||_2 | z \in S\} \leq \text{inf}\{||x-z||_2 | z \in T\}$ and $\text{inf}\{||y-z||_2 | z \in S\} \leq \text{inf}\{||y-z||_2 | z \in T\}$. Then, $\text{inf}\{\theta||x-z||_2 | z \in S\} + \text{inf}\{(1-\theta)||y-z||_2 | z \in S\} \leq \text{inf}\{\theta||x-z||_2| z \in T\} + \text{inf}\{(1-\theta)||y-z||_2| z \in T\}$</p>
+<p>In order to show $\text{inf}\{||c-z||_2 | z \in S\} \leq \text{inf}\{||c-z||_2 | z \in T\}$ we could potentially argue that $\text{inf}\{||c-z||_2 | z \in S\} \leq \text{inf}\{\theta||x-z||_2 | z \in S\} + \text{inf}\{(1-\theta)||y-z||_2 | z \in S\}$ (Triangle inequality?)</p>
+<p>However we likely won't be able to show $\text{inf}\{||c-z||_2 | z \in T\} \leq \text{inf}\{\theta||x-z||_2| z \in T\} + \text{inf}\{(1-\theta)||y-z||_2| z \in T\}$ (it may go the other direction).</p>
+<p>So I feel $\mathcal{C}$ is not convex.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Let-$x$-be-a-real-valued-random-variable-with-$\mathbf{prob}(x=a_{i})=p_i,-i=1,\ldots,n$,-where-$a_1-&lt;-a_2-&lt;-\ldots-&lt;-a_n$.-Of-course-$p-\in-\mathbf{R}^n$-lies-in-the-standard-probability-simplex-$P-=-\{p-|-\mathbf{1}^Tp=1,-p-\succeq-0\}$.-Which-if-the-following-conditions-are-convex-in-$p$.-(That-is,-for-which-of-the-following-conditions-is-the-set-of-$p-\in-P$-that-satisfy-the-condition-convex?).">Let $x$ be a real-valued random variable with $\mathbf{prob}(x=a_{i})=p_i, i=1,\ldots,n$, where $a_1 &lt; a_2 &lt; \ldots &lt; a_n$. Of course $p \in \mathbf{R}^n$ lies in the standard probability simplex $P = \{p | \mathbf{1}^Tp=1, p \succeq 0\}$. Which if the following conditions are convex in $p$. (That is, for which of the following conditions is the set of $p \in P$ that satisfy the condition convex?).<a class="anchor-link" href="#Let-$x$-be-a-real-valued-random-variable-with-$\mathbf{prob}(x=a_{i})=p_i,-i=1,\ldots,n$,-where-$a_1-&lt;-a_2-&lt;-\ldots-&lt;-a_n$.-Of-course-$p-\in-\mathbf{R}^n$-lies-in-the-standard-probability-simplex-$P-=-\{p-|-\mathbf{1}^Tp=1,-p-\succeq-0\}$.-Which-if-the-following-conditions-are-convex-in-$p$.-(That-is,-for-which-of-the-following-conditions-is-the-set-of-$p-\in-P$-that-satisfy-the-condition-convex?)."> </a></h2><p>Now $\mathbf{E}f(x) = \sum_{i=1}^{n}p_i f(a_i) = w^Tp$ where $w^{T} =(f(a_1),\ldots,f(a_n))$. Essentially the $w$'s are constants.</p>
+<ul>
+<li>$\alpha \leq \mathbf{E}f(x) \leq \beta$ - This is a slab so it is convex.</li>
+<li>$\mathbf{prob}(x &gt; \alpha) \leq \beta$ - Now $\mathbf{prob}(x &gt; \alpha) = \sum_{i:a_{i} &gt; \alpha}p_{i}$. We can define an indicator function that takes the value $0$ when $i$ is such that $a_i \leq \alpha$ and $1$ otherwise. The expecation of that indicator function is the same as the desired probability. So $\mathbf{prob}(x &gt; \alpha) = \sum_{i} p_{i} f(a_i)$ where $f(a_i) = I(a_i &gt; \alpha)$ so this is a half space and hence convex.</li>
+<li>$\mathbf{E}|x^3| \leq \alpha \mathbf{E}|x|$ - This is nothing but $\sum_{i=1}^{n} (|a_i^3| - \alpha|a_i|)p_i \leq 0$ which is a half space hence it is convex.</li>
+<li>$\mathbf{E}|x^2| \leq \alpha$ - This is nothing but $\sum_{i=1}^{n} |a_i^2|p_i \leq 0$ which is a half space hence it is convex.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-is-the-dual-cone-of:">What is the dual cone of:<a class="anchor-link" href="#What-is-the-dual-cone-of:"> </a></h2><ul>
+<li><p>$K = \{0\} \subseteq \mathbf{R}^2$? The dual cone of a cone $K$ is $K^{\ast} = \{y | y^Tx \geq 0 \forall x \in K\}$. So for this case we will have $K^{\ast} = \{y | y^Tx \geq 0 \text{ for all } x \in \{0\}\}$. Hence $K^{\ast} = \mathbf{R}^2$.</p>
+</li>
+<li><p>$K = \mathbf{R}^2$? $K^{\ast} = \{y | y^Tx \geq 0 \text{ for all } x \in \mathbf{R}^2\} = \{0\}$</p>
+</li>
+<li><p>$K = \{ (x,y)| \text{  } |x| \leq y \}$? A 2d picture really helps here, as we are essentially looking a region of vectors which has a non negative inner product with $K$. $K^{\ast} = \{ (x,y)| \text{  } |x| \leq y \}$</p>
+</li>
+<li><p>$K = \{ (x,y) | x + y = 0 \}$? Draw a picture of this line in 2d. Then convince yourself that $K^{\ast} = \{ (x,y) | x - y = 0 \}$</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Which-conditions,-in-terms-of-the-ordinary-inequalities-on-matrix-coefficents,-must-hold-true-for-the-elements-of-the-positive-semidefinite-cone-$\mathbf{S}^{n}_+$-for-$n=1,2,3$:">Which conditions, in terms of the ordinary inequalities on matrix coefficents, must hold true for the elements of the positive semidefinite cone $\mathbf{S}^{n}_+$ for $n=1,2,3$:<a class="anchor-link" href="#Which-conditions,-in-terms-of-the-ordinary-inequalities-on-matrix-coefficents,-must-hold-true-for-the-elements-of-the-positive-semidefinite-cone-$\mathbf{S}^{n}_+$-for-$n=1,2,3$:"> </a></h2><p>Recall that:</p>
+<ol>
+<li><p>$X \in \mathbf{S}^{n}_+ \Longleftrightarrow z^TXz \geq 0$ for all $z$.</p>
+</li>
+<li><p>A symmetric $n x n$ matrix is positive semidefinite if and only if all principal minors (determinants of symmetric submatrices) of the the matrix are nonnegative <a class="citation" href="#prussing1986principal">[1]</a>. In contrast, for a symmetric $n x n$ matrix to be positive definite we only need all of the <em>leading</em> principal minors (upper left determinants) to be positive (<em>Sylvester's criterion</em>).</p>
+</li>
+</ol>
+<ul>
+<li><p>$n=1,\quad [x_1]$: Thus we must have $z^2x \geq 0$ for all $z$. Since $z^2 \geq 0$ we must have $x_1 \geq 0$.</p>
+</li>
+<li><p>$n=2$, \begin{equation*}
+X =
+\begin{bmatrix}
+x_1 &amp; x_2 \\
+x_2 &amp; x_3 
+\end{bmatrix}
+\end{equation*}
+We want
+\begin{equation*}
+\begin{bmatrix}
+z_1 &amp; z_2 
+\end{bmatrix}
+\begin{bmatrix}
+x_1 &amp; x_2 \\
+x_2 &amp; x_3 
+\end{bmatrix}
+\begin{bmatrix}
+z_1 \\
+z_2 
+\end{bmatrix}
+=x_1z_1^2 + 2x_2z_1z_2 + x_3z_2^2 \geq 0
+\end{equation*}
+So for $X$ to be positive semidefinite we must have $x_1 \geq 0$, $x_3 \geq 0$ and $x_1x_3 -x^2_2 \geq 0$.</p>
+</li>
+<li><p>$n=3$, \begin{equation*}
+X=
+\begin{bmatrix}
+x_1 &amp; x_2 &amp; x_3 \\
+x_2 &amp; x_4 &amp; x_5 \\
+x_3 &amp; x_5 &amp; x_6 
+\end{bmatrix}
+\end{equation*}
+So for $X$ to be positive semidefinite we must have $x_1 \geq 0$, $x_4 \geq 0$, $x_6 \geq 0$, $x_4x_6 -x^2_5 \geq 0$, $x_1x_6 -x^2_3 \geq 0$, $x_1x_4 -x^2_2 \geq 0$ and $x_6x_4x_1 - x_6x_2^2 - x_4x_3^2 -x_5^2x_1 + 2x_5x_3x_2 \geq 0$</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Show-the-set-$C-=-\{(x,y)-\in-\mathbf{R}^2_{++}-|-xy-\geq-\alpha-\}$-is-convex.">Show the set $C = \{(x,y) \in \mathbf{R}^2_{++} | xy \geq \alpha \}$ is convex.<a class="anchor-link" href="#Show-the-set-$C-=-\{(x,y)-\in-\mathbf{R}^2_{++}-|-xy-\geq-\alpha-\}$-is-convex."> </a></h2><p>Consider two points $(x_1,y_1) \in C$ and $(x_2,y_2) \in C$. So we have that $y_1 \geq \frac{\alpha}{x_1}$ and $y_2 \geq \frac{\alpha}{x_2}$ (since both $(x_1,y_1), (x_2,y_2) \in \mathbf{R}^2_{++}$ we can safely divide by $x_1$ and $x_2$). Thus, for $\theta \in [0,1]$ we have</p>
+<p>
+$$\theta y_1 + (1-\theta)y_2 \geq \alpha\left[ \frac{\theta}{x_1} + \frac{1-\theta}{x_2} \right]$$
+</p>
+<p>Multiplying both sides by $\theta x_1 + (1-\theta)x_2$ we get that</p>
+<p>$(\theta x_1 + (1-\theta)x_2)(\theta y_1 + (1-\theta)y_2) \geq \alpha\left[ \theta^2 + \theta(1-\theta)\frac{x_1}{x_2} + \theta(1-\theta)\frac{x_2}{x_1} + (1-\theta)^2 \right]$
+
+$$ \geq \alpha\left[ 1 + 2\theta^2 -2\theta + \theta(1-\theta)\frac{x_1^2 + x_2^2}{x_1x_2} \right]$$
+
+
+$$ \geq \alpha\left[ 1 - 2\theta(1 -\theta) + \theta(1-\theta)\frac{x_1^2 + x_2^2}{x_1x_2} \right]$$
+
+
+$$ \geq \alpha\left[ 1 - \theta(1 -\theta)\left(2- \frac{x_1^2 + x_2^2}{x_1x_2}\right) \right]$$
+
+
+$$ \geq \alpha\left[ 1 + \theta(1 -\theta)\frac{(x_1 - x_2)^2}{x_1x_2} \right]$$
+</p>
+<p>Since $1 + \theta(1 -\theta)\frac{(x_1 - x_2)^2}{x_1x_2} \geq 1$ we have shown that $(\theta x_1 + (1-\theta)x_2)(\theta y_1 + (1-\theta)y_2) \geq \alpha$.</p>
+<p>Thus $(\theta x_1 + (1-\theta)x_2, \theta y_1 + (1-\theta)y_2) \in C$ and hence $C$ is convex.</p>
+<p>Note that $C = \{(x,y) \in \mathbf{R}^2_{+} | xy \geq 0 \}$ is convex since in that case $C = \{(x,y) \in \mathbf{R}^2_{+}\}$ which is convex.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Notation">Notation<a class="anchor-link" href="#Notation"> </a></h1><ul>
+<li>Let $A$ be a symmetric $n x n$ matrix then a <em>principal minor</em> of order $k$ is obtained by deleting $n-k$ rows and the $n-k$ columns with the same numbers (where $k \in [1,\ldots,n]$). Use $\Delta_k$ for the principal minor of order $k$. <ul>
+<li>There are $\binom{n}{k}$ <em>principal minors</em> of order $k$. Thus, there are a total of $2^{n}-1$ <em>principal minors</em>.</li>
+</ul>
+</li>
+<li>The <em>leading principal minor</em> of $A$ of order $k$ is the minor of order $k$ obtained by deleting the last $n-k$ rows and columns (where $k \in [1,\ldots,n]$). Use $D_k$ for the leading principal minor of order $k$.<ul>
+<li>The leading principal minors are a subset of the principal minors.</li>
+<li>The leading principal minors are the upper left determinants of the matrix.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="References">References<a class="anchor-link" href="#References"> </a></h1><p><p class="bibliography"><p><span id="prussing1986principal">[1] J. E. Prussing, "The principal minor test for semidefinite matrices," <i>Journal of Guidance, Control, and Dynamics</i> <b>9</b>:121–122 (1986).</span></p></p></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="nasheqlbrm/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/notes/2022/05/27/exercises-with-convex-sets.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A blog about things that I find interesting.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/nasheqlbrm" target="_blank" title="nasheqlbrm"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/_ksinha_" target="_blank" title="_ksinha_"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
