@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2022-05-27">
+<meta name="description" content="Working through a few practice problems related to Convexity.">
 
 <title>Kaushik Sinha - Exercises with Convex Sets</title>
 <style>
@@ -125,7 +126,12 @@ div.csl-indent {
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Exercises with Convex Sets</h1>
-                                <div class="quarto-categories">
+                  <div>
+        <div class="description">
+          Working through a few practice problems related to Convexity.
+        </div>
+      </div>
+                          <div class="quarto-categories">
                 <div class="quarto-category">notes</div>
               </div>
                   </div>
@@ -206,7 +212,7 @@ Let’s turn to 2d for inspiration.
 </section>
 <section id="let-a-and-b-be-distinct-points-in-mathbfrn-and-consider-the-set-of-points-that-are-closer-in-euclidean-norm-to-a-than-b-i.e.-mathcalc-x-x-a_2-leq-x-b_2-.-show-that-mathcalc-is-a-halfspace-namely-that-it-can-be-described-by-a-set-of-the-form-x-ctx-leq-d-for-c-neq-0." class="level2">
 <h2 class="anchored" data-anchor-id="let-a-and-b-be-distinct-points-in-mathbfrn-and-consider-the-set-of-points-that-are-closer-in-euclidean-norm-to-a-than-b-i.e.-mathcalc-x-x-a_2-leq-x-b_2-.-show-that-mathcalc-is-a-halfspace-namely-that-it-can-be-described-by-a-set-of-the-form-x-ctx-leq-d-for-c-neq-0.">Let <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> be distinct points in <span class="math inline">\(\mathbf{R}^{n}\)</span> and consider the set of points that are closer (in Euclidean norm) to <span class="math inline">\(a\)</span> than <span class="math inline">\(b\)</span> i.e., <span class="math inline">\(\mathcal{C} = \{x | ||x-a||_2 \leq ||x-b||_2 \}\)</span>. Show that <span class="math inline">\(\mathcal{C}\)</span> is a halfspace (namely that it can be described by a set of the form <span class="math inline">\(\{x | c^Tx \leq d\}\)</span> for <span class="math inline">\(c \neq 0\)</span>).</h2>
-<p>Norms are strictly non-negative so, $||x-a||_2 ||x-b||_2 ||x-a||^{2}_2 ||x-b||^{2}_2 $</p>
+<p>Norms are strictly non-negative so, <span class="math display">\[||x-a||_2 \leq ||x-b||_2 \Longleftrightarrow ||x-a||^{2}_2 \leq ||x-b||^{2}_2 \]</span></p>
 <p>Thus, <span class="math inline">\((x-a)^T(x-a) \leq (x-b)^T(x-b)\)</span> or <span class="math inline">\(x^Tx -2a^Tx + a^Ta \leq x^Tx -2b^Tx + b^Tb\)</span>.</p>
 <p>So <span class="math inline">\(2(b^T - a^T)x \leq b^Tb - a^Ta\)</span> or <span class="math inline">\(2(b-a)^Tx \leq b^Tb - a^Ta\)</span> which satisfies the definition of a half space of the form <span class="math inline">\(\{x | c^Tx \leq d\}\)</span> with <span class="math inline">\(c = (b-a)^T\)</span> and <span class="math inline">\(d=\frac{b^Tb - a^Ta}{2}\)</span>.</p>
 </section>
@@ -294,7 +300,7 @@ x_3 &amp; x_5 &amp; x_6
 <section id="notation" class="level1">
 <h1>Notation</h1>
 <ul>
-<li>Let <span class="math inline">\(A\)</span> be a symmetric <span class="math inline">\(n x n\)</span> matrix then a <em>principal minor</em> of order <span class="math inline">\(k\)</span> is obtained by deleting <span class="math inline">\(n-k\)</span> rows and the <span class="math inline">\(n-k\)</span> columns with the same numbers (where <span class="math inline">\(k \in [1,\ldots,n]\)</span>). Use <span class="math inline">\(\Delta_k\)</span> for the principal minor of order <span class="math inline">\(k\)</span>.
+<li>Let <span class="math inline">\(A\)</span> be a symmetric <span class="math inline">\(n \times n\)</span> matrix then a <em>principal minor</em> of order <span class="math inline">\(k\)</span> is obtained by deleting <span class="math inline">\(n-k\)</span> rows and the <span class="math inline">\(n-k\)</span> columns with the same numbers (where <span class="math inline">\(k \in [1,\ldots,n]\)</span>). Use <span class="math inline">\(\Delta_k\)</span> for the principal minor of order <span class="math inline">\(k\)</span>.
 <ul>
 <li>There are <span class="math inline">\(\binom{n}{k}\)</span> <em>principal minors</em> of order <span class="math inline">\(k\)</span>. Thus, there are a total of <span class="math inline">\(2^{n}-1\)</span> <em>principal minors</em>.</li>
 </ul></li>

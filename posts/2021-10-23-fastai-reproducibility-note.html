@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2021-10-23">
+<meta name="description" content="How to replicate results from Fastai models.">
 
 <title>Kaushik Sinha - Reproducible runs with fastai</title>
 <style>
@@ -173,7 +174,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Reproducible runs with fastai</h1>
-                                <div class="quarto-categories">
+                  <div>
+        <div class="description">
+          How to replicate results from Fastai models.
+        </div>
+      </div>
+                          <div class="quarto-categories">
                 <div class="quarto-category">fastai</div>
               </div>
                   </div>
@@ -221,6 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="the-problem" class="level1">
 <h1>The Problem</h1>
+<p>Reproducibility can end up being important when trying to isolate the impact of the changes that happen as we tweak models.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -726,7 +733,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="bottomline" class="level1">
 <h1>Bottomline</h1>
 <p>Use the set_seed function (pass in reproducible=True) and remember that any steps consuming random numbers from the pseudo random generators (such as using the learning rate finder) better be present otherwise you will end up seeing a different result.</p>
-<p>Reproducibility ends up being important if you are trying to isolate the beneficial and/or harmful impact of the changes that you are making as you tweak your models.</p>
 
 
 </section>

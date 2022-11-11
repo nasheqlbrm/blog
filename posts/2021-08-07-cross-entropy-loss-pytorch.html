@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2021-08-07">
+<meta name="description" content="Working through the Cross Entropy Loss function and it’s gradient.">
 
 <title>Kaushik Sinha - A note on Cross Entropy loss with PyTorch</title>
 <style>
@@ -188,7 +189,12 @@ div.csl-indent {
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">A note on Cross Entropy loss with PyTorch</h1>
-                                <div class="quarto-categories">
+                  <div>
+        <div class="description">
+          Working through the Cross Entropy Loss function and it’s gradient.
+        </div>
+      </div>
+                          <div class="quarto-categories">
                 <div class="quarto-category">fastai</div>
                 <div class="quarto-category">pytorch</div>
                 <div class="quarto-category">jupyter</div>
@@ -343,7 +349,7 @@ div.csl-indent {
 </section>
 <section id="gradient-of-cross-entropy" class="level1">
 <h1>Gradient of Cross Entropy</h1>
-<p>We follow the exposition in {% cite markusthill_ce_note %}</p>
+<p>We follow the exposition in <span class="citation" data-cites="markusthill_ce_note"><a href="#ref-markusthill_ce_note" role="doc-biblioref">[1]</a></span>.</p>
 <p>Let <span class="math inline">\(z^{[1]},\ldots, z^{[K]}\)</span> denote the activations corresponding to the <span class="math inline">\(K\)</span> classes. The softmax activation for each class is given by:</p>
 <p><span class="math display">\[o^{[j]} = \frac{e^{z^{[j]}}}{\sum_{l=1}^{K} e^{z^{[l]}}}\]</span></p>
 <p>The cross-entropy loss across the <span class="math inline">\(K\)</span> classes is given by:</p>
@@ -371,7 +377,7 @@ div.csl-indent {
 <div>
 <p><img src="https://github.com/nasheqlbrm/blog/blob/main/images/ce_derivative.png?raw=1" width="500"></p>
 </div>
-<p>Per the <em>Sylvain says</em> section (page 203 Chapter 5) of <span class="citation" data-cites="fastbook2020"><a href="#ref-fastbook2020" role="doc-biblioref">[1]</a></span>, ” <em>The gradient is proportional to the difference between the prediction and the target.</em>… <em>Because the gradient is linear we won’t see sudden jumps or exponential increases in gradients, which should lead to smoother training of models.</em>”</p>
+<p>Per the <em>Sylvain says</em> section (page 203 Chapter 5) of <span class="citation" data-cites="fastbook2020"><a href="#ref-fastbook2020" role="doc-biblioref">[2]</a></span>, ” <em>The gradient is proportional to the difference between the prediction and the target.</em>… <em>Because the gradient is linear we won’t see sudden jumps or exponential increases in gradients, which should lead to smoother training of models.</em>”</p>
 
 
 
@@ -379,8 +385,11 @@ div.csl-indent {
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-markusthill_ce_note" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">M. Thill, <span>“&lt;A href="https://markusthill.github.io/stats/ml/gradient-softmax-function-with-cross-entropy/"&gt;gradient of the softmax function with cross-entropy loss&lt;/a&gt;.”</span> <a href="https://markusthill.github.io/stats/ml/gradient-softmax-function-with-cross-entropy/" class="uri">https://markusthill.github.io/stats/ml/gradient-softmax-function-with-cross-entropy/</a>, 2017.</div>
+</div>
 <div id="ref-fastbook2020" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. Howard and S. Gugger, <em>Deep learning for coders with fastai and PyTorch: AI applications without a PhD</em>, 1st ed. O’Reilly, 2020.</div>
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">J. Howard and S. Gugger, <em>Deep learning for coders with fastai and PyTorch: AI applications without a PhD</em>, 1st ed. O’Reilly, 2020.</div>
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
