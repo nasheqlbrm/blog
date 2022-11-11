@@ -85,6 +85,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -219,7 +238,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#train-model" id="toc-train-model" class="nav-link" data-scroll-target="#train-model">Train Model</a></li>
   <li><a href="#sadness-revisited" id="toc-sadness-revisited" class="nav-link" data-scroll-target="#sadness-revisited">Sadness revisited</a></li>
   </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -232,7 +250,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>In a previous <a href="https://nasheqlbrm.github.io/blog/fastai/gradio/jupyter/2021/07/31/Bear-Classification-And-Gradio.html#Sadness">post</a> we saw our Bear classifier confidently predict that an image of a Maine Coone was a Teddy bear. Roughly speaking the problem, in a multi-class setting, is that the exponential (in the softmax) pushes the class with the highest activation to receive a score close to <span class="math inline">\(1\)</span>. So while our classifier had never seen a Maine Coone when training, at inference time the image of the Maine Coone happened to push the activations for the Teddy Bear class higher than those for the other classes (Black Bear and Grizzly).</p>
-<p>In this post we use multi-label classification to solve this problem following Chapter 6 of {% cite fastbook2020 %} and the note in {% cite pdito_note_may2020 %}. A multi-label classification problem (as opposed to multi-class classification) is one where there can be multiple labels, instead of there being a single correct class, for every object.</p>
+<p>In this post we use multi-label classification to solve this problem following Chapter 6 of <span class="citation" data-cites="fastbook2020"><a href="#ref-fastbook2020" role="doc-biblioref">[1]</a></span> and the note in <span class="citation" data-cites="pdito_note_may2020"><a href="#ref-pdito_note_may2020" role="doc-biblioref">[2]</a></span>. A multi-label classification problem (as opposed to multi-class classification) is one where there can be multiple labels, instead of there being a single correct class, for every object.</p>
 <p>We want our multi-label classifier to predict the different labels present in the object or no label if it is not confident about the presence of any of the labels. For this we switch to using Binary Cross Entropy as our loss function (and will also come up with a threshold probability for our classifier to use for inference).</p>
 <section id="binary-cross-entropy" class="level2">
 <h2 class="anchored" data-anchor-id="binary-cross-entropy">Binary Cross Entropy</h2>
@@ -240,43 +258,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Suppose the following are the activations, on a single training example, for the different labels possible in a multi-label classification problem. Pretend that we can have as many as three labels for each image.</p>
-<div class="cell" data-outputid="86c9b0e7-5faa-46e0-a545-8cd3945dbc7f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>activations <span class="op">=</span> torch.randn(<span class="dv">1</span>,<span class="dv">3</span>)<span class="op">*</span><span class="dv">3</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>activations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[ 0.7260, -3.3489, -2.3491]])</code></pre>
 </div>
 </div>
 <p>Next suppose the correct labels in this case are the first and third label. A one-hot encoded representation of the labels for this single training example is as follows.</p>
-<div class="cell" data-outputid="b84855f2-dfac-4632-d7a3-42c39a556f5f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>targets <span class="op">=</span> tensor([[<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>]])</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>targets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[1, 0, 1]])</code></pre>
 </div>
 </div>
 <p>The first step is to take the sigmoid activations for each label to convert each activation into a probability score.</p>
-<div class="cell" data-outputid="658754a1-1546-436c-8146-5c2ae0c8e151">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sigmoid_activations <span class="op">=</span> activations.sigmoid()</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sigmoid_activations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[0.6739, 0.0339, 0.0871]])</code></pre>
 </div>
 </div>
 <p>The next step is to compute the binary cross entropy loss using</p>
-<div class="cell" data-outputid="3408c9e1-17bb-48bc-9b7a-847158dd063b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bce_loss <span class="op">=</span> <span class="op">-</span>torch.where(targets<span class="op">==</span><span class="dv">1</span>, sigmoid_activations, <span class="dv">1</span><span class="op">-</span>sigmoid_activations).log()</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>bce_loss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[0.3946, 0.0345, 2.4403]])</code></pre>
 </div>
 </div>
 <p>When a label is present, in the target, we take the sigmoid activation corresponding to that label. Otherwise, when the label is absent, we take one minus the that sigmoid activation. By doing this we are asking for the confidence that the classifier places on the particular label being absent.</p>
 <p>Thus the binary cross entropy function summarizes the “correctness” of the classifer across the presence and absence of each possible label in a training example. Contrast this with the use of <a href="https://nasheqlbrm.github.io/blog/fastai/pytorch/jupyter/2021/08/07/Cross-Entropy-Loss-PyTorch.html">cross entropy loss</a> in multi-class classification where we only care about the probability being predicted for the single correct class of the training example.</p>
-<div class="cell" data-outputid="51942187-1d32-47f1-e33a-2927685b718f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> torch.reshape(torch.cat([activations, sigmoid_activations, targets, bce_loss], <span class="dv">0</span>),(<span class="dv">4</span>,<span class="dv">3</span>))</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(results, index<span class="op">=</span>[<span class="st">'activations'</span>, <span class="st">'sigmoid'</span>,<span class="st">'target'</span>,<span class="st">'loss'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display">
 
 <div>
 
@@ -320,23 +338,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Each row in the dataframe above shows us the step needed to go from an activation to the loss associated with each possible label of a single training example. We can get the losses directly by</p>
-<div class="cell" data-outputid="b588b29b-85d1-40d9-8356-e9f633c3cca0">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>F.binary_cross_entropy_with_logits(activations, targets.<span class="bu">float</span>(), reduction<span class="op">=</span><span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[0.3946, 0.0345, 2.4403]])</code></pre>
 </div>
 </div>
 <p>Or by</p>
-<div class="cell" data-outputid="9c910332-d866-4ecf-bd70-2f183e943787">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nn.BCEWithLogitsLoss(reduction<span class="op">=</span><span class="st">'none'</span>)(activations, targets.<span class="bu">float</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[0.3946, 0.0345, 2.4403]])</code></pre>
 </div>
 </div>
 <p>Of course we will want to take the mean of the loss across the labels using any of the two methods below</p>
-<div class="cell" data-outputid="c0bba486-cbc0-4876-ce82-61a640cfcc8f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>F.binary_cross_entropy_with_logits(activations, targets.<span class="bu">float</span>()), nn.BCEWithLogitsLoss()(activations, targets.<span class="bu">float</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display">
 <pre><code>(tensor(0.9565), tensor(0.9565))</code></pre>
 </div>
 </div>
@@ -346,18 +364,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the preceding the labels were hard. In other words, we knew with certainty the labels that are present for any training example. What if we only knew the probability with which a label would be present in a training example?</p>
 <p>Feel free to skip to the next section as this is somewhat of a digression.</p>
 <p>In the example below we have four training examples and only a single label. The activations for the training examples are as below:</p>
-<div class="cell" data-outputid="15f9f5fc-ee7d-4222-f13f-eba063a507d0">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>activations <span class="op">=</span> tensor([[<span class="fl">0.0122</span>],[<span class="fl">0.2294</span>],[<span class="op">-</span><span class="fl">0.1563</span>],[<span class="op">-</span><span class="fl">0.1483</span>]])</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>activations.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="50">
+<div class="cell-output cell-output-display">
 <pre><code>torch.Size([4, 1])</code></pre>
 </div>
 </div>
 <p>Apply sigmoid to get the predictions for whether the label is present.</p>
-<div class="cell" data-outputid="5632f302-801c-4405-abd1-e5b0fada6300">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sigmoid_activations <span class="op">=</span> activations.sigmoid()</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sigmoid_activations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="51">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[0.5030],
         [0.5571],
         [0.4610],
@@ -365,10 +383,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Get the predictions for whether the label is absent (i.e., some other label is present).</p>
-<div class="cell" data-outputid="e183ff77-b04e-4211-c230-9b87405dea6c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>one_minus_sigmoid_activations <span class="op">=</span> (<span class="fl">1.</span> <span class="op">-</span> sigmoid_activations)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>one_minus_sigmoid_activations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="52">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[0.4970],
         [0.4429],
         [0.5390],
@@ -376,66 +394,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>The targets for each example is as follows. This says that in the first training example label 0 is present with probability 0.5, similarly the probability for label 0 being present in the second example is 0.29 and so on.</p>
-<div class="cell" data-outputid="27d37a08-eb13-4c2e-81c4-84b2429cf74b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>targets <span class="op">=</span> tensor([<span class="fl">0.5</span>, <span class="fl">0.29</span>, <span class="fl">0.36</span>, <span class="fl">0.03</span>])</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>targets.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="59">
+<div class="cell-output cell-output-display">
 <pre><code>torch.Size([4])</code></pre>
 </div>
 </div>
 <p>Compute the binary cross entropy loss for each training example.</p>
-<div class="cell" data-outputid="4c175d1e-4493-45db-9d8c-cd21e5d99670">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>bce_loss <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">*</span> ( targets<span class="op">*</span>sigmoid_activations.flatten().log() <span class="op">+</span> (<span class="fl">1.</span> <span class="op">-</span> targets)<span class="op">*</span>( one_minus_sigmoid_activations.flatten().log() ) )</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>bce_loss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="61">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([0.6932, 0.7479, 0.6743, 0.6262])</code></pre>
 </div>
 </div>
 <p>Compute the average binary cross entropy loss across training examples.</p>
-<div class="cell" data-outputid="512f5696-3cec-45a2-9bb1-d265030fa304">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>bce_loss.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="62">
+<div class="cell-output cell-output-display">
 <pre><code>tensor(0.6854)</code></pre>
 </div>
 </div>
 <p>The above can just be done as a one-liner using BCEWithLogitsLossFlat</p>
-<div class="cell" data-outputid="3a0be1c5-ce7c-45db-e5ae-79aca307816d">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>BCEWithLogitsLossFlat(reduction<span class="op">=</span><span class="st">'mean'</span>)(activations, targets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="63">
+<div class="cell-output cell-output-display">
 <pre><code>TensorBase(0.6854)</code></pre>
 </div>
 </div>
 <p>Note that we cannot just use nn.BCEWithLogitsLoss because the input tensor isn’t flattened and we will get an error.</p>
 <p><em>ValueError: Target size (torch.Size([4])) must be the same as input size (torch.Size([4, 1]))</em></p>
 <p>Now suppose we have two examples and three soft labels per example.</p>
-<div class="cell" data-outputid="bf1c83c9-0d0d-4842-91f8-1fd3f32bd5bf">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>activations <span class="op">=</span> tensor([[<span class="fl">0.0122</span>, <span class="fl">0.001</span>, <span class="fl">0.5</span>],[<span class="fl">0.2294</span>, <span class="fl">0.3</span>, <span class="fl">0.75</span>]])</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>activations.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="66">
+<div class="cell-output cell-output-display">
 <pre><code>torch.Size([2, 3])</code></pre>
 </div>
 </div>
 <p>The soft labels are:</p>
-<div class="cell" data-outputid="2804427a-12d5-45d6-b0b9-1c59207b7fc1">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>targets <span class="op">=</span> tensor([<span class="fl">0.9</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>],[<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.33</span> ])</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>targets.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="67">
+<div class="cell-output cell-output-display">
 <pre><code>torch.Size([2, 3])</code></pre>
 </div>
 </div>
 <p>We can compute the binary cross entropy loss in the cumbersome way as below:</p>
-<div class="cell" data-outputid="025b751a-ee7c-4bb1-82c1-21f7f44c4331">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>bce_loss <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">*</span> ( targets <span class="op">*</span> activations.sigmoid().log() <span class="op">+</span> (<span class="fl">1.</span> <span class="op">-</span> targets)<span class="op">*</span>( <span class="fl">1.0</span> <span class="op">-</span> activations.sigmoid() ).log() )</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>bce_loss, bce_loss.<span class="bu">sum</span>(), bce_loss.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="78">
+<div class="cell-output cell-output-display">
 <pre><code>(tensor([[0.6883, 0.6935, 0.8741],
          [0.7571, 0.7044, 0.8894]]), tensor(4.6067), tensor(0.7678))</code></pre>
 </div>
 </div>
 <p>Or just use the one-liner to get the average loss.</p>
-<div class="cell" data-outputid="aca03bfb-663f-4190-fd39-f77d71c8bb9d">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>nn.BCEWithLogitsLoss(reduction<span class="op">=</span><span class="st">'mean'</span>)(activations, targets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="43">
+<div class="cell-output cell-output-display">
 <pre><code>tensor(0.7678)</code></pre>
 </div>
 </div>
@@ -486,7 +504,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-outputid="d19aef1e-3662-43f3-c315-dfe4b073da1c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> <span class="st">'grizzly'</span>,<span class="st">'black'</span>,<span class="st">'teddy'</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> scrape_images(Path(<span class="st">'/data/kaushik/bears'</span>), labels, <span class="st">'bear'</span>, max_images<span class="op">=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -581,7 +599,7 @@ Downloading results into /data/kaushik/bears/teddy</code></pre>
 <span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> dblock.dataloaders(path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="32bed807-98a0-4ab4-ce04-a0661fd14668">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>dls.show_batch(max_n<span class="op">=</span><span class="dv">8</span>, nrows<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2021-08-12-Multi-Label-Classification_files/figure-html/cell-26-output-1.png" class="img-fluid"></p>
@@ -597,7 +615,7 @@ Downloading results into /data/kaushik/bears/teddy</code></pre>
     if sigmoid: inp = inp.sigmoid()
     return ((inp&gt;thresh)==targ.bool()).float().mean()</code></pre>
 <p>This shows that accuracy_multi uses the threshold to determine whether a label is present and then takes a mean across the labels for every example in the inputs. The training process does not care about the threshold it only cares about minimizing the loss function.</p>
-<div class="cell" data-outputid="c5633c8e-386b-497f-80e3-949b24cdef1c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> cnn_learner(dls, resnet18, metrics<span class="op">=</span>[partial(accuracy_multi, thresh<span class="op">=</span><span class="fl">0.95</span>),<span class="op">\</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>                                            APScoreMulti()], </span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>                    loss_func<span class="op">=</span>BCEWithLogitsLossFlat())</span>
@@ -678,7 +696,7 @@ Downloading results into /data/kaushik/bears/teddy</code></pre>
 </div>
 </div>
 <p>Let’s look at the results.</p>
-<div class="cell" data-outputid="886cf638-45bf-4735-cce1-4ced7c8c25d3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>learn.show_results()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
@@ -691,20 +709,20 @@ Downloading results into /data/kaushik/bears/teddy</code></pre>
 <section id="sadness-revisited" class="level2">
 <h2 class="anchored" data-anchor-id="sadness-revisited">Sadness revisited</h2>
 <p>Let’s test with our Maine Coon image.</p>
-<div class="cell" data-outputid="a3f77bb6-aabd-48de-f74a-004b528d6374">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>test_mainecoon_image_location <span class="op">=</span> <span class="st">'../test_images/mc.jpg'</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> Image.<span class="bu">open</span>(test_mainecoon_image_location)</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>im.to_thumb(<span class="dv">128</span>,<span class="dv">128</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display">
 <p><img src="2021-08-12-Multi-Label-Classification_files/figure-html/cell-29-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="a0735093-7237-46b0-ac6c-dc837e8de0d0">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>learn.predict(test_mainecoon_image_location)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 </div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display">
 <pre><code>((#2) ['black','teddy'],
  tensor([ True, False,  True]),
  tensor([0.5806, 0.0633, 0.8982]))</code></pre>
@@ -727,26 +745,26 @@ Downloading results into /data/kaushik/bears/teddy</code></pre>
     def decodes(self, x):    return x&gt;self.thresh
     def activation(self, x): return torch.sigmoid(x)</code></pre>
 <p>Thus, all we need to do is pass the threshold into BCEWithLogitsLossFlat.</p>
-<div class="cell" data-outputid="8c39eed7-409b-42ed-c4ca-155c7cb05f81">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>learn.loss_func <span class="op">=</span> BCEWithLogitsLossFlat(thresh<span class="op">=</span><span class="fl">0.95</span>)</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>learn.predict(test_mainecoon_image_location)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 </div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display">
 <pre><code>((#0) [], tensor([False, False, False]), tensor([0.5806, 0.0633, 0.8982]))</code></pre>
 </div>
 </div>
 <p>Much better. Now none of the labels are predicted.</p>
 <p>To get the best threshold we first get all the predictions on the validation set.</p>
-<div class="cell" data-outputid="3103d271-aee9-4375-aca3-38b9debecf0d">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>preds,targs <span class="op">=</span> learn.get_preds()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 </div>
 </div>
 <p>Since the predictions from get_preds has the sigmoid applied already we will pass sigmoid=False when assessing the accuracy_multi at different threshold values .</p>
-<div class="cell" data-outputid="ea956786-371c-49b8-80e4-15fce157063f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> torch.linspace(<span class="fl">0.05</span>,<span class="fl">0.995</span>,<span class="dv">100</span>)</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>accs <span class="op">=</span> [accuracy_multi(preds, targs, thresh<span class="op">=</span>i, sigmoid<span class="op">=</span><span class="va">False</span>) <span class="cf">for</span> i <span class="kw">in</span> xs]</span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>plt.plot(xs,accs)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -755,17 +773,24 @@ Downloading results into /data/kaushik/bears/teddy</code></pre>
 </div>
 </div>
 <p>Looks like our choice of threshold is fine. One more thing to note is that for multi-label problems it is useful to look at the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html">average precision score</a> using APScoreMulti. This is because on harder datasets it will provide a decidely less rosier view of classifier performance than accuracy_multi.</p>
-<p>As a future step it would be nice to do threshold selection for each label following {% cite fan2007study %}.</p>
-</section>
-</section>
-<section id="references" class="level1">
-<h1>References</h1>
-<p>{% bibliography –cited %}</p>
+<p>As a future step it would be nice to do threshold selection for each label following <span class="citation" data-cites="fan2007study"><a href="#ref-fan2007study" role="doc-biblioref">[3]</a></span>.</p>
+
 
 
 </section>
+</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-fastbook2020" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. Howard and S. Gugger, <em>Deep learning for coders with fastai and PyTorch: AI applications without a PhD</em>, 1st ed. O’Reilly, 2020.</div>
+</div>
+<div id="ref-pdito_note_may2020" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">P. Davis, <span>“&lt;A href="https://pdito.github.io/blog/deep.”</span> <a href="https://pdito.github.io/blog/deep%20learning/fastai/fastai2/multicat/multi/label/classification/2020/05/27/multi-cat-fastai2.html" class="uri">https://pdito.github.io/blog/deep%20learning/fastai/fastai2/multicat/multi/label/classification/2020/05/27/multi-cat-fastai2.html</a>, May 2020.</div>
+</div>
+<div id="ref-fan2007study" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">R.-E. Fan and C.-J. Lin, <span>“&lt;A href="https://www.csie.ntu.edu.tw/%7Ecjlin/papers/threshold.pdf"&gt;a study on threshold selection for multi-label classification&lt;/a&gt;,”</span> <em>Department of Computer Science, National Taiwan University</em>, pp. 1–23, 2007.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

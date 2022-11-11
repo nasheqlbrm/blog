@@ -85,6 +85,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -207,9 +226,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<p>We start off by following Chapter 18 of {% cite fastbook2020 %}.</p>
+<p>We start off by following Chapter 18 of <span class="citation" data-cites="fastbook2020"><a href="#ref-fastbook2020" role="doc-biblioref">[1]</a></span>.</p>
 <p>Load the pets dataset. We have a cat image if the filename starts with an uppercase letter otherwise it is a dog image. Thus, an output of False (or 0) corresponds to a dog image while True (or 1) corresponds to a cat image.</p>
-<div class="cell" data-outputid="e47a5ef6-29dc-40f3-d4dc-7a362efa9b4a" data-execution_count="3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.PETS)<span class="op">/</span><span class="st">'images'</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> is_cat(x): <span class="cf">return</span> x[<span class="dv">0</span>].isupper()</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -252,13 +271,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="d5d5f3e8-8386-41a4-8d3c-85b1205bdaae">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse-output</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>learn.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 </div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display">
 <pre><code>Sequential (Input shape: 64 x 3 x 224 x 224)
 ============================================================================
 Layer (type)         Output Shape         Param #    Trainable 
@@ -386,7 +405,7 @@ Total params: 21,813,056
 Total trainable params: 545,408
 Total non-trainable params: 21,267,648
 
-Optimizer used: &lt;function Adam at 0x7fdf55b42440&gt;
+Optimizer used: &lt;function Adam&gt;
 Loss function: FlattenedLoss of CrossEntropyLoss()
 
 Model frozen up to parameter group #2
@@ -397,10 +416,10 @@ Callbacks:
   - ProgressCallback</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="94aced22-a0f7-46dc-8e6d-33da41c8670a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse-output</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>learn.model[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display">
 <pre><code>Sequential(
   (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
   (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
@@ -541,10 +560,10 @@ Callbacks:
 )</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="bf80d734-fbb6-46d0-e74a-2a292a63ad97">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse-output</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>learn.model[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display">
 <pre><code>Sequential(
   (0): AdaptiveConcatPool2d(
     (ap): AdaptiveAvgPool2d(output_size=1)
@@ -561,7 +580,7 @@ Callbacks:
 )</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="0ad7d8b4-6a60-4b7d-d16c-e52ab7ba71d6" data-execution_count="4">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>learn.fine_tune(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
@@ -611,7 +630,7 @@ Callbacks:
 </div>
 </div>
 <p>Download a sample image for which we will extract activations from the model.</p>
-<div class="cell" data-outputid="1ec3869c-fa41-4001-badd-c25cdd609b55" data-execution_count="5">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse-output</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cd sample_data<span class="op">/</span> <span class="op">&amp;&amp;</span> wget https:<span class="op">//</span>wallup.net<span class="op">/</span>wp<span class="op">-</span>content<span class="op">/</span>uploads<span class="op">/</span><span class="dv">2016</span><span class="op">/</span><span class="dv">0</span><span class="er">1</span><span class="op">/</span><span class="dv">18662</span><span class="op">-</span>cat<span class="op">-</span>Nikon<span class="op">-</span>camera<span class="op">-</span>animals<span class="op">-</span>biting.jpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -628,21 +647,21 @@ Saving to: ‘18662-cat-Nikon-camera-animals-biting.jpg’
 </code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="6">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> PILImage.create(<span class="st">'sample_data/18662-cat-Nikon-camera-animals-biting.jpg'</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x, <span class="op">=</span> first(dls.test_dl([img]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="107692d2-a2d9-4e8c-b5e6-2d1b42c05873">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display">
 <pre><code>torch.Size([1, 3, 224, 224])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Hook():</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> hook_func(<span class="va">self</span>, m, i, o): <span class="va">self</span>.stored <span class="op">=</span> o.detach().clone()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="8871f7aa-3907-418e-f5e4-e977e3c5714d" data-execution_count="8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>hook_output <span class="op">=</span> Hook()</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>hook <span class="op">=</span> learn.model[<span class="dv">0</span>].register_forward_hook(hook_output.hook_func)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -651,36 +670,36 @@ Saving to: ‘18662-cat-Nikon-camera-animals-biting.jpg’
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>act <span class="op">=</span> hook_output.stored[<span class="dv">0</span>]</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>act.shape, output.shape, learn.model[<span class="dv">1</span>][<span class="op">-</span><span class="dv">1</span>].weight.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display">
 <pre><code>(torch.Size([512, 7, 7]), torch.Size([1, 2]), torch.Size([2, 512]))</code></pre>
 </div>
 </div>
 <p>The output from the final linear layer is as follows:</p>
-<div class="cell" data-outputid="5700393c-ff1c-4440-f15f-07291b7acfff" data-execution_count="9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[-11.0284,  10.0199]], device='cuda:0')</code></pre>
 </div>
 </div>
 <p>Pass these through a softmax to get the predictions.</p>
-<div class="cell" data-outputid="ab73f28c-00fc-47f9-c108-3c6410190daf" data-execution_count="10">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>F.softmax(output, dim<span class="op">=-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[7.2253e-10, 1.0000e+00]], device='cuda:0')</code></pre>
 </div>
 </div>
 <p>Our model is very confident that this is a cat image. Recall that <span class="math inline">\(0\)</span> encodes the class dog while <span class="math inline">\(1\)</span> encodes cat.</p>
-<div class="cell" data-outputid="e2cbb02a-22a6-4fba-b570-00a32229f7a2" data-execution_count="11">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>cam_map <span class="op">=</span> torch.einsum(<span class="st">'ck,kij-&gt;cij'</span>, learn.model[<span class="dv">1</span>][<span class="op">-</span><span class="dv">1</span>].weight, act)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>cam_map.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display">
 <pre><code>torch.Size([2, 7, 7])</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="886ac4c4-d4fe-44d0-f3ce-ae89a473233a" data-execution_count="12">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse-output</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>cam_map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[[ 2.4612,  2.2954,  2.6431,  2.6772,  2.2160,  0.7992,  0.1278],
          [ 2.4558,  2.4668,  2.6862,  2.7808,  3.5802,  3.8468,  2.2116],
          [ 2.4177,  1.4307,  0.6136,  1.9688,  3.1065,  4.2844,  4.0371],
@@ -700,11 +719,11 @@ Saving to: ‘18662-cat-Nikon-camera-animals-biting.jpg’
 </div>
 </div>
 <p>From the book, “<em>note that we need to decode the input x since it’s been normalized by the DataLoader, and we need to cast to TensorImage since at the time this book is written PyTorch does not maintain types when indexing</em>”.</p>
-<div class="cell" data-outputid="6ad46e4b-bcd4-4ca6-c96f-ce1d97278b08" data-execution_count="13">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse-output</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>decoded <span class="op">=</span> dls.train.decode((x,))</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>decoded</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display">
 <pre><code>(TensorImage([[[[219, 220, 221,  ...,   8,   8,   7],
            [220, 220, 221,  ...,   8,  10,  10],
            [222, 221, 221,  ...,   9,  10,  10],
@@ -730,13 +749,13 @@ Saving to: ‘18662-cat-Nikon-camera-animals-biting.jpg’
            [  0,   2,  15,  ...,  10,  10,   8]]]]),)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="7a23b229-ec3b-46c9-f7b0-bf0e4d730c38" data-execution_count="14">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>decoded[<span class="dv">0</span>].shape, decoded[<span class="dv">0</span>][<span class="dv">0</span>].shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display">
 <pre><code>(torch.Size([1, 3, 224, 224]), torch.Size([3, 224, 224]))</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="16">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_image(the_map, the_alpha<span class="op">=</span><span class="fl">0.6</span>):</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  x_dec <span class="op">=</span> TensorImage(decoded[<span class="dv">0</span>][<span class="dv">0</span>])</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  _,ax <span class="op">=</span> plt.subplots()</span>
@@ -745,7 +764,7 @@ Saving to: ‘18662-cat-Nikon-camera-animals-biting.jpg’
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>            interpolation<span class="op">=</span><span class="st">'bilinear'</span>, cmap<span class="op">=</span><span class="st">'magma'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>First look at the areas of the picture that influence the network to decide that something may be a dog image. Bright yellow correspond to high activations while areas in purple correspond to low activations</p>
-<div class="cell" data-outputid="3d0f3d7f-61ea-4b61-dea9-830e7fdb32cb" data-execution_count="17">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>plot_image(cam_map[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2021-10-25-image-embeddings_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
@@ -753,7 +772,7 @@ Saving to: ‘18662-cat-Nikon-camera-animals-biting.jpg’
 </div>
 <p>The network appears to be focussing on the mouth.</p>
 <p>Next look at the areas of the picture that influence the network to decide that something is a cat image.</p>
-<div class="cell" data-outputid="14186049-281f-4bfd-bc98-7c5c56dd551f" data-execution_count="18">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>plot_image(cam_map[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2021-10-25-image-embeddings_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
@@ -761,11 +780,11 @@ Saving to: ‘18662-cat-Nikon-camera-animals-biting.jpg’
 </div>
 <p>The network appears to be focussing on the entire face in the decision to label this as a cat image.</p>
 <p>Compare this to a random activations map where there is no singular area of focus.</p>
-<div class="cell" data-outputid="88093148-0eb0-489e-a8b8-11c83b31b247" data-execution_count="23">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse-output</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>rand_cmap <span class="op">=</span> torch.randn((<span class="dv">7</span>,<span class="dv">7</span>), device<span class="op">=</span><span class="st">'cuda:0'</span>)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>rand_cmap</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[-0.7637, -1.3432,  1.1882, -0.3386, -0.6900, -0.6698, -0.5695],
         [ 1.1075, -1.1094, -0.2857,  1.3275,  0.8616,  1.9981,  0.8572],
         [-0.3191, -0.8256,  0.6985,  0.1862,  0.1230, -1.1539, -0.0230],
@@ -776,14 +795,14 @@ Saving to: ‘18662-cat-Nikon-camera-animals-biting.jpg’
        device='cuda:0')</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="d6746789-e3e8-44e0-b265-a2b2809719db" data-execution_count="24">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>plot_image(rand_cmap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2021-10-25-image-embeddings_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Let’s create some fake maps just to get a sense for how this overlay of the map over the cat image works. The alpha determines the extent to which the map dominates the original image. Use alpha = 1 to just display the map by itself (here the cat image is not seen at all).</p>
-<div class="cell" data-execution_count="27">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>my_map <span class="op">=</span> tensor([[<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">1.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>        [ <span class="fl">1.</span>, <span class="fl">1.</span>, <span class="fl">1.</span>, <span class="fl">1.</span>, <span class="fl">1.</span>, <span class="fl">1.</span>, <span class="fl">1.</span>],</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>        [ <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">1.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
@@ -793,21 +812,21 @@ Saving to: ‘18662-cat-Nikon-camera-animals-biting.jpg’
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>        [ <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>]],</span>
 <span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>       device<span class="op">=</span><span class="st">'cuda:0'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="928f7206-3d68-410d-f765-f3fd7338ffcf" data-execution_count="30">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>plot_image(my_map, the_alpha<span class="op">=</span><span class="fl">1.</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2021-10-25-image-embeddings_files/figure-html/cell-26-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>So the row and column of ones show up as yellow. Next reduce the value of alpha so the cat image can also be seen.</p>
-<div class="cell" data-outputid="f4572536-21c2-43e2-de8f-430eff5d9059" data-execution_count="33">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>plot_image(my_map, the_alpha<span class="op">=</span> <span class="fl">0.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2021-10-25-image-embeddings_files/figure-html/cell-27-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>In the following map we put weight mainly on the left half.</p>
-<div class="cell" data-outputid="a2ad9da5-d94c-4898-defb-af5cb4b341a3" data-execution_count="34">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>my_map <span class="op">=</span> tensor([[<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>,  <span class="fl">0.</span>,  <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>        [ <span class="fl">1.</span>,  <span class="fl">1.</span>, <span class="fl">1.</span>, <span class="fl">1.</span>, <span class="fl">0.</span>,  <span class="fl">0.</span>,  <span class="fl">0.</span>],</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>        [ <span class="fl">2.</span>,  <span class="fl">2.</span>, <span class="fl">2.</span>, <span class="fl">2.</span>, <span class="fl">0.</span>,  <span class="fl">0.</span>,  <span class="fl">0.</span>],</span>
@@ -826,14 +845,15 @@ Saving to: ‘18662-cat-Nikon-camera-animals-biting.jpg’
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>hook.remove()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="references" class="level1">
-<h1>References</h1>
-<p>{% bibliography –cited %}</p>
 
 
-</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-fastbook2020" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. Howard and S. Gugger, <em>Deep learning for coders with fastai and PyTorch: AI applications without a PhD</em>, 1st ed. O’Reilly, 2020.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script type="application/vnd.jupyter.widget-state+json">
 {"0e5735e59d5b434483abcfecfb5d2670":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_b6d76e6512ef4c1688c80020c98832cd","IPY_MODEL_d2f2aba35f194c7f943d5d09f312e9c2","IPY_MODEL_2555e54dcad04467a13e4dcdc7e12fbb"],"layout":"IPY_MODEL_70cd52e30a2a49c2a642bc1b82fa86e0"}},"186072b7a2c74fae9aa1f264ad0f8161":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"2555e54dcad04467a13e4dcdc7e12fbb":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HTMLView","description":"","description_tooltip":null,"layout":"IPY_MODEL_586f9e9a1b54401ab1d3cf4c6f9731d9","placeholder":"​","style":"IPY_MODEL_34fb79b9adf04290ac799b852b803768","value":" 83.3M/83.3M [00:03&lt;00:00, 30.7MB/s]"}},"34fb79b9adf04290ac799b852b803768":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"DescriptionStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"DescriptionStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","description_width":""}},"586f9e9a1b54401ab1d3cf4c6f9731d9":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"70cd52e30a2a49c2a642bc1b82fa86e0":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"a2865bc750bf43bea66dabb57acc2e12":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"b088e455b5a04864a86ac8baa0a0574f":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"DescriptionStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"DescriptionStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","description_width":""}},"b6d76e6512ef4c1688c80020c98832cd":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HTMLView","description":"","description_tooltip":null,"layout":"IPY_MODEL_e64b2966b75a4ceb8cfb066a274325c1","placeholder":"​","style":"IPY_MODEL_b088e455b5a04864a86ac8baa0a0574f","value":"100%"}},"d2f2aba35f194c7f943d5d09f312e9c2":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"ProgressView","bar_style":"success","description":"","description_tooltip":null,"layout":"IPY_MODEL_186072b7a2c74fae9aa1f264ad0f8161","max":87319819,"min":0,"orientation":"horizontal","style":"IPY_MODEL_a2865bc750bf43bea66dabb57acc2e12","value":87319819}},"e64b2966b75a4ceb8cfb066a274325c1":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}}}
 </script>

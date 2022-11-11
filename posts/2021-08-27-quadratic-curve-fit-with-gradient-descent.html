@@ -85,6 +85,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -215,7 +234,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#take-a-gradient-descent-step" id="toc-take-a-gradient-descent-step" class="nav-link" data-scroll-target="#take-a-gradient-descent-step">Take a gradient descent step</a></li>
   </ul></li>
   <li><a href="#all-together-now" id="toc-all-together-now" class="nav-link" data-scroll-target="#all-together-now">All together now</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -227,28 +245,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="motivation" class="level1">
 <h1>Motivation</h1>
-<p>Someone walks up to you and hands over a simple data set of x and y coordinates. You eyeball it and think, “hmm seems like we can fit a quadratic function to this”. This post walks through how this can be done using gradient descent (and follows the treatment in Chapter 4 of {% cite fastbook2020 %}).</p>
-<div class="cell" data-execution_count="1">
+<p>Someone walks up to you and hands over a simple data set of x and y coordinates. You eyeball it and think, “hmm seems like we can fit a quadratic function to this”. This post walks through how this can be done using gradient descent (and follows the treatment in Chapter 4 of <span class="citation" data-cites="fastbook2020"><a href="#ref-fastbook2020" role="doc-biblioref">[1]</a></span>).</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.imports <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.torch_imports <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.torch_core <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>num_points <span class="op">=</span> <span class="dv">20</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.arange(<span class="dv">0</span>,num_points).<span class="bu">float</span>()</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([ 0.,  1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9., 10., 11., 12., 13.,
         14., 15., 16., 17., 18., 19.])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="fl">0.75</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> <span class="fl">9.5</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> torch.randn(num_points)<span class="op">*</span><span class="dv">3</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span>  d<span class="op">*</span>(x<span class="op">-</span>e)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> noise</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>y, <span class="op">-</span><span class="dv">2</span><span class="op">*</span>d<span class="op">*</span>e, d<span class="op">*</span>(e<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display">
 <pre><code>(tensor([68.6996, 53.2421, 43.1072, 35.0240, 18.7474, 20.2123,  4.7285,  7.6421,
           0.6463, -0.4163, -3.0223,  5.8641,  4.2702, 12.0058, 16.8083, 20.2149,
          32.4927, 41.8890, 59.8105, 63.5625]),
@@ -258,10 +276,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Since <span class="math inline">\(d(x-e)^{2} = d*(x^{2} -2ex + e^{2}) = dx^{2} - 2dex + d*e^{2}\)</span> we expect to see the parameters <span class="math inline">\(d\)</span>, <span class="math inline">\(-2*d*e\)</span> and <span class="math inline">\(\approx 1+d*e^{2}\)</span> being uncovered. The last term is because we are adding a <span class="math inline">\(1\)</span> in the noise.</p>
 <p>The data then looks like the following</p>
-<div class="cell" data-execution_count="4">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>&lt;matplotlib.collections.PathCollection at 0x7fedd0a1e410&gt;</code></pre>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;matplotlib.collections.PathCollection&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="2021-08-27-Quadratic-Curve-Fit-With-Gradient-Descent_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
@@ -273,23 +291,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="initialize-the-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="initialize-the-parameters">Initialize the parameters</h2>
 <p>We need three parameters to describe a quadratic <span class="math inline">\(ax^{2}+bx +c\)</span></p>
-<div class="cell" data-execution_count="5">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> torch.randn(<span class="dv">3</span>).requires_grad_()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="calculate-the-predictions" class="level2">
 <h2 class="anchored" data-anchor-id="calculate-the-predictions">Calculate the predictions</h2>
 <p>We create a function where we can plug in our input features (<span class="math inline">\(x\)</span> coordinate values in this case) and get a prediction for the <span class="math inline">\(y\)</span>. The function below will do just that.</p>
-<div class="cell" data-execution_count="6">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x, params):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    a,b,c<span class="op">=</span>params</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">*</span>(x<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> b<span class="op">*</span>x <span class="op">+</span> c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The predictions, yhat, can then be obtained using</p>
-<div class="cell" data-execution_count="7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>yhat <span class="op">=</span> f(x, params)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>yhat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([-1.0763e-01, -9.4094e-01, -4.0345e+00, -9.3884e+00, -1.7002e+01,
         -2.6877e+01, -3.9011e+01, -5.3406e+01, -7.0062e+01, -8.8977e+01,
         -1.1015e+02, -1.3359e+02, -1.5928e+02, -1.8724e+02, -2.1746e+02,
@@ -298,11 +316,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Compare predictions to the data</p>
-<div class="cell" data-execution_count="8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, to_np(yhat), color <span class="op">=</span> <span class="st">'red'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>&lt;matplotlib.collections.PathCollection at 0x7fedd08d03d0&gt;</code></pre>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;matplotlib.collections.PathCollection&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="2021-08-27-Quadratic-Curve-Fit-With-Gradient-Descent_files/figure-html/cell-9-output-2.png" class="img-fluid"></p>
@@ -312,26 +330,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="calculate-the-loss" class="level2">
 <h2 class="anchored" data-anchor-id="calculate-the-loss">Calculate the loss</h2>
 <p>We will use mean squared error for this.</p>
-<div class="cell" data-execution_count="9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mse(yhat, y):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ((yhat<span class="op">-</span>y)<span class="op">**</span><span class="dv">2</span>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="10">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> mse(yhat, y)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>loss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display">
 <pre><code>tensor(44301.6484, grad_fn=&lt;MeanBackward0&gt;)</code></pre>
 </div>
 </div>
 </section>
 <section id="calculate-the-gradients" class="level2">
 <h2 class="anchored" data-anchor-id="calculate-the-gradients">Calculate the gradients</h2>
-<div class="cell" data-execution_count="11">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>loss.backward()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="12">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>params.grad</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([-70097.9297,  -4488.5391,   -324.2715])</code></pre>
 </div>
 </div>
@@ -339,17 +357,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="take-a-gradient-descent-step" class="level2">
 <h2 class="anchored" data-anchor-id="take-a-gradient-descent-step">Take a gradient descent step</h2>
 <p>Set a learning rate, lr, and then do a step like so</p>
-<div class="cell" data-execution_count="13">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> <span class="fl">1e-5</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>params.data <span class="op">-=</span> lr<span class="op">*</span>params.grad.data</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>params.grad <span class="op">=</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Get a new prediction and plot again.</p>
-<div class="cell" data-execution_count="14">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, to_np(f(x,params)), color <span class="op">=</span> <span class="st">'red'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
-<pre><code>&lt;matplotlib.collections.PathCollection at 0x7fedd004f350&gt;</code></pre>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;matplotlib.collections.PathCollection&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="2021-08-27-Quadratic-Curve-Fit-With-Gradient-Descent_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
@@ -360,7 +378,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="all-together-now" class="level1">
 <h1>All together now</h1>
 <p>Not much changed when we took a single gradient step so we will want to do this for multiple iterations. Before doing that we make a simple function, called <code>step</code>, that will apply all of the ingredients of the recipe.</p>
-<div class="cell" data-execution_count="15">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> step(params, lr<span class="op">=</span><span class="fl">1e-5</span>, prn<span class="op">=</span><span class="va">True</span>):</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    yhat <span class="op">=</span> f(x, params)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> mse(yhat, y)</span>
@@ -374,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> yhat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And then another function that will call the <code>step</code> function as many times as we desire.</p>
-<div class="cell" data-execution_count="16">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> learner(num_iterations, record_interval, lr):</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    preds_list <span class="op">=</span> []</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    params_list <span class="op">=</span> []</span>
@@ -387,7 +405,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> preds_list, params_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will run <span class="math inline">\(1,000,000\)</span> iterations and record results every <span class="math inline">\(100,000\)</span> iterations. The first item is the loss and the second are the parameters <span class="math inline">\(a,b\)</span> and <span class="math inline">\(c\)</span> that define the quadratic we want to uncover/recover.</p>
-<div class="cell" data-execution_count="17">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>preds_list, params_list <span class="op">=</span> learner(<span class="dv">1000000</span>, <span class="dv">100000</span>, <span class="fl">1e-5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>8900.236328125 tensor([-0.1242,  0.3612, -0.1029], requires_grad=True)
@@ -403,7 +421,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Next we plot what our best estimate of the quadratic function looked like at every <span class="math inline">\(100,000\)</span> iterations.</p>
-<div class="cell" data-execution_count="18">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>num_preds <span class="op">=</span> <span class="bu">len</span>(preds_list)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>_, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, num_preds, figsize<span class="op">=</span>(<span class="dv">24</span>,<span class="dv">3</span>))</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(num_preds):</span>
@@ -424,15 +442,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>The captions on each plot provide an estimate of <span class="math inline">\(d\)</span> and <span class="math inline">\(e\)</span>. At the end of one million iterations we have <span class="math inline">\(\hat{d} = 0.689\)</span> and <span class="math inline">\(\hat{e}=9.32\)</span>.</p>
 <p>Recall that we generated the input data using <span class="math inline">\(d=0.75\)</span> and <span class="math inline">\(e=9.5\)</span>.</p>
-</section>
-<section id="references" class="level1">
-<h1>References</h1>
-<p>{% bibliography –cited %}</p>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-fastbook2020" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. Howard and S. Gugger, <em>Deep learning for coders with fastai and PyTorch: AI applications without a PhD</em>, 1st ed. O’Reilly, 2020.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

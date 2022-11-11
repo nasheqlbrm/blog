@@ -84,6 +84,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -220,7 +239,7 @@ Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.6.0 in /usr/local/lib/py
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich <span class="im">import</span> <span class="bu">print</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-A basic implementation of the Simplex algorithm as described in Chapter 2 of {% cite chvatal1983linear %} for problems of the form
+A basic implementation of the Simplex algorithm as described in Chapter 2 of <span class="citation" data-cites="chvatal1983linear"><a href="#ref-chvatal1983linear" role="doc-biblioref">[1]</a></span> for problems of the form
 <div>
 <p><img src="https://github.com/nasheqlbrm/blog/blob/main/images/chvatal_1dot7.png?raw=1" width="300"></p>
 </div>
@@ -667,15 +686,16 @@ z    <span style="color: #008080; text-decoration-color: #008080; font-weight: b
 <section id="next-steps" class="level1">
 <h1>Next steps</h1>
 <p>We will continue to expand on this basic implementation (and rectify it’s many deficiences) in future posts.</p>
-</section>
-<section id="references" class="level1">
-<h1>References</h1>
-<p>{% bibliography –cited %}</p>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-chvatal1983linear" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">V. Chvátal, <em>Linear programming</em>. Macmillan, 1983.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

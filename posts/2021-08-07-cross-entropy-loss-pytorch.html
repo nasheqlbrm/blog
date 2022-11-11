@@ -84,6 +84,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -206,7 +225,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#partial-derivative-of-oj-with-respect-to-zi" id="toc-partial-derivative-of-oj-with-respect-to-zi" class="nav-link" data-scroll-target="#partial-derivative-of-oj-with-respect-to-zi">Partial derivative of <span class="math inline">\(o^{[j]}\)</span> with respect to <span class="math inline">\(z^{[i]}\)</span></a></li>
   <li><a href="#partial-derivative-of-oi-with-respect-to-zi" id="toc-partial-derivative-of-oi-with-respect-to-zi" class="nav-link" data-scroll-target="#partial-derivative-of-oi-with-respect-to-zi">Partial derivative of <span class="math inline">\(o^{[i]}\)</span> with respect to <span class="math inline">\(z^{[i]}\)</span></a></li>
   </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -353,17 +371,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div>
 <p><img src="https://github.com/nasheqlbrm/blog/blob/main/images/ce_derivative.png?raw=1" width="500"></p>
 </div>
-<p>Per the <em>Sylvain says</em> section (page 203 Chapter 5) of {% cite fastbook2020 %}, ” <em>The gradient is proportional to the difference between the prediction and the target.</em>… <em>Because the gradient is linear we won’t see sudden jumps or exponential increases in gradients, which should lead to smoother training of models.</em>”</p>
-</section>
-</section>
-<section id="references" class="level1">
-<h1>References</h1>
-<p>{% bibliography –cited %}</p>
+<p>Per the <em>Sylvain says</em> section (page 203 Chapter 5) of <span class="citation" data-cites="fastbook2020"><a href="#ref-fastbook2020" role="doc-biblioref">[1]</a></span>, ” <em>The gradient is proportional to the difference between the prediction and the target.</em>… <em>Because the gradient is linear we won’t see sudden jumps or exponential increases in gradients, which should lead to smoother training of models.</em>”</p>
+
 
 
 </section>
+</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-fastbook2020" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. Howard and S. Gugger, <em>Deep learning for coders with fastai and PyTorch: AI applications without a PhD</em>, 1st ed. O’Reilly, 2020.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

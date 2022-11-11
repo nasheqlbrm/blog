@@ -84,6 +84,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -208,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<p>From {% cite youtube:Lambert_W_Function_Intro %}</p>
+<p>From <span class="citation" data-cites="youtube:Lambert_W_Function_Intro"><a href="#ref-youtube:Lambert_W_Function_Intro" role="doc-biblioref">[1]</a></span>:</p>
 <p>The Lambert W Function is denoted <span class="math inline">\(W(x)\)</span> and is the inverse of the function <span class="math inline">\(f(x) = xe^{x}\)</span>.</p>
 <p>Thus, <span class="math inline">\(W(x) = f^{-1}(x)\)</span>.</p>
 <p>For <span class="math inline">\(f(x)\)</span> we have that: * The derivative <span class="math inline">\(f'(x) = e^{x}(x+1)\)</span> * <span class="math inline">\(f''(x) = 2e^{x} + xe^{x}\)</span> and <span class="math inline">\(f''(-1) = 1\)</span> * <span class="math inline">\(f(x)\)</span> is minimized at <span class="math inline">\(x = -1\)</span> * Domain of <span class="math inline">\(f(x)\)</span> is <span class="math inline">\([-1,\infty)\)</span> * Range of <span class="math inline">\(f(x)\)</span> is <span class="math inline">\([-\frac{1}{e},\infty)\)</span></p>
@@ -227,10 +246,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> lambertw</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="38c21962-e3d2-4027-c516-093192221fbd">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.exp( lambertw( np.log(<span class="dv">2</span>) ) )</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x, np.allclose( np.power(x,x) , <span class="dv">2</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display">
 <pre><code>((1.5596104694623694+0j), True)</code></pre>
 </div>
 </div>
@@ -241,10 +260,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Take the square root in both sides to get <span class="math inline">\(xe^{x/2} = \sqrt 2\)</span>. Divide both sides by <span class="math inline">\(2\)</span> to get <span class="math inline">\(0.5xe^{0.5x} = \frac{1}{\sqrt 2}\)</span>.</p>
 <p>Applying the Lambert W function on both sides produces <span class="math inline">\(W(0.5xe^{0.5x}) = W(\frac{1}{\sqrt 2})\)</span> or <span class="math inline">\(0.5x = W(\frac{1}{\sqrt 2})\)</span>.</p>
 <p>Finally, we get <span class="math inline">\(x = 2W(\frac{1}{\sqrt 2})\)</span>.</p>
-<div class="cell" data-outputid="ffae59eb-caf2-4f50-a151-860f2d18005a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> lambertw(<span class="fl">1.</span><span class="op">/</span>np.sqrt(<span class="dv">2</span>))</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x, np.allclose( x<span class="op">*</span>x<span class="op">*</span>np.exp(x), <span class="dv">2</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display">
 <pre><code>((0.9012010317296661+0j), True)</code></pre>
 </div>
 </div>
@@ -253,10 +272,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="solve-x-ex-2">Solve <span class="math inline">\(x + e^{x} = 2\)</span></h2>
 <p>Exponentiating both sides we get <span class="math inline">\(e^{x}e^{e^{x}} = e^{2}\)</span>. Applying the Lambert W function on both sides produces <span class="math inline">\(W( e^{x}e^{e^{x}} ) = W(e^{2})\)</span> or <span class="math inline">\(e^{x} = W(e^{2})\)</span></p>
 <p>Thus, <span class="math inline">\(x = \ln(W(e^{2}))\)</span></p>
-<div class="cell" data-outputid="a759afbe-6bd4-4456-8a16-95d9f41bfcc1">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.log( lambertw( np.exp(<span class="dv">2</span>) ) )</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x, np.allclose( x <span class="op">+</span> np.exp(x) , <span class="dv">2</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display">
 <pre><code>((0.4428544010023887+0j), True)</code></pre>
 </div>
 </div>
@@ -272,13 +291,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Applying the Lambert W function on both sides gives: <span class="math display">\[ W(\frac{x}{\lambda}e^{\frac{x}{\lambda}}) = W(\frac{u}{\lambda}e^{\frac{v}{\lambda} - 1})\]</span> or</p>
 <p><span class="math inline">\(\frac{x}{\lambda} = W(\frac{u}{\lambda}e^{\frac{v}{\lambda} - 1})\)</span>.</p>
 <p>Thus, <span class="math display">\[x = \lambda W(\frac{u}{\lambda}e^{\frac{v}{\lambda} - 1})\]</span></p>
-<p>References</p>
-<p>{% bibliography –cited %}</p>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-youtube:Lambert_W_Function_Intro" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">blackpenredpen, <span>“&lt;A href="https://www.youtube.com/watch?v=sWgNCra93D8"&gt;"lambert w function intro and x^x=2"&lt;/a&gt;.”</span> <a href="https://www.youtube.com/watch?v=sWgNCra93D8" class="uri">https://www.youtube.com/watch?v=sWgNCra93D8</a>, 2018.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

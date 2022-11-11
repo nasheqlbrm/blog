@@ -84,6 +84,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -221,8 +240,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<p>Some notes while reading {% cite barratt2021optimal %}</p>
-<div class="cell" data-execution_count="2">
+<p>Some notes while reading <span class="citation" data-cites="barratt2021optimal"><a href="#ref-barratt2021optimal" role="doc-biblioref">[1]</a></span>.</p>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cvxpy <span class="im">as</span> cp</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rsw</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -239,7 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math inline">\(\mathbf{prox}_{\lambda l}(f_{\text{des}}) = argmin_{x} \left( l(x, f_{des}) + \frac{1}{2\lambda}||x-f_{\text{des}}||^{2}_{2} \right)\)</span></p>
 <p>So we have to set <span class="math inline">\(x_{i} = f^{i}_{\text{des}}\)</span>for each <span class="math inline">\(i\)</span> in order to avoid the loss of <span class="math inline">\(\infty\)</span> which we incur for any other choice.</p>
 <p>Thus, <span class="math inline">\(\mathbf{prox}_{\lambda l}(f_{\text{des}})_{i} = f^{i}_{\text{des}}\)</span> is the <span class="math inline">\(i\)</span>-th component of the minimizer <span class="math inline">\(x\)</span>.</p>
-<div class="cell" data-execution_count="4">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of "marginals" we want to match.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -254,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The following demonstrates that the <span class="math inline">\(\hat{f}\)</span> obtained via Convex optimization is the same as the minimizer <span class="math inline">\(x\)</span> obtained using the Proximal route.</p>
-<div class="cell" data-execution_count="5">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fhat <span class="op">=</span> cp.Variable(m)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cp.Problem(cp.Minimize(<span class="dv">1</span> <span class="op">/</span> lam <span class="op">*</span> cp.sum_squares(fhat <span class="op">-</span> f)),</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>            [fhat <span class="op">==</span> fdes]).solve()</span>
@@ -278,7 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math inline">\(\mathbf{prox}_{\lambda l}(f_{\text{des}}) = argmin_{x} \left( l(x, f_{des}) + \frac{1}{2\lambda}||x-f_{\text{des}}||^{2}_{2} \right)\)</span></p>
 <p>Thus, <span class="math inline">\(\mathbf{prox}_{\lambda l}(f_{\text{des}})_{i} = \begin{cases} f^{i}_{\text{des}} + \text{lower}^{i}, \text{if } f_{i} \leq f^{i}_{\text{des}} + \text{lower}^{i}\\ f^{i}_{\text{des}} + \text{upper}^{i}, \text{if } f_{i} \geq f^{i}_{\text{des}} + \text{upper}^{i}\\ f_{i}, \text{ otherwise}\end{cases}\)</span></p>
 <p>So we see that the Proximal version when passed the input (vector) <span class="math inline">\(f\)</span> and the Convex optimization version will both end up with the same minimizer.</p>
-<div class="cell" data-execution_count="6">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>lower <span class="op">=</span> np.array([<span class="op">-</span><span class="fl">.3</span>])</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>upper <span class="op">=</span> np.array([<span class="fl">.3</span>])</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -298,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[\mathbf{prox}_{\lambda l}(f_{\text{des}}) = argmin_{x}( l(x) + \frac{1}{2\lambda}||x - f_{des}||^{2}_{2} )\]</span></p>
 <p>The proximal operator of <span class="math inline">\(l\)</span> is the projection of <span class="math inline">\(f_{des}\)</span> onto the (nonconvex) set <span class="math inline">\(\{x \in \{0, 1/k\}^{n} | \mathbf{1}^{T}x=1\}\)</span>. If each component of <span class="math inline">\(x\)</span> is either <span class="math inline">\(0\)</span> or <span class="math inline">\(1/k\)</span> then the constraint <span class="math inline">\(\mathbf{1}^{T}x=1\)</span> means that exactly <span class="math inline">\(k\)</span> of them are set to <span class="math inline">\(1/k\)</span> and the remaining are set to <span class="math inline">\(0\)</span> (as was desired).</p>
 <p>The solution here is to set the largest <span class="math inline">\(k\)</span> entries of <span class="math inline">\(f_{des}\)</span> to <span class="math inline">\(1/k\)</span> and the remaining to <span class="math inline">\(0\)</span>.</p>
-<div class="cell" data-execution_count="7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>boolean <span class="op">=</span> rsw.BooleanRegularizer(<span class="dv">3</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>np.testing.assert_allclose(np.array([<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>]), boolean.prox(np.array([<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>]), lam))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -311,7 +330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[\hat{f}_{i}( d^{2}_{i} + \frac{1}{\lambda} ) = \frac{f^{i}_{des}}{\lambda} + d^{2}_{i}f^{i}_{des}\]</span></p>
 <p>Finally we get that <span class="math inline">\(\hat{f}_{i} = \frac{ d^{2}_{i}f^{i}_{des} + \frac{f^{i}_{des}}{\lambda} }{ ( d^{2}_{i} + \frac{1}{\lambda} ) }\)</span></p>
 <p>The <span class="math inline">\(d\)</span>’s are called the diagonals in the code and are used to weight each sample (row) in the data. Imagine a matrix with zeros everywhere but for the diagonal entries.</p>
-<div class="cell" data-execution_count="8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span>m)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fhat <span class="op">=</span> cp.Variable(m)</span>
@@ -333,7 +352,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Finally, <span class="math inline">\(\hat{f}_{i} = \lambda W(\frac{1}{\lambda}e^{\frac{f_{i}}{\lambda} - 1 })\)</span>.</p>
 <p>Just for fun, suppose that each instance of <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(f_{i}\)</span> in the above result were replaced by <span class="math inline">\(0.5\lambda\)</span> and <span class="math inline">\(f_{i} + 0.5\lambda \ln f^{i}_{des}\)</span> respectively then:</p>
 <p><span class="math inline">\(\hat{f}_{i} = 0.5\lambda W(\frac{1}{0.5\lambda}e^{\frac{f_{i} + 0.5\lambda \ln f^{i}_{des}}{0.5\lambda} - 1 }) = 0.5\lambda W(\frac{f^{i}_{des}}{0.5\lambda}e^{\frac{f_{i}}{0.5\lambda} - 1 })\)</span></p>
-<div class="cell" data-execution_count="9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span>m)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">/=</span> f.<span class="bu">sum</span>()</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -362,7 +381,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[W(\frac{\hat{f}_{i}}{0.5\lambda}e^{\frac{\hat{f}_{i}}{0.5\lambda}}) = W(\frac{f^{i}_{des}}{0.5\lambda}e^{\frac{f_{i}}{0.5\lambda} -1})\]</span></p>
 <p>Thus, <span class="math inline">\(\hat{f}_{i} = 0.5\lambda W(\frac{f^{i}_{des}}{0.5\lambda}e^{\frac{f_{i}}{0.5\lambda} -1}).\)</span></p>
 <p>Hopefully, this reminds you of the last expression in the Entropy Loss section.</p>
-<div class="cell" data-execution_count="11">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span>m)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">/=</span> f.<span class="bu">sum</span>()</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -375,13 +394,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                        <span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> lam) <span class="op">*</span> cp.sum_squares(fhat <span class="op">-</span> f))).solve()</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>np.testing.assert_allclose(fhat.value, kl.prox(f, lam), atol<span class="op">=</span><span class="fl">1e-5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>References</p>
-<p>{% bibliography –cited %}</p>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-barratt2021optimal" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">S. Barratt, G. Angeris, and S. Boyd, <span>“Optimal representative sample weighting,”</span> <em>Statistics and Computing</em>, vol. 31, no. 2, pp. 1–14, 2021.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

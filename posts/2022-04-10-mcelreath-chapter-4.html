@@ -84,6 +84,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -204,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<div class="cell" data-execution_count="1">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
@@ -231,19 +250,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sample_std <span class="op">=</span> stats.expon.rvs( scale<span class="op">=</span><span class="dv">1</span> , size<span class="op">=</span>n_samples )</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>sample_y <span class="op">=</span> stats.norm.rvs( loc<span class="op">=</span>sample_mu, scale<span class="op">=</span>sample_std, size<span class="op">=</span>n_samples )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="eee5d0ec-8aae-4194-cf68-87fa1a7eb9d6">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>az.plot_kde(sample_y)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribution of Prior Predictive values'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display">
 <pre><code>Text(0.5, 1.0, 'Distribution of Prior Predictive values')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-04-10-McElreath-Chapter-4_files/figure-html/cell-4-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="d0c89594-662e-40e1-b762-0f5074358592">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.hist(sample_y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display">
 <pre><code>(array([ 10.,  35., 116., 202., 232., 218., 118.,  47.,  17.,   5.]),
  array([-30.14262363, -23.65619686, -17.1697701 , -10.68334333,
          -4.19691657,   2.2895102 ,   8.77593697,  15.26236373,
@@ -299,13 +318,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    mu_ij <span class="op">=</span> sample_alpha[i] <span class="op">+</span> sample_beta[i]<span class="op">*</span>(j <span class="op">-</span> xbar)</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    sample_height[i, j<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> stats.norm.rvs( mu_ij , sample_std[i] )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="b82a6c85-8250-4d37-94e9-dc8fcd40786f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_samples):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  plt.plot( years , sample_height[i] , color<span class="op">=</span><span class="st">'blue'</span> )</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.xticks( years )</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel( <span class="st">'year'</span> )</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel( <span class="st">'height (cm)'</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display">
 <pre><code>Text(0, 0.5, 'height (cm)')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -317,7 +336,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="m5" class="level2">
 <h2 class="anchored" data-anchor-id="m5">4M5</h2>
 <p>Now suppose I remind you that every student got taller each year. Does this information lead you to change your choice of priors? How?</p>
-<p>Yes, we can impose a Log-Normal prior on the slope so that it is constrained to be positive. Per {% cite wiki:Log-normal_distribution %}, if <span class="math inline">\(Z \sim \text{Normal}(0,1)\)</span> and if <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma &gt; 0\)</span> are two real numbers then <span class="math inline">\(\beta = e^{\mu + \sigma Z}\)</span> is log-normally distributed with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. Also <span class="math inline">\(E[\beta] = e^{\mu + \frac{1}{2}\sigma^{2}}\)</span>. * So if <span class="math inline">\(\mu=1\)</span> and <span class="math inline">\(\sigma=0.1\)</span> then <span class="math inline">\(E[\beta] \approx 2.73 \text{cm/year}\)</span></p>
+<p>Yes, we can impose a Log-Normal prior on the slope so that it is constrained to be positive. Per <span class="citation" data-cites="wiki:Log-normal_distribution"><a href="#ref-wiki:Log-normal_distribution" role="doc-biblioref">[1]</a></span>, if <span class="math inline">\(Z \sim \text{Normal}(0,1)\)</span> and if <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma &gt; 0\)</span> are two real numbers then <span class="math inline">\(\beta = e^{\mu + \sigma Z}\)</span> is log-normally distributed with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. Also <span class="math inline">\(E[\beta] = e^{\mu + \frac{1}{2}\sigma^{2}}\)</span>. * So if <span class="math inline">\(\mu=1\)</span> and <span class="math inline">\(\sigma=0.1\)</span> then <span class="math inline">\(E[\beta] \approx 2.73 \text{cm/year}\)</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">40</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sample_alpha <span class="op">=</span> stats.norm.rvs( loc<span class="op">=</span><span class="dv">100</span>, scale<span class="op">=</span><span class="dv">10</span>, size<span class="op">=</span>n_samples )</span>
@@ -333,13 +352,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    mu_ij <span class="op">=</span> sample_alpha[i] <span class="op">+</span> sample_beta[i]<span class="op">*</span>(j <span class="op">-</span> xbar)</span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    sample_height[i, j<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> stats.norm.rvs( mu_ij , sample_std[i] )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="5362c322-95a4-4a6f-f3ee-13cac3ad17d7">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_samples):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  plt.plot( years , sample_height[i] , color<span class="op">=</span><span class="st">'blue'</span> )</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.xticks( years )</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel( <span class="st">'year'</span> )</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel( <span class="st">'height (cm)'</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display">
 <pre><code>Text(0, 0.5, 'height (cm)')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -356,8 +375,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="m7" class="level2">
 <h2 class="anchored" data-anchor-id="m7">4M7</h2>
 <p>Refit model m4.3 from the chapter, but omit the mean weight xbar this time. Compare the new model’s posterior to that of the original model. In particular, look at the covariance among the parameters. What is different? Then compare the posterior predictions of both models.</p>
-<div class="cell" data-outputid="e626e5f3-59a3-4c50-db50-41139537b0dc" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell">
+<div class="cell-output cell-output-display">
 
 
   <div id="df-d738ee05-04e1-4022-83c3-45b2e677885a">
@@ -488,7 +507,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
 </div>
 </div>
-<div class="cell" data-outputid="82a5d7de-a16f-4833-d401-fa48219a2940">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>xbar <span class="op">=</span> d2.weight.mean()</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pm.Model() <span class="im">as</span> m4_3:</span>
@@ -616,14 +635,14 @@ NUTS: [sigma, beta, alpha]</code></pre>
 The acceptance probability does not match the target. It is 0.8897350788344733, but should be close to 0.8. Try to increase the number of tuning steps.</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="322e80de-bd7e-4467-fb40-4573616bf5ad">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>az.summary(trace_4M7, kind<span class="op">=</span><span class="st">"stats"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Got error No model on context stack. trying to find log_likelihood in translation.
 /usr/local/lib/python3.7/dist-packages/arviz/data/io_pymc3_3x.py:102: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
   FutureWarning,</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display">
 
 
   <div id="df-0980208f-ea43-4756-83b2-d786abfc86ba">
@@ -740,14 +759,14 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
   
 </div>
 </div>
-<div class="cell" data-outputid="17ec7010-9eb6-4c06-8d63-a75163e11487">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>az.summary(trace_4_3, kind<span class="op">=</span><span class="st">"stats"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Got error No model on context stack. trying to find log_likelihood in translation.
 /usr/local/lib/python3.7/dist-packages/arviz/data/io_pymc3_3x.py:102: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
   FutureWarning,</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display">
 
 
   <div id="df-dcbb3707-c159-491f-8833-a04ca8d93ce5">
@@ -869,14 +888,14 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <h3 class="anchored" data-anchor-id="plot-the-posterior-inference-against-the-data">Plot the posterior inference against the data</h3>
 <section id="superimpose-the-posterior-mean-values-over-the-height-and-weight-data" class="level4">
 <h4 class="anchored" data-anchor-id="superimpose-the-posterior-mean-values-over-the-height-and-weight-data">Superimpose the posterior mean values over the height and weight data</h4>
-<div class="cell" data-outputid="8befc482-be03-46b2-f819-ed7086a90db1">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(d2[<span class="st">'weight'</span>], d2[<span class="st">'height'</span>])</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.plot(d2[<span class="st">'weight'</span>], ( trace_4M7[<span class="st">'alpha'</span>].mean() <span class="op">+</span> </span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                        trace_4M7[<span class="st">'beta'</span>].mean()<span class="op">*</span>d2[<span class="st">'weight'</span>] ),</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'orange'</span> )</span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(d2.columns[<span class="dv">1</span>])</span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(d2.columns[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display">
 <pre><code>Text(0, 0.5, 'height')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -898,13 +917,13 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>             trace_iq[<span class="st">'beta'</span>][posterior_samples]<span class="op">*</span>wt ) <span class="cf">for</span> wt <span class="kw">in</span> weight_seq ]</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="f59aebb5-e576-4838-e46e-fcd67750dc0e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>cred_intervals.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display">
 <pre><code>(71, 2)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="516f1f58-6f63-4380-aed9-153b2918abbe">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(d2[<span class="st">'weight'</span>], d2[<span class="st">'height'</span>])</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plt.plot(weight_seq, ( trace_4M7[<span class="st">'alpha'</span>].mean() <span class="op">+</span> </span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                        trace_4M7[<span class="st">'beta'</span>].mean()<span class="op">*</span>weight_seq ),</span>
@@ -917,8 +936,8 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(d2.columns[<span class="dv">0</span>])</span>
 <span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>plt.axvline(np.mean(d2.weight), ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"r"</span>, label<span class="op">=</span><span class="st">"Mean weight"</span>)</span>
 <span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>&lt;matplotlib.legend.Legend at 0x7fee9e5dfa50&gt;</code></pre>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;matplotlib.legend.Legend&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-04-10-McElreath-Chapter-4_files/figure-html/cell-23-output-2.png" class="img-fluid"></p>
@@ -929,9 +948,9 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <section id="add-the-prediction-intervals" class="level3">
 <h3 class="anchored" data-anchor-id="add-the-prediction-intervals">Add the prediction intervals</h3>
 <p>Next add the uncertainty around the actual heights making use of the standard deviation.</p>
-<div class="cell" data-outputid="edf513e6-b808-4c31-eca3-3aa9f3b993bb">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>trace_iq[<span class="st">'alpha'</span>][posterior_samples].shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display">
 <pre><code>(10000,)</code></pre>
 </div>
 </div>
@@ -968,7 +987,7 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>    ]</span>
 <span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="d45e1c4c-3a1b-41d6-c56a-8b38eb638703">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(d2[<span class="st">'weight'</span>], d2[<span class="st">'height'</span>])</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>plt.plot(weight_seq, ( trace_4M7[<span class="st">'alpha'</span>].mean() <span class="op">+</span> </span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                        trace_4M7[<span class="st">'beta'</span>].mean()<span class="op">*</span>weight_seq ),</span>
@@ -994,8 +1013,8 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>plt.axvline(np.mean(d2.weight), ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"r"</span>, label<span class="op">=</span><span class="st">"Mean weight"</span>)</span>
 <span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>plt.xlim(d2.weight.<span class="bu">min</span>(), d2.weight.<span class="bu">max</span>())<span class="op">;</span></span>
 <span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="43">
-<pre><code>&lt;matplotlib.legend.Legend at 0x7fee9e8c7710&gt;</code></pre>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;matplotlib.legend.Legend&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-04-10-McElreath-Chapter-4_files/figure-html/cell-26-output-2.png" class="img-fluid"></p>
@@ -1011,13 +1030,13 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    mu_pred[i] <span class="op">=</span> ( trace_iq_thinned[<span class="st">"alpha"</span>] <span class="op">+</span> </span>
 <span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>                  trace_iq_thinned[<span class="st">"beta"</span>] <span class="op">*</span> w )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="bce517d3-f0b1-4847-806d-de8772c8f7c9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>trace_iq_thinned, mu_pred.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display">
 <pre><code>(&lt;MultiTrace: 2 chains, 100 iterations, 5 variables&gt;, (71, 200))</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="333e0c6e-7161-4b22-fa44-600265f10e23">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>mu_mean <span class="op">=</span> mu_pred.mean(<span class="dv">1</span>) </span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>mu_hdi <span class="op">=</span> az.hdi(mu_pred.T)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>mu_mean.shape, mu_hdi.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1025,7 +1044,7 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <pre><code>/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:2: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
   </code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display">
 <pre><code>((71,), (71, 2))</code></pre>
 </div>
 </div>
@@ -1038,7 +1057,7 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    sigma_pred <span class="op">=</span> trace_iq[<span class="st">'sigma'</span>][i]</span>
 <span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    post_samples.append(np.random.normal(mu_pr, sigma_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="b21c1094-1df6-4614-fb01-2f6bd8cd453a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>az.plot_hdi(weight_seq, mu_pred.T)</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>az.plot_hdi(weight_seq, np.array(post_samples), ax<span class="op">=</span>ax, hdi_prob<span class="op">=</span><span class="fl">0.67</span>)</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>az.plot_hdi(weight_seq, np.array(post_samples), ax<span class="op">=</span>ax, hdi_prob<span class="op">=</span><span class="fl">0.89</span>)</span>
@@ -1063,10 +1082,10 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <p><img src="2022-04-10-McElreath-Chapter-4_files/figure-html/cell-31-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="c8f2adb0-4357-4538-a81d-5b550c99f8ba">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>trace_4M7_df <span class="op">=</span> pm.trace_to_dataframe( trace_4M7 )</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>trace_4M7_df.cov().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="37">
+<div class="cell-output cell-output-display">
 
 
   <div id="df-23bbb8f7-cafe-4353-a3d9-ac4231dcd300">
@@ -1180,9 +1199,9 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 </div>
 <p>There doesn’t seem to be much of a covariance between the parameters. This is similar to what we saw in m_4_3 (shown below).</p>
-<div class="cell" data-outputid="bf52c2ad-c8f5-4ba9-9461-e2b2c601c52b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>pm.trace_to_dataframe( trace_4_3 ).cov().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="38">
+<div class="cell-output cell-output-display">
 
 
   <div id="df-6cb4ae1f-c24c-465f-9108-8eb252ad7149">
@@ -1296,9 +1315,9 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 </div>
 <p>Next let’s examine the correlations.</p>
-<div class="cell" data-outputid="285cc78d-6493-44f2-c0d4-0f6439e6347e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>trace_4M7_df.corr().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="39">
+<div class="cell-output cell-output-display">
 
 
   <div id="df-b7567d55-d3c1-47a0-ac85-ccd7919bd494">
@@ -1412,9 +1431,9 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 </div>
 <p>Intercept (alpha) and slope (beta) are negatively correlated unlike model m_4_3.</p>
-<div class="cell" data-outputid="0d7c6d8f-0ff7-4bfe-a67a-9e9598033e34">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>pm.trace_to_dataframe( trace_4_3 ).corr().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="40">
+<div class="cell-output cell-output-display">
 
 
   <div id="df-c7daa43d-6b74-4ea8-b314-21ebbdc4d402">
@@ -1535,12 +1554,12 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <p>Suppose <span class="math inline">\(D_{i}\)</span> be the date of year of the cherry blossom in year <span class="math inline">\(i\)</span> then a formal description of the model is:</p>
 <p><span class="math display">\[D_{i} \sim N(\mu_{i},\sigma)\]</span> <span class="math display">\[\mu_{i} = \alpha + \sum_{k=1}^{K}w_{k}B_{ki}\]</span> <span class="math display">\[\alpha \sim N(100,10)\]</span> <span class="math display">\[w_{k} \sim \text{Normal}(0,10)\]</span> <span class="math display">\[\sigma \sim \text{Exponential}(1)\]</span></p>
 <p><span class="math inline">\(B_{ki}\)</span> is the value of the <span class="math inline">\(k\)</span>-th basis function for year <span class="math inline">\(i\)</span>.</p>
-<div class="cell" data-outputid="c2c6c0ec-1d15-4438-d2d6-ca650720f543" data-execution_count="3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/rmcelreath/rethinking/'</span>\</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="st">'master/data/cherry_blossoms.csv'</span></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> pd.read_csv(url, sep<span class="op">=</span><span class="st">';'</span>, header<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>d.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display">
 
 
   <div id="df-aa02430b-54f7-41df-b276-51d69fcd6f64">
@@ -1677,10 +1696,10 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
   
 </div>
 </div>
-<div class="cell" data-outputid="a2961349-3fdb-4eaa-9081-7745f731286b" data-execution_count="4">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> d.dropna(subset<span class="op">=</span>[<span class="st">'doy'</span>])</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>d2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display">
 
 
   <div id="df-6a6cdc61-2355-49cc-90d0-1c94731cb431">
@@ -1817,41 +1836,41 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
   
 </div>
 </div>
-<div class="cell" data-execution_count="68">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>num_knots <span class="op">=</span> <span class="dv">15</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>knot_list <span class="op">=</span> np.quantile(d2.year, np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, num_knots))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="9e6a7af6-a9da-4cd2-cdfc-5b100b59ff34" data-execution_count="69">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>knot_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="69">
+<div class="cell-output cell-output-display">
 <pre><code>array([ 812., 1036., 1174., 1269., 1377., 1454., 1518., 1583., 1650.,
        1714., 1774., 1833., 1893., 1956., 2015.])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="70">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> dmatrix(</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"bs(year, knots=knots, degree=3, include_intercept=True) - 1"</span>,</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"year"</span>: d2.year.values, <span class="st">"knots"</span>: knot_list[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]},</span>
 <span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="2321830c-a28b-4f6c-a91e-bb2e6e4880c7" data-execution_count="71">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>np.asarray( B ).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="71">
+<div class="cell-output cell-output-display">
 <pre><code>(827, 17)</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="e1976b7b-e4ab-42cc-f1c3-5112c2a0c133" data-execution_count="72">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="72">
+<div class="cell-output cell-output-display">
 <pre><code>DesignMatrix with shape (827, 17)
   Columns:
     ['bs(year, knots=knots, degree=3, include_intercept=True)[0]',
@@ -1877,7 +1896,7 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 </div>
 <p>Let’s plot the basis functions.</p>
-<div class="cell" data-outputid="cf3462bb-67bc-4511-c4dd-bb57c9317dcd" data-execution_count="77">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
@@ -1891,7 +1910,7 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 </div>
 <p>Next, let’s learn the parameters.</p>
-<div class="cell" data-outputid="8b32b6ea-d06b-4ea6-ca4d-e058c846a227" data-execution_count="78">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pm.Model() <span class="im">as</span> m_4M8:</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> pm.Normal(<span class="st">"a"</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> pm.Normal(<span class="st">"w"</span>, mu<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">10</span>, shape<span class="op">=</span>B.shape[<span class="dv">1</span>])</span>
@@ -1958,7 +1977,7 @@ The number of effective samples is smaller than 25% for some parameters.</code><
 </div>
 </div>
 <p>Plot each basis weighted by it’s corresponding parameter.</p>
-<div class="cell" data-outputid="9c219833-ba47-417c-b7a6-51b44bf4ed97" data-execution_count="82">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
@@ -1972,7 +1991,7 @@ The number of effective samples is smaller than 25% for some parameters.</code><
 <p><img src="2022-04-10-McElreath-Chapter-4_files/figure-html/cell-53-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="9e1a3016-fdd8-4d08-e1bd-b8b22bed11b3" data-execution_count="84">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>post_pred <span class="op">=</span> ( az.summary(trace_m_4M8, var_names<span class="op">=</span>[<span class="st">"mu"</span>], hdi_prob<span class="op">=</span><span class="fl">0.94</span>).</span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>             reset_index(drop<span class="op">=</span><span class="va">True</span>) )</span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>post_pred.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1981,7 +2000,7 @@ The number of effective samples is smaller than 25% for some parameters.</code><
 /usr/local/lib/python3.7/dist-packages/arviz/data/io_pymc3_3x.py:102: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
   FutureWarning,</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="84">
+<div class="cell-output cell-output-display">
 
 
   <div id="df-db8c2938-66bf-40d6-ab41-5e6f0abe74ef">
@@ -2142,7 +2161,7 @@ The number of effective samples is smaller than 25% for some parameters.</code><
   
 </div>
 </div>
-<div class="cell" data-outputid="0b43c687-94ff-4305-ca25-cbdad892a46b" data-execution_count="85">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>    d2.year,</span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>    post_pred[<span class="st">"hdi_3%"</span>],</span>
@@ -2164,7 +2183,7 @@ The number of effective samples is smaller than 25% for some parameters.</code><
 <span id="cb66-19"><a href="#cb66-19" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"year"</span>)</span>
 <span id="cb66-20"><a href="#cb66-20" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"days in year"</span>)</span>
 <span id="cb66-21"><a href="#cb66-21" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f'knots=</span><span class="sc">{</span>num_knots<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="85">
+<div class="cell-output cell-output-display">
 <pre><code>Text(0.5, 1.0, 'knots=15')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -2172,8 +2191,8 @@ The number of effective samples is smaller than 25% for some parameters.</code><
 </div>
 </div>
 <p>Increase the number of knots to 30.</p>
-<div class="cell" data-outputid="8406a733-1f06-4cac-d297-b3ce836f17e0" data-execution_count="88">
-<div class="cell-output cell-output-display" data-execution_count="88">
+<div class="cell">
+<div class="cell-output cell-output-display">
 <pre><code>Text(0.5, 1.0, 'knots=30')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -2181,24 +2200,24 @@ The number of effective samples is smaller than 25% for some parameters.</code><
 </div>
 </div>
 <p>Change the width of the prior on the weights.</p>
-<div class="cell" data-outputid="1ebfccfe-effa-47cd-9d6a-c4325a014351" data-execution_count="91">
-<div class="cell-output cell-output-display" data-execution_count="91">
+<div class="cell">
+<div class="cell-output cell-output-display">
 <pre><code>Text(0.5, 1.0, 'knots=30; w ~ N(0,100)')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-04-10-McElreath-Chapter-4_files/figure-html/cell-62-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="dbef299e-5b00-4d97-d123-8f1f167a22e7" data-execution_count="94">
-<div class="cell-output cell-output-display" data-execution_count="94">
+<div class="cell">
+<div class="cell-output cell-output-display">
 <pre><code>Text(0.5, 1.0, 'knots=30; w ~ N(0,1)')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-04-10-McElreath-Chapter-4_files/figure-html/cell-65-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="0b410612-b227-4d48-a2c2-9a3a4b50131f" data-execution_count="97">
-<div class="cell-output cell-output-display" data-execution_count="97">
+<div class="cell">
+<div class="cell-output cell-output-display">
 <pre><code>Text(0.5, 1.0, 'knots=5; w ~ N(0,100)')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -2206,13 +2225,16 @@ The number of effective samples is smaller than 25% for some parameters.</code><
 </div>
 </div>
 <p>The larger the number of knots the more local variation we are able to capture. The prior on the weight controls how much weights are allowed to vary around the mean. A tighter (smaller) standard deviation on the weight will not allow the weight to vary much.</p>
-<p>References</p>
-<p>{% bibliography –cited %}</p>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-wiki:Log-normal_distribution" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">Wikipedia, <span>“&lt;A href="http://en.wikipedia.org/w/index.php?title=log-normal%20distribution&amp;oldid=1080654936"&gt;"<span>Log-normal distribution</span> — <span>W</span>ikipedia<span>,</span> the free encyclopedia"&lt;/a&gt;.”</span> <a href="http://en.wikipedia.org/w/index.php?title=Log-normal%20distribution&amp;oldid=1080654936" class="uri">http://en.wikipedia.org/w/index.php?title=Log-normal%20distribution&amp;oldid=1080654936</a>, 2022.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
