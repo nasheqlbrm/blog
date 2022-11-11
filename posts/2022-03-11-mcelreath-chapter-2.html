@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2022-03-11">
+
+<title>Kaushik Sinha - McElreath Chapter 2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Kaushik Sinha</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">McElreath Chapter 2</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">statistical-rethinking</div>
+                <div class="quarto-category">bayesian</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">March 11, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Let’s work through some exercise problems in Chapter 2 of {% cite mcelreath2020statistical %}.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc3 <span class="im">as</span> pm</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pylab <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>RANDOM_SEED <span class="op">=</span> <span class="dv">8927</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(RANDOM_SEED)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>az.style.use(<span class="st">"arviz-darkgrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>##2M1</p>
+<p><em>Recall the globe tossing model from the chapter. Compute and plot the grid approximate posterior distribution for each of the following sets of observations. In each case, assume a uniform prior for p.</em></p>
+<ol type="1">
+<li><em>W, W, W</em></li>
+<li><em>W, W, W, L</em></li>
+<li><em>L, W, W, L, W, W, W</em></li>
+</ol>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Each tuple is:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ( Observation , Waters, Trials )</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># (1,3,3) means that observation 1 consists of</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 waters in 3 globe tosses</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>), (<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), (<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> grid_approx(num_grid_points, successes, tosses):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    ngp <span class="op">=</span> <span class="bu">int</span>(num_grid_points)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    p_success <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, ngp)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    likelihood <span class="op">=</span> stats.binom.pmf(k<span class="op">=</span>successes, n<span class="op">=</span>tosses, p<span class="op">=</span>p_success)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># uniform prior</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    prior <span class="op">=</span> np.repeat(<span class="fl">1.</span>, ngp)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    unstd_posterior <span class="op">=</span> likelihood <span class="op">*</span> prior</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    posterior <span class="op">=</span> unstd_posterior <span class="op">/</span> unstd_posterior.<span class="bu">sum</span>()</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p_success, posterior</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-outputid="1760a5d4-2adc-4cd1-abed-32d97559ffc6" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>grid_approx(<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>(array([0.  , 0.25, 0.5 , 0.75, 1.  ]), array([0.  , 0.01, 0.08, 0.27, 0.64]))</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="17bcd437-1714-4da2-e360-01225c3e87f7" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>_, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="bu">len</span>(data), sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">6</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> observation, waters, tosses <span class="kw">in</span> data:    </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> num_grid_points <span class="kw">in</span> np.linspace(<span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">10</span>):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      p_grid, posterior <span class="op">=</span> grid_approx(num_grid_points, waters, tosses)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      axs[observation<span class="op">-</span><span class="dv">1</span>].plot(p_grid, posterior, </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                              label <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span><span class="bu">int</span>(num_grid_points)<span class="sc">}</span><span class="ss"> grid points'</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  axs[observation<span class="op">-</span><span class="dv">1</span>].set_title(<span class="ss">f'Observation </span><span class="sc">{</span>observation<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  axs[observation<span class="op">-</span><span class="dv">1</span>].set_xlabel(<span class="st">'Parameter value - p'</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  axs[observation<span class="op">-</span><span class="dv">1</span>].set_ylabel(<span class="st">'Posterior probability'</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  axs[observation<span class="op">-</span><span class="dv">1</span>].legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-03-11-McElreath-Chapter-2_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>##2M3</p>
+<p><em>Suppose there are two globes, one for Earth and one for Mars. The Earth globe is 70% covered in water and the Mars globe is 100% land. One of these globes was tossed in the air and produced a “land” observation. Each globe was equally likely to be tossed. Compute the posterior probability that the globe was the Earth, conditional on seeing “land”.</em></p>
+<p><span class="math inline">\(Pr(Earth|land) = \frac{Pr(land|Earth)Pr(Earth)}{Pr(land|Earth)Pr(Earth) + Pr(land|Mars)Pr(Mars)} = \frac{(1-0.7)*0.5}{(1-0.7)*0.5 + 1.0*0.5} = 0.23\)</span></p>
+<p>##2M4 <em>Suppose you have a deck with only three cards. Each card has two sides, and each side is either black or white. One card has two black sides, the second card has one black, one white side and the third card has two white sides. Now these cards are shuffled in a bag, one is drawn and placed flat on a table. A black side is showing up. What is the color of the other side?</em></p>
+<p>Let <span class="math inline">\(C_{1}\)</span> denote the card with 2 black sides, <span class="math inline">\(C_{2}\)</span> be the card with one black and one white side and <span class="math inline">\(C_{3}\)</span> be the card with two white sides.</p>
+<p>Now, <span class="math inline">\(Pr(\text{Side facing down is Black} | \text{Side facing up is Black}) = \frac{Pr(\text{Side facing down is Black AND Side facing up is Black})}{Pr(\text{Side facing up is Black})}\)</span></p>
+<p>The numerator can be computed as: <span class="math inline">\(Pr(\text{Side facing down is Black AND Side facing up is Black}) = Pr(C_{1})Pr(\text{Side facing up is Black}|C_{1}) = \frac{1}{3}\)</span></p>
+<p>The <span class="math inline">\(1/3\)</span> is because each card is equally likely to be drawn.</p>
+<p>The denominator can be computed as: <span class="math inline">\(Pr(\text{Side facing up is Black}) = \sum_{i=1}^{3}Pr(C_{i})Pr(\text{Side facing up is Black}|C_{i}) = \frac{1}{3}(1.0 + 0.5 + 0) = \frac{1}{2}\)</span></p>
+<p>Thus, <span class="math inline">\(Pr(\text{Side facing down is Black} | \text{Side facing up is Black}) = \frac{1/3}{1/2} = \frac{2}{3}\)</span></p>
+<p>Another way to think about this is that there are three ways for the face up card to be black. Two ways if <span class="math inline">\(C_{1}\)</span> is drawn and one way if <span class="math inline">\(C_{2}\)</span> is drawn. And in only two of those ways is the side facing down also black.</p>
+<p>##2M5 <em>Now suppose there are four cards: B/B, B/W, W/W and another B/B. Again suppose a card is drawn from the bag and a black side appears face up. Again calculate the probability that the other side is black.</em></p>
+<p>Given that drawing each card is equally likely then there are <span class="math inline">\(5\)</span> ways for the face up card to be black (<span class="math inline">\(2\)</span> ways each from the first and the last card and one way from the second card). Out of these there are <span class="math inline">\(4\)</span> ways for the face down card to be black.</p>
+<p>Hence the probability that the side facing down is black given that the side facing up is black is <span class="math inline">\(4/5\)</span>.</p>
+<p>##2M6 <em>Imagine that black ink is heavy, and so cards with black sides are heavier that cards with white sides. Assume again there are three cards: B/B, B/W, and W/W and assume that for every way to pull B/B there are two ways to pull B/W and 3 ways to pull the W/W card. Again, a card is pulled and a black side appears face up. What is the probability that the other side is black?</em></p>
+<p>So there are <span class="math inline">\(2\)</span> ways to get the side facing up as black from B/B. There are also <span class="math inline">\(2\)</span> ways to get the side facing up as black from B/W (since we were told that there are two ways of drawing B/W for every way to draw B/B). Of these <span class="math inline">\(4\)</span> ways there are <span class="math inline">\(2\)</span> ways in which the face down card is also black.</p>
+<p>Hence the probability that the side facing down is black given that the side facing up is black is <span class="math inline">\(2/4\)</span> or <span class="math inline">\(0.5\)</span>.</p>
+<p>##2M7</p>
+<p><em>Assume again the original card problem (2M4). This time, before looking at the other side, we draw another card from the bag and lay it face up on the table. The face that is shown on the new card is white. What is the probability that the first card is black on the other side?</em></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(C_1\)</span></th>
+<th><span class="math inline">\(C_{2}\)</span></th>
+<th>ways</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BB</td>
+<td>BW</td>
+<td>2x1=2</td>
+</tr>
+<tr class="even">
+<td>BB</td>
+<td>WW</td>
+<td>2x2=4</td>
+</tr>
+<tr class="odd">
+<td>BW</td>
+<td>WW</td>
+<td>1x2=2</td>
+</tr>
+</tbody>
+</table>
+<p>There are 8 ways of drawing two cards one after the other such that the side facing up is black for the first card and is white for the second card. Of these there are 6 ways for the side facing down of the first card to be black. Thus the probability is <span class="math inline">\(6/8\)</span> or <span class="math inline">\(0.75\)</span>.</p>
+<section id="h1" class="level2">
+<h2 class="anchored" data-anchor-id="h1">2H1</h2>
+<p><em>Suppose there are two species of panda bear. Both are equally common, they look exactly the same and there’s no genetic test to distinguish between them yet. They only differ in family size: Species A gives birth to twins 10% of the time while Species B births twins 20% of the time (otherwise it’s a single infant). Imagine you have a female panda that just gave birth to twins. What is the probability that her next birth will also be twins?</em></p>
+<p>Let <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span> denote the event of having twins on the first and second birth respectively.</p>
+<p><span class="math inline">\(Pr(T_2|T_1) = \frac{Pr(T_2,T_1)}{Pr(T_1)} = \frac{Pr(T_2,T_1 | \text{Species A})Pr(\text{Species A}) + Pr(T_2,T_1 | \text{Species B})Pr(\text{Species B}) }{ Pr(T_1 | \text{Species A})Pr(\text{Species A}) + Pr(T_1 | \text{Species B})Pr(\text{Species B}) }\)</span></p>
+<p>Since the species are equally common this means <span class="math inline">\(Pr(\text{Species A}) = Pr(\text{Species B}) = 0.5\)</span> and we can rewrite the above as:</p>
+<p><span class="math inline">\(Pr(T_2|T_1) = \frac{Pr(T_2,T_1 | \text{Species A}) + Pr(T_2,T_1 | \text{Species B}) }{ Pr(T_1 | \text{Species A}) + Pr(T_1 | \text{Species B}) } = \frac{0.1*0.1 + 0.2*0.2}{0.1+0.2} = \frac{0.05}{0.3} = \frac{1}{6} \approx 0.17\)</span></p>
+</section>
+<section id="h2" class="level2">
+<h2 class="anchored" data-anchor-id="h2">2H2</h2>
+<p><em>Now compute the probability that the panda we have is from species A, given that we observed one twin birth.</em></p>
+<p><span class="math inline">\(Pr(\text{Species A} | T_1) = \frac{Pr(\text{Species A} , T_1)}{ Pr(T_1) } = \frac{ Pr(T_1 | \text{Species A})Pr(\text{Species A}) }{ Pr(T_1 | \text{Species A})Pr(\text{Species A}) + Pr(T_1 | \text{Species B})Pr(\text{Species B}) } = \frac{0.1*0.5}{0.1*0.5+0.2*0.5}=\frac{1}{3}\)</span></p>
+</section>
+<section id="h3" class="level2">
+<h2 class="anchored" data-anchor-id="h3">2H3</h2>
+<p><em>Suppose the same panda mother has a second birth, this time to a singleton infant. What is the probability that this pandas is from species A?</em></p>
+<p>Let <span class="math inline">\(S_2\)</span> denote the event of a singleton infant in the second birth.</p>
+<p><span class="math inline">\(𝑃𝑟(\text{ Species A }|𝑇_1,S_2) = \frac{ Pr(T_1,S_2 | \text{Species A})Pr(\text{Species A}) }{ Pr(T_1,S_2 | \text{Species A})Pr(\text{Species A}) + Pr(T_1,S_2 | \text{Species B})Pr(\text{Species B}) } = \frac{0.1*0.9*0.5}{0.1*0.9*0.5+0.2*0.8*0.5}=\frac{9}{25} = 0.36\)</span></p>
+<p>The nicer way to think about this is that the posterior from 2H2 gives us the updated priors for Species A and Species B (as <span class="math inline">\(1/3\)</span> and <span class="math inline">\(2/3\)</span> respectively).</p>
+<p>Using these updated priors we get</p>
+<p><span class="math inline">\(𝑃𝑟(\text{ Species A }|S_2) = \frac{ Pr(S_2 | \text{Species A})Pr(\text{Species A}) }{ Pr(S_2 | \text{Species A})Pr(\text{Species A}) + Pr(S_2 | \text{Species B})Pr(\text{Species B}) } = \frac{0.9*(1/3)}{0.9*(1/3)+0.8*(2/3)}=\frac{9}{25} = 0.36\)</span></p>
+</section>
+<section id="h4" class="level2">
+<h2 class="anchored" data-anchor-id="h4">2H4</h2>
+<p><em>Suppose now, there is a new genetic test that can identify the species of our mother panda. The test is imperfect though:</em></p>
+<ul>
+<li><em>The probability it correctly identifies a species A panda is 0.8.</em></li>
+<li><em>The probability it correctly identifies a species B panda is 0.65.</em></li>
+</ul>
+<p><em>The test for our mother panda is positive for species A. Ignoring the information from the births, what is the probability that our panda is species A? Next redo your calculation, now using the data on both births (twins followed by singleton).</em></p>
+<p>Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> denote the event of testing positive for Species A and Species B respectively.</p>
+<p><span class="math inline">\(Pr(\text{Species A} | A) = \frac{Pr(A | \text{Species A} )Pr(\text{Species A})}{Pr(A | \text{Species A} )Pr(\text{Species A}) + Pr(A | \text{Species B} )Pr(\text{Species B})} = \frac{0.8*0.5}{0.8*0.5+0.35*0.5} = 0.6956\)</span></p>
+<p>Now using the data on two births and the preceding as a prior we get:</p>
+<p><span class="math inline">\(𝑃𝑟(\text{ Species A }|A,𝑇_1,S_2) = \frac{ Pr(T_1,S_2 | \text{Species A})Pr(\text{Species A}|A) }{ Pr(T_1,S_2 | \text{Species A})Pr(\text{Species A}|A) + Pr(T_1,S_2 | \text{Species B})Pr(\text{Species B}|A) } = \frac{0.1*0.9*0.6956}{0.1*0.9*0.6956+0.2*0.8*0.3044}= 0.56\)</span></p>
+<p>Yet another way to attack this problem is to use the posterior 2H3 as our prior for Species A and Species B respectively,</p>
+<p><span class="math inline">\(Pr(\text{Species A} | A,𝑇_1,S_2) = \frac{Pr(A | \text{Species A} )Pr(\text{Species A}|𝑇_1,S_2)}{Pr(A | \text{Species A} )Pr(\text{Species A}|𝑇_1,S_2) + Pr(A | \text{Species B} )Pr(\text{Species B}|𝑇_1,S_2)} = \frac{0.8*0.36}{0.8*0.36+0.35*(1-0.36)} = 0.56\)</span></p>
+<p>References</p>
+<p>{% bibliography –cited %}</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2022-05-26">
+
+<title>Kaushik Sinha - Losses</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Kaushik Sinha</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Losses</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 26, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#equality-loss" id="toc-equality-loss" class="nav-link active" data-scroll-target="#equality-loss">Equality Loss</a>
+  <ul class="collapse">
+  <li><a href="#convex-optimization-version" id="toc-convex-optimization-version" class="nav-link" data-scroll-target="#convex-optimization-version">Convex Optimization Version</a></li>
+  <li><a href="#proximal-version" id="toc-proximal-version" class="nav-link" data-scroll-target="#proximal-version">Proximal Version</a></li>
+  </ul></li>
+  <li><a href="#inequality-loss" id="toc-inequality-loss" class="nav-link" data-scroll-target="#inequality-loss">Inequality Loss</a>
+  <ul class="collapse">
+  <li><a href="#convex-optimization-version-1" id="toc-convex-optimization-version-1" class="nav-link" data-scroll-target="#convex-optimization-version-1">Convex Optimization Version</a></li>
+  <li><a href="#proximal-version-1" id="toc-proximal-version-1" class="nav-link" data-scroll-target="#proximal-version-1">Proximal Version</a></li>
+  </ul></li>
+  <li><a href="#boolean-loss" id="toc-boolean-loss" class="nav-link" data-scroll-target="#boolean-loss">Boolean Loss</a></li>
+  <li><a href="#weighted-least-squares-loss" id="toc-weighted-least-squares-loss" class="nav-link" data-scroll-target="#weighted-least-squares-loss">(Weighted) Least Squares Loss</a></li>
+  <li><a href="#entropy-loss" id="toc-entropy-loss" class="nav-link" data-scroll-target="#entropy-loss">Entropy Loss</a>
+  <ul class="collapse">
+  <li><a href="#entropy-regularizer" id="toc-entropy-regularizer" class="nav-link" data-scroll-target="#entropy-regularizer">Entropy Regularizer</a></li>
+  </ul></li>
+  <li><a href="#kl-loss" id="toc-kl-loss" class="nav-link" data-scroll-target="#kl-loss">KL Loss</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<p>Some notes while reading {% cite barratt2021optimal %}</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cvxpy <span class="im">as</span> cp</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rsw</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="equality-loss" class="level2">
+<h2 class="anchored" data-anchor-id="equality-loss">Equality Loss</h2>
+<p>Constrain <span class="math inline">\(x = f_{\text{des}}\)</span> so let <span class="math inline">\(l(x, f_{des}) = +\infty\)</span> for <span class="math inline">\(x \neq f_{des}\)</span> and <span class="math inline">\(0\)</span> when <span class="math inline">\(x = f_{des}\)</span>. Here <span class="math inline">\(l\)</span> represents our loss function.</p>
+<section id="convex-optimization-version" class="level3">
+<h3 class="anchored" data-anchor-id="convex-optimization-version">Convex Optimization Version</h3>
+<p><span class="math display">\[\min \frac{1}{\lambda}\sum_{i=1}^{m}( \hat{f}_{i}-f^{i})^{2} = \frac{1}{\lambda}||\hat{f}-f||^{2}_{2}\]</span> <span class="math display">\[\text{subject to:}\quad \hat{f}_{i} = f^{i}_{\text{des}},\quad i=1,\ldots,m\]</span></p>
+</section>
+<section id="proximal-version" class="level3">
+<h3 class="anchored" data-anchor-id="proximal-version">Proximal Version</h3>
+<p><span class="math inline">\(\mathbf{prox}_{\lambda l}(f_{\text{des}}) = argmin_{x} \left( l(x, f_{des}) + \frac{1}{2\lambda}||x-f_{\text{des}}||^{2}_{2} \right)\)</span></p>
+<p>So we have to set <span class="math inline">\(x_{i} = f^{i}_{\text{des}}\)</span>for each <span class="math inline">\(i\)</span> in order to avoid the loss of <span class="math inline">\(\infty\)</span> which we incur for any other choice.</p>
+<p>Thus, <span class="math inline">\(\mathbf{prox}_{\lambda l}(f_{\text{des}})_{i} = f^{i}_{\text{des}}\)</span> is the <span class="math inline">\(i\)</span>-th component of the minimizer <span class="math inline">\(x\)</span>.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of "marginals" we want to match.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Expected values of these functions under the induced distribution.</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># There is one for each marginal that we want to match.</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.random.randn(m) </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># The desired or target values we want to match by applying weights</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  to f.</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>fdes <span class="op">=</span> np.random.randn(m)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The following demonstrates that the <span class="math inline">\(\hat{f}\)</span> obtained via Convex optimization is the same as the minimizer <span class="math inline">\(x\)</span> obtained using the Proximal route.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fhat <span class="op">=</span> cp.Variable(m)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cp.Problem(cp.Minimize(<span class="dv">1</span> <span class="op">/</span> lam <span class="op">*</span> cp.sum_squares(fhat <span class="op">-</span> f)),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>            [fhat <span class="op">==</span> fdes]).solve()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>equality <span class="op">=</span> rsw.EqualityLoss(fdes)   </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>np.testing.assert_allclose(fhat.value, equality.prox(f, lam))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="inequality-loss" class="level2">
+<h2 class="anchored" data-anchor-id="inequality-loss">Inequality Loss</h2>
+<p>Constrain <span class="math inline">\(x\)</span> to a range around <span class="math inline">\(f_{\text{des}}\)</span> so let <span class="math inline">\(l(x, f_{des}) = 0\)</span> for <span class="math inline">\(x \in [f_{des}+\text{lower}, f_{des}+\text{upper}]\)</span> and <span class="math inline">\(+\infty\)</span> otherwise. Here the lower and upper refer to some acceptable range around each entry in <span class="math inline">\(f_{des}.\)</span></p>
+<section id="convex-optimization-version-1" class="level3">
+<h3 class="anchored" data-anchor-id="convex-optimization-version-1">Convex Optimization Version</h3>
+<p><span class="math display">\[\min \frac{1}{\lambda}||\hat{f}-f||^{2}_{2}\]</span> <span class="math display">\[\text{subject to:}\quad f^{i}_{\text{des}} + \text{lower}^{i} \leq \hat{f}_{i} \leq f^{i}_{\text{des}} + \text{upper}^{i},\quad i=1,\ldots,m\]</span></p>
+<p>So ideally we want to set each <span class="math inline">\(\hat{f}_{i}\)</span> to <span class="math inline">\(f_{i}\)</span> to minimize the objective function. But what if <span class="math inline">\(f_{i} &gt; f^{i}_{\text{des}} + \text{upper}^{i}\)</span>? In this case, accepting such an <span class="math inline">\(\hat{f}_{i}\)</span> leads to infeasibility and to avoid this we will clip <span class="math inline">\(\hat{f}_{i}\)</span> to <span class="math inline">\(f^{i}_{\text{des}} + \text{upper}^{i}\)</span>. We cannot clip any lower because then we would be incurring additional loss (over and above that resulting from setting to <span class="math inline">\(f^{i}_{\text{des}} + \text{upper}^{i}\)</span>) in the objective function unnecessarily.</p>
+<p>Similary, we clip <span class="math inline">\(\hat{f}_{i}\)</span> to <span class="math inline">\(f^{i}_{\text{des}} + \text{lower}^{i}\)</span> if we find that <span class="math inline">\(f_{i} &lt; f^{i}_{\text{des}} + \text{lower}^{i}\)</span>.</p>
+</section>
+<section id="proximal-version-1" class="level3">
+<h3 class="anchored" data-anchor-id="proximal-version-1">Proximal Version</h3>
+<p><span class="math inline">\(\mathbf{prox}_{\lambda l}(f_{\text{des}}) = argmin_{x} \left( l(x, f_{des}) + \frac{1}{2\lambda}||x-f_{\text{des}}||^{2}_{2} \right)\)</span></p>
+<p>Thus, <span class="math inline">\(\mathbf{prox}_{\lambda l}(f_{\text{des}})_{i} = \begin{cases} f^{i}_{\text{des}} + \text{lower}^{i}, \text{if } f_{i} \leq f^{i}_{\text{des}} + \text{lower}^{i}\\ f^{i}_{\text{des}} + \text{upper}^{i}, \text{if } f_{i} \geq f^{i}_{\text{des}} + \text{upper}^{i}\\ f_{i}, \text{ otherwise}\end{cases}\)</span></p>
+<p>So we see that the Proximal version when passed the input (vector) <span class="math inline">\(f\)</span> and the Convex optimization version will both end up with the same minimizer.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>lower <span class="op">=</span> np.array([<span class="op">-</span><span class="fl">.3</span>])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>upper <span class="op">=</span> np.array([<span class="fl">.3</span>])</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fhat <span class="op">=</span> cp.Variable(m)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>cp.Problem(cp.Minimize(<span class="dv">1</span> <span class="op">/</span> lam <span class="op">*</span> cp.sum_squares(fhat <span class="op">-</span> f)),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            [lower <span class="op">&lt;=</span> fhat <span class="op">-</span> fdes, fhat <span class="op">-</span> fdes <span class="op">&lt;=</span> upper]).solve()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>inequality <span class="op">=</span> rsw.InequalityLoss(fdes, lower, upper)           </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>np.testing.assert_allclose(fhat.value, inequality.prox(f, lam))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="boolean-loss" class="level2">
+<h2 class="anchored" data-anchor-id="boolean-loss">Boolean Loss</h2>
+<p><span class="math inline">\(l(x) = \begin{cases}0 \quad x \in \{0, 1/k\}^{n} \\ \infty \quad \text{Otherwise}\end{cases}\)</span></p>
+<p>We want <span class="math inline">\(x_{i} = 1/k\)</span> for <span class="math inline">\(k &lt; n\)</span> samples (and <span class="math inline">\(0\)</span> for the others). Choosing any other value results an infinite loss (think infeasibility).</p>
+<p><span class="math display">\[\mathbf{prox}_{\lambda l}(f_{\text{des}}) = argmin_{x}( l(x) + \frac{1}{2\lambda}||x - f_{des}||^{2}_{2} )\]</span></p>
+<p>The proximal operator of <span class="math inline">\(l\)</span> is the projection of <span class="math inline">\(f_{des}\)</span> onto the (nonconvex) set <span class="math inline">\(\{x \in \{0, 1/k\}^{n} | \mathbf{1}^{T}x=1\}\)</span>. If each component of <span class="math inline">\(x\)</span> is either <span class="math inline">\(0\)</span> or <span class="math inline">\(1/k\)</span> then the constraint <span class="math inline">\(\mathbf{1}^{T}x=1\)</span> means that exactly <span class="math inline">\(k\)</span> of them are set to <span class="math inline">\(1/k\)</span> and the remaining are set to <span class="math inline">\(0\)</span> (as was desired).</p>
+<p>The solution here is to set the largest <span class="math inline">\(k\)</span> entries of <span class="math inline">\(f_{des}\)</span> to <span class="math inline">\(1/k\)</span> and the remaining to <span class="math inline">\(0\)</span>.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>boolean <span class="op">=</span> rsw.BooleanRegularizer(<span class="dv">3</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>np.testing.assert_allclose(np.array([<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>]), boolean.prox(np.array([<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>]), lam))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="weighted-least-squares-loss" class="level2">
+<h2 class="anchored" data-anchor-id="weighted-least-squares-loss">(Weighted) Least Squares Loss</h2>
+<p><span class="math display">\[\min \frac{1}{2}\sum_{i=1}^{m}d^{2}_{i}(\hat{f}_{i} - f^{i}_{des})^2 + \frac{1}{2\lambda}||\hat{f} - f_{des}||^{2}_{2}\]</span></p>
+<p>Taking the derivative with respect to <span class="math inline">\(\hat{f}_{i}\)</span> and setting equal to zero we get:</p>
+<p><span class="math display">\[d^{2}_{i}(\hat{f}_{i} - f^{i}_{des}) + \frac{1}{\lambda}(\hat{f}_{i} - f^{i}_{des}) = 0\]</span></p>
+<p><span class="math display">\[\hat{f}_{i}( d^{2}_{i} + \frac{1}{\lambda} ) = \frac{f^{i}_{des}}{\lambda} + d^{2}_{i}f^{i}_{des}\]</span></p>
+<p>Finally we get that <span class="math inline">\(\hat{f}_{i} = \frac{ d^{2}_{i}f^{i}_{des} + \frac{f^{i}_{des}}{\lambda} }{ ( d^{2}_{i} + \frac{1}{\lambda} ) }\)</span></p>
+<p>The <span class="math inline">\(d\)</span>’s are called the diagonals in the code and are used to weight each sample (row) in the data. Imagine a matrix with zeros everywhere but for the diagonal entries.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span>m)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fhat <span class="op">=</span> cp.Variable(m)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>cp.Problem(cp.Minimize(<span class="dv">1</span> <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> cp.sum_squares(cp.multiply(d, fhat <span class="op">-</span> fdes)) <span class="op">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                        <span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> lam) <span class="op">*</span> cp.sum_squares(fhat <span class="op">-</span> f))).solve()</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>lstsq <span class="op">=</span> rsw.LeastSquaresLoss(fdes, d)                        </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>np.testing.assert_allclose(fhat.value, lstsq.prox(f, lam))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="entropy-loss" class="level2">
+<h2 class="anchored" data-anchor-id="entropy-loss">Entropy Loss</h2>
+<p><span class="math display">\[\min \sum_{i=1}^{m}\hat{f}_{i}\ln\hat{f}_{i} + \frac{1}{2\lambda}||\hat{f} - f||^{2}_{2}\]</span></p>
+<p>Taking the derivative with respect to <span class="math inline">\(\hat{f}_{i}\)</span> and setting equal to zero we get:</p>
+<p><span class="math display">\[1 + \ln\hat{f}_{i} + \frac{1}{\lambda}(\hat{f}_{i} - f_{i}) = 0\]</span></p>
+<p>Rearranging terms: <span class="math display">\[ \ln\hat{f}_{i} + \frac{\hat{f}_{i}}{\lambda} = \frac{f_{i}}{\lambda} - 1 \]</span></p>
+<p>Exponentiating both sides and then dividing both sides by <span class="math inline">\(\lambda\)</span>: <span class="math display">\[\frac{\hat{f}_{i}}{\lambda}e^{\frac{\hat{f}_{i}}{\lambda}} = \frac{1}{\lambda}e^{\frac{f_{i}}{\lambda} - 1 }\]</span></p>
+<p>Applying the Lambert W function on both sides: <span class="math display">\[W(\frac{\hat{f}_{i}}{\lambda}e^{\frac{\hat{f}_{i}}{\lambda}}) = W(\frac{1}{\lambda}e^{\frac{f_{i}}{\lambda} - 1 })\]</span></p>
+<p>Finally, <span class="math inline">\(\hat{f}_{i} = \lambda W(\frac{1}{\lambda}e^{\frac{f_{i}}{\lambda} - 1 })\)</span>.</p>
+<p>Just for fun, suppose that each instance of <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(f_{i}\)</span> in the above result were replaced by <span class="math inline">\(0.5\lambda\)</span> and <span class="math inline">\(f_{i} + 0.5\lambda \ln f^{i}_{des}\)</span> respectively then:</p>
+<p><span class="math inline">\(\hat{f}_{i} = 0.5\lambda W(\frac{1}{0.5\lambda}e^{\frac{f_{i} + 0.5\lambda \ln f^{i}_{des}}{0.5\lambda} - 1 }) = 0.5\lambda W(\frac{f^{i}_{des}}{0.5\lambda}e^{\frac{f_{i}}{0.5\lambda} - 1 })\)</span></p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span>m)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">/=</span> f.<span class="bu">sum</span>()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>fhat <span class="op">=</span> cp.Variable(m)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>cp.Problem(cp.Minimize(cp.<span class="bu">sum</span>(<span class="op">-</span>cp.entr(fhat)) <span class="op">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                        <span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> lam) <span class="op">*</span> cp.sum_squares(fhat <span class="op">-</span> f))).solve()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>np.testing.assert_allclose(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    fhat.value, rsw.losses._entropy_prox(f, lam), atol<span class="op">=</span><span class="fl">1e-5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="entropy-regularizer" class="level3">
+<h3 class="anchored" data-anchor-id="entropy-regularizer">Entropy Regularizer</h3>
+<p>Minimize <span class="math inline">\(r(w)\)</span> where</p>
+<p><span class="math display">\[r(w) = \begin{cases} \sum_{i=1}^{n} w_{i}\ln w_{i}, \quad (1/(\kappa n))\mathbf{1} \leq w \leq (\kappa/n )\mathbf{1} \\ \infty \quad \text{Otherwise}\end{cases}\]</span></p>
+<p>Here <span class="math inline">\(\kappa &gt; 1\)</span> is a hyper-parameter (also called <em>limit</em> in the code). Observe that there is a constraint on <span class="math inline">\(w\)</span> that says they must lie within <span class="math inline">\([1/(\kappa n), \kappa/n]\)</span> otherwise the loss is infinite (i.e., we have an infeasible solution). If we interpret <span class="math inline">\(w_i\)</span> as a weight then the constraint says that no item can be down-weighted by less than <span class="math inline">\(1/\kappa\)</span> or up-weighted by more than <span class="math inline">\(\kappa\)</span>.</p>
+<p>The final solution is <span class="math inline">\(\mathbf{prox}_{\lambda r}(w_{\text{des}})_{i} = \begin{cases} 1/(\kappa n), \text{if } \hat{w}_{i} \leq 1/(\kappa n)\\ \kappa/n, \text{if } \hat{w}_{i} \geq \kappa/n\\ \hat{w}_{i}, \text{ otherwise}\end{cases}\)</span> where <span class="math inline">\(\hat{w} = \lambda W(\frac{1}{\lambda}e^{\frac{w^{des}_{i}}{\lambda} - 1 })\)</span> from the Entropy Loss section (<span class="math inline">\(w^{des}\)</span> is some desired weight vector, provided as input, which we want <span class="math inline">\(\hat{w}\)</span> to be close to).</p>
+</section>
+</section>
+<section id="kl-loss" class="level2">
+<h2 class="anchored" data-anchor-id="kl-loss">KL Loss</h2>
+<p><span class="math display">\[\min \frac{1}{2}\left[ \sum_{i=1}^{m}\hat{f}_{i}\ln\hat{f}_{i} - \sum_{i=1}^{m}\hat{f}_{i}\ln f^{i}_{des}  \right] + \frac{1}{2\lambda}||\hat{f} - f||^{2}_{2}\]</span></p>
+<p>Taking the derivative with respect to <span class="math inline">\(\hat{f}_{i}\)</span> and setting equal to zero we get:</p>
+<p><span class="math display">\[\frac{1}{2}\left[ 1 + \ln\hat{f}_{i} - \ln f^{i}_{des} \right] + \frac{1}{\lambda}(\hat{f}_{i} - f_{i}) = 0\]</span></p>
+<p>Multiplying both sides by <span class="math inline">\(2\)</span> and then rearrange terms to obtain: <span class="math display">\[\ln\hat{f}_{i} + \frac{2\hat{f}_{i}}{\lambda} = \frac{2f_{i}}{\lambda} -1 + \ln f^{i}_{des}\]</span></p>
+<p>Next, exponentiate both sides to get: <span class="math display">\[\hat{f}_{i}e^{\frac{\hat{f}_{i}}{0.5\lambda}} = f^{i}_{des}e^{\frac{f_{i}}{0.5\lambda} -1}\]</span></p>
+<p>Divide both sides by <span class="math inline">\(0.5\lambda\)</span> and then apply the Lambert W function to get:</p>
+<p><span class="math display">\[W(\frac{\hat{f}_{i}}{0.5\lambda}e^{\frac{\hat{f}_{i}}{0.5\lambda}}) = W(\frac{f^{i}_{des}}{0.5\lambda}e^{\frac{f_{i}}{0.5\lambda} -1})\]</span></p>
+<p>Thus, <span class="math inline">\(\hat{f}_{i} = 0.5\lambda W(\frac{f^{i}_{des}}{0.5\lambda}e^{\frac{f_{i}}{0.5\lambda} -1}).\)</span></p>
+<p>Hopefully, this reminds you of the last expression in the Entropy Loss section.</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span>m)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">/=</span> f.<span class="bu">sum</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>fdes <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span>m)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>fdes <span class="op">/=</span> fdes.<span class="bu">sum</span>()</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>kl <span class="op">=</span> rsw.KLLoss(fdes, scale<span class="op">=</span><span class="fl">.5</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>fhat <span class="op">=</span> cp.Variable(m, nonneg<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>cp.Problem(cp.Minimize(<span class="fl">.5</span> <span class="op">*</span> (cp.<span class="bu">sum</span>(<span class="op">-</span>cp.entr(fhat) <span class="op">-</span> cp.multiply(fhat, np.log(fdes)))) <span class="op">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                        <span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> lam) <span class="op">*</span> cp.sum_squares(fhat <span class="op">-</span> f))).solve()</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>np.testing.assert_allclose(fhat.value, kl.prox(f, lam), atol<span class="op">=</span><span class="fl">1e-5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>References</p>
+<p>{% bibliography –cited %}</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
