@@ -347,7 +347,7 @@
     "href": "posts/2022-05-24-lambert-w.html",
     "title": "Lambert W",
     "section": "",
-    "text": "From [1]:\nThe Lambert W Function is denoted \\(W(x)\\) and is the inverse of the function \\(f(x) = xe^{x}\\).\nThus, \\(W(x) = f^{-1}(x)\\).\nFor \\(f(x)\\) we have that: * The derivative \\(f'(x) = e^{x}(x+1)\\) * \\(f''(x) = 2e^{x} + xe^{x}\\) and \\(f''(-1) = 1\\) * \\(f(x)\\) is minimized at \\(x = -1\\) * Domain of \\(f(x)\\) is \\([-1,\\infty)\\) * Range of \\(f(x)\\) is \\([-\\frac{1}{e},\\infty)\\)\nThe last two bullet points mean that the domain and range of \\(W(x)\\) are \\([-\\frac{1}{e},\\infty)\\) and \\([-1,\\infty)\\) respectively.\nFor \\(W(x)\\) we also have that:"
+    "text": "From [1]:\nThe Lambert W Function is denoted \\(W(x)\\) and is the inverse of the function \\(f(x) = xe^{x}\\).\nThus, \\(W(x) = f^{-1}(x)\\).\nFor \\(f(x)\\) we have that:\nThe last two bullet points mean that the domain and range of \\(W(x)\\) are \\([-\\frac{1}{e},\\infty)\\) and \\([-1,\\infty)\\) respectively.\nFor \\(W(x)\\) we also have that:"
   },
   {
     "objectID": "posts/2022-05-24-lambert-w.html#solve-xx-2",
