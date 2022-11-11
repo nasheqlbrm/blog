@@ -781,35 +781,12 @@ Tip
 <span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> gr.outputs.Label(num_top_classes<span class="op">=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse-output</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>iface <span class="op">=</span> gr.Interface(fn<span class="op">=</span>gradio_predict,</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>                     inputs<span class="op">=</span>gr.inputs.Image(shape<span class="op">=</span>(<span class="dv">224</span>,<span class="dv">224</span>)),</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>                     outputs<span class="op">=</span>label)</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>iface.launch(share<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Running locally at: http://127.0.0.1:7860/
-This share link will expire in 24 hours. If you need a permanent link, visit: https://gradio.app/introducing-hosted (NEW!)
-Running on External URL: https://37325.gradio.app
-Interface loading below...</code></pre>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>iface <span class="op">=</span> gr.Interface(fn<span class="op">=</span>gradio_predict,</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>                     inputs<span class="op">=</span>gr.inputs.Image(shape<span class="op">=</span>(<span class="dv">224</span>,<span class="dv">224</span>)),</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>                     outputs<span class="op">=</span>label)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>iface.launch(share<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-display">
-
-        <iframe width="900" height="500" src="https://37325.gradio.app" frameborder="0" allowfullscreen=""></iframe>
-        
-</div>
-<div class="cell-output cell-output-display">
-<pre><code>(&lt;Flask 'gradio.networking'&gt;,
- 'http://127.0.0.1:7860/',
- 'https://37325.gradio.app')</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-
-</div>
-<div class="cell-output cell-output-display">
-
-</div>
-</div>
-<p>Click the <em>Show Output</em> button to view the UI element thrown up by Gradio. If my notebook is not running the interface will not be shown. In that case the following <strong>screenshot</strong> shows the finished product. Upload an image, click submit and that’s it. Pretty neat!</p>
+<p>The following <strong>screenshot</strong> shows the finished product. The UI allows one to upload an image, click submit and that’s it. Pretty neat!</p>
 <p><img src="../images/gradio_screenshot2.png" class="img-fluid"></p>
 
 
