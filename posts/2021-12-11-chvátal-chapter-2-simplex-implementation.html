@@ -126,7 +126,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -221,16 +220,6 @@ Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.6.0 in /usr/local/lib/py
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich <span class="im">import</span> <span class="bu">print</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>#hide ’’’ <span class="math display">\[\begin{eqnarray*}
-\max 5x_{1} + 4x_{2} + 3x_{3} \\
-\text{subject to } 2x_{1} + 3x_{2} + x_{3} &amp;\leq 5 \\
-4x_{1} + x_{2} + 2x_{3} &amp;\leq 11 \\
-3x_{1} + 4x_{2} + 2x_{3} &amp;\leq 8 \\
-x_{1},x_{2},x_{3} &amp;\geq 0
-\end{eqnarray*}\]</span> <span class="math display">\[\begin{eqnarray*}
-x_{n+i} &amp;=&amp; b_{i} - &amp;\sum_{j=1}^{n}a_{ij}x_{j}\quad (i=1,\ldots,m)\\
-z &amp;=&amp; &amp;\sum_{j=1}^{n}c_{j}x_{j}
-\end{eqnarray*}\]</span> ’’’</p>
 A basic implementation of the Simplex algorithm as described in Chapter 2 of {% cite chvatal1983linear %} for problems of the form
 <div>
 <p><img src="https://github.com/nasheqlbrm/blog/blob/main/images/chvatal_1dot7.png?raw=1" width="300"></p>
