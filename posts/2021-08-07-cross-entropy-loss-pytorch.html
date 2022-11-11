@@ -229,10 +229,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pretend the following are the activations of each class of a multiclass classification problem. So we have 6 examples and in each row we have the activation for each class the example could belong to.</p>
-<div class="cell" data-outputid="70ecb61b-5ef4-46dc-b5d4-199cf8dab277">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>activations <span class="op">=</span> torch.randn((<span class="dv">6</span>,<span class="dv">2</span>))<span class="op">*</span><span class="dv">2</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>activations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[-1.6453,  1.8893],
         [ 1.9800,  1.7681],
         [ 2.8183,  4.6643],
@@ -242,18 +242,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Suppose the correct class of each example is as follows</p>
-<div class="cell" data-outputid="f34b8ebf-65d3-41ce-d004-1c4a4728eb1e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>targets <span class="op">=</span> tensor([<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>])</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>targets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([0, 1, 0, 1, 1, 0])</code></pre>
 </div>
 </div>
 <p>Take the softmax of the activations</p>
-<div class="cell" data-outputid="2593ff2c-6fcf-4f9f-8dbf-3ce27c5bf559">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sm_acts <span class="op">=</span> torch.softmax(activations, dim<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sm_acts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[0.0283, 0.9717],
         [0.5528, 0.4472],
         [0.1363, 0.8637],
@@ -263,24 +263,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Extract the probabilities predicted for the correct class.</p>
-<div class="cell" data-outputid="5d097b18-2143-4717-d55b-28b41df63e3e">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> <span class="bu">range</span>(<span class="dv">6</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(idx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display">
 <pre><code>[0, 1, 2, 3, 4, 5]</code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="7753b705-c774-4029-881e-003243e129f9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p_correct_class <span class="op">=</span> sm_acts[idx, targets]</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>p_correct_class</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([0.0283, 0.4472, 0.1363, 0.5750, 0.2946, 0.0013])</code></pre>
 </div>
 </div>
 <p>Take the log of the softmax activations</p>
-<div class="cell" data-outputid="eb5ec039-699e-4721-ea3d-68ac4d1b5513">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>torch.log(sm_acts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[-3.5634e+00, -2.8753e-02],
         [-5.9281e-01, -8.0469e-01],
         [-1.9925e+00, -1.4659e-01],
@@ -290,9 +290,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Computing the softmax of the activations and then taking the log is equivalent to applying PyTorch’s log_softmax function directly to the original activations. We want to do the latter because it will faster and more accurate.</p>
-<div class="cell" data-outputid="fdca1330-0140-4792-d2f6-e988f618dfd8">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>torch.log_softmax(activations, dim<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display">
 <pre><code>tensor([[-3.5634e+00, -2.8753e-02],
         [-5.9281e-01, -8.0469e-01],
         [-1.9925e+00, -1.4659e-01],
@@ -302,23 +302,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Let’s compute the mean of cross entropy losses across the training examples:</p>
-<div class="cell" data-outputid="fc31f7df-bd46-474d-a9d6-85455306b5cd">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">1</span><span class="op">*</span>torch.log(p_correct_class), (<span class="op">-</span><span class="dv">1</span><span class="op">*</span>torch.log(p_correct_class)).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display">
 <pre><code>(tensor([3.5634, 0.8047, 1.9925, 0.5534, 1.2222, 6.6298]), tensor(2.4610))</code></pre>
 </div>
 </div>
 <p>We can just use Pytorch to compute this directly</p>
-<div class="cell" data-outputid="8ee54672-e1f3-4861-cbdf-0e7b3d4fd8ef">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>nn.CrossEntropyLoss(reduction<span class="op">=</span><span class="st">'none'</span>)(activations, targets), nn.CrossEntropyLoss()(activations, targets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display">
 <pre><code>(tensor([3.5634, 0.8047, 1.9925, 0.5534, 1.2222, 6.6298]), tensor(2.4610))</code></pre>
 </div>
 </div>
 <p>or by using:</p>
-<div class="cell" data-outputid="c88606a1-722f-4690-a75c-75a2ca2df204">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>F.cross_entropy(activations, targets, reduction<span class="op">=</span><span class="st">'none'</span>), F.cross_entropy(activations, targets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display">
 <pre><code>(tensor([3.5634, 0.8047, 1.9925, 0.5534, 1.2222, 6.6298]), tensor(2.4610))</code></pre>
 </div>
 </div>
@@ -351,7 +351,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \]</span></p>
 <p>Let’s compute the gradient of the cross-entropy loss with respect to the activation of the <span class="math inline">\(i\)</span>-the class:</p>
 <div>
-<p><img src="https://github.com/nasheqlbrm/blog/blob/master/images/ce_derivative.png?raw=1" width="500"></p>
+<p><img src="https://github.com/nasheqlbrm/blog/blob/main/images/ce_derivative.png?raw=1" width="500"></p>
 </div>
 <p>Per the <em>Sylvain says</em> section (page 203 Chapter 5) of {% cite fastbook2020 %}, ” <em>The gradient is proportional to the difference between the prediction and the target.</em>… <em>Because the gradient is linear we won’t see sudden jumps or exponential increases in gradients, which should lead to smoother training of models.</em>”</p>
 </section>
