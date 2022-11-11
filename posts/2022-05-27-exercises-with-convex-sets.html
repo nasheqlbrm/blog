@@ -21,6 +21,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -228,7 +247,7 @@ Let’s turn to 2d for inspiration.
 <h2 class="anchored" data-anchor-id="which-conditions-in-terms-of-the-ordinary-inequalities-on-matrix-coefficents-must-hold-true-for-the-elements-of-the-positive-semidefinite-cone-mathbfsn_-for-n123">Which conditions, in terms of the ordinary inequalities on matrix coefficents, must hold true for the elements of the positive semidefinite cone <span class="math inline">\(\mathbf{S}^{n}_+\)</span> for <span class="math inline">\(n=1,2,3\)</span>:</h2>
 <p>Recall that: 1. <span class="math inline">\(X \in \mathbf{S}^{n}_+ \Longleftrightarrow z^TXz \geq 0\)</span> for all <span class="math inline">\(z\)</span>.</p>
 <ol start="2" type="1">
-<li>A symmetric <span class="math inline">\(n x n\)</span> matrix is positive semidefinite if and only if all principal minors (determinants of symmetric submatrices) of the the matrix are nonnegative {% cite prussing1986principal %}. In contrast, for a symmetric <span class="math inline">\(n x n\)</span> matrix to be positive definite we only need all of the <em>leading</em> principal minors (upper left determinants) to be positive (<em>Sylvester’s criterion</em>).</li>
+<li>A symmetric <span class="math inline">\(n x n\)</span> matrix is positive semidefinite if and only if all principal minors (determinants of symmetric submatrices) of the the matrix are nonnegative <span class="citation" data-cites="prussing1986principal">(<a href="#ref-prussing1986principal" role="doc-biblioref">Prussing 1986</a>)</span>. In contrast, for a symmetric <span class="math inline">\(n x n\)</span> matrix to be positive definite we only need all of the <em>leading</em> principal minors (upper left determinants) to be positive (<em>Sylvester’s criterion</em>).</li>
 </ol>
 <ul>
 <li><p><span class="math inline">\(n=1,\quad [x_1]\)</span>: Thus we must have <span class="math inline">\(z^2x \geq 0\)</span> for all <span class="math inline">\(z\)</span>. Since <span class="math inline">\(z^2 \geq 0\)</span> we must have <span class="math inline">\(x_1 \geq 0\)</span>.</p></li>
@@ -285,15 +304,16 @@ x_3 &amp; x_5 &amp; x_6
 <li>The leading principal minors are the upper left determinants of the matrix.</li>
 </ul></li>
 </ul>
-</section>
-<section id="references" class="level1">
-<h1>References</h1>
-<p>{% bibliography –cited %}</p>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-prussing1986principal" class="csl-entry" role="doc-biblioentry">
+Prussing, John E. 1986. <span>“The Principal Minor Test for Semidefinite Matrices.”</span> <em>Journal of Guidance, Control, and Dynamics</em> 9 (1): 121–22.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
