@@ -204,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<div class="cell" data-outputid="c242e9f0-ce05-4381-c3fc-65c4057da92d" data-execution_count="1">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#collapse-output</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install rich</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -215,7 +215,7 @@ Requirement already satisfied: colorama&lt;0.5.0,&gt;=0.4.0 in /usr/local/lib/py
 Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.6.0 in /usr/local/lib/python3.7/dist-packages (from rich) (2.6.1)</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -233,7 +233,7 @@ z &amp;=&amp; &amp;\sum_{j=1}^{n}c_{j}x_{j}
 \end{eqnarray*}\]</span> ’’’</p>
 A basic implementation of the Simplex algorithm as described in Chapter 2 of {% cite chvatal1983linear %} for problems of the form
 <div>
-<p><img src="https://github.com/nasheqlbrm/blog/blob/master/images/chvatal_1dot7.png?raw=1" width="300"></p>
+<p><img src="https://github.com/nasheqlbrm/blog/blob/main/images/chvatal_1dot7.png?raw=1" width="300"></p>
 </div>
 Roughly speaking the implementation involves iterating through a sequence of <em>dictionaries</em> until an optimal solution is uncovered. A dictionary is a system of linear equations associated with a feasible solution such as:
 <div>
@@ -241,10 +241,10 @@ Roughly speaking the implementation involves iterating through a sequence of <em
 </div>
 We will then use the implementation to solve
 <div>
-<p><img src="https://github.com/nasheqlbrm/blog/blob/master/images/chvatal_chapter2_example1.png?raw=1" width="300"></p>
+<p><img src="https://github.com/nasheqlbrm/blog/blob/main/images/chvatal_chapter2_example1.png?raw=1" width="300"></p>
 </div>
 <p>The data corresponding to this problem and other problem instances can be obtained from the methods in the collapsed code cell below.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_problem_1():</span>
@@ -351,12 +351,12 @@ We will then use the implementation to solve
 <span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> c, A, b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="4">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>c, A, b <span class="op">=</span> get_problem_1()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="constants." class="level2">
 <h2 class="anchored" data-anchor-id="constants.">Constants.</h2>
-<div class="cell" data-execution_count="5">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> A.shape[<span class="dv">0</span>] <span class="co"># number of constraints</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> A.shape[<span class="dv">1</span>] <span class="co"># number of decision variables</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -372,7 +372,7 @@ We will then use the implementation to solve
 <section id="identify-the-variable-to-enter-the-basis" class="level2">
 <h2 class="anchored" data-anchor-id="identify-the-variable-to-enter-the-basis">Identify the variable to enter the basis</h2>
 <p>Strictly speaking the method identifies the column corresponding to the variable that is going to be entering the basis.</p>
-<div class="cell" data-execution_count="6">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_entering_column(chvatal_dict):</span>
@@ -397,7 +397,7 @@ We will then use the implementation to solve
 <section id="identify-the-variable-to-leave-the-basis" class="level2">
 <h2 class="anchored" data-anchor-id="identify-the-variable-to-leave-the-basis">Identify the variable to leave the basis</h2>
 <p>The method identifies the row corresponding to the variable that is going to be leaving the basis.</p>
-<div class="cell" data-execution_count="7">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_leaving_row(chvatal_dict, entering_column):</span>
@@ -441,7 +441,7 @@ We will then use the implementation to solve
 </section>
 <section id="construct-the-system-for-the-next-iteration" class="level2">
 <h2 class="anchored" data-anchor-id="construct-the-system-for-the-next-iteration">Construct the system for the next iteration</h2>
-<div class="cell" data-execution_count="8">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_pivot_row(chvatal_dict, leaving_row, entering_column):</span>
@@ -506,7 +506,7 @@ We will then use the implementation to solve
 </section>
 <section id="helper-functions" class="level2">
 <h2 class="anchored" data-anchor-id="helper-functions">Helper functions</h2>
-<div class="cell" data-execution_count="9">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_row_variable_names(row_lookup):</span>
@@ -545,7 +545,7 @@ We will then use the implementation to solve
 </section>
 <section id="the-implementation" class="level2">
 <h2 class="anchored" data-anchor-id="the-implementation">The implementation</h2>
-<div class="cell" data-outputid="73441516-40f8-4eaf-e03b-33ae1ed3bd41" data-execution_count="10">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>next_iteration <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># iteration counter</span></span>
