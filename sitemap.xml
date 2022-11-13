@@ -1,75 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://nasheqlbrm.github.io/blog/posts/2021-11-13-backward-pass.html</loc>
+    <lastmod>2022-11-13T18:11:37.234Z</lastmod>
+  </url>
+  <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2021-08-14-collaborative-filtering-on-movie-lens-with-cross-entropy-loss.html</loc>
-    <lastmod>2022-11-13T17:23:16.267Z</lastmod>
+    <lastmod>2022-11-13T18:11:38.226Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2021-12-08-chvatal-chapter-1-problem-5.html</loc>
-    <lastmod>2022-11-13T17:23:17.135Z</lastmod>
+    <lastmod>2022-11-13T18:11:39.200Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2021-10-23-fastai-reproducibility-note.html</loc>
-    <lastmod>2022-11-13T17:23:17.984Z</lastmod>
+    <lastmod>2022-11-13T18:11:40.032Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2021-12-11-chvatal-chapter-2-simplex-implementation.html</loc>
-    <lastmod>2022-11-13T17:23:18.864Z</lastmod>
+    <lastmod>2022-11-13T18:11:40.864Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2021-08-12-multi-label-classification.html</loc>
-    <lastmod>2022-11-13T17:23:19.869Z</lastmod>
+    <lastmod>2022-11-13T18:11:41.837Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2021-08-07-cross-entropy-loss-pytorch.html</loc>
-    <lastmod>2022-11-13T17:23:20.662Z</lastmod>
+    <lastmod>2022-11-13T18:11:42.592Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2022-05-27-exercises-with-convex-sets.html</loc>
-    <lastmod>2022-11-13T17:23:21.546Z</lastmod>
+    <lastmod>2022-11-13T18:11:43.439Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2022-05-26-losses.html</loc>
-    <lastmod>2022-11-13T17:23:22.036Z</lastmod>
+    <lastmod>2022-11-13T18:11:43.903Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2022-03-11-mcelreath-chapter-2.html</loc>
-    <lastmod>2022-11-13T17:23:22.922Z</lastmod>
+    <lastmod>2022-11-13T18:11:44.859Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2021-07-31-bear-classification-and-gradio.html</loc>
-    <lastmod>2022-11-13T17:23:23.915Z</lastmod>
+    <lastmod>2022-11-13T18:11:45.747Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2022-05-24-lambert-w.html</loc>
-    <lastmod>2022-11-13T17:23:24.632Z</lastmod>
+    <lastmod>2022-11-13T18:11:46.509Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2021-08-27-quadratic-curve-fit-with-gradient-descent.html</loc>
-    <lastmod>2022-11-13T17:23:25.550Z</lastmod>
+    <lastmod>2022-11-13T18:11:47.290Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2021-10-25-image-embeddings.html</loc>
-    <lastmod>2022-11-13T17:23:26.382Z</lastmod>
+    <lastmod>2022-11-13T18:11:48.131Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2022-03-19-mcelreath-chapter-3.html</loc>
-    <lastmod>2022-11-13T17:23:27.434Z</lastmod>
+    <lastmod>2022-11-13T18:11:49.086Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2022-04-10-mcelreath-chapter-4.html</loc>
-    <lastmod>2022-11-13T17:23:28.686Z</lastmod>
+    <lastmod>2022-11-13T18:11:50.228Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/posts/2021-08-06-mnist-threes-and-sevens.html</loc>
-    <lastmod>2022-11-13T17:23:29.718Z</lastmod>
+    <lastmod>2022-11-13T18:11:51.117Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/index.html</loc>
-    <lastmod>2022-11-13T17:23:30.472Z</lastmod>
+    <lastmod>2022-11-13T18:11:51.788Z</lastmod>
   </url>
   <url>
     <loc>https://nasheqlbrm.github.io/blog/about.html</loc>
-    <lastmod>2022-11-13T17:23:30.825Z</lastmod>
+    <lastmod>2022-11-13T18:11:52.116Z</lastmod>
   </url>
 </urlset>
