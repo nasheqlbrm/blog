@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Test/KMeansFromScratch.html",
       "/posts/2022-05-27-exercises-with-convex-sets.html",
       "/posts/2022-05-26-losses.html",
       "/posts/2022-05-24-lambert-w.html",
