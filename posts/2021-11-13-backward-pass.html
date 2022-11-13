@@ -144,7 +144,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#notation" id="toc-notation" class="nav-link active" data-scroll-target="#notation">Notation</a></li>
   <li><a href="#derivatives" id="toc-derivatives" class="nav-link" data-scroll-target="#derivatives">Derivatives</a>
   <ul class="collapse">
-  <li><a href="#loss-with-respect-to-the-activations" id="toc-loss-with-respect-to-the-activations" class="nav-link" data-scroll-target="#loss-with-respect-to-the-activations">Loss with respect to the Activations</a></li>
+  <li><a href="#loss-with-respect-to-the-activations-ai" id="toc-loss-with-respect-to-the-activations-ai" class="nav-link" data-scroll-target="#loss-with-respect-to-the-activations-ai">Loss with respect to the Activations <span class="math inline">\(a^{(i)}\)</span></a></li>
+  <li><a href="#loss-with-respect-to-the-linear-output-zi" id="toc-loss-with-respect-to-the-linear-output-zi" class="nav-link" data-scroll-target="#loss-with-respect-to-the-linear-output-zi">Loss with respect to the Linear Output <span class="math inline">\(z^{(i)}\)</span></a></li>
+  <li><a href="#loss-with-respect-to-w_j" id="toc-loss-with-respect-to-w_j" class="nav-link" data-scroll-target="#loss-with-respect-to-w_j">Loss with respect to <span class="math inline">\(w_{j}\)</span></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -186,20 +188,26 @@ x^{(N)}_1 &amp; x^{(N)}_2 &amp; \cdots &amp; x^{(N)}_d
 \end{bmatrix}
 \]</span></li>
 <li><span class="math inline">\(\{y^{(i)}\}_{i=1}^{N}\)</span> are the targets for each of the <span class="math inline">\(N\)</span> training examples</li>
-<li><span class="math inline">\(z^{(i)} = \mathbf{w}^T\mathbf{x}^{(i)} + b\)</span> is the output of our single neuron when the <span class="math inline">\(i\)</span>-th training example is passed through it</li>
+<li><span class="math inline">\(z^{(i)}\)</span> is the output of our single neuron when the <span class="math inline">\(i\)</span>-th training example is passed through it
+<ul>
+<li><span class="math inline">\(z^{(i)} = \mathbf{w}^T\mathbf{x}^{(i)} + b = b + \sum_{j=1}^{d}w_{j}x^{(i)}_{j}\)</span></li>
+<li><span class="math inline">\(\frac{\partial z^{(i)}}{\partial w_{j}} = x^{(i)}_{j}\)</span></li>
+</ul></li>
 <li><span class="math inline">\(a^{(i)} = \phi(z^{(i)})\)</span> is the activation when an input <span class="math inline">\(z^{(i)}\)</span> is passed through an activation function <span class="math inline">\(\phi\)</span>
 <ul>
 <li><span class="math inline">\(\{a^{(i)}\}_{i=1}^{N}\)</span> are the activations for each of the <span class="math inline">\(N\)</span> training examples when passed through a single neuron followed by the application of the activation function</li>
+<li>For the purposes of this page the activation function is considered to be a ReLU then <span class="math inline">\(a^{(i)} = \phi(z^{(i)}) = \max\{0, z^{(i)}\}\)</span></li>
 </ul></li>
 <li><span class="math inline">\(J\left(\{y^{(i)}\}_{i=1}^{N},\{a^{(i)}\}_{i=1}^{N}\right) = \frac{1}{N}\sum_{i=1}^{N}(y^{(i)}-a^{(i)})^{2}\)</span> is the mean squared error across the <span class="math inline">\(N\)</span> training examples</li>
 </ul>
 </section>
 <section id="derivatives" class="level1">
 <h1>Derivatives</h1>
-<section id="loss-with-respect-to-the-activations" class="level2">
-<h2 class="anchored" data-anchor-id="loss-with-respect-to-the-activations">Loss with respect to the Activations</h2>
+<section id="loss-with-respect-to-the-activations-ai" class="level2">
+<h2 class="anchored" data-anchor-id="loss-with-respect-to-the-activations-ai">Loss with respect to the Activations <span class="math inline">\(a^{(i)}\)</span></h2>
 <p>So how does the loss change as the <span class="math inline">\(i\)</span>-th activation changes:</p>
-<p><span class="math display">\[\frac{\partial J}{\partial a^{(i)}} = \frac{2}{N}\sum_{i=1}^{N} \frac{\partial (y^{(i)}-a^{(i)})^{2}}{\partial a^{(i)}}  = \frac{2}{N}(y^{(i)}-a^{(i)})\frac{\partial (y^{(i)}-a^{(i)}) }{\partial a^{(i)}} = \frac{2}{N}(y^{(i)}-a^{(i)})(0-1) = \frac{2}{N}(y^{(i)}-a^{(i)})\frac{\partial (y^{(i)}-a^{(i)}) }{\partial a_i} = \frac{2}{N}(a^{(i)}-y^{(i)})\]</span></p>
+<p><span class="math display">\[\frac{\partial J}{\partial a^{(i)}} = \frac{2}{N}\sum_{i=1}^{N} \frac{\partial (y^{(i)}-a^{(i)})^{2}}{\partial a^{(i)}} = \frac{2}{N}(y^{(i)}-a^{(i)})\frac{\partial (y^{(i)}-a^{(i)}) }{\partial a^{(i)}} = \frac{2}{N}(a^{(i)}-y^{(i)})\]</span></p>
+<p>where the last step follows because <span class="math inline">\(\frac{\partial (y^{(i)}-a^{(i)}) }{\partial a^{(i)}} = 0-1 =-1\)</span>.</p>
 <p>The change in the loss as a function of the change in activations from our training examples is captured by the <span class="math inline">\(N \times 1\)</span> matrix:</p>
 <p><span class="math display">\[
 \frac{\partial J}{\partial \mathbf{a}} = \begin{bmatrix}
@@ -213,6 +221,70 @@ x^{(N)}_1 &amp; x^{(N)}_2 &amp; \cdots &amp; x^{(N)}_d
 \frac{2}{N}\left(a^{(2)}-y^{(2)}\right) \\
 \vdots \\
 \frac{2}{N}\left(a^{(N)}-y^{(N)}\right)
+\end{bmatrix}
+\]</span></p>
+</section>
+<section id="loss-with-respect-to-the-linear-output-zi" class="level2">
+<h2 class="anchored" data-anchor-id="loss-with-respect-to-the-linear-output-zi">Loss with respect to the Linear Output <span class="math inline">\(z^{(i)}\)</span></h2>
+<p>How does the loss change as the output of the linear unit changes?</p>
+<p><span class="math display">\[\frac{\partial J}{\partial z^{(i)}} = \frac{\partial J}{\partial a^{(i)}} \frac{\partial a^{(i)}}{\partial z^{(i)}} = \frac{2}{N}\left(a^{(i)}-y^{(i)}\right)\frac{\partial a^{(i)}}{\partial z^{(i)}}\]</span></p>
+<p>For the ReLU activation function we have that, <span class="math display">\[
+\frac{\partial a^{(i)}}{\partial z^{(i)}} =
+\begin{cases}
+  0 &amp; z^{(i)} \leq 0 \\
+  1 &amp; z^{(i)} \gt 0
+\end{cases}
+\]</span></p>
+<p>The change in the loss as a function of the change in the output from the linear unit on our training examples is given by the <span class="math inline">\(N \times 1\)</span> matrix:</p>
+<p><span class="math display">\[
+\frac{\partial J}{\partial \mathbf{z}} = \begin{bmatrix}
+\frac{\partial J}{\partial z^{(1)}} \\
+\frac{\partial J}{\partial z^{(2)}} \\
+\vdots \\
+\frac{\partial J}{\partial z^{(N)}}
+\end{bmatrix}
+= \begin{bmatrix}
+\frac{2}{N}\left(a^{(1)}-y^{(1)}\right)\frac{\partial a^{(1)}}{\partial z^{(1)}} \\
+\frac{2}{N}\left(a^{(2)}-y^{(2)}\right)\frac{\partial a^{(2)}}{\partial z^{(2)}} \\
+\vdots \\
+\frac{2}{N}\left(a^{(N)}-y^{(N)}\right)\frac{\partial a^{(N)}}{\partial z^{(N)}}
+\end{bmatrix}
+\]</span></p>
+</section>
+<section id="loss-with-respect-to-w_j" class="level2">
+<h2 class="anchored" data-anchor-id="loss-with-respect-to-w_j">Loss with respect to <span class="math inline">\(w_{j}\)</span></h2>
+<p><span class="math display">\[\frac{\partial J}{\partial w_{j}} = \frac{\partial J}{\partial \mathbf{z}} \frac{\partial \mathbf{z}}{\partial w_{j}}= \sum_{i=1}^{N}\frac{\partial J}{\partial z^{(i)}} \frac{\partial z^{(i)}}{\partial w_{j}} = \frac{\partial J}{\partial z^{(1)}}x^{(1)}_{j} + \frac{\partial J}{\partial z^{(2)}}x^{(2)}_{j} + \ldots + \frac{\partial J}{\partial z^{(N)}}x^{(N)}_{j}\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\frac{\partial J}{\partial \mathbf{w}} = \begin{bmatrix}
+\frac{\partial J}{\partial w_{1}} \\
+\frac{\partial J}{\partial w_{2}} \\
+\vdots \\
+\frac{\partial J}{\partial w_{d}}
+\end{bmatrix}
+= \begin{bmatrix}
+x^{(1)}_{1}\frac{\partial J}{\partial z^{(1)}} + x^{(2)}_{1}\frac{\partial J}{\partial z^{(2)}} + \ldots + x^{(N)}_{1}\frac{\partial J}{\partial z^{(N)}} \\
+x^{(1)}_{2}\frac{\partial J}{\partial z^{(1)}} + x^{(2)}_{2}\frac{\partial J}{\partial z^{(2)}} + \ldots + x^{(N)}_{2}\frac{\partial J}{\partial z^{(N)}} \\
+\vdots \\
+x^{(1)}_{d}\frac{\partial J}{\partial z^{(1)}} + x^{(2)}_{d}\frac{\partial J}{\partial z^{(2)}} + \ldots + x^{(N)}_{d}\frac{\partial J}{\partial z^{(N)}}
+\end{bmatrix}
+= \begin{bmatrix}
+x^{(1)}_1 &amp; x^{(2)}_1 &amp; \cdots &amp; x^{(N)}_1\\
+x^{(1)}_2 &amp; x^{(2)}_2 &amp; \cdots &amp; x^{(N)}_2\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+x^{(1)}_d &amp; x^{(2)}_d &amp; \cdots &amp; x^{(N)}_d
+\end{bmatrix}
+\begin{bmatrix}
+\frac{\partial J}{\partial z^{(1)}} \\
+\frac{\partial J}{\partial z^{(2)}} \\
+\vdots \\
+\frac{\partial J}{\partial z^{(N)}}
+\end{bmatrix}
+=\mathbf{X}^{T}\begin{bmatrix}
+\frac{\partial J}{\partial z^{(1)}} \\
+\frac{\partial J}{\partial z^{(2)}} \\
+\vdots \\
+\frac{\partial J}{\partial z^{(N)}}
 \end{bmatrix}
 \]</span></p>
 
