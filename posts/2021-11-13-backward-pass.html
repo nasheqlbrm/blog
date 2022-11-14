@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2022-11-13">
-<meta name="description" content="Deriving the math and implementing the forward and backward pass for a simple neural net.">
+<meta name="description" content="Deriving the math of the backward pass for a simple neural net.">
 
-<title>Kaushik Sinha - Simple Neural Net Forward and Backward Pass</title>
+<title>Kaushik Sinha - Simple Neural Net Backward Pass</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -188,10 +188,10 @@ div.csl-indent {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Simple Neural Net Forward and Backward Pass</h1>
+      <h1 class="title">Simple Neural Net Backward Pass</h1>
                   <div>
         <div class="description">
-          Deriving the math and implementing the forward and backward pass for a simple neural net.
+          Deriving the math of the backward pass for a simple neural net.
         </div>
       </div>
                           <div class="quarto-categories">
@@ -361,8 +361,11 @@ Note
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> backward(<span class="va">self</span>): </span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        dJ_dA <span class="op">=</span> <span class="va">self</span>.out.g</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        dA_dZ <span class="op">=</span> (<span class="va">self</span>.inp<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">float</span>() </span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        dJ_dZ <span class="op">=</span> dJ_dA <span class="op">*</span> dA_dZ</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.inp.g <span class="op">=</span> dJ_dZ</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Note this is an elementwise multiplication         </span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        dJ_dZ <span class="op">=</span> dJ_dA <span class="op">*</span> dA_dZ</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.inp.g <span class="op">=</span> dJ_dZ</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>How does the loss change as the output of the linear unit changes?</p>
 <p><span class="math display">\[\frac{\partial J}{\partial z^{(i)}} = \frac{\partial J}{\partial a^{(i)}} \frac{\partial a^{(i)}}{\partial z^{(i)}} = \frac{2}{N}\left(a^{(i)}-y^{(i)}\right)\frac{\partial a^{(i)}}{\partial z^{(i)}}\]</span></p>
@@ -468,7 +471,7 @@ x^{(1)}_d &amp; x^{(2)}_d &amp; \cdots &amp; x^{(N)}_d
 </section>
 <section id="gradient-of-loss-with-respect-to-xi_j" class="level3">
 <h3 class="anchored" data-anchor-id="gradient-of-loss-with-respect-to-xi_j">Gradient of loss with respect to <span class="math inline">\(x^{(i)}_{j}\)</span></h3>
-<p>While understanding how the loss will change as we twiddle the <span class="math inline">\(j\)</span>-th feature of the <span class="math inline">\(i\)</span>-th training example is not relevant for the purposes of this page we will still set it out for the sake of completeness.</p>
+<p>Let’s understand how the loss will change as we twiddle the <span class="math inline">\(j\)</span>-th feature of the <span class="math inline">\(i\)</span>-th training example.</p>
 <p><span class="math display">\[\frac{\partial J}{\partial x^{(i)}_{j}} = \frac{\partial J}{\partial \mathbf{z}} \frac{\partial \mathbf{z}}{\partial x^{(i)}_{j}}= \sum_{k=1}^{N}\frac{\partial J}{\partial z^{(k)}} \frac{\partial z^{(k)}}{\partial x^{(i)}_{j}} = \frac{\partial J}{\partial z^{(i)}}\frac{\partial z^{(i)}}{\partial x^{(i)}_{j}} + \sum_{k: k \neq i}^{N} \frac{\partial J}{\partial z^{(k)}}\frac{\partial z^{(k)}}{\partial x^{(i)}_{j}}\]</span></p>
 <p>Since <span class="math inline">\(\frac{\partial z^{(k)}}{\partial x^{(i)}_{j}} = 0\)</span> for any <span class="math inline">\(k \neq i\)</span> we get</p>
 <p><span class="math display">\[\frac{\partial J}{\partial x^{(i)}_{j}} = \frac{\partial J}{\partial z^{(i)}}w_{j}\]</span></p>
