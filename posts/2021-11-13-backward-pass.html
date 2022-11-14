@@ -227,11 +227,14 @@ div.csl-indent {
   <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
   <li><a href="#gradients" id="toc-gradients" class="nav-link" data-scroll-target="#gradients">Gradients</a>
   <ul class="collapse">
-  <li><a href="#loss-with-respect-to-the-activations-ai" id="toc-loss-with-respect-to-the-activations-ai" class="nav-link" data-scroll-target="#loss-with-respect-to-the-activations-ai">Loss with respect to the Activations <span class="math inline">\(a^{(i)}\)</span></a></li>
-  <li><a href="#loss-with-respect-to-the-linear-output-zi" id="toc-loss-with-respect-to-the-linear-output-zi" class="nav-link" data-scroll-target="#loss-with-respect-to-the-linear-output-zi">Loss with respect to the Linear Output <span class="math inline">\(z^{(i)}\)</span></a></li>
-  <li><a href="#loss-with-respect-to-w_j" id="toc-loss-with-respect-to-w_j" class="nav-link" data-scroll-target="#loss-with-respect-to-w_j">Loss with respect to <span class="math inline">\(w_{j}\)</span></a></li>
-  <li><a href="#loss-with-respect-to-the-bias-b" id="toc-loss-with-respect-to-the-bias-b" class="nav-link" data-scroll-target="#loss-with-respect-to-the-bias-b">Loss with respect to the bias <span class="math inline">\(b\)</span></a></li>
-  <li><a href="#loss-with-respect-to-xi_j" id="toc-loss-with-respect-to-xi_j" class="nav-link" data-scroll-target="#loss-with-respect-to-xi_j">Loss with respect to <span class="math inline">\(x^{(i)}_{j}\)</span></a></li>
+  <li><a href="#gradient-of-loss-with-respect-to-the-activations-ai" id="toc-gradient-of-loss-with-respect-to-the-activations-ai" class="nav-link" data-scroll-target="#gradient-of-loss-with-respect-to-the-activations-ai">Gradient of loss with respect to the Activations <span class="math inline">\(a^{(i)}\)</span></a></li>
+  <li><a href="#gradient-of-loss-with-respect-to-the-linear-output-zi" id="toc-gradient-of-loss-with-respect-to-the-linear-output-zi" class="nav-link" data-scroll-target="#gradient-of-loss-with-respect-to-the-linear-output-zi">Gradient of loss with respect to the Linear Output <span class="math inline">\(z^{(i)}\)</span></a></li>
+  <li><a href="#gradient-of-loss-with-respect-to-w_j-b-and-x" id="toc-gradient-of-loss-with-respect-to-w_j-b-and-x" class="nav-link" data-scroll-target="#gradient-of-loss-with-respect-to-w_j-b-and-x">Gradient of loss with respect to <span class="math inline">\(w_{j}, b\)</span> and <span class="math inline">\(X\)</span></a>
+  <ul class="collapse">
+  <li><a href="#gradient-of-loss-with-respect-to-w_j" id="toc-gradient-of-loss-with-respect-to-w_j" class="nav-link" data-scroll-target="#gradient-of-loss-with-respect-to-w_j">Gradient of loss with respect to <span class="math inline">\(w_{j}\)</span></a></li>
+  <li><a href="#gradient-of-loss-with-respect-to-the-bias-b" id="toc-gradient-of-loss-with-respect-to-the-bias-b" class="nav-link" data-scroll-target="#gradient-of-loss-with-respect-to-the-bias-b">Gradient of loss with respect to the bias <span class="math inline">\(b\)</span></a></li>
+  <li><a href="#gradient-of-loss-with-respect-to-xi_j" id="toc-gradient-of-loss-with-respect-to-xi_j" class="nav-link" data-scroll-target="#gradient-of-loss-with-respect-to-xi_j">Gradient of loss with respect to <span class="math inline">\(x^{(i)}_{j}\)</span></a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -308,8 +311,8 @@ Note
 <p>Reading through <span class="citation" data-cites="eriklearnedmiller_note">Learned-Miller (<a href="#ref-eriklearnedmiller_note" role="doc-biblioref">2007</a>)</span> (especially page 7) was very helpful for this section. Another useful reference is Terence Parr and Jeremy Howard’s <a href="https://explained.ai/matrix-calculus/">Matrix Calculus You Need For Deep Learning</a>.</p>
 </div>
 </div>
-<section id="loss-with-respect-to-the-activations-ai" class="level2">
-<h2 class="anchored" data-anchor-id="loss-with-respect-to-the-activations-ai">Loss with respect to the Activations <span class="math inline">\(a^{(i)}\)</span></h2>
+<section id="gradient-of-loss-with-respect-to-the-activations-ai" class="level2">
+<h2 class="anchored" data-anchor-id="gradient-of-loss-with-respect-to-the-activations-ai">Gradient of loss with respect to the Activations <span class="math inline">\(a^{(i)}\)</span></h2>
 <p><span class="math inline">\(J\left(\{y^{(i)}\}_{i=1}^{N},\{a^{(i)}\}_{i=1}^{N}\right) = \frac{1}{N}\sum_{i=1}^{N}(y^{(i)}-a^{(i)})^{2}\)</span> is the loss (mean squared error) across the <span class="math inline">\(N\)</span> training examples</p>
 <p>The <code>backward</code> function of the <code>Mse</code> class computes an estimate of how the loss function changes as the input activations change.</p>
 <div class="cell">
@@ -346,8 +349,21 @@ Note
 \]</span></p>
 <p>From the implementation perspective, the activations <span class="math inline">\(\{a^{(i)}\}_{i=1}^{N}\)</span> and the targets <span class="math inline">\(\{y^{(i)}\}_{i=1}^{N}\)</span> are passed in and stored during the forward pass (specifically in the dunder <code>__call__</code> method). In the backward pass these are retrieved and <span class="math inline">\(\frac{\partial J}{\partial \mathbf{a}}\)</span> is computed and stored for access by the <code>backward</code> function of the prior layer. Hopefully the <code>backward</code> method for the <code>Mse</code> class makes sense now.</p>
 </section>
-<section id="loss-with-respect-to-the-linear-output-zi" class="level2">
-<h2 class="anchored" data-anchor-id="loss-with-respect-to-the-linear-output-zi">Loss with respect to the Linear Output <span class="math inline">\(z^{(i)}\)</span></h2>
+<section id="gradient-of-loss-with-respect-to-the-linear-output-zi" class="level2">
+<h2 class="anchored" data-anchor-id="gradient-of-loss-with-respect-to-the-linear-output-zi">Gradient of loss with respect to the Linear Output <span class="math inline">\(z^{(i)}\)</span></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Relu():</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, inp):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.inp <span class="op">=</span> inp</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.out <span class="op">=</span> inp.clamp_min(<span class="fl">0.</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.out</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> backward(<span class="va">self</span>): </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        dJ_dA <span class="op">=</span> <span class="va">self</span>.out.g</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        dA_dZ <span class="op">=</span> (<span class="va">self</span>.inp<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">float</span>() </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        dJ_dZ <span class="op">=</span> dJ_dA <span class="op">*</span> dA_dZ</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.inp.g <span class="op">=</span> dJ_dZ</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>How does the loss change as the output of the linear unit changes?</p>
 <p><span class="math display">\[\frac{\partial J}{\partial z^{(i)}} = \frac{\partial J}{\partial a^{(i)}} \frac{\partial a^{(i)}}{\partial z^{(i)}} = \frac{2}{N}\left(a^{(i)}-y^{(i)}\right)\frac{\partial a^{(i)}}{\partial z^{(i)}}\]</span></p>
 <p>For the ReLU activation function we have that, <span class="math display">\[
@@ -382,23 +398,37 @@ Note
 \end{bmatrix}
 \]</span></p>
 <p>So <span class="math inline">\(\frac{\partial J}{\partial \mathbf{z}}\)</span> ends up being an elementwise product between the corresponding entries of <span class="math inline">\(\frac{\partial J}{\partial \mathbf{a}}\)</span> and <span class="math inline">\(\frac{\partial \mathbf{a}}{\partial \mathbf{z}}\)</span>.</p>
-<p>Next we explain the <code>backward</code> function in the <code>Relu</code> function in the cell below. From the implementation perspective, in the backward pass <span class="math inline">\(\frac{\partial \mathbf{a}}{\partial \mathbf{z}}\)</span> will be computed locally and multiplied elementwise with <span class="math inline">\(\frac{\partial J}{\partial \mathbf{a}}\)</span> (this will have been computed in the backward pass in the <code>Mse</code> class and will be available to access when the backward function of the <code>Relu</code> function is called).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Relu():</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, inp):</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.inp <span class="op">=</span> inp</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.out <span class="op">=</span> inp.clamp_min(<span class="fl">0.</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.out</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> backward(<span class="va">self</span>): </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        dJ_dA <span class="op">=</span> <span class="va">self</span>.out.g</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        dA_dZ <span class="op">=</span> (<span class="va">self</span>.inp<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">float</span>() </span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        dJ_dZ <span class="op">=</span> dJ_dA <span class="op">*</span> dA_dZ</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.inp.g <span class="op">=</span> dJ_dZ</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>From the implementation perspective, in the backward pass <span class="math inline">\(\frac{\partial \mathbf{a}}{\partial \mathbf{z}}\)</span> will be computed locally and multiplied elementwise with <span class="math inline">\(\frac{\partial J}{\partial \mathbf{a}}\)</span> (this will have been computed in the backward pass in the <code>Mse</code> class and will be available to access when the backward function of the <code>Relu</code> function is called).</p>
 </section>
-<section id="loss-with-respect-to-w_j" class="level2">
-<h2 class="anchored" data-anchor-id="loss-with-respect-to-w_j">Loss with respect to <span class="math inline">\(w_{j}\)</span></h2>
+<section id="gradient-of-loss-with-respect-to-w_j-b-and-x" class="level2">
+<h2 class="anchored" data-anchor-id="gradient-of-loss-with-respect-to-w_j-b-and-x">Gradient of loss with respect to <span class="math inline">\(w_{j}, b\)</span> and <span class="math inline">\(X\)</span></h2>
+<p>The next three subsections will explain the <code>backward</code> function of the <code>Lin</code> class.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Lin():</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, w, b): <span class="va">self</span>.w,<span class="va">self</span>.b <span class="op">=</span> w,b</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, inp):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.inp <span class="op">=</span> inp</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.out <span class="op">=</span> lin(inp, <span class="va">self</span>.w, <span class="va">self</span>.b)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.out</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> backward(<span class="va">self</span>):</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># See Gradient of loss with respect to w_j         </span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        dJ_dZ <span class="op">=</span> <span class="va">self</span>.out.g</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> <span class="va">self</span>.inp</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        dJ_dW <span class="op">=</span> X.t() <span class="op">@</span> dJ_dZ</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.w.g <span class="op">=</span> dJ_dW</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># See Gradient of loss with respect to the bias b</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        dJ_db <span class="op">=</span> dJ_dZ.<span class="bu">sum</span>(<span class="dv">0</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b.g <span class="op">=</span> dJ_db</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># See Gradient of loss with respect to X</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        dJ_dX <span class="op">=</span> dJ_dZ <span class="op">@</span> <span class="va">self</span>.w.t()</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.inp.g <span class="op">=</span> dJ_dX</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="gradient-of-loss-with-respect-to-w_j" class="level3">
+<h3 class="anchored" data-anchor-id="gradient-of-loss-with-respect-to-w_j">Gradient of loss with respect to <span class="math inline">\(w_{j}\)</span></h3>
 <p>How does the loss react when we wiggle <span class="math inline">\(w_{j}\)</span>? <span class="math display">\[\frac{\partial J}{\partial w_{j}} = \frac{\partial J}{\partial \mathbf{z}} \frac{\partial \mathbf{z}}{\partial w_{j}}= \sum_{i=1}^{N}\frac{\partial J}{\partial z^{(i)}} \frac{\partial z^{(i)}}{\partial w_{j}} = \frac{\partial J}{\partial z^{(1)}}x^{(1)}_{j} + \frac{\partial J}{\partial z^{(2)}}x^{(2)}_{j} + \ldots + \frac{\partial J}{\partial z^{(N)}}x^{(N)}_{j}\]</span></p>
 <p>Thus,</p>
 <p><span class="math display">\[
@@ -432,12 +462,12 @@ x^{(1)}_d &amp; x^{(2)}_d &amp; \cdots &amp; x^{(N)}_d
 =\mathbf{X}^{T}\frac{\partial J}{\partial \mathbf{z}}
 \]</span></p>
 </section>
-<section id="loss-with-respect-to-the-bias-b" class="level2">
-<h2 class="anchored" data-anchor-id="loss-with-respect-to-the-bias-b">Loss with respect to the bias <span class="math inline">\(b\)</span></h2>
+<section id="gradient-of-loss-with-respect-to-the-bias-b" class="level3">
+<h3 class="anchored" data-anchor-id="gradient-of-loss-with-respect-to-the-bias-b">Gradient of loss with respect to the bias <span class="math inline">\(b\)</span></h3>
 <p><span class="math display">\[\frac{\partial J}{\partial b} = \frac{\partial J}{\partial \mathbf{z}} \frac{\partial \mathbf{z}}{\partial b}= \sum_{i=1}^{N}\frac{\partial J}{\partial z^{(i)}} 1 = \frac{\partial J}{\partial z^{(1)}} + \frac{\partial J}{\partial z^{(2)}} + \ldots + \frac{\partial J}{\partial z^{(N)}}\]</span></p>
 </section>
-<section id="loss-with-respect-to-xi_j" class="level2">
-<h2 class="anchored" data-anchor-id="loss-with-respect-to-xi_j">Loss with respect to <span class="math inline">\(x^{(i)}_{j}\)</span></h2>
+<section id="gradient-of-loss-with-respect-to-xi_j" class="level3">
+<h3 class="anchored" data-anchor-id="gradient-of-loss-with-respect-to-xi_j">Gradient of loss with respect to <span class="math inline">\(x^{(i)}_{j}\)</span></h3>
 <p>While understanding how the loss will change as we twiddle the <span class="math inline">\(j\)</span>-th feature of the <span class="math inline">\(i\)</span>-th training example is not relevant for the purposes of this page we will still set it out for the sake of completeness.</p>
 <p><span class="math display">\[\frac{\partial J}{\partial x^{(i)}_{j}} = \frac{\partial J}{\partial \mathbf{z}} \frac{\partial \mathbf{z}}{\partial x^{(i)}_{j}}= \sum_{k=1}^{N}\frac{\partial J}{\partial z^{(k)}} \frac{\partial z^{(k)}}{\partial x^{(i)}_{j}} = \frac{\partial J}{\partial z^{(i)}}\frac{\partial z^{(i)}}{\partial x^{(i)}_{j}} + \sum_{k: k \neq i}^{N} \frac{\partial J}{\partial z^{(k)}}\frac{\partial z^{(k)}}{\partial x^{(i)}_{j}}\]</span></p>
 <p>Since <span class="math inline">\(\frac{\partial z^{(k)}}{\partial x^{(i)}_{j}} = 0\)</span> for any <span class="math inline">\(k \neq i\)</span> we get</p>
@@ -475,6 +505,7 @@ w_{1} &amp; w_{2} &amp; \cdots &amp; w_{d}
 
 
 
+</section>
 </section>
 </section>
 
