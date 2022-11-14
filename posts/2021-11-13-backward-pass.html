@@ -311,7 +311,7 @@ Note
 <section id="loss-with-respect-to-the-activations-ai" class="level2">
 <h2 class="anchored" data-anchor-id="loss-with-respect-to-the-activations-ai">Loss with respect to the Activations <span class="math inline">\(a^{(i)}\)</span></h2>
 <p><span class="math inline">\(J\left(\{y^{(i)}\}_{i=1}^{N},\{a^{(i)}\}_{i=1}^{N}\right) = \frac{1}{N}\sum_{i=1}^{N}(y^{(i)}-a^{(i)})^{2}\)</span> is the loss (mean squared error) across the <span class="math inline">\(N\)</span> training examples</p>
-<p>Let’s understand what is happening in the <code>backward</code> function of the <code>Mse</code> class.</p>
+<p>The <code>backward</code> function of the <code>Mse</code> class computes an estimate of how the loss function changes as the input activations change.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Mse():</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, inp, targ):</span>
@@ -344,7 +344,7 @@ Note
 \frac{2}{N}\left(a^{(N)}-y^{(N)}\right)
 \end{bmatrix}
 \]</span></p>
-<p>From the implementation perspective, the activations <span class="math inline">\(\{a^{(i)}\}_{i=1}^{N}\)</span> and the targets <span class="math inline">\(\{y^{(i)}\}_{i=1}^{N}\)</span> are passed in and stored during the forward pass (specifically in the dunder <code>__call__</code> method). In the backward pass these are retrieved and <span class="math inline">\(\frac{\partial J}{\partial \mathbf{a}}\)</span> is computed and stored for access by the <code>backward</code> function of prior layers. Hopefully the <code>backward</code> method for the <code>Mse</code> class makes sense.</p>
+<p>From the implementation perspective, the activations <span class="math inline">\(\{a^{(i)}\}_{i=1}^{N}\)</span> and the targets <span class="math inline">\(\{y^{(i)}\}_{i=1}^{N}\)</span> are passed in and stored during the forward pass (specifically in the dunder <code>__call__</code> method). In the backward pass these are retrieved and <span class="math inline">\(\frac{\partial J}{\partial \mathbf{a}}\)</span> is computed and stored for access by the <code>backward</code> function of the prior layer. Hopefully the <code>backward</code> method for the <code>Mse</code> class makes sense now.</p>
 </section>
 <section id="loss-with-respect-to-the-linear-output-zi" class="level2">
 <h2 class="anchored" data-anchor-id="loss-with-respect-to-the-linear-output-zi">Loss with respect to the Linear Output <span class="math inline">\(z^{(i)}\)</span></h2>
