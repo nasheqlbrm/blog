@@ -22,6 +22,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -143,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a></li>
   <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
-  <li><a href="#derivatives" id="toc-derivatives" class="nav-link" data-scroll-target="#derivatives">Derivatives</a>
+  <li><a href="#gradients" id="toc-gradients" class="nav-link" data-scroll-target="#gradients">Gradients</a>
   <ul class="collapse">
   <li><a href="#loss-with-respect-to-the-activations-ai" id="toc-loss-with-respect-to-the-activations-ai" class="nav-link" data-scroll-target="#loss-with-respect-to-the-activations-ai">Loss with respect to the Activations <span class="math inline">\(a^{(i)}\)</span></a></li>
   <li><a href="#loss-with-respect-to-the-linear-output-zi" id="toc-loss-with-respect-to-the-linear-output-zi" class="nav-link" data-scroll-target="#loss-with-respect-to-the-linear-output-zi">Loss with respect to the Linear Output <span class="math inline">\(z^{(i)}\)</span></a></li>
@@ -162,7 +181,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="motivation" class="level1">
 <h1>Motivation</h1>
-<p>In this post we attempt to connect the math to the code for what Jeremy Howard did in his backprop notebook for the <a href="https://www.fast.ai/posts/part2-2022.html">2022 part 2 course</a>.</p>
+<p>In this post we attempt to connect the math to the code for what Jeremy Howard did in his <code>03_backprop.ipynb</code> notebook for the <a href="https://www.fast.ai/posts/part2-2022.html">2022 part 2 course</a>.</p>
 </section>
 <section id="notation" class="level1">
 <h1>Notation</h1>
@@ -212,8 +231,21 @@ x^{(N)}_1 &amp; x^{(N)}_2 &amp; \cdots &amp; x^{(N)}_d
 <li><span class="math inline">\(J\left(\{y^{(i)}\}_{i=1}^{N},\{a^{(i)}\}_{i=1}^{N}\right) = \frac{1}{N}\sum_{i=1}^{N}(y^{(i)}-a^{(i)})^{2}\)</span> is the mean squared error across the <span class="math inline">\(N\)</span> training examples</li>
 </ul>
 </section>
-<section id="derivatives" class="level1">
-<h1>Derivatives</h1>
+<section id="gradients" class="level1">
+<h1>Gradients</h1>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Reading through <span class="citation" data-cites="eriklearnedmiller_note">Learned-Miller (<a href="#ref-eriklearnedmiller_note" role="doc-biblioref">2007</a>)</span> (especially page 7) was very helpful for this section. Another useful reference is Terence Parr and Jeremy Howard’s <a href="https://explained.ai/matrix-calculus/">Matrix Calculus You Need For Deep Learning</a>.</p>
+</div>
+</div>
 <section id="loss-with-respect-to-the-activations-ai" class="level2">
 <h2 class="anchored" data-anchor-id="loss-with-respect-to-the-activations-ai">Loss with respect to the Activations <span class="math inline">\(a^{(i)}\)</span></h2>
 <p>How does the loss change as the <span class="math inline">\(i\)</span>-th activation changes?</p>
@@ -246,7 +278,16 @@ x^{(N)}_1 &amp; x^{(N)}_2 &amp; \cdots &amp; x^{(N)}_d
   1 &amp; z^{(i)} \gt 0
 \end{cases}
 \]</span></p>
-<p>The change in the loss as a function of the change in the output from the linear unit on our training examples is given by the <span class="math inline">\(N \times 1\)</span> matrix:</p>
+<p>and hence</p>
+<p><span class="math display">\[\frac{\partial \mathbf{a}}{\partial \mathbf{z}} =
+\begin{bmatrix}
+\frac{\partial a^{(1)}}{\partial z^{(1)}} \\
+\frac{\partial a^{(2)}}{\partial z^{(2)}} \\
+\vdots \\
+\frac{\partial a^{(N)}}{\partial z^{(N)}}
+\end{bmatrix}
+\]</span></p>
+<p>Thus the change in the loss as a function of the change in the output from the linear unit on our training examples is given by the <span class="math inline">\(N \times 1\)</span> matrix:</p>
 <p><span class="math display">\[
 \frac{\partial J}{\partial \mathbf{z}} = \begin{bmatrix}
 \frac{\partial J}{\partial z^{(1)}} \\
@@ -255,12 +296,13 @@ x^{(N)}_1 &amp; x^{(N)}_2 &amp; \cdots &amp; x^{(N)}_d
 \frac{\partial J}{\partial z^{(N)}}
 \end{bmatrix}
 = \begin{bmatrix}
-\frac{2}{N}\left(a^{(1)}-y^{(1)}\right)\frac{\partial a^{(1)}}{\partial z^{(1)}} \\
-\frac{2}{N}\left(a^{(2)}-y^{(2)}\right)\frac{\partial a^{(2)}}{\partial z^{(2)}} \\
+\frac{\partial J}{\partial a^{(1)}}\frac{\partial a^{(1)}}{\partial z^{(1)}} \\
+\frac{\partial J}{\partial a^{(2)}}\frac{\partial a^{(2)}}{\partial z^{(2)}} \\
 \vdots \\
-\frac{2}{N}\left(a^{(N)}-y^{(N)}\right)\frac{\partial a^{(N)}}{\partial z^{(N)}}
+\frac{\partial J}{\partial a^{(N)}}\frac{\partial a^{(N)}}{\partial z^{(N)}}
 \end{bmatrix}
 \]</span></p>
+<p>So <span class="math inline">\(\frac{\partial J}{\partial \mathbf{z}}\)</span> ends up being an elementwise product between the corresponding entries of <span class="math inline">\(\frac{\partial J}{\partial \mathbf{a}}\)</span> and <span class="math inline">\(\frac{\partial \mathbf{a}}{\partial \mathbf{z}}\)</span></p>
 </section>
 <section id="loss-with-respect-to-w_j" class="level2">
 <h2 class="anchored" data-anchor-id="loss-with-respect-to-w_j">Loss with respect to <span class="math inline">\(w_{j}\)</span></h2>
@@ -339,10 +381,15 @@ w_{1} &amp; w_{2} &amp; \cdots &amp; w_{d}
 \]</span></p>
 
 
+
 </section>
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-eriklearnedmiller_note" class="csl-entry" role="doc-biblioentry">
+Learned-Miller, Erik. 2007. <span>“&lt;A Href="http://Cs231n.stanford.edu/vecDerivs.pdf"&gt;vector, Matrix and Tensor Derivatives&lt;/a&gt;.”</span> <em>Department of Computer Science,Stanford University</em>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
