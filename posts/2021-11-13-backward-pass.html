@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2022-11-13">
-<meta name="description" content="Implementing the forward and backward pass for a simple neural net.">
+<meta name="description" content="Deriving the math and implementing the forward and backward pass for a simple neural net.">
 
 <title>Kaushik Sinha - Backward Pass</title>
 <style>
@@ -109,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
       <h1 class="title">Backward Pass</h1>
                   <div>
         <div class="description">
-          Implementing the forward and backward pass for a simple neural net.
+          Deriving the math and implementing the forward and backward pass for a simple neural net.
         </div>
       </div>
                           <div class="quarto-categories">
@@ -141,12 +141,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notation" id="toc-notation" class="nav-link active" data-scroll-target="#notation">Notation</a></li>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation">Notation</a></li>
   <li><a href="#derivatives" id="toc-derivatives" class="nav-link" data-scroll-target="#derivatives">Derivatives</a>
   <ul class="collapse">
   <li><a href="#loss-with-respect-to-the-activations-ai" id="toc-loss-with-respect-to-the-activations-ai" class="nav-link" data-scroll-target="#loss-with-respect-to-the-activations-ai">Loss with respect to the Activations <span class="math inline">\(a^{(i)}\)</span></a></li>
   <li><a href="#loss-with-respect-to-the-linear-output-zi" id="toc-loss-with-respect-to-the-linear-output-zi" class="nav-link" data-scroll-target="#loss-with-respect-to-the-linear-output-zi">Loss with respect to the Linear Output <span class="math inline">\(z^{(i)}\)</span></a></li>
   <li><a href="#loss-with-respect-to-w_j" id="toc-loss-with-respect-to-w_j" class="nav-link" data-scroll-target="#loss-with-respect-to-w_j">Loss with respect to <span class="math inline">\(w_{j}\)</span></a></li>
+  <li><a href="#loss-with-respect-to-the-bias-b" id="toc-loss-with-respect-to-the-bias-b" class="nav-link" data-scroll-target="#loss-with-respect-to-the-bias-b">Loss with respect to the bias <span class="math inline">\(b\)</span></a></li>
+  <li><a href="#loss-with-respect-to-xi_j" id="toc-loss-with-respect-to-xi_j" class="nav-link" data-scroll-target="#loss-with-respect-to-xi_j">Loss with respect to <span class="math inline">\(x^{(i)}_{j}\)</span></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -157,12 +160,16 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="motivation" class="level1">
+<h1>Motivation</h1>
+<p>In this post we attempt to connect the math to the code for what Jeremy Howard did in his backprop notebook for the <a href="https://www.fast.ai/posts/part2-2022.html">2022 part 2 course</a>.</p>
+</section>
 <section id="notation" class="level1">
 <h1>Notation</h1>
 <ul>
 <li><span class="math inline">\(N\)</span> : number of training examples</li>
 <li><span class="math inline">\(d\)</span> : number of features</li>
-<li><span class="math inline">\(\mathbf{x}^{(i)}\)</span> is the <span class="math inline">\(i\)</span>-th training example <span class="math display">\[
+<li><span class="math inline">\(\mathbf{x}^{(i)}\)</span> is the <span class="math inline">\(i\)</span>-th training example and can be represented as a column vector <span class="math display">\[
 \mathbf{x}^{(i)} = \begin{bmatrix}
 x^{(i)}_1 \\
 x^{(i)}_2 \\
@@ -190,13 +197,17 @@ x^{(N)}_1 &amp; x^{(N)}_2 &amp; \cdots &amp; x^{(N)}_d
 <li><span class="math inline">\(\{y^{(i)}\}_{i=1}^{N}\)</span> are the targets for each of the <span class="math inline">\(N\)</span> training examples</li>
 <li><span class="math inline">\(z^{(i)}\)</span> is the output of our single neuron when the <span class="math inline">\(i\)</span>-th training example is passed through it
 <ul>
-<li><span class="math inline">\(z^{(i)} = \mathbf{w}^T\mathbf{x}^{(i)} + b = b + \sum_{j=1}^{d}w_{j}x^{(i)}_{j}\)</span></li>
+<li>Specifically, <span class="math inline">\(z^{(i)} = \mathbf{w}^T\mathbf{x}^{(i)} + b = b + \sum_{j=1}^{d}w_{j}x^{(i)}_{j} = b + w_{1}x^{(i)}_{1} + \ldots + w_{j}x^{(i)}_{j} + \ldots + w_{d}x^{(i)}_{d}\)</span>. Additionally we see that,
+<ul>
 <li><span class="math inline">\(\frac{\partial z^{(i)}}{\partial w_{j}} = x^{(i)}_{j}\)</span></li>
+<li><span class="math inline">\(\frac{\partial z^{(i)}}{\partial b} = 1\)</span></li>
+<li><span class="math inline">\(\frac{\partial z^{(i)}}{\partial x^{(i)}_{j}} = w_{j}\)</span></li>
+</ul></li>
 </ul></li>
 <li><span class="math inline">\(a^{(i)} = \phi(z^{(i)})\)</span> is the activation when an input <span class="math inline">\(z^{(i)}\)</span> is passed through an activation function <span class="math inline">\(\phi\)</span>
 <ul>
 <li><span class="math inline">\(\{a^{(i)}\}_{i=1}^{N}\)</span> are the activations for each of the <span class="math inline">\(N\)</span> training examples when passed through a single neuron followed by the application of the activation function</li>
-<li>For the purposes of this page the activation function is considered to be a ReLU then <span class="math inline">\(a^{(i)} = \phi(z^{(i)}) = \max\{0, z^{(i)}\}\)</span></li>
+<li>For the purposes of this page the activation function is considered to be a ReLU so <span class="math inline">\(a^{(i)} = \phi(z^{(i)}) = \max\{0, z^{(i)}\}\)</span></li>
 </ul></li>
 <li><span class="math inline">\(J\left(\{y^{(i)}\}_{i=1}^{N},\{a^{(i)}\}_{i=1}^{N}\right) = \frac{1}{N}\sum_{i=1}^{N}(y^{(i)}-a^{(i)})^{2}\)</span> is the mean squared error across the <span class="math inline">\(N\)</span> training examples</li>
 </ul>
@@ -205,7 +216,7 @@ x^{(N)}_1 &amp; x^{(N)}_2 &amp; \cdots &amp; x^{(N)}_d
 <h1>Derivatives</h1>
 <section id="loss-with-respect-to-the-activations-ai" class="level2">
 <h2 class="anchored" data-anchor-id="loss-with-respect-to-the-activations-ai">Loss with respect to the Activations <span class="math inline">\(a^{(i)}\)</span></h2>
-<p>So how does the loss change as the <span class="math inline">\(i\)</span>-th activation changes:</p>
+<p>How does the loss change as the <span class="math inline">\(i\)</span>-th activation changes?</p>
 <p><span class="math display">\[\frac{\partial J}{\partial a^{(i)}} = \frac{2}{N}\sum_{i=1}^{N} \frac{\partial (y^{(i)}-a^{(i)})^{2}}{\partial a^{(i)}} = \frac{2}{N}(y^{(i)}-a^{(i)})\frac{\partial (y^{(i)}-a^{(i)}) }{\partial a^{(i)}} = \frac{2}{N}(a^{(i)}-y^{(i)})\]</span></p>
 <p>where the last step follows because <span class="math inline">\(\frac{\partial (y^{(i)}-a^{(i)}) }{\partial a^{(i)}} = 0-1 =-1\)</span>.</p>
 <p>The change in the loss as a function of the change in activations from our training examples is captured by the <span class="math inline">\(N \times 1\)</span> matrix:</p>
@@ -253,7 +264,7 @@ x^{(N)}_1 &amp; x^{(N)}_2 &amp; \cdots &amp; x^{(N)}_d
 </section>
 <section id="loss-with-respect-to-w_j" class="level2">
 <h2 class="anchored" data-anchor-id="loss-with-respect-to-w_j">Loss with respect to <span class="math inline">\(w_{j}\)</span></h2>
-<p><span class="math display">\[\frac{\partial J}{\partial w_{j}} = \frac{\partial J}{\partial \mathbf{z}} \frac{\partial \mathbf{z}}{\partial w_{j}}= \sum_{i=1}^{N}\frac{\partial J}{\partial z^{(i)}} \frac{\partial z^{(i)}}{\partial w_{j}} = \frac{\partial J}{\partial z^{(1)}}x^{(1)}_{j} + \frac{\partial J}{\partial z^{(2)}}x^{(2)}_{j} + \ldots + \frac{\partial J}{\partial z^{(N)}}x^{(N)}_{j}\]</span></p>
+<p>How does the loss react when we wiggle <span class="math inline">\(w_{j}\)</span>? <span class="math display">\[\frac{\partial J}{\partial w_{j}} = \frac{\partial J}{\partial \mathbf{z}} \frac{\partial \mathbf{z}}{\partial w_{j}}= \sum_{i=1}^{N}\frac{\partial J}{\partial z^{(i)}} \frac{\partial z^{(i)}}{\partial w_{j}} = \frac{\partial J}{\partial z^{(1)}}x^{(1)}_{j} + \frac{\partial J}{\partial z^{(2)}}x^{(2)}_{j} + \ldots + \frac{\partial J}{\partial z^{(N)}}x^{(N)}_{j}\]</span></p>
 <p>Thus,</p>
 <p><span class="math display">\[
 \frac{\partial J}{\partial \mathbf{w}} = \begin{bmatrix}
@@ -268,7 +279,10 @@ x^{(1)}_{2}\frac{\partial J}{\partial z^{(1)}} + x^{(2)}_{2}\frac{\partial J}{\p
 \vdots \\
 x^{(1)}_{d}\frac{\partial J}{\partial z^{(1)}} + x^{(2)}_{d}\frac{\partial J}{\partial z^{(2)}} + \ldots + x^{(N)}_{d}\frac{\partial J}{\partial z^{(N)}}
 \end{bmatrix}
-= \begin{bmatrix}
+\]</span></p>
+<p>We can write this more compactly as:</p>
+<p><span class="math display">\[
+\frac{\partial J}{\partial \mathbf{w}} = \begin{bmatrix}
 x^{(1)}_1 &amp; x^{(2)}_1 &amp; \cdots &amp; x^{(N)}_1\\
 x^{(1)}_2 &amp; x^{(2)}_2 &amp; \cdots &amp; x^{(N)}_2\\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
@@ -280,12 +294,48 @@ x^{(1)}_d &amp; x^{(2)}_d &amp; \cdots &amp; x^{(N)}_d
 \vdots \\
 \frac{\partial J}{\partial z^{(N)}}
 \end{bmatrix}
-=\mathbf{X}^{T}\begin{bmatrix}
+=\mathbf{X}^{T}\frac{\partial J}{\partial \mathbf{z}}
+\]</span></p>
+</section>
+<section id="loss-with-respect-to-the-bias-b" class="level2">
+<h2 class="anchored" data-anchor-id="loss-with-respect-to-the-bias-b">Loss with respect to the bias <span class="math inline">\(b\)</span></h2>
+<p><span class="math display">\[\frac{\partial J}{\partial b} = \frac{\partial J}{\partial \mathbf{z}} \frac{\partial \mathbf{z}}{\partial b}= \sum_{i=1}^{N}\frac{\partial J}{\partial z^{(i)}} 1 = \frac{\partial J}{\partial z^{(1)}} + \frac{\partial J}{\partial z^{(2)}} + \ldots + \frac{\partial J}{\partial z^{(N)}}\]</span></p>
+</section>
+<section id="loss-with-respect-to-xi_j" class="level2">
+<h2 class="anchored" data-anchor-id="loss-with-respect-to-xi_j">Loss with respect to <span class="math inline">\(x^{(i)}_{j}\)</span></h2>
+<p>While understanding how the loss will change as we twiddle the <span class="math inline">\(j\)</span>-th feature of the <span class="math inline">\(i\)</span>-th training example is not relevant for the purposes of this page we will still set it out for the sake of completeness.</p>
+<p><span class="math display">\[\frac{\partial J}{\partial x^{(i)}_{j}} = \frac{\partial J}{\partial \mathbf{z}} \frac{\partial \mathbf{z}}{\partial x^{(i)}_{j}}= \sum_{k=1}^{N}\frac{\partial J}{\partial z^{(k)}} \frac{\partial z^{(k)}}{\partial x^{(i)}_{j}} = \frac{\partial J}{\partial z^{(i)}}\frac{\partial z^{(i)}}{\partial x^{(i)}_{j}} + \sum_{k: k \neq i}^{N} \frac{\partial J}{\partial z^{(k)}}\frac{\partial z^{(k)}}{\partial x^{(i)}_{j}}\]</span></p>
+<p>Since <span class="math inline">\(\frac{\partial z^{(k)}}{\partial x^{(i)}_{j}} = 0\)</span> for any <span class="math inline">\(k \neq i\)</span> we get</p>
+<p><span class="math display">\[\frac{\partial J}{\partial x^{(i)}_{j}} = \frac{\partial J}{\partial z^{(i)}}w_{j}\]</span></p>
+<p>Thus the <span class="math inline">\(N \times d\)</span> matrix of these gradients are,</p>
+<p><span class="math display">\[
+\frac{\partial J}{\partial \mathbf{X}} =
+\begin{bmatrix}
+\frac{\partial J}{\partial x^{(1)}_{1}} &amp; \frac{\partial J}{\partial x^{(1)}_{2}} &amp; \cdots &amp; \frac{\partial J}{\partial x^{(1)}_{d}} \\
+\frac{\partial J}{\partial x^{(2)}_{1}} &amp; \frac{\partial J}{\partial x^{(2)}_{2}} &amp; \cdots &amp; \frac{\partial J}{\partial x^{(2)}_{d}} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial J}{\partial x^{(N)}_{1}} &amp; \frac{\partial J}{\partial x^{(N)}_{2}} &amp; \cdots &amp; \frac{\partial J}{\partial x^{(N)}_{d}}
+\end{bmatrix}=
+\begin{bmatrix}
+\frac{\partial J}{\partial z^{(1)}}w_{1} &amp; \frac{\partial J}{\partial z^{(1)}}w_{2} &amp; \cdots &amp; \frac{\partial J}{\partial z^{(1)}}w_{d} \\
+\frac{\partial J}{\partial z^{(2)}}w_{1} &amp; \frac{\partial J}{\partial z^{(2)}}w_{2} &amp; \cdots &amp; \frac{\partial J}{\partial z^{(2)}}w_{d} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial J}{\partial z^{(N)}}w_{1} &amp; \frac{\partial J}{\partial z^{(N)}}w_{2} &amp; \cdots &amp; \frac{\partial J}{\partial z^{(N)}}w_{d}
+\end{bmatrix}
+\]</span></p>
+<p>More compactly this can be represented as an outer product,</p>
+<p><span class="math display">\[
+\frac{\partial J}{\partial \mathbf{X}} =
+\begin{bmatrix}
 \frac{\partial J}{\partial z^{(1)}} \\
 \frac{\partial J}{\partial z^{(2)}} \\
 \vdots \\
 \frac{\partial J}{\partial z^{(N)}}
 \end{bmatrix}
+\begin{bmatrix}
+w_{1} &amp; w_{2} &amp; \cdots &amp; w_{d}
+\end{bmatrix}
+=\frac{\partial J}{\partial \mathbf{z}}\mathbf{w}^{T}
 \]</span></p>
 
 
