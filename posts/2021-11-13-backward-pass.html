@@ -292,7 +292,13 @@ x^{(N)}_1 &amp; x^{(N)}_2 &amp; \cdots &amp; x^{(N)}_d
 <li><span class="math inline">\(a^{(i)} = \phi(z^{(i)})\)</span> is the activation when an input <span class="math inline">\(z^{(i)}\)</span> is passed through an activation function <span class="math inline">\(\phi\)</span>
 <ul>
 <li><span class="math inline">\(\{a^{(i)}\}_{i=1}^{N}\)</span> are the activations for each of the <span class="math inline">\(N\)</span> training examples when passed through a single neuron followed by the application of the activation function</li>
-<li>For the purposes of this page the activation function is considered to be a ReLU so <span class="math inline">\(a^{(i)} = \phi(z^{(i)}) = \max\{0, z^{(i)}\}\)</span></li>
+<li>For the purposes of this page the activation function is considered to be a ReLU so <span class="math display">\[
+a^{(i)} = \phi(z^{(i)}) = \max\{0, z^{(i)}\} =
+\begin{cases}
+z^{(i)} &amp; z^{(i)} \gt 0 \\
+0 &amp; z^{(i)} \leq 0
+\end{cases}
+\]</span></li>
 </ul></li>
 </ul>
 </section>
