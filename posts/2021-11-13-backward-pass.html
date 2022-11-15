@@ -468,8 +468,8 @@ x^{(1)}_d &amp; x^{(2)}_d &amp; \cdots &amp; x^{(N)}_d
 </section>
 <section id="gradient-of-loss-with-respect-to-the-bias-b" class="level3">
 <h3 class="anchored" data-anchor-id="gradient-of-loss-with-respect-to-the-bias-b">Gradient of loss with respect to the bias <span class="math inline">\(b\)</span></h3>
-<p><span class="math display">\[\frac{\partial J}{\partial b} = \frac{\partial J}{\partial \mathbf{z}} \frac{\partial \mathbf{z}}{\partial b}= \sum_{i=1}^{N}\frac{\partial J}{\partial z^{(i)}} 1 = \frac{\partial J}{\partial z^{(1)}} + \frac{\partial J}{\partial z^{(2)}} + \ldots + \frac{\partial J}{\partial z^{(N)}}\]</span></p>
-<p>From the implementation perspective we need to access <span class="math inline">\(\frac{\partial J}{\partial \mathbf{z}}\)</span> and sum across the first axis. The local derivative computation of <span class="math inline">\(\frac{\partial \mathbf{z}}{\partial b}\)</span> is particulary simple (since it is just <span class="math inline">\(1\)</span>).</p>
+<p><span class="math display">\[\frac{\partial J}{\partial b} = \frac{\partial J}{\partial \mathbf{z}} \frac{\partial \mathbf{z}}{\partial b}= \sum_{i=1}^{N}\frac{\partial J}{\partial z^{(i)}} \frac{\partial z^{(i)}}{\partial b}= \sum_{i=1}^{N}\frac{\partial J}{\partial z^{(i)}} 1 = \frac{\partial J}{\partial z^{(1)}} + \frac{\partial J}{\partial z^{(2)}} + \ldots + \frac{\partial J}{\partial z^{(N)}}\]</span></p>
+<p>From the implementation perspective we need to access <span class="math inline">\(\frac{\partial J}{\partial \mathbf{z}}\)</span> and sum across the first axis. The local derivative computation of <span class="math inline">\(\frac{\partial \mathbf{z}}{\partial b}\)</span> is particulary simple (since each <span class="math inline">\(\frac{\partial z^{(i)}}{\partial b}\)</span> is just <span class="math inline">\(1\)</span>).</p>
 </section>
 <section id="gradient-of-loss-with-respect-to-xi_j" class="level3">
 <h3 class="anchored" data-anchor-id="gradient-of-loss-with-respect-to-xi_j">Gradient of loss with respect to <span class="math inline">\(x^{(i)}_{j}\)</span></h3>
