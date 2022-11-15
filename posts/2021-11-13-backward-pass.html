@@ -465,6 +465,29 @@ x^{(1)}_d &amp; x^{(2)}_d &amp; \cdots &amp; x^{(N)}_d
 =\mathbf{X}^{T}\frac{\partial J}{\partial \mathbf{z}}
 \]</span></p>
 <p>From the implementation perspective <span class="math inline">\(\mathbf{X}^{T}\)</span> is computed locally in the <code>backward</code> function of the <code>Lin</code> class while <span class="math inline">\(\frac{\partial J}{\partial \mathbf{z}}\)</span> is ready and waiting to be accessed. Recall the latter was computed in the <code>backward</code> function of the <code>Relu</code> class.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Aside
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In the <code>lin_grad</code> function, in the earlier portion of the notebook, we see Jeremy computing the gradient with respect to the weights as <code>w.g = (inp.unsqueeze(-1) * out.g.unsqueeze(1)).sum(0)</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lin_grad(inp, out, w, b):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># grad of matmul with respect to input</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    inp.g <span class="op">=</span> out.g <span class="op">@</span> w.t()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    w.g <span class="op">=</span> (inp.unsqueeze(<span class="op">-</span><span class="dv">1</span>) <span class="op">*</span> out.g.unsqueeze(<span class="dv">1</span>)).<span class="bu">sum</span>(<span class="dv">0</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    b.g <span class="op">=</span> out.g.<span class="bu">sum</span>(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This uses broadcasting to achieve the same computation as the matrix multiplication between <span class="math inline">\(X^{T}\)</span> and and <span class="math inline">\(\frac{\partial J}{\partial \mathbf{z}}\)</span>.</p>
+<p>The <code>inp.unsqueeze(-1)</code> takes <code>inp</code> (our <span class="math inline">\(X\)</span>) and converts it into a tensor with shape <span class="math inline">\(N \times d \times 1\)</span>. This is then multiplied with <code>out.g.unsqueeze(1)</code> (<code>out.g</code> is <span class="math inline">\(\frac{\partial J}{\partial \mathbf{z}}\)</span>) with shape <span class="math inline">\(N \times 1 \times 1\)</span>. Broadcasting will make <span class="math inline">\(d\)</span> “copies” of <span class="math inline">\(\frac{\partial J}{\partial \mathbf{z}}\)</span> each of which will get multiplied (in the dot product sense) by a column of <span class="math inline">\(X\)</span> (each column of <span class="math inline">\(X\)</span> is just the feature values across the training examples) and the <code>sum(0)</code> at the end sums across the first axis to get our <span class="math inline">\(d \times 1\)</span> output.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="gradient-of-loss-with-respect-to-the-bias-b" class="level3">
 <h3 class="anchored" data-anchor-id="gradient-of-loss-with-respect-to-the-bias-b">Gradient of loss with respect to the bias <span class="math inline">\(b\)</span></h3>
