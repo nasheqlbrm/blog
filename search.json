@@ -4,7 +4,7 @@
     "href": "posts/2021-11-13-backward-pass.html",
     "title": "Simple Neural Net Backward Pass",
     "section": "",
-    "text": "In this post we attempt to connect the math to the code for what Jeremy Howard did in his 03_backprop.ipynb notebook for the 2022 part 2 course."
+    "text": "Connect the math to the code for what Jeremy Howard did in his 03_backprop.ipynb notebook for the 2022 part 2 course. The simple network for this post is that we have a single neuron followed by a Rectified Linear Unit (ReLU) and then the Mean Squared Error (MSE) loss function.\nI know we want to get to many neurons (stacked in multiple layers) but even this simple setting will take us quite far."
   },
   {
     "objectID": "posts/2021-11-13-backward-pass.html#gradient-of-loss-with-respect-to-the-activations-ai",

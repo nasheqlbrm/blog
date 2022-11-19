@@ -85,25 +85,6 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
 </style>
 
 
@@ -247,7 +228,8 @@ div.csl-indent {
 
 <section id="motivation" class="level1">
 <h1>Motivation</h1>
-<p>In this post we attempt to connect the math to the code for what Jeremy Howard did in his <code>03_backprop.ipynb</code> notebook for the <a href="https://www.fast.ai/posts/part2-2022.html">2022 part 2 course</a>.</p>
+<p>Connect the math to the code for what Jeremy Howard did in his <code>03_backprop.ipynb</code> notebook for the <a href="https://www.fast.ai/posts/part2-2022.html">2022 part 2 course</a>. The simple network for this post is that we have a single neuron followed by a Rectified Linear Unit (ReLU) and then the Mean Squared Error (MSE) loss function.</p>
+<p>I know we want to get to many neurons (stacked in multiple layers) but even this simple setting will take us quite far.</p>
 </section>
 <section id="notation" class="level1">
 <h1>Notation</h1>
@@ -292,7 +274,7 @@ x^{(N)}_1 &amp; x^{(N)}_2 &amp; \cdots &amp; x^{(N)}_d
 <li><span class="math inline">\(a^{(i)} = \phi(z^{(i)})\)</span> is the activation when an input <span class="math inline">\(z^{(i)}\)</span> is passed through an activation function <span class="math inline">\(\phi\)</span>
 <ul>
 <li><span class="math inline">\(\{a^{(i)}\}_{i=1}^{N}\)</span> are the activations for each of the <span class="math inline">\(N\)</span> training examples when passed through a single neuron followed by the application of the activation function</li>
-<li>For the purposes of this page the activation function is considered to be a ReLU (Rectified Linear Unit) so <span class="math display">\[
+<li>For the purposes of this page the activation function is considered to be a ReLU so <span class="math display">\[
 a^{(i)} = \phi(z^{(i)}) = \max\{0, z^{(i)}\} =
 \begin{cases}
 z^{(i)} &amp; z^{(i)} \gt 0 \\
@@ -314,7 +296,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Reading through <span class="citation" data-cites="eriklearnedmiller_note">Learned-Miller (<a href="#ref-eriklearnedmiller_note" role="doc-biblioref">2007</a>)</span> (especially page 7) was very helpful for this section. Another useful reference is Terence Parr and Jeremy Howard’s <a href="https://explained.ai/matrix-calculus/">Matrix Calculus You Need For Deep Learning</a>.</p>
+<p>Erik Learned-Miller’s<a href="http://Cs231n.stanford.edu/vecDerivs.pdf">Vector, Matrix, and Tensor Derivatives</a> (especially page 7) was very helpful for this section. As was Terence Parr and Jeremy Howard’s <a href="https://explained.ai/matrix-calculus/">Matrix Calculus You Need For Deep Learning</a>. After reading this post a good next step is Justin Johnson’s <a href="http://cs231n.stanford.edu/handouts/linear-backprop.pdf">Backpropagation for a Linear Layer</a>.</p>
 </div>
 </div>
 <section id="gradient-of-loss-with-respect-to-the-activations-ai" class="level2">
@@ -541,16 +523,11 @@ w_{1} &amp; w_{2} &amp; \cdots &amp; w_{d}
 \]</span></p>
 
 
-
 </section>
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-eriklearnedmiller_note" class="csl-entry" role="doc-biblioentry">
-Learned-Miller, Erik. 2007. <span>“&lt;A Href="http://Cs231n.stanford.edu/vecDerivs.pdf"&gt;vector, Matrix and Tensor Derivatives&lt;/a&gt;.”</span> <em>Department of Computer Science,Stanford University</em>.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
