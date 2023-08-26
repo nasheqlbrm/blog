@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,9 +19,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,48 +49,19 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -103,8 +75,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -139,13 +110,15 @@ div.csl-indent {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
@@ -162,27 +135,29 @@ div.csl-indent {
     <span class="navbar-title">Kaushik Sinha</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../about.html">
+    <a class="nav-link" href="../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/nasheqlbrm"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/nasheqlbrm" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/_ksinha_"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/ksinha" rel="" target=""><i class="bi bi-twitter" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -295,45 +270,46 @@ div.csl-indent {
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> torch.reshape(torch.cat([activations, sigmoid_activations, targets, bce_loss], <span class="dv">0</span>),(<span class="dv">4</span>,<span class="dv">3</span>))</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(results, index<span class="op">=</span>[<span class="st">'activations'</span>, <span class="st">'sigmoid'</span>,<span class="st">'target'</span>,<span class="st">'loss'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>activations</th>
-      <td>0.725968</td>
-      <td>-3.348915</td>
-      <td>-2.349130</td>
-    </tr>
-    <tr>
-      <th>sigmoid</th>
-      <td>0.673920</td>
-      <td>0.033931</td>
-      <td>0.087135</td>
-    </tr>
-    <tr>
-      <th>target</th>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-    </tr>
-    <tr>
-      <th>loss</th>
-      <td>0.394644</td>
-      <td>0.034520</td>
-      <td>2.440297</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">activations</td>
+<td>0.725968</td>
+<td>-3.348915</td>
+<td>-2.349130</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">sigmoid</td>
+<td>0.673920</td>
+<td>0.033931</td>
+<td>0.087135</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">target</td>
+<td>1.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">loss</td>
+<td>0.394644</td>
+<td>0.034520</td>
+<td>2.440297</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -509,7 +485,12 @@ div.csl-indent {
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> scrape_images(Path(<span class="st">'/data/kaushik/bears'</span>), labels, <span class="st">'bear'</span>, max_images<span class="op">=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Duckduckgo search: grizzly bear
-Downloading results into /data/kaushik/bears/grizzly</code></pre>
+Downloading results into /data/kaushik/bears/grizzly
+Duckduckgo search: black bear
+Downloading results into /data/kaushik/bears/black
+Duckduckgo search: teddy bear
+Downloading results into /data/kaushik/bears/teddy
+After checking for issues, 300 (total) images remain.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 
@@ -530,10 +511,6 @@ Downloading results into /data/kaushik/bears/grizzly</code></pre>
       100.00% [100/100 00:05&lt;00:00 Images downloaded]
     </div>
     
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Duckduckgo search: black bear
-Downloading results into /data/kaushik/bears/black</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 
@@ -555,10 +532,6 @@ Downloading results into /data/kaushik/bears/black</code></pre>
     </div>
     
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Duckduckgo search: teddy bear
-Downloading results into /data/kaushik/bears/teddy</code></pre>
-</div>
 <div class="cell-output cell-output-display">
 
     <div>
@@ -579,28 +552,25 @@ Downloading results into /data/kaushik/bears/teddy</code></pre>
     </div>
     
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>After checking for issues, 300 (total) images remain.</code></pre>
-</div>
 </div>
 <section id="set-up-data-block" class="level2">
 <h2 class="anchored" data-anchor-id="set-up-data-block">Set up Data Block</h2>
 <p>We will need a multicategory block and a function that takes a single label and converts it into a list.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_label_list(some_label): <span class="cf">return</span> [some_label]</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>dblock <span class="op">=</span> DataBlock(</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    blocks<span class="op">=</span>(ImageBlock, MultiCategoryBlock),</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    get_items<span class="op">=</span>get_image_files,</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    splitter<span class="op">=</span>RandomSplitter(valid_pct<span class="op">=</span><span class="fl">0.2</span>,seed<span class="op">=</span><span class="dv">0</span>),</span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    get_y<span class="op">=</span> Pipeline([parent_label, get_label_list]),</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>    item_tfms<span class="op">=</span>RandomResizedCrop(<span class="dv">228</span>, min_scale<span class="op">=</span><span class="fl">0.5</span>), </span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    batch_tfms<span class="op">=</span>aug_transforms())</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> dblock.dataloaders(path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_label_list(some_label): <span class="cf">return</span> [some_label]</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>dblock <span class="op">=</span> DataBlock(</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    blocks<span class="op">=</span>(ImageBlock, MultiCategoryBlock),</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    get_items<span class="op">=</span>get_image_files,</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    splitter<span class="op">=</span>RandomSplitter(valid_pct<span class="op">=</span><span class="fl">0.2</span>,seed<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    get_y<span class="op">=</span> Pipeline([parent_label, get_label_list]),</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    item_tfms<span class="op">=</span>RandomResizedCrop(<span class="dv">228</span>, min_scale<span class="op">=</span><span class="fl">0.5</span>), </span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    batch_tfms<span class="op">=</span>aug_transforms())</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> dblock.dataloaders(path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>dls.show_batch(max_n<span class="op">=</span><span class="dv">8</span>, nrows<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>dls.show_batch(max_n<span class="op">=</span><span class="dv">8</span>, nrows<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2021-08-12-Multi-Label-Classification_files/figure-html/cell-26-output-1.png" class="img-fluid"></p>
 </div>
@@ -616,88 +586,86 @@ Downloading results into /data/kaushik/bears/teddy</code></pre>
     return ((inp&gt;thresh)==targ.bool()).float().mean()</code></pre>
 <p>This shows that accuracy_multi uses the threshold to determine whether a label is present and then takes a mean across the labels for every example in the inputs. The training process does not care about the threshold it only cares about minimizing the loss function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> cnn_learner(dls, resnet18, metrics<span class="op">=</span>[partial(accuracy_multi, thresh<span class="op">=</span><span class="fl">0.95</span>),<span class="op">\</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>                                            APScoreMulti()], </span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>                    loss_func<span class="op">=</span>BCEWithLogitsLossFlat())</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>learn.fine_tune(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> cnn_learner(dls, resnet18, metrics<span class="op">=</span>[partial(accuracy_multi, thresh<span class="op">=</span><span class="fl">0.95</span>),<span class="op">\</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>                                            APScoreMulti()], </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>                    loss_func<span class="op">=</span>BCEWithLogitsLossFlat())</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>learn.fine_tune(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th>epoch</th>
-      <th>train_loss</th>
-      <th>valid_loss</th>
-      <th>accuracy_multi</th>
-      <th>average_precision_score</th>
-      <th>time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>1.037557</td>
-      <td>0.579388</td>
-      <td>0.783333</td>
-      <td>0.868948</td>
-      <td>00:07</td>
-    </tr>
-  </tbody>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">accuracy_multi</th>
+<th data-quarto-table-cell-role="th">average_precision_score</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1.037557</td>
+<td>0.579388</td>
+<td>0.783333</td>
+<td>0.868948</td>
+<td>00:07</td>
+</tr>
+</tbody>
 </table>
 </div>
 <div class="cell-output cell-output-display">
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th>epoch</th>
-      <th>train_loss</th>
-      <th>valid_loss</th>
-      <th>accuracy_multi</th>
-      <th>average_precision_score</th>
-      <th>time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>0.497570</td>
-      <td>0.354649</td>
-      <td>0.883333</td>
-      <td>0.960842</td>
-      <td>00:09</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>0.386510</td>
-      <td>0.170127</td>
-      <td>0.961111</td>
-      <td>0.987437</td>
-      <td>00:09</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>0.306835</td>
-      <td>0.135320</td>
-      <td>0.966667</td>
-      <td>0.989491</td>
-      <td>00:09</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>0.263357</td>
-      <td>0.124831</td>
-      <td>0.966667</td>
-      <td>0.989491</td>
-      <td>00:09</td>
-    </tr>
-  </tbody>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">accuracy_multi</th>
+<th data-quarto-table-cell-role="th">average_precision_score</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.497570</td>
+<td>0.354649</td>
+<td>0.883333</td>
+<td>0.960842</td>
+<td>00:09</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.386510</td>
+<td>0.170127</td>
+<td>0.961111</td>
+<td>0.987437</td>
+<td>00:09</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.306835</td>
+<td>0.135320</td>
+<td>0.966667</td>
+<td>0.989491</td>
+<td>00:09</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0.263357</td>
+<td>0.124831</td>
+<td>0.966667</td>
+<td>0.989491</td>
+<td>00:09</td>
+</tr>
+</tbody>
 </table>
 </div>
 </div>
 <p>Let’s look at the results.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>learn.show_results()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>learn.show_results()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 </div>
@@ -710,15 +678,15 @@ Downloading results into /data/kaushik/bears/teddy</code></pre>
 <h2 class="anchored" data-anchor-id="sadness-revisited">Sadness revisited</h2>
 <p>Let’s test with our Maine Coon image.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>test_mainecoon_image_location <span class="op">=</span> <span class="st">'../test_images/mc.jpg'</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> Image.<span class="bu">open</span>(test_mainecoon_image_location)</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>im.to_thumb(<span class="dv">128</span>,<span class="dv">128</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>test_mainecoon_image_location <span class="op">=</span> <span class="st">'../test_images/mc.jpg'</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> Image.<span class="bu">open</span>(test_mainecoon_image_location)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>im.to_thumb(<span class="dv">128</span>,<span class="dv">128</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2021-08-12-Multi-Label-Classification_files/figure-html/cell-29-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>learn.predict(test_mainecoon_image_location)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>learn.predict(test_mainecoon_image_location)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 </div>
@@ -746,8 +714,8 @@ Downloading results into /data/kaushik/bears/teddy</code></pre>
     def activation(self, x): return torch.sigmoid(x)</code></pre>
 <p>Thus, all we need to do is pass the threshold into BCEWithLogitsLossFlat.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>learn.loss_func <span class="op">=</span> BCEWithLogitsLossFlat(thresh<span class="op">=</span><span class="fl">0.95</span>)</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>learn.predict(test_mainecoon_image_location)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>learn.loss_func <span class="op">=</span> BCEWithLogitsLossFlat(thresh<span class="op">=</span><span class="fl">0.95</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>learn.predict(test_mainecoon_image_location)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 </div>
@@ -758,16 +726,16 @@ Downloading results into /data/kaushik/bears/teddy</code></pre>
 <p>Much better. Now none of the labels are predicted.</p>
 <p>To get the best threshold we first get all the predictions on the validation set.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>preds,targs <span class="op">=</span> learn.get_preds()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>preds,targs <span class="op">=</span> learn.get_preds()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 
 </div>
 </div>
 <p>Since the predictions from get_preds has the sigmoid applied already we will pass sigmoid=False when assessing the accuracy_multi at different threshold values .</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> torch.linspace(<span class="fl">0.05</span>,<span class="fl">0.995</span>,<span class="dv">100</span>)</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>accs <span class="op">=</span> [accuracy_multi(preds, targs, thresh<span class="op">=</span>i, sigmoid<span class="op">=</span><span class="va">False</span>) <span class="cf">for</span> i <span class="kw">in</span> xs]</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>plt.plot(xs,accs)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> torch.linspace(<span class="fl">0.05</span>,<span class="fl">0.995</span>,<span class="dv">100</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>accs <span class="op">=</span> [accuracy_multi(preds, targs, thresh<span class="op">=</span>i, sigmoid<span class="op">=</span><span class="va">False</span>) <span class="cf">for</span> i <span class="kw">in</span> xs]</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>plt.plot(xs,accs)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2021-08-12-Multi-Label-Classification_files/figure-html/cell-33-output-1.png" class="img-fluid"></p>
 </div>
@@ -780,14 +748,14 @@ Downloading results into /data/kaushik/bears/teddy</code></pre>
 </section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="doc-bibliography">
-<div id="ref-fastbook2020" class="csl-entry" role="doc-biblioentry">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="list">
+<div id="ref-fastbook2020" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. Howard and S. Gugger, <em>Deep learning for coders with fastai and PyTorch: AI applications without a PhD</em>, 1st ed. O’Reilly, 2020.</div>
 </div>
-<div id="ref-pdito_note_may2020" class="csl-entry" role="doc-biblioentry">
+<div id="ref-pdito_note_may2020" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[2] </div><div class="csl-right-inline">P. Davis, <span>“&lt;A href="https://pdito.github.io/blog/deep.”</span> <a href="https://pdito.github.io/blog/deep%20learning/fastai/fastai2/multicat/multi/label/classification/2020/05/27/multi-cat-fastai2.html" class="uri">https://pdito.github.io/blog/deep%20learning/fastai/fastai2/multicat/multi/label/classification/2020/05/27/multi-cat-fastai2.html</a>, May 2020.</div>
 </div>
-<div id="ref-fan2007study" class="csl-entry" role="doc-biblioentry">
+<div id="ref-fan2007study" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[3] </div><div class="csl-right-inline">R.-E. Fan and C.-J. Lin, <span>“&lt;A href="https://www.csie.ntu.edu.tw/%7Ecjlin/papers/threshold.pdf"&gt;a study on threshold selection for multi-label classification&lt;/a&gt;,”</span> <em>Department of Computer Science, National Taiwan University</em>, pp. 1–23, 2007.</div>
 </div>
 </div></section></div></main> <!-- /main -->
@@ -818,9 +786,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -885,6 +867,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,9 +19,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -48,48 +49,19 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -103,8 +75,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -139,13 +110,15 @@ div.csl-indent {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
@@ -162,27 +135,29 @@ div.csl-indent {
     <span class="navbar-title">Kaushik Sinha</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../about.html">
+    <a class="nav-link" href="../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/nasheqlbrm"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/nasheqlbrm" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/_ksinha_"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/ksinha" rel="" target=""><i class="bi bi-twitter" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -384,59 +359,61 @@ div.csl-indent {
 <div class="cell">
 <div class="cell-output cell-output-display">
 
-
   <div id="df-d738ee05-04e1-4022-83c3-45b2e677885a">
     <div class="colab-df-container">
       <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>height</th>
-      <th>weight</th>
-      <th>age</th>
-      <th>male</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>151.765</td>
-      <td>47.825606</td>
-      <td>63.0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>139.700</td>
-      <td>36.485807</td>
-      <td>63.0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>136.525</td>
-      <td>31.864838</td>
-      <td>65.0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>156.845</td>
-      <td>53.041914</td>
-      <td>41.0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>145.415</td>
-      <td>41.276872</td>
-      <td>51.0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">height</th>
+<th data-quarto-table-cell-role="th">weight</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">male</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>151.765</td>
+<td>47.825606</td>
+<td>63.0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>139.700</td>
+<td>36.485807</td>
+<td>63.0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>136.525</td>
+<td>31.864838</td>
+<td>65.0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>156.845</td>
+<td>53.041914</td>
+<td>41.0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>145.415</td>
+<td>41.276872</td>
+<td>51.0</td>
+<td>0</td>
+</tr>
+</tbody>
 </table>
+
+
 </div>
       <button class="colab-df-convert" onclick="convertToInteractive('df-d738ee05-04e1-4022-83c3-45b2e677885a')" title="Convert this dataframe to an interactive table." style="display:none;">
         
@@ -535,7 +512,14 @@ div.csl-indent {
 <pre><code>Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
 Sequential sampling (2 chains in 1 job)
-NUTS: [sigma, b, a]</code></pre>
+NUTS: [sigma, b, a]
+Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 19 seconds.
+Auto-assigning NUTS sampler...
+Initializing NUTS using jitter+adapt_diag...
+Sequential sampling (2 chains in 1 job)
+NUTS: [sigma, beta, alpha]
+Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 27 seconds.
+The acceptance probability does not match the target. It is 0.8897350788344733, but should be close to 0.8. Try to increase the number of tuning steps.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 
@@ -583,13 +567,6 @@ NUTS: [sigma, b, a]</code></pre>
     </div>
     
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 19 seconds.
-Auto-assigning NUTS sampler...
-Initializing NUTS using jitter+adapt_diag...
-Sequential sampling (2 chains in 1 job)
-NUTS: [sigma, beta, alpha]</code></pre>
-</div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -636,13 +613,9 @@ NUTS: [sigma, beta, alpha]</code></pre>
     </div>
     
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 27 seconds.
-The acceptance probability does not match the target. It is 0.8897350788344733, but should be close to 0.8. Try to increase the number of tuning steps.</code></pre>
-</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>az.summary(trace_4M7, kind<span class="op">=</span><span class="st">"stats"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>az.summary(trace_4M7, kind<span class="op">=</span><span class="st">"stats"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Got error No model on context stack. trying to find log_likelihood in translation.
 /usr/local/lib/python3.7/dist-packages/arviz/data/io_pymc3_3x.py:102: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
@@ -650,45 +623,47 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 <div class="cell-output cell-output-display">
 
-
   <div id="df-0980208f-ea43-4756-83b2-d786abfc86ba">
     <div class="colab-df-container">
       <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mean</th>
-      <th>sd</th>
-      <th>hdi_5.5%</th>
-      <th>hdi_94.5%</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>alpha</th>
-      <td>114.491</td>
-      <td>1.858</td>
-      <td>111.612</td>
-      <td>117.473</td>
-    </tr>
-    <tr>
-      <th>beta</th>
-      <td>0.892</td>
-      <td>0.041</td>
-      <td>0.826</td>
-      <td>0.955</td>
-    </tr>
-    <tr>
-      <th>sigma</th>
-      <td>5.093</td>
-      <td>0.202</td>
-      <td>4.750</td>
-      <td>5.383</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">sd</th>
+<th data-quarto-table-cell-role="th">hdi_5.5%</th>
+<th data-quarto-table-cell-role="th">hdi_94.5%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">alpha</td>
+<td>114.491</td>
+<td>1.858</td>
+<td>111.612</td>
+<td>117.473</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">beta</td>
+<td>0.892</td>
+<td>0.041</td>
+<td>0.826</td>
+<td>0.955</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">sigma</td>
+<td>5.093</td>
+<td>0.202</td>
+<td>4.750</td>
+<td>5.383</td>
+</tr>
+</tbody>
 </table>
+
+
 </div>
       <button class="colab-df-convert" onclick="convertToInteractive('df-0980208f-ea43-4756-83b2-d786abfc86ba')" title="Convert this dataframe to an interactive table." style="display:none;">
         
@@ -766,7 +741,7 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>az.summary(trace_4_3, kind<span class="op">=</span><span class="st">"stats"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>az.summary(trace_4_3, kind<span class="op">=</span><span class="st">"stats"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Got error No model on context stack. trying to find log_likelihood in translation.
 /usr/local/lib/python3.7/dist-packages/arviz/data/io_pymc3_3x.py:102: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
@@ -774,45 +749,47 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 <div class="cell-output cell-output-display">
 
-
   <div id="df-dcbb3707-c159-491f-8833-a04ca8d93ce5">
     <div class="colab-df-container">
       <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mean</th>
-      <th>sd</th>
-      <th>hdi_5.5%</th>
-      <th>hdi_94.5%</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>a</th>
-      <td>154.604</td>
-      <td>0.281</td>
-      <td>154.128</td>
-      <td>155.004</td>
-    </tr>
-    <tr>
-      <th>b</th>
-      <td>0.903</td>
-      <td>0.043</td>
-      <td>0.839</td>
-      <td>0.975</td>
-    </tr>
-    <tr>
-      <th>sigma</th>
-      <td>5.104</td>
-      <td>0.202</td>
-      <td>4.774</td>
-      <td>5.416</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">sd</th>
+<th data-quarto-table-cell-role="th">hdi_5.5%</th>
+<th data-quarto-table-cell-role="th">hdi_94.5%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">a</td>
+<td>154.604</td>
+<td>0.281</td>
+<td>154.128</td>
+<td>155.004</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">b</td>
+<td>0.903</td>
+<td>0.043</td>
+<td>0.839</td>
+<td>0.975</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">sigma</td>
+<td>5.104</td>
+<td>0.202</td>
+<td>4.774</td>
+<td>5.416</td>
+</tr>
+</tbody>
 </table>
+
+
 </div>
       <button class="colab-df-convert" onclick="convertToInteractive('df-dcbb3707-c159-491f-8833-a04ca8d93ce5')" title="Convert this dataframe to an interactive table." style="display:none;">
         
@@ -895,12 +872,12 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <section id="superimpose-the-posterior-mean-values-over-the-height-and-weight-data" class="level4">
 <h4 class="anchored" data-anchor-id="superimpose-the-posterior-mean-values-over-the-height-and-weight-data">Superimpose the posterior mean values over the height and weight data</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(d2[<span class="st">'weight'</span>], d2[<span class="st">'height'</span>])</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.plot(d2[<span class="st">'weight'</span>], ( trace_4M7[<span class="st">'alpha'</span>].mean() <span class="op">+</span> </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                        trace_4M7[<span class="st">'beta'</span>].mean()<span class="op">*</span>d2[<span class="st">'weight'</span>] ),</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'orange'</span> )</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(d2.columns[<span class="dv">1</span>])</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(d2.columns[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(d2[<span class="st">'weight'</span>], d2[<span class="st">'height'</span>])</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plt.plot(d2[<span class="st">'weight'</span>], ( trace_4M7[<span class="st">'alpha'</span>].mean() <span class="op">+</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                        trace_4M7[<span class="st">'beta'</span>].mean()<span class="op">*</span>d2[<span class="st">'weight'</span>] ),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'orange'</span> )</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(d2.columns[<span class="dv">1</span>])</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(d2.columns[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Text(0, 0.5, 'height')</code></pre>
 </div>
@@ -913,35 +890,35 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <h4 class="anchored" data-anchor-id="add-the-uncertainty-around-the-mean">Add the uncertainty around the mean</h4>
 <p>First add the uncertainty around the average height.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>trace_iq <span class="op">=</span> trace_4M7 <span class="co">#trace in question</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>posterior_samples <span class="op">=</span> np.random.randint(<span class="bu">len</span>(trace_iq), size<span class="op">=</span><span class="dv">10000</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>weight_seq <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">71</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>trace_iq <span class="op">=</span> trace_4M7 <span class="co">#trace in question</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>posterior_samples <span class="op">=</span> np.random.randint(<span class="bu">len</span>(trace_iq), size<span class="op">=</span><span class="dv">10000</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>weight_seq <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">71</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cred_intervals <span class="op">=</span> np.array(</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    [ az.hdi( trace_iq[<span class="st">'alpha'</span>][posterior_samples] <span class="op">+</span> </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>             trace_iq[<span class="st">'beta'</span>][posterior_samples]<span class="op">*</span>wt ) <span class="cf">for</span> wt <span class="kw">in</span> weight_seq ]</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cred_intervals <span class="op">=</span> np.array(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    [ az.hdi( trace_iq[<span class="st">'alpha'</span>][posterior_samples] <span class="op">+</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>             trace_iq[<span class="st">'beta'</span>][posterior_samples]<span class="op">*</span>wt ) <span class="cf">for</span> wt <span class="kw">in</span> weight_seq ]</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>cred_intervals.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>cred_intervals.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>(71, 2)</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(d2[<span class="st">'weight'</span>], d2[<span class="st">'height'</span>])</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plt.plot(weight_seq, ( trace_4M7[<span class="st">'alpha'</span>].mean() <span class="op">+</span> </span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                        trace_4M7[<span class="st">'beta'</span>].mean()<span class="op">*</span>weight_seq ),</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'orange'</span> )</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    weight_seq, cred_intervals[:, <span class="dv">0</span>], cred_intervals[:, <span class="dv">1</span>], alpha<span class="op">=</span><span class="fl">0.4</span>, </span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="vs">r"Uncertainty in $\mu$"</span>,</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(d2.columns[<span class="dv">1</span>])</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(d2.columns[<span class="dv">0</span>])</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>plt.axvline(np.mean(d2.weight), ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"r"</span>, label<span class="op">=</span><span class="st">"Mean weight"</span>)</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(d2[<span class="st">'weight'</span>], d2[<span class="st">'height'</span>])</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>plt.plot(weight_seq, ( trace_4M7[<span class="st">'alpha'</span>].mean() <span class="op">+</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                        trace_4M7[<span class="st">'beta'</span>].mean()<span class="op">*</span>weight_seq ),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'orange'</span> )</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    weight_seq, cred_intervals[:, <span class="dv">0</span>], cred_intervals[:, <span class="dv">1</span>], alpha<span class="op">=</span><span class="fl">0.4</span>, </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="vs">r"Uncertainty in $\mu$"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(d2.columns[<span class="dv">1</span>])</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(d2.columns[<span class="dv">0</span>])</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>plt.axvline(np.mean(d2.weight), ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"r"</span>, label<span class="op">=</span><span class="st">"Mean weight"</span>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>&lt;matplotlib.legend.Legend&gt;</code></pre>
 </div>
@@ -955,70 +932,70 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <h3 class="anchored" data-anchor-id="add-the-prediction-intervals">Add the prediction intervals</h3>
 <p>Next add the uncertainty around the actual heights making use of the standard deviation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>trace_iq[<span class="st">'alpha'</span>][posterior_samples].shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>trace_iq[<span class="st">'alpha'</span>][posterior_samples].shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>(10000,)</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define a function to compute mu for all posterior samples at given value of </span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># weight</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_mu(w):</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ( trace_iq[<span class="st">'alpha'</span>][posterior_samples] <span class="op">+</span> </span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>            trace_iq[<span class="st">'beta'</span>][posterior_samples] <span class="op">*</span> w )</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>pi_67 <span class="op">=</span> np.array(</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    [</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>        az.hdi(np.random.normal(loc<span class="op">=</span>compute_mu(x), </span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>                                scale<span class="op">=</span>trace_iq[<span class="st">'sigma'</span>][posterior_samples]), </span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>                                hdi_prob<span class="op">=</span><span class="fl">0.67</span>)</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> weight_seq</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>pi_89 <span class="op">=</span> np.array(</span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    [</span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>        az.hdi(np.random.normal(loc<span class="op">=</span>compute_mu(x), </span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>                                scale<span class="op">=</span>trace_iq[<span class="st">'sigma'</span>][posterior_samples]))</span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> weight_seq</span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>pi_97 <span class="op">=</span> np.array(</span>
-<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>    [</span>
-<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>        az.hdi(np.random.normal(loc<span class="op">=</span>compute_mu(x), </span>
-<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>                                scale<span class="op">=</span>trace_iq[<span class="st">'sigma'</span>][posterior_samples]), </span>
-<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>                                hdi_prob<span class="op">=</span><span class="fl">0.97</span>)</span>
-<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> weight_seq</span>
-<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define a function to compute mu for all posterior samples at given value of </span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># weight</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_mu(w):</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ( trace_iq[<span class="st">'alpha'</span>][posterior_samples] <span class="op">+</span> </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>            trace_iq[<span class="st">'beta'</span>][posterior_samples] <span class="op">*</span> w )</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>pi_67 <span class="op">=</span> np.array(</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>        az.hdi(np.random.normal(loc<span class="op">=</span>compute_mu(x), </span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>                                scale<span class="op">=</span>trace_iq[<span class="st">'sigma'</span>][posterior_samples]), </span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>                                hdi_prob<span class="op">=</span><span class="fl">0.67</span>)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> weight_seq</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>pi_89 <span class="op">=</span> np.array(</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>        az.hdi(np.random.normal(loc<span class="op">=</span>compute_mu(x), </span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>                                scale<span class="op">=</span>trace_iq[<span class="st">'sigma'</span>][posterior_samples]))</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> weight_seq</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>pi_97 <span class="op">=</span> np.array(</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>        az.hdi(np.random.normal(loc<span class="op">=</span>compute_mu(x), </span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>                                scale<span class="op">=</span>trace_iq[<span class="st">'sigma'</span>][posterior_samples]), </span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>                                hdi_prob<span class="op">=</span><span class="fl">0.97</span>)</span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x <span class="kw">in</span> weight_seq</span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(d2[<span class="st">'weight'</span>], d2[<span class="st">'height'</span>])</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>plt.plot(weight_seq, ( trace_4M7[<span class="st">'alpha'</span>].mean() <span class="op">+</span> </span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                        trace_4M7[<span class="st">'beta'</span>].mean()<span class="op">*</span>weight_seq ),</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'black'</span> )</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    weight_seq, cred_intervals[:, <span class="dv">0</span>], cred_intervals[:, <span class="dv">1</span>], alpha<span class="op">=</span><span class="fl">0.2</span>, </span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="vs">r"Uncertainty in $\mu$"</span>,</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    weight_seq, pi_67[:, <span class="dv">0</span>], pi_67[:, <span class="dv">1</span>], </span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'blue'</span> </span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    weight_seq, pi_89[:, <span class="dv">0</span>], pi_89[:, <span class="dv">1</span>], </span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'blue'</span> </span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>    weight_seq, pi_97[:, <span class="dv">0</span>], pi_97[:, <span class="dv">1</span>], </span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.05</span>, color<span class="op">=</span><span class="st">'blue'</span> </span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(d2.columns[<span class="dv">1</span>])</span>
-<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(d2.columns[<span class="dv">0</span>])</span>
-<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>plt.axvline(np.mean(d2.weight), ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"r"</span>, label<span class="op">=</span><span class="st">"Mean weight"</span>)</span>
-<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>plt.xlim(d2.weight.<span class="bu">min</span>(), d2.weight.<span class="bu">max</span>())<span class="op">;</span></span>
-<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(d2[<span class="st">'weight'</span>], d2[<span class="st">'height'</span>])</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plt.plot(weight_seq, ( trace_4M7[<span class="st">'alpha'</span>].mean() <span class="op">+</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                        trace_4M7[<span class="st">'beta'</span>].mean()<span class="op">*</span>weight_seq ),</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>         color<span class="op">=</span><span class="st">'black'</span> )</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    weight_seq, cred_intervals[:, <span class="dv">0</span>], cred_intervals[:, <span class="dv">1</span>], alpha<span class="op">=</span><span class="fl">0.2</span>, </span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="vs">r"Uncertainty in $\mu$"</span>,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    weight_seq, pi_67[:, <span class="dv">0</span>], pi_67[:, <span class="dv">1</span>], </span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'blue'</span> </span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    weight_seq, pi_89[:, <span class="dv">0</span>], pi_89[:, <span class="dv">1</span>], </span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'blue'</span> </span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    weight_seq, pi_97[:, <span class="dv">0</span>], pi_97[:, <span class="dv">1</span>], </span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.05</span>, color<span class="op">=</span><span class="st">'blue'</span> </span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(d2.columns[<span class="dv">1</span>])</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(d2.columns[<span class="dv">0</span>])</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>plt.axvline(np.mean(d2.weight), ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"r"</span>, label<span class="op">=</span><span class="st">"Mean weight"</span>)</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>plt.xlim(d2.weight.<span class="bu">min</span>(), d2.weight.<span class="bu">max</span>())<span class="op">;</span></span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>&lt;matplotlib.legend.Legend&gt;</code></pre>
 </div>
@@ -1028,24 +1005,24 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 <p>Another way to generate the same plot.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Given that we have 2,000 samples let's use 200 for plotting </span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (or we can use all of them too if desired)</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>trace_iq_thinned <span class="op">=</span> trace_iq[::<span class="dv">10</span>]</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>mu_pred <span class="op">=</span> np.zeros((<span class="bu">len</span>(weight_seq), <span class="bu">len</span>(trace_iq_thinned) <span class="op">*</span> trace_iq.nchains))</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, w <span class="kw">in</span> <span class="bu">enumerate</span>(weight_seq):</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    mu_pred[i] <span class="op">=</span> ( trace_iq_thinned[<span class="st">"alpha"</span>] <span class="op">+</span> </span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>                  trace_iq_thinned[<span class="st">"beta"</span>] <span class="op">*</span> w )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Given that we have 2,000 samples let's use 200 for plotting </span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (or we can use all of them too if desired)</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>trace_iq_thinned <span class="op">=</span> trace_iq[::<span class="dv">10</span>]</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>mu_pred <span class="op">=</span> np.zeros((<span class="bu">len</span>(weight_seq), <span class="bu">len</span>(trace_iq_thinned) <span class="op">*</span> trace_iq.nchains))</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, w <span class="kw">in</span> <span class="bu">enumerate</span>(weight_seq):</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    mu_pred[i] <span class="op">=</span> ( trace_iq_thinned[<span class="st">"alpha"</span>] <span class="op">+</span> </span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>                  trace_iq_thinned[<span class="st">"beta"</span>] <span class="op">*</span> w )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>trace_iq_thinned, mu_pred.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>trace_iq_thinned, mu_pred.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>(&lt;MultiTrace: 2 chains, 100 iterations, 5 variables&gt;, (71, 200))</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>mu_mean <span class="op">=</span> mu_pred.mean(<span class="dv">1</span>) </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>mu_hdi <span class="op">=</span> az.hdi(mu_pred.T)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>mu_mean.shape, mu_hdi.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>mu_mean <span class="op">=</span> mu_pred.mean(<span class="dv">1</span>) </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>mu_hdi <span class="op">=</span> az.hdi(mu_pred.T)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>mu_mean.shape, mu_hdi.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:2: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
   </code></pre>
@@ -1056,24 +1033,24 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 <p>Generate heights from the posterior manually.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>post_samples <span class="op">=</span> []</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10000</span>):  <span class="co"># number of samples from the posterior</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> np.random.randint(<span class="bu">len</span>(trace_iq))</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    mu_pr <span class="op">=</span> trace_iq[<span class="st">'alpha'</span>][i] <span class="op">+</span> trace_iq[<span class="st">'beta'</span>][i] <span class="op">*</span> weight_seq</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    sigma_pred <span class="op">=</span> trace_iq[<span class="st">'sigma'</span>][i]</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    post_samples.append(np.random.normal(mu_pr, sigma_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>post_samples <span class="op">=</span> []</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10000</span>):  <span class="co"># number of samples from the posterior</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> np.random.randint(<span class="bu">len</span>(trace_iq))</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    mu_pr <span class="op">=</span> trace_iq[<span class="st">'alpha'</span>][i] <span class="op">+</span> trace_iq[<span class="st">'beta'</span>][i] <span class="op">*</span> weight_seq</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    sigma_pred <span class="op">=</span> trace_iq[<span class="st">'sigma'</span>][i]</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    post_samples.append(np.random.normal(mu_pr, sigma_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>az.plot_hdi(weight_seq, mu_pred.T)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>az.plot_hdi(weight_seq, np.array(post_samples), ax<span class="op">=</span>ax, hdi_prob<span class="op">=</span><span class="fl">0.67</span>)</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>az.plot_hdi(weight_seq, np.array(post_samples), ax<span class="op">=</span>ax, hdi_prob<span class="op">=</span><span class="fl">0.89</span>)</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>az.plot_hdi(weight_seq, np.array(post_samples), ax<span class="op">=</span>ax, hdi_prob<span class="op">=</span><span class="fl">0.97</span>)</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(d2.weight, d2.height)</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>plt.plot(weight_seq, mu_mean, <span class="st">"k"</span>)</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>plt.axvline(np.mean(d2.weight), ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"r"</span>, label<span class="op">=</span><span class="st">"Mean weight"</span>)</span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"weight"</span>)</span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"height"</span>)</span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>plt.xlim(d2.weight.<span class="bu">min</span>(), d2.weight.<span class="bu">max</span>())<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>az.plot_hdi(weight_seq, mu_pred.T)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>az.plot_hdi(weight_seq, np.array(post_samples), ax<span class="op">=</span>ax, hdi_prob<span class="op">=</span><span class="fl">0.67</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>az.plot_hdi(weight_seq, np.array(post_samples), ax<span class="op">=</span>ax, hdi_prob<span class="op">=</span><span class="fl">0.89</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>az.plot_hdi(weight_seq, np.array(post_samples), ax<span class="op">=</span>ax, hdi_prob<span class="op">=</span><span class="fl">0.97</span>)</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(d2.weight, d2.height)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>plt.plot(weight_seq, mu_mean, <span class="st">"k"</span>)</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>plt.axvline(np.mean(d2.weight), ls<span class="op">=</span><span class="st">"--"</span>, c<span class="op">=</span><span class="st">"r"</span>, label<span class="op">=</span><span class="st">"Mean weight"</span>)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"weight"</span>)</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"height"</span>)</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>plt.xlim(d2.weight.<span class="bu">min</span>(), d2.weight.<span class="bu">max</span>())<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/usr/local/lib/python3.7/dist-packages/arviz/plots/hdiplot.py:157: FutureWarning: hdi currently interprets 2d data as (draw, shape) but this will change in a future release to (chain, draw) for coherence with other functions
   hdi_data = hdi(y, hdi_prob=hdi_prob, circular=circular, multimodal=False, **hdi_kwargs)
@@ -1089,45 +1066,47 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>trace_4M7_df <span class="op">=</span> pm.trace_to_dataframe( trace_4M7 )</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>trace_4M7_df.cov().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>trace_4M7_df <span class="op">=</span> pm.trace_to_dataframe( trace_4M7 )</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>trace_4M7_df.cov().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-
 
   <div id="df-23bbb8f7-cafe-4353-a3d9-ac4231dcd300">
     <div class="colab-df-container">
       <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>alpha</th>
-      <th>beta</th>
-      <th>sigma</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>alpha</th>
-      <td>3.452</td>
-      <td>-0.076</td>
-      <td>-0.026</td>
-    </tr>
-    <tr>
-      <th>beta</th>
-      <td>-0.076</td>
-      <td>0.002</td>
-      <td>0.001</td>
-    </tr>
-    <tr>
-      <th>sigma</th>
-      <td>-0.026</td>
-      <td>0.001</td>
-      <td>0.041</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">alpha</th>
+<th data-quarto-table-cell-role="th">beta</th>
+<th data-quarto-table-cell-role="th">sigma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">alpha</td>
+<td>3.452</td>
+<td>-0.076</td>
+<td>-0.026</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">beta</td>
+<td>-0.076</td>
+<td>0.002</td>
+<td>0.001</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">sigma</td>
+<td>-0.026</td>
+<td>0.001</td>
+<td>0.041</td>
+</tr>
+</tbody>
 </table>
+
+
 </div>
       <button class="colab-df-convert" onclick="convertToInteractive('df-23bbb8f7-cafe-4353-a3d9-ac4231dcd300')" title="Convert this dataframe to an interactive table." style="display:none;">
         
@@ -1206,44 +1185,46 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 <p>There doesn’t seem to be much of a covariance between the parameters. This is similar to what we saw in m_4_3 (shown below).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>pm.trace_to_dataframe( trace_4_3 ).cov().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>pm.trace_to_dataframe( trace_4_3 ).cov().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-
 
   <div id="df-6cb4ae1f-c24c-465f-9108-8eb252ad7149">
     <div class="colab-df-container">
       <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>a</th>
-      <th>b</th>
-      <th>sigma</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>a</th>
-      <td>0.079</td>
-      <td>-0.000</td>
-      <td>-0.000</td>
-    </tr>
-    <tr>
-      <th>b</th>
-      <td>-0.000</td>
-      <td>0.002</td>
-      <td>0.000</td>
-    </tr>
-    <tr>
-      <th>sigma</th>
-      <td>-0.000</td>
-      <td>0.000</td>
-      <td>0.041</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">a</th>
+<th data-quarto-table-cell-role="th">b</th>
+<th data-quarto-table-cell-role="th">sigma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">a</td>
+<td>0.079</td>
+<td>-0.000</td>
+<td>-0.000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">b</td>
+<td>-0.000</td>
+<td>0.002</td>
+<td>0.000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">sigma</td>
+<td>-0.000</td>
+<td>0.000</td>
+<td>0.041</td>
+</tr>
+</tbody>
 </table>
+
+
 </div>
       <button class="colab-df-convert" onclick="convertToInteractive('df-6cb4ae1f-c24c-465f-9108-8eb252ad7149')" title="Convert this dataframe to an interactive table." style="display:none;">
         
@@ -1322,44 +1303,46 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 <p>Next let’s examine the correlations.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>trace_4M7_df.corr().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>trace_4M7_df.corr().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-
 
   <div id="df-b7567d55-d3c1-47a0-ac85-ccd7919bd494">
     <div class="colab-df-container">
       <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>alpha</th>
-      <th>beta</th>
-      <th>sigma</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>alpha</th>
-      <td>1.00</td>
-      <td>-0.99</td>
-      <td>-0.07</td>
-    </tr>
-    <tr>
-      <th>beta</th>
-      <td>-0.99</td>
-      <td>1.00</td>
-      <td>0.07</td>
-    </tr>
-    <tr>
-      <th>sigma</th>
-      <td>-0.07</td>
-      <td>0.07</td>
-      <td>1.00</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">alpha</th>
+<th data-quarto-table-cell-role="th">beta</th>
+<th data-quarto-table-cell-role="th">sigma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">alpha</td>
+<td>1.00</td>
+<td>-0.99</td>
+<td>-0.07</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">beta</td>
+<td>-0.99</td>
+<td>1.00</td>
+<td>0.07</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">sigma</td>
+<td>-0.07</td>
+<td>0.07</td>
+<td>1.00</td>
+</tr>
+</tbody>
 </table>
+
+
 </div>
       <button class="colab-df-convert" onclick="convertToInteractive('df-b7567d55-d3c1-47a0-ac85-ccd7919bd494')" title="Convert this dataframe to an interactive table." style="display:none;">
         
@@ -1438,44 +1421,46 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 <p>Intercept (alpha) and slope (beta) are negatively correlated unlike model m_4_3.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>pm.trace_to_dataframe( trace_4_3 ).corr().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>pm.trace_to_dataframe( trace_4_3 ).corr().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-
 
   <div id="df-c7daa43d-6b74-4ea8-b314-21ebbdc4d402">
     <div class="colab-df-container">
       <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>a</th>
-      <th>b</th>
-      <th>sigma</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>a</th>
-      <td>1.000</td>
-      <td>-0.041</td>
-      <td>-0.000</td>
-    </tr>
-    <tr>
-      <th>b</th>
-      <td>-0.041</td>
-      <td>1.000</td>
-      <td>0.051</td>
-    </tr>
-    <tr>
-      <th>sigma</th>
-      <td>-0.000</td>
-      <td>0.051</td>
-      <td>1.000</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">a</th>
+<th data-quarto-table-cell-role="th">b</th>
+<th data-quarto-table-cell-role="th">sigma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">a</td>
+<td>1.000</td>
+<td>-0.041</td>
+<td>-0.000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">b</td>
+<td>-0.041</td>
+<td>1.000</td>
+<td>0.051</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">sigma</td>
+<td>-0.000</td>
+<td>0.051</td>
+<td>1.000</td>
+</tr>
+</tbody>
 </table>
+
+
 </div>
       <button class="colab-df-convert" onclick="convertToInteractive('df-c7daa43d-6b74-4ea8-b314-21ebbdc4d402')" title="Convert this dataframe to an interactive table." style="display:none;">
         
@@ -1561,71 +1546,73 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <p><span class="math display">\[D_{i} \sim N(\mu_{i},\sigma)\]</span> <span class="math display">\[\mu_{i} = \alpha + \sum_{k=1}^{K}w_{k}B_{ki}\]</span> <span class="math display">\[\alpha \sim N(100,10)\]</span> <span class="math display">\[w_{k} \sim \text{Normal}(0,10)\]</span> <span class="math display">\[\sigma \sim \text{Exponential}(1)\]</span></p>
 <p><span class="math inline">\(B_{ki}\)</span> is the value of the <span class="math inline">\(k\)</span>-th basis function for year <span class="math inline">\(i\)</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/rmcelreath/rethinking/'</span>\</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="st">'master/data/cherry_blossoms.csv'</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> pd.read_csv(url, sep<span class="op">=</span><span class="st">';'</span>, header<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>d.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/rmcelreath/rethinking/'</span>\</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="st">'master/data/cherry_blossoms.csv'</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> pd.read_csv(url, sep<span class="op">=</span><span class="st">';'</span>, header<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>d.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-
 
   <div id="df-aa02430b-54f7-41df-b276-51d69fcd6f64">
     <div class="colab-df-container">
       <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>year</th>
-      <th>doy</th>
-      <th>temp</th>
-      <th>temp_upper</th>
-      <th>temp_lower</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>801</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>802</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>803</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>804</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>805</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">doy</th>
+<th data-quarto-table-cell-role="th">temp</th>
+<th data-quarto-table-cell-role="th">temp_upper</th>
+<th data-quarto-table-cell-role="th">temp_lower</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>801</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>802</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>803</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>804</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>805</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
 </table>
+
+
 </div>
       <button class="colab-df-convert" onclick="convertToInteractive('df-aa02430b-54f7-41df-b276-51d69fcd6f64')" title="Convert this dataframe to an interactive table." style="display:none;">
         
@@ -1703,69 +1690,71 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> d.dropna(subset<span class="op">=</span>[<span class="st">'doy'</span>])</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>d2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> d.dropna(subset<span class="op">=</span>[<span class="st">'doy'</span>])</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>d2.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-
 
   <div id="df-6a6cdc61-2355-49cc-90d0-1c94731cb431">
     <div class="colab-df-container">
       <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>year</th>
-      <th>doy</th>
-      <th>temp</th>
-      <th>temp_upper</th>
-      <th>temp_lower</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>11</th>
-      <td>812</td>
-      <td>92.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>815</td>
-      <td>105.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>831</td>
-      <td>96.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>50</th>
-      <td>851</td>
-      <td>108.0</td>
-      <td>7.38</td>
-      <td>12.1</td>
-      <td>2.66</td>
-    </tr>
-    <tr>
-      <th>52</th>
-      <td>853</td>
-      <td>104.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">doy</th>
+<th data-quarto-table-cell-role="th">temp</th>
+<th data-quarto-table-cell-role="th">temp_upper</th>
+<th data-quarto-table-cell-role="th">temp_lower</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">11</td>
+<td>812</td>
+<td>92.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">14</td>
+<td>815</td>
+<td>105.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">30</td>
+<td>831</td>
+<td>96.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50</td>
+<td>851</td>
+<td>108.0</td>
+<td>7.38</td>
+<td>12.1</td>
+<td>2.66</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">52</td>
+<td>853</td>
+<td>104.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
 </table>
+
+
 </div>
       <button class="colab-df-convert" onclick="convertToInteractive('df-6a6cdc61-2355-49cc-90d0-1c94731cb431')" title="Convert this dataframe to an interactive table." style="display:none;">
         
@@ -1843,13 +1832,13 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>num_knots <span class="op">=</span> <span class="dv">15</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>knot_list <span class="op">=</span> np.quantile(d2.year, np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, num_knots))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>num_knots <span class="op">=</span> <span class="dv">15</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>knot_list <span class="op">=</span> np.quantile(d2.year, np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, num_knots))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>knot_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>knot_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre><code>array([ 812., 1036., 1174., 1269., 1377., 1454., 1518., 1583., 1650.,
@@ -1857,15 +1846,15 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> dmatrix(</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"bs(year, knots=knots, degree=3, include_intercept=True) - 1"</span>,</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"year"</span>: d2.year.values, <span class="st">"knots"</span>: knot_list[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]},</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> dmatrix(</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"bs(year, knots=knots, degree=3, include_intercept=True) - 1"</span>,</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"year"</span>: d2.year.values, <span class="st">"knots"</span>: knot_list[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]},</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>np.asarray( B ).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>np.asarray( B ).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre><code>(827, 17)</code></pre>
@@ -1874,7 +1863,7 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <pre><code>DesignMatrix with shape (827, 17)
@@ -1905,11 +1894,11 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>( B.shape[<span class="dv">1</span>] ):</span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    ax.plot(d2.year, (B[:, i]))</span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"year"</span>)</span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"basis"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>( B.shape[<span class="dv">1</span>] ):</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    ax.plot(d2.year, (B[:, i]))</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"year"</span>)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"basis"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="2022-04-10-McElreath-Chapter-4_files/figure-html/cell-48-output-1.png" class="img-fluid"></p>
@@ -1917,19 +1906,21 @@ The acceptance probability does not match the target. It is 0.8897350788344733, 
 </div>
 <p>Next, let’s learn the parameters.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pm.Model() <span class="im">as</span> m_4M8:</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> pm.Normal(<span class="st">"a"</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> pm.Normal(<span class="st">"w"</span>, mu<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">10</span>, shape<span class="op">=</span>B.shape[<span class="dv">1</span>])</span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> pm.Deterministic(<span class="st">"mu"</span>, a <span class="op">+</span> pm.math.dot(B.base, w.T))</span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> pm.Exponential(<span class="st">"sigma"</span>, <span class="dv">1</span>)</span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> pm.Normal(<span class="st">"D"</span>, mu, sigma, observed<span class="op">=</span>d2.doy)</span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>    trace_m_4M8 <span class="op">=</span> pm.sample(<span class="dv">2000</span>, tune<span class="op">=</span><span class="dv">2000</span>, chains<span class="op">=</span><span class="dv">2</span>, </span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>                            return_inferencedata<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pm.Model() <span class="im">as</span> m_4M8:</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> pm.Normal(<span class="st">"a"</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> pm.Normal(<span class="st">"w"</span>, mu<span class="op">=</span><span class="dv">0</span>, sd<span class="op">=</span><span class="dv">10</span>, shape<span class="op">=</span>B.shape[<span class="dv">1</span>])</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> pm.Deterministic(<span class="st">"mu"</span>, a <span class="op">+</span> pm.math.dot(B.base, w.T))</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> pm.Exponential(<span class="st">"sigma"</span>, <span class="dv">1</span>)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>    D <span class="op">=</span> pm.Normal(<span class="st">"D"</span>, mu, sigma, observed<span class="op">=</span>d2.doy)</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>    trace_m_4M8 <span class="op">=</span> pm.sample(<span class="dv">2000</span>, tune<span class="op">=</span><span class="dv">2000</span>, chains<span class="op">=</span><span class="dv">2</span>, </span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>                            return_inferencedata<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
 Sequential sampling (2 chains in 1 job)
-NUTS: [sigma, w, a]</code></pre>
+NUTS: [sigma, w, a]
+Sampling 2 chains for 2_000 tune and 2_000 draw iterations (4_000 + 4_000 draws total) took 81 seconds.
+The number of effective samples is smaller than 25% for some parameters.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 
@@ -1977,30 +1968,26 @@ NUTS: [sigma, w, a]</code></pre>
     </div>
     
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Sampling 2 chains for 2_000 tune and 2_000 draw iterations (4_000 + 4_000 draws total) took 81 seconds.
-The number of effective samples is smaller than 25% for some parameters.</code></pre>
-</div>
 </div>
 <p>Plot each basis weighted by it’s corresponding parameter.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>wp <span class="op">=</span> trace_m_4M8[<span class="st">'w'</span>].mean(<span class="dv">0</span>) <span class="co">#17 entries, one for each basis fn</span></span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>( B.shape[<span class="dv">1</span>] ):</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>    ax.plot(d2.year, (wp[i] <span class="op">*</span> B[:, i]), color<span class="op">=</span><span class="st">"C0"</span>)</span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">812</span>, <span class="dv">2015</span>)</span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>wp <span class="op">=</span> trace_m_4M8[<span class="st">'w'</span>].mean(<span class="dv">0</span>) <span class="co">#17 entries, one for each basis fn</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>( B.shape[<span class="dv">1</span>] ):</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>    ax.plot(d2.year, (wp[i] <span class="op">*</span> B[:, i]), color<span class="op">=</span><span class="st">"C0"</span>)</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">812</span>, <span class="dv">2015</span>)</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="2022-04-10-McElreath-Chapter-4_files/figure-html/cell-53-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>post_pred <span class="op">=</span> ( az.summary(trace_m_4M8, var_names<span class="op">=</span>[<span class="st">"mu"</span>], hdi_prob<span class="op">=</span><span class="fl">0.94</span>).</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>             reset_index(drop<span class="op">=</span><span class="va">True</span>) )</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>post_pred.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>post_pred <span class="op">=</span> ( az.summary(trace_m_4M8, var_names<span class="op">=</span>[<span class="st">"mu"</span>], hdi_prob<span class="op">=</span><span class="fl">0.94</span>).</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>             reset_index(drop<span class="op">=</span><span class="va">True</span>) )</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>post_pred.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Got error No model on context stack. trying to find log_likelihood in translation.
 /usr/local/lib/python3.7/dist-packages/arviz/data/io_pymc3_3x.py:102: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
@@ -2008,89 +1995,91 @@ The number of effective samples is smaller than 25% for some parameters.</code><
 </div>
 <div class="cell-output cell-output-display">
 
-
   <div id="df-db8c2938-66bf-40d6-ab41-5e6f0abe74ef">
     <div class="colab-df-container">
       <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>mean</th>
-      <th>sd</th>
-      <th>hdi_3%</th>
-      <th>hdi_97%</th>
-      <th>mcse_mean</th>
-      <th>mcse_sd</th>
-      <th>ess_bulk</th>
-      <th>ess_tail</th>
-      <th>r_hat</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>100.320</td>
-      <td>3.179</td>
-      <td>93.831</td>
-      <td>105.847</td>
-      <td>0.050</td>
-      <td>0.035</td>
-      <td>4039.0</td>
-      <td>3348.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>100.406</td>
-      <td>2.994</td>
-      <td>94.330</td>
-      <td>105.655</td>
-      <td>0.047</td>
-      <td>0.033</td>
-      <td>4124.0</td>
-      <td>3292.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>100.822</td>
-      <td>2.182</td>
-      <td>96.796</td>
-      <td>105.020</td>
-      <td>0.032</td>
-      <td>0.023</td>
-      <td>4692.0</td>
-      <td>3168.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>101.262</td>
-      <td>1.555</td>
-      <td>98.286</td>
-      <td>104.116</td>
-      <td>0.021</td>
-      <td>0.015</td>
-      <td>5426.0</td>
-      <td>3262.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>101.302</td>
-      <td>1.514</td>
-      <td>98.484</td>
-      <td>104.162</td>
-      <td>0.021</td>
-      <td>0.015</td>
-      <td>5442.0</td>
-      <td>3287.0</td>
-      <td>1.0</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">sd</th>
+<th data-quarto-table-cell-role="th">hdi_3%</th>
+<th data-quarto-table-cell-role="th">hdi_97%</th>
+<th data-quarto-table-cell-role="th">mcse_mean</th>
+<th data-quarto-table-cell-role="th">mcse_sd</th>
+<th data-quarto-table-cell-role="th">ess_bulk</th>
+<th data-quarto-table-cell-role="th">ess_tail</th>
+<th data-quarto-table-cell-role="th">r_hat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>100.320</td>
+<td>3.179</td>
+<td>93.831</td>
+<td>105.847</td>
+<td>0.050</td>
+<td>0.035</td>
+<td>4039.0</td>
+<td>3348.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>100.406</td>
+<td>2.994</td>
+<td>94.330</td>
+<td>105.655</td>
+<td>0.047</td>
+<td>0.033</td>
+<td>4124.0</td>
+<td>3292.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>100.822</td>
+<td>2.182</td>
+<td>96.796</td>
+<td>105.020</td>
+<td>0.032</td>
+<td>0.023</td>
+<td>4692.0</td>
+<td>3168.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>101.262</td>
+<td>1.555</td>
+<td>98.286</td>
+<td>104.116</td>
+<td>0.021</td>
+<td>0.015</td>
+<td>5426.0</td>
+<td>3262.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>101.302</td>
+<td>1.514</td>
+<td>98.484</td>
+<td>104.162</td>
+<td>0.021</td>
+<td>0.015</td>
+<td>5442.0</td>
+<td>3287.0</td>
+<td>1.0</td>
+</tr>
+</tbody>
 </table>
+
+
 </div>
       <button class="colab-df-convert" onclick="convertToInteractive('df-db8c2938-66bf-40d6-ab41-5e6f0abe74ef')" title="Convert this dataframe to an interactive table." style="display:none;">
         
@@ -2168,27 +2157,27 @@ The number of effective samples is smaller than 25% for some parameters.</code><
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>    d2.year,</span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>    post_pred[<span class="st">"hdi_3%"</span>],</span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>    post_pred[<span class="st">"hdi_97%"</span>],</span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"firebrick"</span>,</span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.4</span>,</span>
-<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
-<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.gca()</span>
-<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>ax.plot(d2.year, d2.doy, <span class="st">"o"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> knot <span class="kw">in</span> knot_list:</span>
-<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>    ax.axvline(knot, color<span class="op">=</span><span class="st">"grey"</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)<span class="op">;</span></span>
-<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>ax.plot(d2.year, </span>
-<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a>        post_pred[<span class="st">'mean'</span>],</span>
-<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>        lw<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span><span class="st">"firebrick"</span>)</span>
-<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.gcf()</span>
-<span id="cb66-18"><a href="#cb66-18" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">12</span>, <span class="dv">4</span>)</span>
-<span id="cb66-19"><a href="#cb66-19" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"year"</span>)</span>
-<span id="cb66-20"><a href="#cb66-20" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"days in year"</span>)</span>
-<span id="cb66-21"><a href="#cb66-21" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f'knots=</span><span class="sc">{</span>num_knots<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>plt.fill_between(</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    d2.year,</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>    post_pred[<span class="st">"hdi_3%"</span>],</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>    post_pred[<span class="st">"hdi_97%"</span>],</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"firebrick"</span>,</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.4</span>,</span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.gca()</span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>ax.plot(d2.year, d2.doy, <span class="st">"o"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> knot <span class="kw">in</span> knot_list:</span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>    ax.axvline(knot, color<span class="op">=</span><span class="st">"grey"</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)<span class="op">;</span></span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>ax.plot(d2.year, </span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>        post_pred[<span class="st">'mean'</span>],</span>
+<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>        lw<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span><span class="st">"firebrick"</span>)</span>
+<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.gcf()</span>
+<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a>fig.set_size_inches(<span class="dv">12</span>, <span class="dv">4</span>)</span>
+<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"year"</span>)</span>
+<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"days in year"</span>)</span>
+<span id="cb63-21"><a href="#cb63-21" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f'knots=</span><span class="sc">{</span>num_knots<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>Text(0.5, 1.0, 'knots=15')</code></pre>
 </div>
@@ -2236,8 +2225,8 @@ The number of effective samples is smaller than 25% for some parameters.</code><
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="doc-bibliography">
-<div id="ref-wiki:Log-normal_distribution" class="csl-entry" role="doc-biblioentry">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" role="list">
+<div id="ref-wiki:Log-normal_distribution" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[1] </div><div class="csl-right-inline">Wikipedia, <span>“&lt;A href="http://en.wikipedia.org/w/index.php?title=log-normal%20distribution&amp;oldid=1080654936"&gt;"<span>Log-normal distribution</span> — <span>W</span>ikipedia<span>,</span> the free encyclopedia"&lt;/a&gt;.”</span> <a href="http://en.wikipedia.org/w/index.php?title=Log-normal%20distribution&amp;oldid=1080654936" class="uri">http://en.wikipedia.org/w/index.php?title=Log-normal%20distribution&amp;oldid=1080654936</a>, 2022.</div>
 </div>
 </div></section></div></main> <!-- /main -->
@@ -2268,9 +2257,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -2335,6 +2338,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

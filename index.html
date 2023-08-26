@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -57,7 +57,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script>
@@ -91,6 +92,7 @@ ul.task-list li input[type="checkbox"] {
   })
   </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
@@ -107,27 +109,29 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">Kaushik Sinha</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">
+    <a class="nav-link" href="./about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/nasheqlbrm"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/nasheqlbrm" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/_ksinha_"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/ksinha" rel="" target=""><i class="bi bi-twitter" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -182,202 +186,202 @@ Description
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="TIL" data-listing-date-sort="1668834000000" data-listing-file-modified-sort="1668874077531" data-listing-reading-time-sort="0.32" data-listing-title-sort="TIL$:$ Installing Python packages inside Jupyter" data-listing-filename-sort="2022-11-19-install-packages-inside-a-jupyter-notebook.ipynb">
-<td class="listing-date">
-Nov 19, 2022
+<tr data-index="0" data-categories="TIL" data-listing-date-sort="1668834000000" data-listing-file-modified-sort="1693070507770" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="TIL$:$ Installing Python packages inside Jupyter" data-listing-filename-sort="2022-11-19-install-packages-inside-a-jupyter-notebook.ipynb">
+<td>
+<span class="listing-date">Nov 19, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/2022-11-19-install-packages-inside-a-jupyter-notebook.html" class="title">TIL<span class="math inline">\(:\)</span> Installing Python packages inside Jupyter</a>
+<td>
+<a href="./posts/2022-11-19-install-packages-inside-a-jupyter-notebook.html" class="title listing-title">TIL<span class="math inline">\(:\)</span> Installing Python packages inside Jupyter</a>
 </td>
-<td class="listing-description">
-Dealing with <em>Import Error<span class="math inline">\(:\)</span> No module named Name</em>
-</td>
-</tr>
-<tr data-index="1" data-categories="neural-nets" data-listing-date-sort="1668315600000" data-listing-file-modified-sort="1668874148340" data-listing-reading-time-sort="7.495" data-listing-title-sort="Simple Neural Net Backward Pass" data-listing-filename-sort="2022-11-13-backward-pass.ipynb">
-<td class="listing-date">
-Nov 13, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/2021-11-13-backward-pass.html" class="title">Simple Neural Net Backward Pass</a>
-</td>
-<td class="listing-description">
-Deriving the math of the backward pass for a simple neural net.
+<td>
+<span class="listing-description">Dealing with <em>Import Error<span class="math inline">\(:\)</span> No module named Name</em></span>
 </td>
 </tr>
-<tr data-index="2" data-categories="notes" data-listing-date-sort="1653624000000" data-listing-file-modified-sort="1668360283056" data-listing-reading-time-sort="10.23" data-listing-title-sort="Exercises with Convex Sets" data-listing-filename-sort="2022-05-27-exercises-with-convex-sets.ipynb">
-<td class="listing-date">
-May 27, 2022
+<tr data-index="1" data-categories="neural-nets" data-listing-date-sort="1668315600000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-title-sort="Simple Neural Net Backward Pass" data-listing-filename-sort="2022-11-13-backward-pass.ipynb">
+<td>
+<span class="listing-date">Nov 13, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/2022-05-27-exercises-with-convex-sets.html" class="title">Exercises with Convex Sets</a>
+<td>
+<a href="./posts/2021-11-13-backward-pass.html" class="title listing-title">Simple Neural Net Backward Pass</a>
 </td>
-<td class="listing-description">
-Working through a few practice problems related to Convexity.
-</td>
-</tr>
-<tr data-index="3" data-listing-date-sort="1653537600000" data-listing-file-modified-sort="1668360283054" data-listing-reading-time-sort="4.355" data-listing-title-sort="Losses" data-listing-filename-sort="2022-05-26-Losses.ipynb">
-<td class="listing-date">
-May 26, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/2022-05-26-losses.html" class="title">Losses</a>
-</td>
-<td class="listing-description">
-Some notes while reading <span class="citation" data-cites="barratt2021optimal">Barratt, Angeris, and Boyd (2021)</span>.
+<td>
+<span class="listing-description">Deriving the math of the backward pass for a simple neural net.</span>
 </td>
 </tr>
-<tr data-index="4" data-listing-date-sort="1653364800000" data-listing-file-modified-sort="1668360283053" data-listing-reading-time-sort="1.8" data-listing-title-sort="Lambert W" data-listing-filename-sort="2022-05-24-Lambert-W.ipynb">
-<td class="listing-date">
-May 24, 2022
+<tr data-index="2" data-categories="notes" data-listing-date-sort="1653624000000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-title-sort="Exercises with Convex Sets" data-listing-filename-sort="2022-05-27-exercises-with-convex-sets.ipynb">
+<td>
+<span class="listing-date">May 27, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/2022-05-24-lambert-w.html" class="title">Lambert W</a>
+<td>
+<a href="./posts/2022-05-27-exercises-with-convex-sets.html" class="title listing-title">Exercises with Convex Sets</a>
 </td>
-<td class="listing-description">
-What value of <span class="math inline">\(x\)</span> satisfies <span class="math inline">\(x^x=2\)</span>.
-</td>
-</tr>
-<tr data-index="5" data-categories="statistical-rethinking,bayesian" data-listing-date-sort="1649563200000" data-listing-file-modified-sort="1668360283051" data-listing-reading-time-sort="3.605" data-listing-title-sort="McElreath Chapter 4" data-listing-filename-sort="2022-04-10-McElreath-Chapter-4.ipynb">
-<td class="listing-date">
-Apr 10, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/2022-04-10-mcelreath-chapter-4.html" class="title">McElreath Chapter 4</a>
-</td>
-<td class="listing-description">
-Working through a few practice problems on Linear Regression.
+<td>
+<span class="listing-description">Working through a few practice problems related to Convexity.</span>
 </td>
 </tr>
-<tr data-index="6" data-categories="statistical-rethinking,bayesian" data-listing-date-sort="1647662400000" data-listing-file-modified-sort="1668360283029" data-listing-reading-time-sort="3.595" data-listing-title-sort="McElreath Chapter 3" data-listing-filename-sort="2022-03-19-McElreath-Chapter-3.ipynb">
-<td class="listing-date">
-Mar 19, 2022
+<tr data-index="3" data-listing-date-sort="1653537600000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-title-sort="Losses" data-listing-filename-sort="2022-05-26-Losses.ipynb">
+<td>
+<span class="listing-date">May 26, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/2022-03-19-mcelreath-chapter-3.html" class="title">McElreath Chapter 3</a>
+<td>
+<a href="./posts/2022-05-26-losses.html" class="title listing-title">Losses</a>
 </td>
-<td class="listing-description">
-Exercise problems from Chapter 3, Sampling the Imaginary, of <span class="citation" data-cites="mcelreath2020statistical">[1]</span>.
-</td>
-</tr>
-<tr data-index="7" data-categories="statistical-rethinking,bayesian" data-listing-date-sort="1646974800000" data-listing-file-modified-sort="1668360283025" data-listing-reading-time-sort="6.79" data-listing-title-sort="McElreath Chapter 2" data-listing-filename-sort="2022-03-11-McElreath-Chapter-2.ipynb">
-<td class="listing-date">
-Mar 11, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/2022-03-11-mcelreath-chapter-2.html" class="title">McElreath Chapter 2</a>
-</td>
-<td class="listing-description">
-Exercise problems from Chapter 2, Small Worlds and Large Worlds, of <span class="citation" data-cites="mcelreath2020statistical">[1]</span>.
+<td>
+<span class="listing-description">Some notes while reading <span class="citation" data-cites="barratt2021optimal">Barratt, Angeris, and Boyd (2021)</span>.</span>
 </td>
 </tr>
-<tr data-index="8" data-categories="math-program,jupyter" data-listing-date-sort="1639198800000" data-listing-file-modified-sort="1668360283018" data-listing-reading-time-sort="0.81" data-listing-title-sort="Chvátal Chapter 2 Simplex Implementation" data-listing-filename-sort="2021-12-11-Chvatal-Chapter-2-Simplex-Implementation.ipynb">
-<td class="listing-date">
-Dec 11, 2021
+<tr data-index="4" data-listing-date-sort="1653364800000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Lambert W" data-listing-filename-sort="2022-05-24-Lambert-W.ipynb">
+<td>
+<span class="listing-date">May 24, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/2021-12-11-chvatal-chapter-2-simplex-implementation.html" class="title">Chvátal Chapter 2 Simplex Implementation</a>
+<td>
+<a href="./posts/2022-05-24-lambert-w.html" class="title listing-title">Lambert W</a>
 </td>
-<td class="listing-description">
-A toy implementation of the Simplex algorithm for Linear Programming.
-</td>
-</tr>
-<tr data-index="9" data-categories="math-program,jupyter" data-listing-date-sort="1638939600000" data-listing-file-modified-sort="1668360283014" data-listing-reading-time-sort="1.405" data-listing-title-sort="Chvátal Chapter 1 Problem 5" data-listing-filename-sort="2021-12-08-Chvatal-Chapter-1-Problem-5.ipynb">
-<td class="listing-date">
-Dec 8, 2021
-</td>
-<td class="listing-title">
-<a href="./posts/2021-12-08-chvatal-chapter-1-problem-5.html" class="title">Chvátal Chapter 1 Problem 5</a>
-</td>
-<td class="listing-description">
-Work through a simple Linear Programming problem exercise.
+<td>
+<span class="listing-description">What value of <span class="math inline">\(x\)</span> satisfies <span class="math inline">\(x^x=2\)</span>.</span>
 </td>
 </tr>
-<tr data-index="10" data-listing-date-sort="1635134400000" data-listing-file-modified-sort="1668360283013" data-listing-reading-time-sort="1.68" data-listing-title-sort="Image Embeddings with fastai" data-listing-filename-sort="2021-10-25-image-embeddings.ipynb">
-<td class="listing-date">
-Oct 25, 2021
+<tr data-index="5" data-categories="statistical-rethinking,bayesian" data-listing-date-sort="1649563200000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="McElreath Chapter 4" data-listing-filename-sort="2022-04-10-McElreath-Chapter-4.ipynb">
+<td>
+<span class="listing-date">Apr 10, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/2021-10-25-image-embeddings.html" class="title">Image Embeddings with fastai</a>
+<td>
+<a href="./posts/2022-04-10-mcelreath-chapter-4.html" class="title listing-title">McElreath Chapter 4</a>
 </td>
-<td class="listing-description">
-Exploring image embeddings with fastai
-</td>
-</tr>
-<tr data-index="11" data-categories="fastai" data-listing-date-sort="1634961600000" data-listing-file-modified-sort="1668360282996" data-listing-reading-time-sort="1.145" data-listing-title-sort="Reproducible runs with fastai" data-listing-filename-sort="2021-10-23-Fastai-Reproducibility-Note.ipynb">
-<td class="listing-date">
-Oct 23, 2021
-</td>
-<td class="listing-title">
-<a href="./posts/2021-10-23-fastai-reproducibility-note.html" class="title">Reproducible runs with fastai</a>
-</td>
-<td class="listing-description">
-How to replicate results from Fastai models.
+<td>
+<span class="listing-description">Working through a few practice problems on Linear Regression.</span>
 </td>
 </tr>
-<tr data-index="12" data-categories="fastai,jupyter" data-listing-date-sort="1630036800000" data-listing-file-modified-sort="1668360282992" data-listing-reading-time-sort="1.675" data-listing-title-sort="Quadratic Curve Fit with Gradient Descent" data-listing-filename-sort="2021-08-27-Quadratic-Curve-Fit-With-Gradient-Descent.ipynb">
-<td class="listing-date">
-Aug 27, 2021
+<tr data-index="6" data-categories="statistical-rethinking,bayesian" data-listing-date-sort="1647662400000" data-listing-file-modified-sort="1693070507765" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="McElreath Chapter 3" data-listing-filename-sort="2022-03-19-McElreath-Chapter-3.ipynb">
+<td>
+<span class="listing-date">Mar 19, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/2021-08-27-quadratic-curve-fit-with-gradient-descent.html" class="title">Quadratic Curve Fit with Gradient Descent</a>
+<td>
+<a href="./posts/2022-03-19-mcelreath-chapter-3.html" class="title listing-title">McElreath Chapter 3</a>
 </td>
-<td class="listing-description">
-Example of using gradient descent to fit data.
-</td>
-</tr>
-<tr data-index="13" data-categories="fastai,jupyter" data-listing-date-sort="1628913600000" data-listing-file-modified-sort="1668360282987" data-listing-reading-time-sort="1.46" data-listing-title-sort="Collaborative Filtering With Cross Entropy Loss" data-listing-filename-sort="2021-08-14-Collaborative-Filtering-On-Movie-Lens-With-Cross-Entropy-Loss.ipynb">
-<td class="listing-date">
-Aug 14, 2021
-</td>
-<td class="listing-title">
-<a href="./posts/2021-08-14-collaborative-filtering-on-movie-lens-with-cross-entropy-loss.html" class="title">Collaborative Filtering With Cross Entropy Loss</a>
-</td>
-<td class="listing-description">
-Using Fastai for Collaborative Filtering on the Movie Lens dataset using cross-entropy loss.
+<td>
+<span class="listing-description">Exercise problems from Chapter 3, Sampling the Imaginary, of <span class="citation" data-cites="mcelreath2020statistical">[1]</span>.</span>
 </td>
 </tr>
-<tr data-index="14" data-categories="fastai,jupyter" data-listing-date-sort="1628740800000" data-listing-file-modified-sort="1669729874081" data-listing-reading-time-sort="6.515" data-listing-title-sort="Multi-Label Classification" data-listing-filename-sort="2021-08-12-Multi-Label-Classification.ipynb">
-<td class="listing-date">
-Aug 12, 2021
+<tr data-index="7" data-categories="statistical-rethinking,bayesian" data-listing-date-sort="1646974800000" data-listing-file-modified-sort="1693070507764" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-title-sort="McElreath Chapter 2" data-listing-filename-sort="2022-03-11-McElreath-Chapter-2.ipynb">
+<td>
+<span class="listing-date">Mar 11, 2022</span>
 </td>
-<td class="listing-title">
-<a href="./posts/2021-08-12-multi-label-classification.html" class="title">Multi-Label Classification</a>
+<td>
+<a href="./posts/2022-03-11-mcelreath-chapter-2.html" class="title listing-title">McElreath Chapter 2</a>
 </td>
-<td class="listing-description">
-Using Fastai for Multi-Label classification.
-</td>
-</tr>
-<tr data-index="15" data-categories="fastai,pytorch,jupyter" data-listing-date-sort="1628308800000" data-listing-file-modified-sort="1668360282961" data-listing-reading-time-sort="2.645" data-listing-title-sort="A note on Cross Entropy loss with PyTorch" data-listing-filename-sort="2021-08-07-Cross-Entropy-Loss-PyTorch.ipynb">
-<td class="listing-date">
-Aug 7, 2021
-</td>
-<td class="listing-title">
-<a href="./posts/2021-08-07-cross-entropy-loss-pytorch.html" class="title">A note on Cross Entropy loss with PyTorch</a>
-</td>
-<td class="listing-description">
-Working through the Cross Entropy Loss function and it’s gradient.
+<td>
+<span class="listing-description">Exercise problems from Chapter 2, Small Worlds and Large Worlds, of <span class="citation" data-cites="mcelreath2020statistical">[1]</span>.</span>
 </td>
 </tr>
-<tr data-index="16" data-categories="fastai,jupyter" data-listing-date-sort="1628222400000" data-listing-file-modified-sort="1668360282958" data-listing-reading-time-sort="1.19" data-listing-title-sort="MNIST: Distinguishing Threes from Sevens" data-listing-filename-sort="2021-08-06-MNIST-Threes-And-Sevens.ipynb">
-<td class="listing-date">
-Aug 6, 2021
+<tr data-index="8" data-categories="math-program,jupyter" data-listing-date-sort="1639198800000" data-listing-file-modified-sort="1693070507763" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Chvátal Chapter 2 Simplex Implementation" data-listing-filename-sort="2021-12-11-Chvatal-Chapter-2-Simplex-Implementation.ipynb">
+<td>
+<span class="listing-date">Dec 11, 2021</span>
 </td>
-<td class="listing-title">
-<a href="./posts/2021-08-06-mnist-threes-and-sevens.html" class="title">MNIST: Distinguishing Threes from Sevens</a>
+<td>
+<a href="./posts/2021-12-11-chvatal-chapter-2-simplex-implementation.html" class="title listing-title">Chvátal Chapter 2 Simplex Implementation</a>
 </td>
-<td class="listing-description">
-Using Fastai to classify threes and sevens from the MNIST dataset.
+<td>
+<span class="listing-description">A toy implementation of the Simplex algorithm for Linear Programming.</span>
 </td>
 </tr>
-<tr data-index="17" data-categories="fastai,gradio,jupyter" data-listing-date-sort="1627704000000" data-listing-file-modified-sort="1669729562701" data-listing-reading-time-sort="1.69" data-listing-title-sort="Bear Classification and Gradio" data-listing-filename-sort="2021-07-31-Bear-Classification-And-Gradio.ipynb">
-<td class="listing-date">
-Jul 31, 2021
+<tr data-index="9" data-categories="math-program,jupyter" data-listing-date-sort="1638939600000" data-listing-file-modified-sort="1693070507763" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Chvátal Chapter 1 Problem 5" data-listing-filename-sort="2021-12-08-Chvatal-Chapter-1-Problem-5.ipynb">
+<td>
+<span class="listing-date">Dec 8, 2021</span>
 </td>
-<td class="listing-title">
-<a href="./posts/2021-07-31-bear-classification-and-gradio.html" class="title">Bear Classification and Gradio</a>
+<td>
+<a href="./posts/2021-12-08-chvatal-chapter-1-problem-5.html" class="title listing-title">Chvátal Chapter 1 Problem 5</a>
 </td>
-<td class="listing-description">
-Using Fastai to classify bears and demo-ing the result with gradio.
+<td>
+<span class="listing-description">Work through a simple Linear Programming problem exercise.</span>
+</td>
+</tr>
+<tr data-index="10" data-listing-date-sort="1635134400000" data-listing-file-modified-sort="1693070507763" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Image Embeddings with fastai" data-listing-filename-sort="2021-10-25-image-embeddings.ipynb">
+<td>
+<span class="listing-date">Oct 25, 2021</span>
+</td>
+<td>
+<a href="./posts/2021-10-25-image-embeddings.html" class="title listing-title">Image Embeddings with fastai</a>
+</td>
+<td>
+<span class="listing-description">Exploring image embeddings with fastai</span>
+</td>
+</tr>
+<tr data-index="11" data-categories="fastai" data-listing-date-sort="1634961600000" data-listing-file-modified-sort="1693070507763" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Reproducible runs with fastai" data-listing-filename-sort="2021-10-23-Fastai-Reproducibility-Note.ipynb">
+<td>
+<span class="listing-date">Oct 23, 2021</span>
+</td>
+<td>
+<a href="./posts/2021-10-23-fastai-reproducibility-note.html" class="title listing-title">Reproducible runs with fastai</a>
+</td>
+<td>
+<span class="listing-description">How to replicate results from Fastai models.</span>
+</td>
+</tr>
+<tr data-index="12" data-categories="fastai,jupyter" data-listing-date-sort="1630036800000" data-listing-file-modified-sort="1693070507761" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Quadratic Curve Fit with Gradient Descent" data-listing-filename-sort="2021-08-27-Quadratic-Curve-Fit-With-Gradient-Descent.ipynb">
+<td>
+<span class="listing-date">Aug 27, 2021</span>
+</td>
+<td>
+<a href="./posts/2021-08-27-quadratic-curve-fit-with-gradient-descent.html" class="title listing-title">Quadratic Curve Fit with Gradient Descent</a>
+</td>
+<td>
+<span class="listing-description">Example of using gradient descent to fit data.</span>
+</td>
+</tr>
+<tr data-index="13" data-categories="fastai,jupyter" data-listing-date-sort="1628913600000" data-listing-file-modified-sort="1693070507761" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Collaborative Filtering With Cross Entropy Loss" data-listing-filename-sort="2021-08-14-Collaborative-Filtering-On-Movie-Lens-With-Cross-Entropy-Loss.ipynb">
+<td>
+<span class="listing-date">Aug 14, 2021</span>
+</td>
+<td>
+<a href="./posts/2021-08-14-collaborative-filtering-on-movie-lens-with-cross-entropy-loss.html" class="title listing-title">Collaborative Filtering With Cross Entropy Loss</a>
+</td>
+<td>
+<span class="listing-description">Using Fastai for Collaborative Filtering on the Movie Lens dataset using cross-entropy loss.</span>
+</td>
+</tr>
+<tr data-index="14" data-categories="fastai,jupyter" data-listing-date-sort="1628740800000" data-listing-file-modified-sort="1693070507760" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-title-sort="Multi-Label Classification" data-listing-filename-sort="2021-08-12-Multi-Label-Classification.ipynb">
+<td>
+<span class="listing-date">Aug 12, 2021</span>
+</td>
+<td>
+<a href="./posts/2021-08-12-multi-label-classification.html" class="title listing-title">Multi-Label Classification</a>
+</td>
+<td>
+<span class="listing-description">Using Fastai for Multi-Label classification.</span>
+</td>
+</tr>
+<tr data-index="15" data-categories="fastai,pytorch,jupyter" data-listing-date-sort="1628308800000" data-listing-file-modified-sort="1693070507757" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="A note on Cross Entropy loss with PyTorch" data-listing-filename-sort="2021-08-07-Cross-Entropy-Loss-PyTorch.ipynb">
+<td>
+<span class="listing-date">Aug 7, 2021</span>
+</td>
+<td>
+<a href="./posts/2021-08-07-cross-entropy-loss-pytorch.html" class="title listing-title">A note on Cross Entropy loss with PyTorch</a>
+</td>
+<td>
+<span class="listing-description">Working through the Cross Entropy Loss function and it’s gradient.</span>
+</td>
+</tr>
+<tr data-index="16" data-categories="fastai,jupyter" data-listing-date-sort="1628222400000" data-listing-file-modified-sort="1693070507756" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="MNIST: Distinguishing Threes from Sevens" data-listing-filename-sort="2021-08-06-MNIST-Threes-And-Sevens.ipynb">
+<td>
+<span class="listing-date">Aug 6, 2021</span>
+</td>
+<td>
+<a href="./posts/2021-08-06-mnist-threes-and-sevens.html" class="title listing-title">MNIST: Distinguishing Threes from Sevens</a>
+</td>
+<td>
+<span class="listing-description">Using Fastai to classify threes and sevens from the MNIST dataset.</span>
+</td>
+</tr>
+<tr data-index="17" data-categories="fastai,gradio,jupyter" data-listing-date-sort="1627704000000" data-listing-file-modified-sort="1693070507756" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Bear Classification and Gradio" data-listing-filename-sort="2021-07-31-Bear-Classification-And-Gradio.ipynb">
+<td>
+<span class="listing-date">Jul 31, 2021</span>
+</td>
+<td>
+<a href="./posts/2021-07-31-bear-classification-and-gradio.html" class="title listing-title">Bear Classification and Gradio</a>
+</td>
+<td>
+<span class="listing-description">Using Fastai to classify bears and demo-ing the result with gradio.</span>
 </td>
 </tr>
 </tbody>
@@ -417,9 +421,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -484,6 +502,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
