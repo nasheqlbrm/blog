@@ -3,11 +3,15 @@ project:
 
 website:
   title: "Kaushik Sinha"
+  site-url: https://nasheqlbrm.github.io/blog
+  description: "Notes on things I find interesting"
   navbar:
     right:
       - about.qmd
       - icon: github
         href: https://github.com/nasheqlbrm
+      - icon: rss
+        href: index.xml  
 format:
   html:
     theme: cosmo
