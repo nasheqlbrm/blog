@@ -8,8 +8,6 @@ website:
       - about.qmd
       - icon: github
         href: https://github.com/nasheqlbrm
-      - icon: twitter
-        href: https://twitter.com/_ksinha_
 format:
   html:
     theme: cosmo
