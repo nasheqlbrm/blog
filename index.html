@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Kaushik Sinha - Blog</title>
+<title>Blog – Kaushik Sinha</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -37,17 +37,23 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -92,8 +99,35 @@ ul.task-list li input[type="checkbox"] {
   })
   </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -101,38 +135,33 @@ ul.task-list li input[type="checkbox"] {
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Kaushik Sinha</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/nasheqlbrm" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/nasheqlbrm"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/ksinha" rel="" target=""><i class="bi bi-twitter" role="img">
-</i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -145,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
   </div>
     
   
-  <div class="quarto-title-meta">
+  <div class="quarto-title-meta column-page-left">
 
       
     
@@ -158,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(18)</span></div><div class="category" data-category="TIL">TIL <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bayesian">bayesian <span class="quarto-category-count">(3)</span></div><div class="category" data-category="fastai">fastai <span class="quarto-category-count">(7)</span></div><div class="category" data-category="gradio">gradio <span class="quarto-category-count">(1)</span></div><div class="category" data-category="jupyter">jupyter <span class="quarto-category-count">(8)</span></div><div class="category" data-category="math-program">math-program <span class="quarto-category-count">(2)</span></div><div class="category" data-category="neural-nets">neural-nets <span class="quarto-category-count">(1)</span></div><div class="category" data-category="notes">notes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="pytorch">pytorch <span class="quarto-category-count">(1)</span></div><div class="category" data-category="statistical-rethinking">statistical-rethinking <span class="quarto-category-count">(3)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(18)</span></div><div class="category" data-category="VElM">TIL <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YmF5ZXNpYW4=">bayesian <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ZmFzdGFp">fastai <span class="quarto-category-count">(7)</span></div><div class="category" data-category="Z3JhZGlv">gradio <span class="quarto-category-count">(1)</span></div><div class="category" data-category="anVweXRlcg==">jupyter <span class="quarto-category-count">(8)</span></div><div class="category" data-category="bWF0aC1wcm9ncmFt">math-program <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bmV1cmFsLW5ldHM=">neural-nets <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bm90ZXM=">notes <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHl0b3JjaA==">pytorch <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3RhdGlzdGljYWwtcmV0aGlua2luZw==">statistical-rethinking <span class="quarto-category-count">(3)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -169,8 +198,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
 
+<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
 <table class="quarto-listing-table table">
 <thead>
 <tr>
@@ -186,7 +215,7 @@ Description
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="TIL" data-listing-date-sort="1668834000000" data-listing-file-modified-sort="1693070507770" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="TIL$:$ Installing Python packages inside Jupyter" data-listing-filename-sort="2022-11-19-install-packages-inside-a-jupyter-notebook.ipynb">
+<tr data-index="0" data-categories="VElM" data-listing-date-sort="1668834000000" data-listing-file-modified-sort="1693070507770" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="64" data-listing-title-sort="TIL$:$ Installing Python packages inside Jupyter" data-listing-filename-sort="2022-11-19-install-packages-inside-a-jupyter-notebook.ipynb">
 <td>
 <span class="listing-date">Nov 19, 2022</span>
 </td>
@@ -197,7 +226,7 @@ Description
 <span class="listing-description">Dealing with <em>Import Error<span class="math inline">\(:\)</span> No module named Name</em></span>
 </td>
 </tr>
-<tr data-index="1" data-categories="neural-nets" data-listing-date-sort="1668315600000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-title-sort="Simple Neural Net Backward Pass" data-listing-filename-sort="2022-11-13-backward-pass.ipynb">
+<tr data-index="1" data-categories="bmV1cmFsLW5ldHM=" data-listing-date-sort="1668315600000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1499" data-listing-title-sort="Simple Neural Net Backward Pass" data-listing-filename-sort="2022-11-13-backward-pass.ipynb">
 <td>
 <span class="listing-date">Nov 13, 2022</span>
 </td>
@@ -208,7 +237,7 @@ Description
 <span class="listing-description">Deriving the math of the backward pass for a simple neural net.</span>
 </td>
 </tr>
-<tr data-index="2" data-categories="notes" data-listing-date-sort="1653624000000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-title-sort="Exercises with Convex Sets" data-listing-filename-sort="2022-05-27-exercises-with-convex-sets.ipynb">
+<tr data-index="2" data-categories="bm90ZXM=" data-listing-date-sort="1653624000000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2046" data-listing-title-sort="Exercises with Convex Sets" data-listing-filename-sort="2022-05-27-exercises-with-convex-sets.ipynb">
 <td>
 <span class="listing-date">May 27, 2022</span>
 </td>
@@ -219,7 +248,7 @@ Description
 <span class="listing-description">Working through a few practice problems related to Convexity.</span>
 </td>
 </tr>
-<tr data-index="3" data-listing-date-sort="1653537600000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-title-sort="Losses" data-listing-filename-sort="2022-05-26-Losses.ipynb">
+<tr data-index="3" data-listing-date-sort="1653537600000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="871" data-listing-title-sort="Losses" data-listing-filename-sort="2022-05-26-Losses.ipynb">
 <td>
 <span class="listing-date">May 26, 2022</span>
 </td>
@@ -230,7 +259,7 @@ Description
 <span class="listing-description">Some notes while reading <span class="citation" data-cites="barratt2021optimal">Barratt, Angeris, and Boyd (2021)</span>.</span>
 </td>
 </tr>
-<tr data-index="4" data-listing-date-sort="1653364800000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Lambert W" data-listing-filename-sort="2022-05-24-Lambert-W.ipynb">
+<tr data-index="4" data-listing-date-sort="1653364800000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="360" data-listing-title-sort="Lambert W" data-listing-filename-sort="2022-05-24-Lambert-W.ipynb">
 <td>
 <span class="listing-date">May 24, 2022</span>
 </td>
@@ -241,7 +270,7 @@ Description
 <span class="listing-description">What value of <span class="math inline">\(x\)</span> satisfies <span class="math inline">\(x^x=2\)</span>.</span>
 </td>
 </tr>
-<tr data-index="5" data-categories="statistical-rethinking,bayesian" data-listing-date-sort="1649563200000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="McElreath Chapter 4" data-listing-filename-sort="2022-04-10-McElreath-Chapter-4.ipynb">
+<tr data-index="5" data-categories="c3RhdGlzdGljYWwtcmV0aGlua2luZyUyQ2JheWVzaWFu" data-listing-date-sort="1649563200000" data-listing-file-modified-sort="1693070507769" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="721" data-listing-title-sort="McElreath Chapter 4" data-listing-filename-sort="2022-04-10-McElreath-Chapter-4.ipynb">
 <td>
 <span class="listing-date">Apr 10, 2022</span>
 </td>
@@ -252,7 +281,7 @@ Description
 <span class="listing-description">Working through a few practice problems on Linear Regression.</span>
 </td>
 </tr>
-<tr data-index="6" data-categories="statistical-rethinking,bayesian" data-listing-date-sort="1647662400000" data-listing-file-modified-sort="1693070507765" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-title-sort="McElreath Chapter 3" data-listing-filename-sort="2022-03-19-McElreath-Chapter-3.ipynb">
+<tr data-index="6" data-categories="c3RhdGlzdGljYWwtcmV0aGlua2luZyUyQ2JheWVzaWFu" data-listing-date-sort="1647662400000" data-listing-file-modified-sort="1693070507765" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="719" data-listing-title-sort="McElreath Chapter 3" data-listing-filename-sort="2022-03-19-McElreath-Chapter-3.ipynb">
 <td>
 <span class="listing-date">Mar 19, 2022</span>
 </td>
@@ -263,7 +292,7 @@ Description
 <span class="listing-description">Exercise problems from Chapter 3, Sampling the Imaginary, of <span class="citation" data-cites="mcelreath2020statistical">[1]</span>.</span>
 </td>
 </tr>
-<tr data-index="7" data-categories="statistical-rethinking,bayesian" data-listing-date-sort="1646974800000" data-listing-file-modified-sort="1693070507764" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-title-sort="McElreath Chapter 2" data-listing-filename-sort="2022-03-11-McElreath-Chapter-2.ipynb">
+<tr data-index="7" data-categories="c3RhdGlzdGljYWwtcmV0aGlua2luZyUyQ2JheWVzaWFu" data-listing-date-sort="1646974800000" data-listing-file-modified-sort="1693070507764" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1357" data-listing-title-sort="McElreath Chapter 2" data-listing-filename-sort="2022-03-11-McElreath-Chapter-2.ipynb">
 <td>
 <span class="listing-date">Mar 11, 2022</span>
 </td>
@@ -274,7 +303,7 @@ Description
 <span class="listing-description">Exercise problems from Chapter 2, Small Worlds and Large Worlds, of <span class="citation" data-cites="mcelreath2020statistical">[1]</span>.</span>
 </td>
 </tr>
-<tr data-index="8" data-categories="math-program,jupyter" data-listing-date-sort="1639198800000" data-listing-file-modified-sort="1693070507763" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Chvátal Chapter 2 Simplex Implementation" data-listing-filename-sort="2021-12-11-Chvatal-Chapter-2-Simplex-Implementation.ipynb">
+<tr data-index="8" data-categories="bWF0aC1wcm9ncmFtJTJDanVweXRlcg==" data-listing-date-sort="1639198800000" data-listing-file-modified-sort="1693070507763" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="162" data-listing-title-sort="Chvátal Chapter 2 Simplex Implementation" data-listing-filename-sort="2021-12-11-Chvatal-Chapter-2-Simplex-Implementation.ipynb">
 <td>
 <span class="listing-date">Dec 11, 2021</span>
 </td>
@@ -285,7 +314,7 @@ Description
 <span class="listing-description">A toy implementation of the Simplex algorithm for Linear Programming.</span>
 </td>
 </tr>
-<tr data-index="9" data-categories="math-program,jupyter" data-listing-date-sort="1638939600000" data-listing-file-modified-sort="1693070507763" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Chvátal Chapter 1 Problem 5" data-listing-filename-sort="2021-12-08-Chvatal-Chapter-1-Problem-5.ipynb">
+<tr data-index="9" data-categories="bWF0aC1wcm9ncmFtJTJDanVweXRlcg==" data-listing-date-sort="1638939600000" data-listing-file-modified-sort="1693070507763" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="281" data-listing-title-sort="Chvátal Chapter 1 Problem 5" data-listing-filename-sort="2021-12-08-Chvatal-Chapter-1-Problem-5.ipynb">
 <td>
 <span class="listing-date">Dec 8, 2021</span>
 </td>
@@ -296,7 +325,7 @@ Description
 <span class="listing-description">Work through a simple Linear Programming problem exercise.</span>
 </td>
 </tr>
-<tr data-index="10" data-listing-date-sort="1635134400000" data-listing-file-modified-sort="1693070507763" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Image Embeddings with fastai" data-listing-filename-sort="2021-10-25-image-embeddings.ipynb">
+<tr data-index="10" data-listing-date-sort="1635134400000" data-listing-file-modified-sort="1693070507763" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="336" data-listing-title-sort="Image Embeddings with fastai" data-listing-filename-sort="2021-10-25-image-embeddings.ipynb">
 <td>
 <span class="listing-date">Oct 25, 2021</span>
 </td>
@@ -307,7 +336,7 @@ Description
 <span class="listing-description">Exploring image embeddings with fastai</span>
 </td>
 </tr>
-<tr data-index="11" data-categories="fastai" data-listing-date-sort="1634961600000" data-listing-file-modified-sort="1693070507763" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Reproducible runs with fastai" data-listing-filename-sort="2021-10-23-Fastai-Reproducibility-Note.ipynb">
+<tr data-index="11" data-categories="ZmFzdGFp" data-listing-date-sort="1634961600000" data-listing-file-modified-sort="1693070507763" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="229" data-listing-title-sort="Reproducible runs with fastai" data-listing-filename-sort="2021-10-23-Fastai-Reproducibility-Note.ipynb">
 <td>
 <span class="listing-date">Oct 23, 2021</span>
 </td>
@@ -318,7 +347,7 @@ Description
 <span class="listing-description">How to replicate results from Fastai models.</span>
 </td>
 </tr>
-<tr data-index="12" data-categories="fastai,jupyter" data-listing-date-sort="1630036800000" data-listing-file-modified-sort="1693070507761" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Quadratic Curve Fit with Gradient Descent" data-listing-filename-sort="2021-08-27-Quadratic-Curve-Fit-With-Gradient-Descent.ipynb">
+<tr data-index="12" data-categories="ZmFzdGFpJTJDanVweXRlcg==" data-listing-date-sort="1630036800000" data-listing-file-modified-sort="1693070507761" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="335" data-listing-title-sort="Quadratic Curve Fit with Gradient Descent" data-listing-filename-sort="2021-08-27-Quadratic-Curve-Fit-With-Gradient-Descent.ipynb">
 <td>
 <span class="listing-date">Aug 27, 2021</span>
 </td>
@@ -329,7 +358,7 @@ Description
 <span class="listing-description">Example of using gradient descent to fit data.</span>
 </td>
 </tr>
-<tr data-index="13" data-categories="fastai,jupyter" data-listing-date-sort="1628913600000" data-listing-file-modified-sort="1693070507761" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Collaborative Filtering With Cross Entropy Loss" data-listing-filename-sort="2021-08-14-Collaborative-Filtering-On-Movie-Lens-With-Cross-Entropy-Loss.ipynb">
+<tr data-index="13" data-categories="ZmFzdGFpJTJDanVweXRlcg==" data-listing-date-sort="1628913600000" data-listing-file-modified-sort="1693070507761" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="292" data-listing-title-sort="Collaborative Filtering With Cross Entropy Loss" data-listing-filename-sort="2021-08-14-Collaborative-Filtering-On-Movie-Lens-With-Cross-Entropy-Loss.ipynb">
 <td>
 <span class="listing-date">Aug 14, 2021</span>
 </td>
@@ -340,7 +369,7 @@ Description
 <span class="listing-description">Using Fastai for Collaborative Filtering on the Movie Lens dataset using cross-entropy loss.</span>
 </td>
 </tr>
-<tr data-index="14" data-categories="fastai,jupyter" data-listing-date-sort="1628740800000" data-listing-file-modified-sort="1693070507760" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-title-sort="Multi-Label Classification" data-listing-filename-sort="2021-08-12-Multi-Label-Classification.ipynb">
+<tr data-index="14" data-categories="ZmFzdGFpJTJDanVweXRlcg==" data-listing-date-sort="1628740800000" data-listing-file-modified-sort="1693070507760" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1303" data-listing-title-sort="Multi-Label Classification" data-listing-filename-sort="2021-08-12-Multi-Label-Classification.ipynb">
 <td>
 <span class="listing-date">Aug 12, 2021</span>
 </td>
@@ -351,7 +380,7 @@ Description
 <span class="listing-description">Using Fastai for Multi-Label classification.</span>
 </td>
 </tr>
-<tr data-index="15" data-categories="fastai,pytorch,jupyter" data-listing-date-sort="1628308800000" data-listing-file-modified-sort="1693070507757" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-title-sort="A note on Cross Entropy loss with PyTorch" data-listing-filename-sort="2021-08-07-Cross-Entropy-Loss-PyTorch.ipynb">
+<tr data-index="15" data-categories="ZmFzdGFpJTJDcHl0b3JjaCUyQ2p1cHl0ZXI=" data-listing-date-sort="1628308800000" data-listing-file-modified-sort="1693070507757" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="529" data-listing-title-sort="A note on Cross Entropy loss with PyTorch" data-listing-filename-sort="2021-08-07-Cross-Entropy-Loss-PyTorch.ipynb">
 <td>
 <span class="listing-date">Aug 7, 2021</span>
 </td>
@@ -362,7 +391,7 @@ Description
 <span class="listing-description">Working through the Cross Entropy Loss function and it’s gradient.</span>
 </td>
 </tr>
-<tr data-index="16" data-categories="fastai,jupyter" data-listing-date-sort="1628222400000" data-listing-file-modified-sort="1693070507756" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="MNIST: Distinguishing Threes from Sevens" data-listing-filename-sort="2021-08-06-MNIST-Threes-And-Sevens.ipynb">
+<tr data-index="16" data-categories="ZmFzdGFpJTJDanVweXRlcg==" data-listing-date-sort="1628222400000" data-listing-file-modified-sort="1693070507756" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="238" data-listing-title-sort="MNIST: Distinguishing Threes from Sevens" data-listing-filename-sort="2021-08-06-MNIST-Threes-And-Sevens.ipynb">
 <td>
 <span class="listing-date">Aug 6, 2021</span>
 </td>
@@ -373,7 +402,7 @@ Description
 <span class="listing-description">Using Fastai to classify threes and sevens from the MNIST dataset.</span>
 </td>
 </tr>
-<tr data-index="17" data-categories="fastai,gradio,jupyter" data-listing-date-sort="1627704000000" data-listing-file-modified-sort="1693070507756" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Bear Classification and Gradio" data-listing-filename-sort="2021-07-31-Bear-Classification-And-Gradio.ipynb">
+<tr data-index="17" data-categories="ZmFzdGFpJTJDZ3JhZGlvJTJDanVweXRlcg==" data-listing-date-sort="1627704000000" data-listing-file-modified-sort="1693070507756" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="338" data-listing-title-sort="Bear Classification and Gradio" data-listing-filename-sort="2021-07-31-Bear-Classification-And-Gradio.ipynb">
 <td>
 <span class="listing-date">Jul 31, 2021</span>
 </td>
@@ -385,7 +414,6 @@ Description
 </td>
 </tr>
 </tbody>
-
 </table>
 <div class="listing-no-matching d-none">
 No matching items
@@ -429,18 +457,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -472,11 +489,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/nasheqlbrm\.github\.io\/blog\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -486,8 +540,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -499,7 +562,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -543,6 +728,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -568,6 +754,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -628,6 +840,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
