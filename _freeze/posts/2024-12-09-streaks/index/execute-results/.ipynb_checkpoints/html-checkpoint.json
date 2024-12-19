@@ -1,0 +1,12 @@
+{
+  "hash": "02c20d44dac7f3da29d0faff957a1da0",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\nbadges: true\ncategories:\n- TIL\ntitle: \"Streaks\"\ndescription: \"Winning and Losing streaks in a game\"\nauthor: \"Kaushik Sinha\"\ndate: \"12/09/2024\"\ndate-modified: \"12/09/2024\"\ndraft: false \nformat: live-html\nbibliography: ../../references.bib\ncsl: ../../control-and-automation.csl\ntoc: true\n---\n\n\nSuppose $p$ and $q=1-p$ are respectively the probabilities of winning and losing a round of some game.\n\nFrom @churvich_ce_statub103_lec13, assuming that each round is either won or lost the probability that at least one losing streak of length\n$r$ will occur somewhere among $n$ independent rounds of the game is approximately $[1+(n−r)p]q^{r}$\n\n\n```{pyodide}\nn = 100 # number of rounds of the game\nr = 10 # length of losing streak\np = 0.6 # probability of win\nq = 1-p # probability of loss\nprob = (1 + (n-r)*p)*(q**r)\nprint(f'The probability of at least one losing streak of length {r} somewhere among {n} independent rounds of the game is approximately {prob:1.4%}')\n```\n\n\nI am going to insert a footnote here[^1].\n\n[^1]: Here is the associated footnote, which will appear at the bottom of my document in a \"Footnotes\" section.\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
