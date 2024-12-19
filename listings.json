@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2024-12-09-streaks/index.html",
       "/posts/2022-11-19-install-packages-inside-a-jupyter-notebook.html",
       "/posts/2021-11-13-backward-pass.html",
       "/posts/2022-05-27-exercises-with-convex-sets.html",
